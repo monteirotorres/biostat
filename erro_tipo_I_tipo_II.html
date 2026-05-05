@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erro Tipo I e Tipo II — Bioestatística</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: #f8f7f4;
+    color: #1a1a1a;
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 10px 0 16px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+
+  .swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+
+  .ctrl-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ctrl-label {
+    font-size: 0.78rem;
+    color: #666;
+    font-family: 'Courier New', monospace;
+    min-width: 220px;
+  }
+
+  input[type=range] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 3px;
+    background: #ccc;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    cursor: pointer;
+  }
+
+  input[type=range]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    cursor: pointer;
+    border: none;
+  }
+
+  .ctrl-val {
+    font-size: 0.78rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    min-width: 36px;
+    color: #1a1a1a;
+    text-align: right;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 500px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .ctrl-label { min-width: 160px; }
+  }
+
+  .stat-card {
+    background: #fff;
+    border: 1px solid #e0ddd6;
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+
+  .stat-card .slabel {
+    font-size: 0.68rem;
+    color: #999;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+  }
+
+  .stat-card .sval {
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+  }
+
+  .stat-card .sdesc {
+    font-size: 0.65rem;
+    color: #aaa;
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  .footer {
+    margin-top: 1.5rem;
+    font-size: 0.68rem;
+    color: #bbb;
+    font-family: 'Courier New', monospace;
+    border-top: 1px solid #e0ddd6;
+    padding-top: 0.75rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Erro Tipo I e Tipo II</h1>
+<p class="subtitle">Teste de hipóteses — visualização interativa</p>
+
+<canvas id="cvs"></canvas>
+
+<div class="legend">
+  <span class="legend-item"><span class="swatch" style="background:#3266ad;opacity:0.6"></span>H₀ — hipótese nula (efeito ausente)</span>
+  <span class="legend-item"><span class="swatch" style="background:#c0392b;opacity:0.6"></span>H₁ — hipótese alternativa (efeito presente)</span>
+  <span class="legend-item"><span class="swatch" style="background:#c0392b;opacity:0.9"></span>α — erro tipo I (falso positivo)</span>
+  <span class="legend-item"><span class="swatch" style="background:#2980b9;opacity:0.9"></span>β — erro tipo II (falso negativo)</span>
+</div>
+
+<div class="controls">
+  <div class="ctrl-row">
+    <span class="ctrl-label">Nível de significância (α)</span>
+    <input type="range" min="1" max="20" step="1" value="5" id="slAlpha">
+    <span class="ctrl-val" id="outAlpha">0.05</span>
+  </div>
+  <div class="ctrl-row">
+    <span class="ctrl-label">Tamanho de efeito (δ/σ)</span>
+    <input type="range" min="5" max="30" step="1" value="15" id="slDelta">
+    <span class="ctrl-val" id="outDelta">1.5</span>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="slabel">α — erro tipo I</div>
+    <div class="sval" id="vAlpha" style="color:#c0392b;">—</div>
+    <div class="sdesc">P(rejeitar H₀ | H₀ verdadeira)</div>
+  </div>
+  <div class="stat-card">
+    <div class="slabel">β — erro tipo II</div>
+    <div class="sval" id="vBeta" style="color:#2980b9;">—</div>
+    <div class="sdesc">P(não rejeitar H₀ | H₁ verdadeira)</div>
+  </div>
+  <div class="stat-card">
+    <div class="slabel">Poder (1 − β)</div>
+    <div class="sval" id="vPower" style="color:#1a7a4a;">—</div>
+    <div class="sdesc">P(rejeitar H₀ | H₁ verdadeira)</div>
+  </div>
+  <div class="stat-card">
+    <div class="slabel">Valor crítico z*</div>
+    <div class="sval" id="vZcrit" style="color:#555;">—</div>
+    <div class="sdesc">limiar de rejeição de H₀</div>
+  </div>
+</div>
+
+<div class="footer">
+  Produzido para fins didáticos &mdash; bioestatística &mdash; UFRJ / IBCCF
+</div>
+
+<script>
+const cvs = document.getElementById('cvs');
+const ctx = cvs.getContext('2d');
+
+function setSize() {
+  const W = cvs.parentElement.clientWidth;
+  const H = Math.round(W * 0.42);
+  cvs.width = W;
+  cvs.height = H;
+  draw();
+}
+
+function phi(x) {
+  const t = 1 / (1 + 0.2316419 * Math.abs(x));
+  const poly = t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+  const pdf = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+  const cdf = 1 - pdf * poly;
+  return x >= 0 ? cdf : 1 - cdf;
+}
+
+function invPhi(p) {
+  let lo = -6, hi = 6, mid;
+  for (let i = 0; i < 60; i++) { mid = (lo + hi) / 2; phi(mid) < p ? lo = mid : hi = mid; }
+  return mid;
+}
+
+function pdfN(x) { return Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI); }
+
+function draw() {
+  const W = cvs.width, H = cvs.height;
+  const alpha = parseInt(document.getElementById('slAlpha').value) / 100;
+  const delta = parseInt(document.getElementById('slDelta').value) / 10;
+
+  document.getElementById('outAlpha').textContent = alpha.toFixed(2);
+  document.getElementById('outDelta').textContent = delta.toFixed(1);
+
+  const zcrit = invPhi(1 - alpha);
+  const beta = phi(zcrit - delta);
+  const power = 1 - beta;
+
+  document.getElementById('vAlpha').textContent = alpha.toFixed(3);
+  document.getElementById('vBeta').textContent = beta.toFixed(3);
+  document.getElementById('vPower').textContent = power.toFixed(3);
+  document.getElementById('vZcrit').textContent = zcrit.toFixed(2);
+
+  ctx.clearRect(0, 0, W, H);
+
+  const padL = 30, padR = 30, padT = 28, padB = 36;
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+
+  const mu0 = 0, mu1 = delta;
+  const xMin = -4, xMax = delta + 4;
+  const xRange = xMax - xMin;
+  const baseY = padT + plotH;
+  const scaleY = plotH * 0.88;
+
+  const toX = v => padL + (v - xMin) / xRange * plotW;
+
+  function drawFill(mu, fillColor, fillFrom, fillTo) {
+    const steps = 300;
+    ctx.beginPath();
+    ctx.moveTo(toX(fillFrom), baseY);
+    for (let i = 0; i <= steps; i++) {
+      const x = fillFrom + i / steps * (fillTo - fillFrom);
+      const y = pdfN(x - mu);
+      ctx.lineTo(toX(x), baseY - y * scaleY);
+    }
+    ctx.lineTo(toX(fillTo), baseY);
+    ctx.closePath();
+    ctx.fillStyle = fillColor;
+    ctx.fill();
+  }
+
+  function drawCurve(mu, color) {
+    ctx.beginPath();
+    for (let i = 0; i <= 500; i++) {
+      const x = xMin + i / 500 * xRange;
+      const y = pdfN(x - mu);
+      const px = toX(x), py = baseY - y * scaleY;
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  // baseline
+  ctx.beginPath();
+  ctx.moveTo(padL, baseY);
+  ctx.lineTo(W - padR, baseY);
+  ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // fills
+  drawFill(mu0, 'rgba(192,57,43,0.28)', zcrit, xMax);   // α
+  drawFill(mu1, 'rgba(41,128,185,0.28)', xMin, zcrit);  // β
+
+  // curves
+  drawCurve(mu0, '#3266ad');
+  drawCurve(mu1, '#c0392b');
+
+  // critical line
+  ctx.beginPath();
+  ctx.setLineDash([5, 4]);
+  ctx.moveTo(toX(zcrit), padT);
+  ctx.lineTo(toX(zcrit), baseY);
+  ctx.strokeStyle = '#666';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // labels
+  const fs = Math.max(11, Math.round(W * 0.018));
+  ctx.font = `${fs}px 'Courier New', monospace`;
+
+  ctx.fillStyle = '#3266ad';
+  ctx.textAlign = 'center';
+  ctx.fillText('H₀', toX(mu0), baseY - pdfN(0) * scaleY - 8);
+
+  ctx.fillStyle = '#c0392b';
+  ctx.fillText('H₁', toX(mu1), baseY - pdfN(0) * scaleY - 8);
+
+  ctx.fillStyle = '#444';
+  ctx.font = `${Math.max(10, fs - 1)}px 'Courier New', monospace`;
+  ctx.fillText('z* = ' + zcrit.toFixed(2), toX(zcrit), padT - 8);
+
+  if (alpha > 0.015) {
+    ctx.fillStyle = 'rgba(192,57,43,0.85)';
+    const ax = zcrit + (xMax - zcrit) * 0.38;
+    ctx.fillText('α', toX(ax), baseY - pdfN(ax - mu0) * scaleY * 0.5 - 4);
+  }
+
+  if (beta > 0.015) {
+    ctx.fillStyle = 'rgba(41,128,185,0.85)';
+    const bx = Math.min(mu1 - (mu1 - xMin) * 0.25, zcrit - 0.15);
+    ctx.fillText('β', toX(bx), baseY - pdfN(bx - mu1) * scaleY * 0.5 - 4);
+  }
+}
+
+document.getElementById('slAlpha').addEventListener('input', draw);
+document.getElementById('slDelta').addEventListener('input', draw);
+window.addEventListener('resize', setSize);
+setSize();
+</script>
+</body>
+</html>
