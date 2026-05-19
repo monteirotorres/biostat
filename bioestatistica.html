@@ -1,0 +1,4659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bioestatística — IBCCF / UFRJ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" id="hljs-light">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" id="hljs-dark" disabled>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f7f8fa;
+  --bg-elev: #ffffff;
+  --text: #1a1d23;
+  --text-soft: #555a65;
+  --text-mute: #8a909c;
+  --border: #e6e8ec;
+  --primary: #2563eb;
+  --primary-soft: #dbeafe;
+  --accent: #7c3aed;
+  --code-bg: #f4f5f7;
+  --sidebar-w: 320px;
+  --header-h: 60px;
+  --content-max: 760px;
+}
+[data-theme="dark"] {
+  --bg: #0f1115;
+  --bg-soft: #161922;
+  --bg-elev: #1a1e28;
+  --text: #e8eaef;
+  --text-soft: #b3b8c4;
+  --text-mute: #7d8392;
+  --border: #2a2f3a;
+  --primary: #60a5fa;
+  --primary-soft: #1e3a5f;
+  --accent: #a78bfa;
+  --code-bg: #161922;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 20px); }
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s, color 0.2s;
+}
+code, pre { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+/* Header */
+header.topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--header-h);
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 24px; gap: 16px;
+  z-index: 100;
+}
+[data-theme="dark"] header.topbar { background: rgba(15,17,21,0.85); }
+header h1 {
+  margin: 0; font-size: 1.05rem; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+}
+header h1::before {
+  content: ""; width: 28px; height: 28px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 8px;
+  display: inline-block;
+}
+.header-spacer { flex: 1; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.btn-icon {
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-soft); cursor: pointer;
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.btn-icon:hover { background: var(--bg-soft); color: var(--text); }
+
+/* Sidebar */
+nav.sidebar {
+  position: fixed; left: 0; top: var(--header-h); bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 20px 0;
+  transition: transform 0.25s;
+}
+.search-box {
+  padding: 0 20px 16px; position: sticky; top: 0;
+  background: var(--bg-soft); z-index: 2;
+}
+.search-box input {
+  width: 100%; padding: 9px 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--bg);
+  font-family: inherit; font-size: 0.9rem; color: var(--text);
+}
+.search-box input:focus { outline: 2px solid var(--primary); outline-offset: -1px; }
+.nav-section { padding: 0 12px 18px; }
+.nav-section h3 {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-mute); padding: 8px 12px; margin: 0;
+  font-weight: 600;
+}
+.nav-section ul { list-style: none; padding: 0; margin: 0; }
+.nav-section li a {
+  display: block; padding: 7px 12px; border-radius: 6px;
+  color: var(--text-soft); text-decoration: none; font-size: 0.92rem;
+  border-left: 2px solid transparent; transition: all 0.15s;
+}
+.nav-section li a:hover { background: var(--bg-elev); color: var(--text); }
+.nav-section li a.active {
+  background: var(--primary-soft); color: var(--primary);
+  border-left-color: var(--primary); font-weight: 500;
+}
+.nav-section li.hidden, .nav-section.hidden { display: none; }
+
+/* Main content */
+main {
+  margin-left: var(--sidebar-w);
+  padding: calc(var(--header-h) + 40px) 48px 80px;
+}
+.content-wrap { max-width: var(--content-max); margin: 0 auto; }
+
+article.topic {
+  padding-bottom: 60px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: calc(var(--header-h) + 20px);
+}
+article.topic:last-child { border-bottom: none; }
+.topic-meta {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 8px;
+}
+.badge {
+  font-size: 0.72rem; padding: 3px 10px; border-radius: 999px;
+  background: var(--primary-soft); color: var(--primary);
+  font-weight: 500; letter-spacing: 0.02em;
+}
+.nb-link {
+  font-size: 0.82rem; color: var(--text-mute);
+  text-decoration: none; padding: 2px 8px;
+  border-radius: 6px; border: 1px solid var(--border);
+  transition: all 0.15s;
+}
+.nb-link:hover { color: var(--primary); border-color: var(--primary); }
+
+/* Markdown styles */
+.markdown-body h1 {
+  font-size: 2rem; font-weight: 700; margin: 0 0 24px;
+  letter-spacing: -0.02em; line-height: 1.25;
+}
+.markdown-body h2 {
+  font-size: 1.4rem; font-weight: 600; margin: 36px 0 14px;
+  letter-spacing: -0.01em;
+}
+.markdown-body h3 {
+  font-size: 1.1rem; font-weight: 600; margin: 24px 0 10px;
+}
+.markdown-body p { margin: 0 0 14px; color: var(--text); }
+.markdown-body ul, .markdown-body ol { margin: 0 0 14px; padding-left: 24px; }
+.markdown-body li { margin-bottom: 4px; }
+.markdown-body strong { font-weight: 600; }
+.markdown-body em { font-style: italic; }
+.markdown-body blockquote {
+  margin: 18px 0; padding: 12px 18px;
+  border-left: 3px solid var(--primary);
+  background: var(--bg-soft); border-radius: 0 8px 8px 0;
+  color: var(--text-soft);
+}
+.markdown-body blockquote p:last-child { margin: 0; }
+.markdown-body code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.88em;
+}
+.markdown-body pre {
+  background: var(--code-bg); padding: 16px; border-radius: 10px;
+  overflow-x: auto; margin: 16px 0;
+  border: 1px solid var(--border);
+  position: relative;
+}
+.markdown-body pre code { background: none; padding: 0; font-size: 0.88rem; }
+.markdown-body table {
+  border-collapse: collapse; margin: 18px 0;
+  font-size: 0.92rem; width: 100%;
+}
+.markdown-body th, .markdown-body td {
+  padding: 8px 14px; border: 1px solid var(--border);
+  text-align: left;
+}
+.markdown-body th {
+  background: var(--bg-soft); font-weight: 600;
+}
+.markdown-body tr:nth-child(even) td { background: var(--bg-soft); }
+.markdown-body hr {
+  border: 0; border-top: 1px solid var(--border); margin: 28px 0;
+}
+.markdown-body a { color: var(--primary); }
+
+/* Copy button on code blocks */
+.code-copy {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--bg); border: 1px solid var(--border);
+  color: var(--text-mute); padding: 4px 10px;
+  border-radius: 6px; cursor: pointer; font-size: 0.75rem;
+  font-family: inherit; opacity: 0; transition: opacity 0.15s;
+}
+.markdown-body pre:hover .code-copy { opacity: 1; }
+.code-copy:hover { color: var(--primary); border-color: var(--primary); }
+.code-copy.copied { color: var(--primary); border-color: var(--primary); }
+
+/* Mermaid */
+.mermaid { text-align: center; margin: 20px 0; }
+
+/* KaTeX */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 6px 0; }
+.katex { font-size: 1.05em; }
+
+/* Hero */
+.hero {
+  text-align: center; padding: 40px 20px 60px;
+  border-bottom: 1px solid var(--border); margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.8rem; font-weight: 700; margin: 0 0 12px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+.hero p { color: var(--text-soft); max-width: 600px; margin: 0 auto 8px; }
+.hero .authors {
+  margin-top: 20px; font-size: 0.9rem; color: var(--text-mute);
+}
+
+/* Progress bar */
+.progress {
+  position: fixed; top: var(--header-h); left: 0; right: 0;
+  height: 2px; z-index: 99;
+}
+.progress-bar {
+  height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
+  width: 0%; transition: width 0.1s;
+}
+
+/* Mobile */
+.menu-toggle { display: none; }
+@media (max-width: 900px) {
+  nav.sidebar { transform: translateX(-100%); z-index: 90; box-shadow: 4px 0 12px rgba(0,0,0,0.1); }
+  nav.sidebar.open { transform: translateX(0); }
+  main { margin-left: 0; padding: calc(var(--header-h) + 24px) 20px 60px; }
+  .menu-toggle { display: flex; }
+  .hero h1 { font-size: 2rem; }
+}
+
+/* Empty state */
+.no-results {
+  text-align: center; color: var(--text-mute); padding: 40px;
+  display: none;
+}
+.no-results.show { display: block; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="btn-icon menu-toggle" id="menuToggle" aria-label="Menu">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <h1>Bioestatística</h1>
+  <div class="header-spacer"></div>
+  <div class="header-actions">
+    <button class="btn-icon" id="themeToggle" aria-label="Alternar tema">
+      <svg id="iconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="search-box">
+    <input type="search" id="search" placeholder="Buscar tópico..." aria-label="Buscar">
+  </div>
+  <div class="no-results" id="noResults">Nenhum tópico encontrado</div>
+<div class="nav-section"><h3>Parte 1 — Introdução</h3><ul>
+<li><a href="#01-introducao-01-amostra-populacao-md" data-target="01-introducao-01-amostra-populacao-md">Amostra e população</a></li>
+<li><a href="#01-introducao-02-descricao-inferencia-md" data-target="01-introducao-02-descricao-inferencia-md">Descrição vs. inferência</a></li>
+<li><a href="#01-introducao-03-precisao-acuracia-md" data-target="01-introducao-03-precisao-acuracia-md">Precisão e acurácia</a></li>
+<li><a href="#01-introducao-04-algarismos-significativos-md" data-target="01-introducao-04-algarismos-significativos-md">Algarismos significativos</a></li>
+<li><a href="#01-introducao-05-notacao-cientifica-md" data-target="01-introducao-05-notacao-cientifica-md">Notação científica</a></li>
+<li><a href="#01-introducao-06-tipos-variaveis-md" data-target="01-introducao-06-tipos-variaveis-md">Tipos de variáveis</a></li>
+<li><a href="#01-introducao-07-histogramas-md" data-target="01-introducao-07-histogramas-md">Histogramas</a></li>
+<li><a href="#01-introducao-08-curva-normal-md" data-target="01-introducao-08-curva-normal-md">Curva normal</a></li>
+</ul></div>
+<div class="nav-section"><h3>Parte 2 — Estatística Descritiva</h3><ul>
+<li><a href="#02-estatistica-descritiva-01-tendencia-central-md" data-target="02-estatistica-descritiva-01-tendencia-central-md">Medidas de tendência central</a></li>
+<li><a href="#02-estatistica-descritiva-02-moda-md" data-target="02-estatistica-descritiva-02-moda-md">Moda</a></li>
+<li><a href="#02-estatistica-descritiva-03-media-aritmetica-md" data-target="02-estatistica-descritiva-03-media-aritmetica-md">Média aritmética</a></li>
+<li><a href="#02-estatistica-descritiva-04-media-cortada-md" data-target="02-estatistica-descritiva-04-media-cortada-md">Média cortada</a></li>
+<li><a href="#02-estatistica-descritiva-05-media-ponderada-md" data-target="02-estatistica-descritiva-05-media-ponderada-md">Média ponderada</a></li>
+<li><a href="#02-estatistica-descritiva-06-media-geometrica-md" data-target="02-estatistica-descritiva-06-media-geometrica-md">Média geométrica</a></li>
+<li><a href="#02-estatistica-descritiva-07-mediana-md" data-target="02-estatistica-descritiva-07-mediana-md">Mediana</a></li>
+<li><a href="#02-estatistica-descritiva-08-media-vs-mediana-md" data-target="02-estatistica-descritiva-08-media-vs-mediana-md">Média vs. mediana</a></li>
+<li><a href="#02-estatistica-descritiva-09-teorema-limite-central-md" data-target="02-estatistica-descritiva-09-teorema-limite-central-md">Teorema do limite central</a></li>
+<li><a href="#02-estatistica-descritiva-10-amplitude-md" data-target="02-estatistica-descritiva-10-amplitude-md">Amplitude</a></li>
+<li><a href="#02-estatistica-descritiva-11-desvio-medio-md" data-target="02-estatistica-descritiva-11-desvio-medio-md">Desvio médio</a></li>
+<li><a href="#02-estatistica-descritiva-12-variancia-md" data-target="02-estatistica-descritiva-12-variancia-md">Variância</a></li>
+<li><a href="#02-estatistica-descritiva-13-desvio-padrao-md" data-target="02-estatistica-descritiva-13-desvio-padrao-md">Desvio padrão</a></li>
+<li><a href="#02-estatistica-descritiva-14-desvio-interquartil-md" data-target="02-estatistica-descritiva-14-desvio-interquartil-md">Desvio interquartil</a></li>
+<li><a href="#02-estatistica-descritiva-15-coeficiente-variacao-md" data-target="02-estatistica-descritiva-15-coeficiente-variacao-md">Coeficiente de variação</a></li>
+</ul></div>
+<div class="nav-section"><h3>Parte 3 — Probabilidade</h3><ul>
+<li><a href="#03-probabilidade-01-evento-md" data-target="03-probabilidade-01-evento-md">Evento — definição</a></li>
+<li><a href="#03-probabilidade-02-eventos-compostos-md" data-target="03-probabilidade-02-eventos-compostos-md">Eventos compostos</a></li>
+<li><a href="#03-probabilidade-03-probabilidade-condicional-md" data-target="03-probabilidade-03-probabilidade-condicional-md">Probabilidade condicional</a></li>
+<li><a href="#03-probabilidade-04-analise-combinatoria-md" data-target="03-probabilidade-04-analise-combinatoria-md">Análise combinatória</a></li>
+<li><a href="#03-probabilidade-05-testes-binarios-md" data-target="03-probabilidade-05-testes-binarios-md">Testes binários</a></li>
+<li><a href="#03-probabilidade-06-sensibilidade-especificidade-md" data-target="03-probabilidade-06-sensibilidade-especificidade-md">Sensibilidade e especificidade</a></li>
+<li><a href="#03-probabilidade-07-matriz-confusao-md" data-target="03-probabilidade-07-matriz-confusao-md">Matriz de confusão</a></li>
+<li><a href="#03-probabilidade-08-valor-preditivo-md" data-target="03-probabilidade-08-valor-preditivo-md">Valor preditivo</a></li>
+<li><a href="#03-probabilidade-09-curva-roc-md" data-target="03-probabilidade-09-curva-roc-md">Curva ROC</a></li>
+<li><a href="#03-probabilidade-10-distribuicao-binomial-md" data-target="03-probabilidade-10-distribuicao-binomial-md">Distribuição binomial</a></li>
+</ul></div>
+<div class="nav-section"><h3>Parte 4 — Estatística Inferencial</h3><ul>
+<li><a href="#04-estatistica-inferencial-01-logica-inferencia-md" data-target="04-estatistica-inferencial-01-logica-inferencia-md">Lógica da inferência</a></li>
+<li><a href="#04-estatistica-inferencial-02-estimacao-md" data-target="04-estatistica-inferencial-02-estimacao-md">Estimação</a></li>
+<li><a href="#04-estatistica-inferencial-03-intervalo-confianca-md" data-target="04-estatistica-inferencial-03-intervalo-confianca-md">Intervalos de confiança</a></li>
+<li><a href="#04-estatistica-inferencial-04-hipoteses-md" data-target="04-estatistica-inferencial-04-hipoteses-md">Hipótese nula e alternativa</a></li>
+<li><a href="#04-estatistica-inferencial-05-significancia-md" data-target="04-estatistica-inferencial-05-significancia-md">Nível de significância</a></li>
+<li><a href="#04-estatistica-inferencial-06-valor-p-md" data-target="04-estatistica-inferencial-06-valor-p-md">Valor-p</a></li>
+<li><a href="#04-estatistica-inferencial-07-erros-tipo-i-ii-md" data-target="04-estatistica-inferencial-07-erros-tipo-i-ii-md">Erros tipo I e tipo II</a></li>
+<li><a href="#04-estatistica-inferencial-08-teste-z-md" data-target="04-estatistica-inferencial-08-teste-z-md">Teste z</a></li>
+<li><a href="#04-estatistica-inferencial-09-teste-t-uma-amostra-md" data-target="04-estatistica-inferencial-09-teste-t-uma-amostra-md">Teste t de uma amostra</a></li>
+<li><a href="#04-estatistica-inferencial-10-teste-t-independente-md" data-target="04-estatistica-inferencial-10-teste-t-independente-md">Teste t para duas amostras independentes</a></li>
+<li><a href="#04-estatistica-inferencial-11-teste-t-pareado-md" data-target="04-estatistica-inferencial-11-teste-t-pareado-md">Teste t pareado</a></li>
+<li><a href="#04-estatistica-inferencial-12-anova-md" data-target="04-estatistica-inferencial-12-anova-md">ANOVA</a></li>
+<li><a href="#04-estatistica-inferencial-13-qui-quadrado-md" data-target="04-estatistica-inferencial-13-qui-quadrado-md">Teste do qui-quadrado</a></li>
+<li><a href="#04-estatistica-inferencial-14-correlacao-md" data-target="04-estatistica-inferencial-14-correlacao-md">Correlação</a></li>
+<li><a href="#04-estatistica-inferencial-15-regressao-linear-md" data-target="04-estatistica-inferencial-15-regressao-linear-md">Regressão linear</a></li>
+<li><a href="#04-estatistica-inferencial-16-testes-nao-parametricos-md" data-target="04-estatistica-inferencial-16-testes-nao-parametricos-md">Testes não paramétricos</a></li>
+</ul></div>
+</nav>
+
+<main>
+  <div class="content-wrap">
+    <section class="hero">
+      <h1>Bioestatística</h1>
+      <p>Curso completo do Instituto de Biofísica Carlos Chagas Filho — UFRJ. Conceitos fundamentais, com abordagem intuitiva e exemplos práticos em Python.</p>
+      <div class="authors">
+        Pedro Torres &middot; Gilberto Weissmuller
+      </div>
+    </section>
+<article id="01-introducao-01-amostra-populacao-md" class="topic" data-section="Parte 1 — Introdução">
+  <div class="topic-meta">
+    <span class="badge">Parte 1 — Introdução</span>
+    <a class="nb-link" href="01_introducao/01_amostra_populacao.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="01-introducao-01-amostra-populacao-md-content"># Amostra e população
+
+Quando estudamos um fenômeno biológico, normalmente queremos tirar conclusões sobre **todos** os indivíduos de um determinado grupo. Mas, na prática, é quase sempre impossível medir todos eles. Por isso, medimos apenas alguns e tentamos generalizar o resultado.
+
+## População
+
+A **população** é o conjunto completo de todos os indivíduos, objetos ou medidas que nos interessa estudar.
+
+Exemplos de população em pesquisa biomédica:
+
+- todos os adultos brasileiros com hipertensão;
+- todos os camundongos de uma determinada linhagem;
+- todas as células de uma cultura;
+- todos os pacientes que receberam um determinado tratamento.
+
+> A população é definida pela **pergunta** de pesquisa, não pelo tamanho. Pode ser pequena (todos os pacientes de um hospital) ou enorme (toda a humanidade).
+
+## Amostra
+
+A **amostra** é um subconjunto da população, escolhido para representá-la.
+
+Trabalhamos com amostras porque:
+
+- medir toda a população é caro;
+- medir toda a população demora muito;
+- em muitos casos é fisicamente impossível.
+
+## Parâmetro vs. estatística
+
+Esta distinção é fundamental e aparecerá ao longo de todo o curso:
+
+| Conceito | Refere-se a | Símbolo da média | Símbolo do desvio padrão |
+| --- | --- | --- | --- |
+| **Parâmetro** | População inteira | $\mu$ (mi) | $\sigma$ (sigma) |
+| **Estatística** | Amostra | $\bar{x}$ (x-barra) | $s$ |
+
+- O **parâmetro** é o valor *verdadeiro*, mas geralmente desconhecido.
+- A **estatística** é o valor *calculado* a partir da amostra. Ela é o que usamos para *estimar* o parâmetro.
+
+## Por que amostragem aleatória?
+
+Para que uma amostra represente bem a população, ela precisa ser **aleatória** — ou seja, cada indivíduo da população deve ter a mesma chance de ser escolhido.
+
+Uma amostra mal coletada gera conclusões erradas, mesmo com matemática perfeita. Por exemplo, se você quer saber o peso médio dos adultos brasileiros e mede apenas frequentadores de academia, sua amostra é **enviesada** (em inglês, *biased*).
+
+## Resumo
+
+```mermaid
+flowchart LR
+    P[População<br>μ, σ desconhecidos] -->|amostragem aleatória| A[Amostra<br>x̄, s calculados]
+    A -->|inferência| P
+```
+
+Repare na ideia central da estatística: **medimos a amostra para aprender sobre a população**.
+</script>
+  <div id="01-introducao-01-amostra-populacao-md-content" class="markdown-body"></div>
+</article>
+<article id="01-introducao-02-descricao-inferencia-md" class="topic" data-section="Parte 1 — Introdução">
+  <div class="topic-meta">
+    <span class="badge">Parte 1 — Introdução</span>
+    <a class="nb-link" href="01_introducao/02_descricao_inferencia.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="01-introducao-02-descricao-inferencia-md-content"># Descrição vs. inferência
+
+A bioestatística tem duas grandes tarefas: **descrever** dados e **inferir** propriedades de uma população a partir deles.
+
+## Estatística descritiva
+
+A estatística descritiva **resume** os dados que você tem em mãos. Não tira conclusões além deles. Inclui:
+
+- medidas de tendência central (média, mediana, moda);
+- medidas de dispersão (desvio padrão, amplitude);
+- gráficos (histograma, boxplot, dispersão);
+- tabelas de frequência.
+
+> Exemplo: "A altura média dos 30 voluntários do estudo foi de 1,72 m, com desvio padrão de 8 cm."
+
+## Estatística inferencial
+
+A estatística inferencial **generaliza** os resultados da amostra para a população. Como nunca medimos todo mundo, sempre há **incerteza**, e a estatística inferencial é a linguagem para quantificá-la.
+
+Inclui:
+
+- intervalos de confiança;
+- testes de hipóteses (teste t, ANOVA, qui-quadrado);
+- valor-p;
+- regressão.
+
+> Exemplo: "A diferença média entre os grupos foi de 5 mmHg (IC 95%: 2 a 8; p = 0,003), sugerindo que o tratamento reduz a pressão arterial em pacientes hipertensos."
+
+## Comparação direta
+
+| Pergunta | Estatística descritiva | Estatística inferencial |
+| --- | --- | --- |
+| Quem? | A amostra | A população |
+| Como? | Resume | Generaliza |
+| Conclusões? | Apenas sobre os dados coletados | Vão além dos dados coletados |
+| Há incerteza? | Pouca (depende só da medição) | Sim, sempre |
+
+## Por que isso importa?
+
+Confundir os dois leva a erros sérios:
+
+- Afirmar que "no Brasil, as pessoas pesam X kg" tendo medido apenas 50 voluntários é fazer inferência sem o aparato estatístico necessário.
+- Reportar apenas a média sem nenhum dado de dispersão é dar uma visão incompleta da amostra.
+
+A regra de ouro: **descreva os dados** antes de inferir qualquer coisa.
+</script>
+  <div id="01-introducao-02-descricao-inferencia-md-content" class="markdown-body"></div>
+</article>
+<article id="01-introducao-03-precisao-acuracia-md" class="topic" data-section="Parte 1 — Introdução">
+  <div class="topic-meta">
+    <span class="badge">Parte 1 — Introdução</span>
+    <a class="nb-link" href="01_introducao/03_precisao_acuracia.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="01-introducao-03-precisao-acuracia-md-content"># Precisão e acurácia
+
+São conceitos parecidos no dia-a-dia, mas significam coisas bem distintas em estatística e ciência.
+
+## Acurácia
+
+**Acurácia** mede quão perto as medidas estão do **valor verdadeiro** — ou seja, o quanto elas estão **certas em média**.
+
+## Precisão
+
+**Precisão** mede quão **consistentes** as medidas são entre si — ou seja, o quão **próximas umas das outras** estão. Pouco importa se estão certas ou erradas em relação ao valor verdadeiro, basta que sejam parecidas.
+
+## A clássica analogia do alvo
+
+Imagine quatro atiradores disparando contra um alvo. O centro do alvo é o "valor verdadeiro":
+
+| Cenário | Acurado | Preciso |
+| --- | --- | --- |
+| Tiros agrupados no centro | sim | sim |
+| Tiros agrupados, mas fora do centro | não | sim |
+| Tiros espalhados, mas centrados no alvo | sim | não |
+| Tiros espalhados e longe do centro | não | não |
+
+## Aplicação prática
+
+- Um instrumento **calibrado** é acurado.
+- Um instrumento **de boa qualidade** é preciso.
+- O ideal é ter os dois.
+
+| Problema | Solução |
+| --- | --- |
+| Falta de acurácia (viés) | calibrar o equipamento, controle interno |
+| Falta de precisão (ruído) | tomar mais medidas e usar a média; melhorar o método |
+
+## Em termos estatísticos
+
+Se $\mu$ é o valor verdadeiro e fazemos várias medidas $x_1, x_2, \ldots, x_n$:
+
+- **Acurácia** está relacionada ao **viés**: $\bar{x} - \mu$.
+- **Precisão** está relacionada à **variância**: $\text{Var}(x)$.
+
+> Repare: a média de muitas medidas precisas mas inacuradas continua inacurada. Aumentar o número de medições resolve a precisão, mas não corrige um viés sistemático.
+</script>
+  <div id="01-introducao-03-precisao-acuracia-md-content" class="markdown-body"></div>
+</article>
+<article id="01-introducao-04-algarismos-significativos-md" class="topic" data-section="Parte 1 — Introdução">
+  <div class="topic-meta">
+    <span class="badge">Parte 1 — Introdução</span>
+    <a class="nb-link" href="01_introducao/04_algarismos_significativos.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="01-introducao-04-algarismos-significativos-md-content"># Algarismos significativos
+
+São os dígitos de uma medida que carregam **informação real** — refletem a precisão do instrumento usado.
+
+## Por que importa?
+
+Escrever "a massa é 4,2371928 g" quando a balança só mede até décimos de grama é **mentir** sobre a precisão. Os dígitos sobrando não vieram da medida — são lixo.
+
+## Regras práticas
+
+1. **Todos os dígitos diferentes de zero são significativos.**
+   - `1234` tem 4 significativos.
+
+2. **Zeros entre dígitos significativos contam.**
+   - `1002` tem 4 significativos.
+
+3. **Zeros à esquerda NÃO contam.** Servem só de preenchimento.
+   - `0,0034` tem 2 significativos (o 3 e o 4).
+
+4. **Zeros à direita após a vírgula contam.**
+   - `1,200` tem 4 significativos.
+
+5. **Zeros à direita sem vírgula são ambíguos.** Use notação científica para deixar claro.
+   - `1500` pode ter 2, 3 ou 4 significativos.
+   - `1,5 \times 10^3` tem 2.
+   - `1,50 \times 10^3` tem 3.
+
+## Em operações
+
+| Operação | Regra |
+| --- | --- |
+| Soma/subtração | O resultado tem tantas **casas decimais** quanto o termo com **menos** casas decimais |
+| Multiplicação/divisão | O resultado tem tantos **algarismos significativos** quanto o fator com **menos** significativos |
+
+### Exemplos
+
+$$
+12{,}11 + 8{,}3 = 20{,}4 \quad (\text{e não } 20{,}41)
+$$
+
+$$
+3{,}24 \times 5{,}6 = 18 \quad (\text{e não } 18{,}144)
+$$
+
+## Em bioestatística
+
+Quando reportamos resultados:
+
+- Médias e desvios padrão: normalmente **1 a 2 casas além do dado bruto** já é o limite razoável.
+- Valor-p: até 3 casas (`p = 0,032`), ou notação científica para muito pequenos (`p < 0,001`).
+- Porcentagens: 1 casa decimal costuma ser suficiente (`32,5%`).
+</script>
+  <div id="01-introducao-04-algarismos-significativos-md-content" class="markdown-body"></div>
+</article>
+<article id="01-introducao-05-notacao-cientifica-md" class="topic" data-section="Parte 1 — Introdução">
+  <div class="topic-meta">
+    <span class="badge">Parte 1 — Introdução</span>
+    <a class="nb-link" href="01_introducao/05_notacao_cientifica.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="01-introducao-05-notacao-cientifica-md-content"># Notação científica
+
+Forma compacta de escrever números muito grandes ou muito pequenos.
+
+## A regra
+
+$$
+N = a \times 10^{n}
+$$
+
+Onde:
+
+- $1 \leq |a| < 10$ (a chamada **mantissa**);
+- $n$ é um inteiro (o **expoente**).
+
+## Exemplos
+
+| Número | Notação científica |
+| --- | --- |
+| $6\,022\,000\,000\,000\,000\,000\,000\,000$ (número de Avogadro) | $6{,}022 \times 10^{23}$ |
+| $0{,}000\,000\,001\,602$ (carga do elétron, em C) | $1{,}602 \times 10^{-9}$ |
+| $300\,000\,000$ (velocidade da luz, em m/s) | $3 \times 10^{8}$ |
+
+## Sinal do expoente
+
+- **Positivo** → número grande. Desloca a vírgula para a **direita**.
+- **Negativo** → número pequeno. Desloca a vírgula para a **esquerda**.
+
+$$
+2{,}5 \times 10^{4} = 25\,000
+$$
+
+$$
+2{,}5 \times 10^{-4} = 0{,}000\,25
+$$
+
+## Operações
+
+Em multiplicação e divisão, os expoentes somam e subtraem:
+
+$$
+(a \times 10^{m}) \cdot (b \times 10^{n}) = (a \cdot b) \times 10^{m+n}
+$$
+
+$$
+\frac{a \times 10^{m}}{b \times 10^{n}} = \frac{a}{b} \times 10^{m-n}
+$$
+
+### Exemplo
+
+$$
+(3 \times 10^{6}) \times (2 \times 10^{-3}) = 6 \times 10^{3} = 6\,000
+$$
+
+## Em Python
+
+Python escreve automaticamente em notação científica para números muito grandes ou pequenos. Use `e` no lugar de "$\times 10$":
+
+| Em ciência | Em Python |
+| --- | --- |
+| $6{,}022 \times 10^{23}$ | `6.022e23` |
+| $1{,}602 \times 10^{-9}$ | `1.602e-9` |
+
+## Em bioestatística
+
+Aparece com frequência quando reportamos:
+
+- p-valores muito pequenos (`p = 3.2e-7`);
+- concentrações em biologia molecular (`1 nM = 1e-9 M`);
+- contagens muito grandes (`6e9` células no corpo humano).
+</script>
+  <div id="01-introducao-05-notacao-cientifica-md-content" class="markdown-body"></div>
+</article>
+<article id="01-introducao-06-tipos-variaveis-md" class="topic" data-section="Parte 1 — Introdução">
+  <div class="topic-meta">
+    <span class="badge">Parte 1 — Introdução</span>
+    <a class="nb-link" href="01_introducao/06_tipos_variaveis.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="01-introducao-06-tipos-variaveis-md-content"># Tipos de variáveis
+
+Reconhecer o tipo de cada variável é o **primeiro passo** ao analisar qualquer conjunto de dados. O tipo determina:
+
+- quais gráficos fazem sentido;
+- quais medidas resumir (média? proporção?);
+- qual teste estatístico usar.
+
+## Mapa geral
+
+```mermaid
+flowchart TD
+    V[Variável] --> Q[Qualitativa<br>categórica]
+    V --> N[Quantitativa<br>numérica]
+    Q --> Q1[Nominal]
+    Q --> Q2[Ordinal]
+    N --> N1[Discreta]
+    N --> N2[Contínua]
+```
+
+## Variáveis qualitativas (categóricas)
+
+Representam **categorias**, não números (ainda que possam ser codificadas como números).
+
+### Nominais
+
+Categorias **sem ordem natural**.
+
+- Sexo: masculino, feminino;
+- Tipo sanguíneo: A, B, AB, O;
+- Espécie: cão, gato, hamster;
+- Estado civil.
+
+### Ordinais
+
+Categorias **com ordem natural**, mas sem distância definida entre elas.
+
+- Grau de dor: leve, moderada, intensa;
+- Escolaridade: fundamental, médio, superior;
+- Estágio de câncer: I, II, III, IV.
+
+> Atenção: ordinal **não é** o mesmo que numérico. A diferença entre "leve" e "moderada" não é necessariamente igual à diferença entre "moderada" e "intensa".
+
+## Variáveis quantitativas (numéricas)
+
+Representam **quantidades** mensuráveis.
+
+### Discretas
+
+Assumem valores **isolados** — tipicamente contagens.
+
+- Número de filhos;
+- Número de células em um campo de microscópio;
+- Contagem de mutações em uma sequência de DNA.
+
+### Contínuas
+
+Podem assumir qualquer valor dentro de um intervalo — limitadas só pela precisão do instrumento.
+
+- Peso, altura;
+- Pressão arterial;
+- Concentração de uma proteína no plasma;
+- Tempo de sobrevida.
+
+## Resumo
+
+| Tipo | Exemplo | Resumo usual | Gráfico usual |
+| --- | --- | --- | --- |
+| Nominal | tipo sanguíneo | frequências, proporções | barras, pizza |
+| Ordinal | grau de dor | mediana, frequências | barras |
+| Discreta | nº de células | média, mediana | barras, histograma |
+| Contínua | altura | média, desvio padrão | histograma, boxplot |
+</script>
+  <div id="01-introducao-06-tipos-variaveis-md-content" class="markdown-body"></div>
+</article>
+<article id="01-introducao-07-histogramas-md" class="topic" data-section="Parte 1 — Introdução">
+  <div class="topic-meta">
+    <span class="badge">Parte 1 — Introdução</span>
+    <a class="nb-link" href="01_introducao/07_histogramas.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="01-introducao-07-histogramas-md-content"># Histogramas
+
+O histograma é o gráfico padrão para visualizar a distribuição de uma **variável quantitativa**.
+
+## Como funciona
+
+1. Dividimos o intervalo dos dados em **faixas** (em inglês, *bins*).
+2. Contamos quantos valores caem em cada faixa.
+3. Desenhamos uma barra com **altura proporcional** à contagem.
+
+O resultado é uma "fotografia" da distribuição.
+
+## O que ele revela
+
+| Característica | O que observar |
+| --- | --- |
+| **Forma** | simétrica, assimétrica, multimodal? |
+| **Centro** | onde está a "massa" dos dados? |
+| **Dispersão** | as barras se espalham por uma faixa larga ou estreita? |
+| **Outliers** | barras isoladas longe do resto? |
+
+## Formas comuns
+
+- **Simétrica em forma de sino** → distribuição normal.
+- **Assimétrica à direita** (cauda longa para valores altos) → renda, tempo de espera, contagens.
+- **Assimétrica à esquerda** (cauda para valores baixos) → notas em provas fáceis, idade ao morrer.
+- **Bimodal** (duas cumes) → mistura de duas populações.
+
+## Quantas barras usar?
+
+| Poucas barras | Muitas barras |
+| --- | --- |
+| Perde detalhe | Vira ruído |
+
+Algumas regras de bolso:
+
+- **Raiz quadrada:** $k = \lceil \sqrt{n} \rceil$;
+- **Sturges:** $k = \lceil 1 + \log_2 n \rceil$;
+- **Freedman–Diaconis:** ajusta para dados com outliers.
+
+Mas o melhor é experimentar alguns valores e escolher o que **revela a estrutura** sem mostrar ruído.
+
+## Histograma vs. gráfico de barras
+
+| Histograma | Gráfico de barras |
+| --- | --- |
+| Variável **contínua** | Variável **categórica** |
+| Barras encostadas | Barras separadas |
+| Eixo x = números | Eixo x = categorias |
+
+## Histograma de densidade
+
+Quando o eixo y mostra **densidade** (em vez de contagem), a área total sob o histograma vale 1. Isso permite comparar amostras de tamanhos diferentes na mesma escala.
+
+$$
+\text{densidade} = \frac{\text{contagem}}{n \cdot \text{largura da faixa}}
+$$
+</script>
+  <div id="01-introducao-07-histogramas-md-content" class="markdown-body"></div>
+</article>
+<article id="01-introducao-08-curva-normal-md" class="topic" data-section="Parte 1 — Introdução">
+  <div class="topic-meta">
+    <span class="badge">Parte 1 — Introdução</span>
+    <a class="nb-link" href="01_introducao/08_curva_normal.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="01-introducao-08-curva-normal-md-content"># Curva normal
+
+A **curva normal** (também chamada **gaussiana** ou **curva em sino**) é a distribuição mais importante da estatística. Várias medidas biológicas seguem (ou se aproximam) dessa forma.
+
+## Forma e equação
+
+A curva normal é definida por dois parâmetros: a média $\mu$ e o desvio padrão $\sigma$. A função de densidade é:
+
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} \cdot e^{-\frac{1}{2} \left( \frac{x - \mu}{\sigma} \right)^{2}}
+$$
+
+Não precisa decorar essa fórmula. O que importa é entender:
+
+- $\mu$ define **onde está o centro** da curva;
+- $\sigma$ define **quão larga** ela é.
+
+## Propriedades importantes
+
+1. **Simétrica** em torno da média.
+2. **Média = mediana = moda** (no centro).
+3. A área total sob a curva é **1** (ou 100%).
+4. Tem caudas que se estendem para $-\infty$ e $+\infty$, mas a densidade fica muito pequena longe do centro.
+
+## A regra 68-95-99,7
+
+A propriedade mais útil da normal:
+
+| Intervalo | Porcentagem dos valores |
+| --- | --- |
+| $\mu \pm 1\sigma$ | ~68% |
+| $\mu \pm 2\sigma$ | ~95% |
+| $\mu \pm 3\sigma$ | ~99,7% |
+
+> Exemplo: se a altura segue $\mathcal{N}(170, 8)$, então cerca de 95% das pessoas medem entre 154 e 186 cm.
+
+## A normal padrão (Z)
+
+Quando $\mu = 0$ e $\sigma = 1$, chamamos a distribuição de **normal padrão** e representamos a variável por $Z$.
+
+Qualquer normal pode ser convertida para Z pela **padronização**:
+
+$$
+Z = \frac{X - \mu}{\sigma}
+$$
+
+Isso é útil porque permite comparar valores que vieram de distribuições normais diferentes — todos passam a estar na mesma escala.
+
+## Por que ela aparece tanto?
+
+Pelo **Teorema do Limite Central**: quando uma medida resulta da soma de muitos pequenos efeitos independentes, a distribuição resultante tende à normal. A altura, por exemplo, é influenciada por genética, alimentação, sono, doenças na infância — cada um contribuindo um pouco. O resultado se aproxima de uma normal.
+
+## Cuidado!
+
+Nem tudo é normal. Antes de assumir normalidade, **olhe o histograma** ou faça um teste formal. Distribuições assimétricas (renda, tempo de sobrevida, contagens raras) precisam de outra abordagem.
+</script>
+  <div id="01-introducao-08-curva-normal-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-01-tendencia-central-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/01_tendencia_central.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-01-tendencia-central-md-content"># Medidas de tendência central
+
+Quando temos um conjunto de números, é natural perguntar: **qual é o valor "típico"?** As medidas de tendência central respondem a essa pergunta de formas diferentes.
+
+## As três principais
+
+| Medida | O que é | Quando usar |
+| --- | --- | --- |
+| **Moda** | valor mais frequente | dados categóricos, ou distribuições com picos claros |
+| **Média** | soma dividida pela contagem | distribuições simétricas |
+| **Mediana** | valor do meio quando os dados estão ordenados | distribuições assimétricas, com outliers |
+
+## A grande lição
+
+Não existe a medida "correta". Cada uma resume os dados de um jeito diferente, e a escolha depende:
+
+- do **tipo** de dados (categórico? numérico?);
+- da **forma** da distribuição (simétrica? com outliers?);
+- da **pergunta** que se quer responder.
+
+Por isso é comum reportar **mais de uma** ao descrever uma amostra.
+
+## Um exemplo motivador
+
+Imagine os salários (em milhares de reais) de uma empresa pequena:
+
+$$
+2{,}5 \quad 2{,}8 \quad 3{,}0 \quad 3{,}2 \quad 3{,}5 \quad 4{,}0 \quad 50
+$$
+
+- Moda: não há valor repetido.
+- Mediana: 3,2 mil reais (valor do meio).
+- Média: ~9,7 mil reais (puxada pelo dono que ganha 50 mil).
+
+Qual deles representa melhor o "funcionário típico"? Claramente a **mediana**, porque a média foi distorcida por um único valor extremo.
+
+## Quando cada uma falha
+
+| Medida | Onde ela falha |
+| --- | --- |
+| Moda | quando os dados são todos diferentes, ou quando há vários picos parecidos |
+| Média | quando há outliers ou a distribuição é muito assimétrica |
+| Mediana | em amostras muito pequenas, é instável (mudar 1 valor pode mudar muito) |
+
+Nos próximos tópicos veremos cada medida em detalhes, junto com algumas variações (média cortada, média ponderada, média geométrica).
+</script>
+  <div id="02-estatistica-descritiva-01-tendencia-central-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-02-moda-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/02_moda.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-02-moda-md-content"># Moda
+
+A **moda** é o valor que aparece com maior frequência em um conjunto de dados.
+
+## Definição
+
+Dado um conjunto $\{x_1, x_2, \ldots, x_n\}$, a moda é o valor (ou valores) que mais se repete.
+
+## Casos
+
+| Caso | Nome |
+| --- | --- |
+| Um único valor mais frequente | **unimodal** |
+| Dois valores empatados | **bimodal** |
+| Três ou mais valores empatados | **multimodal** |
+| Todos diferentes | **amodal** (sem moda) |
+
+### Exemplos
+
+- $\{1, 2, 2, 3, 4\}$ → moda = 2 (unimodal).
+- $\{1, 2, 2, 3, 3\}$ → modas = 2 e 3 (bimodal).
+- $\{1, 2, 3, 4, 5\}$ → não há moda (amodal).
+
+## Quando usar
+
+A moda é particularmente útil em:
+
+- **Variáveis categóricas**, em que média e mediana nem fazem sentido. Ex.: a moda do tipo sanguíneo no Brasil é "O+".
+- **Distribuições com picos claros**, em que a "categoria mais comum" é a informação de interesse.
+
+> Em distribuições contínuas, é raro dois valores serem **exatamente** iguais. Nesses casos, a moda é localizada visualmente no histograma: corresponde ao **pico** da distribuição.
+
+## Limitações
+
+1. **Pode não ser única** ou nem existir.
+2. **Não usa todos os dados**: depende apenas das frequências.
+3. **Sensível à precisão** dos dados: arredondar pode mudar drasticamente a moda.
+
+## Distribuições multimodais — uma pista
+
+Quando o histograma tem **mais de um pico**, vale investigar: pode haver duas subpopulações misturadas. Por exemplo, a altura de adultos mostra um histograma bimodal quando misturamos homens e mulheres — cada grupo tem sua própria moda.
+</script>
+  <div id="02-estatistica-descritiva-02-moda-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-03-media-aritmetica-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/03_media_aritmetica.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-03-media-aritmetica-md-content"># Média aritmética
+
+A medida de tendência central mais conhecida. Soma todos os valores e divide pelo número deles.
+
+## Fórmula
+
+Para uma **amostra** com $n$ valores:
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + \cdots + x_n}{n}
+$$
+
+Para uma **população** com $N$ valores:
+
+$$
+\mu = \frac{1}{N} \sum_{i=1}^{N} x_i
+$$
+
+A fórmula é a mesma — muda apenas o símbolo, dependendo se estamos falando de amostra ($\bar{x}$, "x-barra") ou de população ($\mu$, "mi").
+
+## Exemplo
+
+Cinco notas de uma prova: $6{,}0; 7{,}5; 8{,}0; 5{,}5; 9{,}0$.
+
+$$
+\bar{x} = \frac{6{,}0 + 7{,}5 + 8{,}0 + 5{,}5 + 9{,}0}{5} = \frac{36{,}0}{5} = 7{,}2
+$$
+
+## Propriedades importantes
+
+1. **Usa todos os valores** — diferente da mediana, que usa só o do meio.
+2. **Sensível a outliers** — um único valor extremo pode puxar a média muito.
+3. **A soma dos desvios em relação à média é zero**:
+
+$$
+\sum_{i=1}^{n} (x_i - \bar{x}) = 0
+$$
+
+Isso significa que a média é o **"ponto de equilíbrio"** dos dados — se colocássemos cada valor como um pesinho numa régua, a régua se equilibraria sobre a média.
+
+## Quando usar
+
+A média é apropriada quando:
+
+- a distribuição é **aproximadamente simétrica**;
+- não há outliers extremos;
+- os dados são **quantitativos** (não categóricos).
+
+## Quando NÃO usar
+
+- Em distribuições **muito assimétricas** (renda, tempo de sobrevida) — a mediana é mais informativa.
+- Em variáveis **ordinais** — a média entre "leve", "moderada" e "intensa" não significa nada.
+- Em variáveis **nominais** — não dá nem para calcular.
+
+## Atenção ao jargão
+
+Quando alguém diz "a média", geralmente está se referindo à média aritmética. Mas existem outras médias (geométrica, harmônica, cortada, ponderada) que você verá nos próximos tópicos.
+</script>
+  <div id="02-estatistica-descritiva-03-media-aritmetica-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-04-media-cortada-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/04_media_cortada.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-04-media-cortada-md-content"># Média cortada (truncada)
+
+A **média cortada** é uma variação da média aritmética em que **removemos uma porcentagem dos valores extremos** antes de calcular a média.
+
+## A ideia
+
+Como a média comum é sensível a outliers, uma forma de torná-la mais **robusta** é descartar uma fatia dos valores mais altos e mais baixos. O que sobra é menos influenciado por valores extremos.
+
+## Fórmula
+
+Cortando $k$ valores de cada lado (após ordenar) em uma amostra de $n$:
+
+$$
+\bar{x}_{\text{cortada}} = \frac{1}{n - 2k} \sum_{i=k+1}^{n-k} x_{(i)}
+$$
+
+onde $x_{(i)}$ é o $i$-ésimo valor **ordenado**.
+
+Costuma-se especificar o corte em **porcentagem**: cortar 10% significa remover 10% dos valores de cada extremo.
+
+## Exemplo
+
+Dados ordenados: $10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 200$. São 12 valores.
+
+Cortando 10% de cada lado → removemos 1 de cada extremo (10 e 200):
+
+$$
+\bar{x}_{\text{cortada 10\%}} = \frac{11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20}{10} = 15{,}5
+$$
+
+Compare com a média comum: $\approx 30{,}4$ (puxada pelo 200).
+
+## Quanto cortar?
+
+| Corte | Comentário |
+| --- | --- |
+| 0% | é a média comum |
+| 5% | corte leve, comum em estudos esportivos |
+| 10–25% | reduz bem a influência de outliers |
+| 50% | é a **mediana** |
+
+## Onde aparece
+
+- Olimpíadas, ginástica artística: descartam-se a maior e a menor nota dos juízes.
+- Notas finais de programas que ignoram a melhor e a pior prova.
+- Estudos econômicos que querem reduzir o impacto de valores extremos.
+
+## Vantagens e desvantagens
+
+| Vantagem | Desvantagem |
+| --- | --- |
+| Mais robusta a outliers que a média | Descarta informação |
+| Mantém a interpretação de "média" | Definição depende do corte escolhido |
+</script>
+  <div id="02-estatistica-descritiva-04-media-cortada-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-05-media-ponderada-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/05_media_ponderada.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-05-media-ponderada-md-content"># Média ponderada
+
+Cada valor recebe um **peso** diferente, refletindo sua importância relativa.
+
+## Fórmula
+
+$$
+\bar{x}_w = \frac{\sum_{i=1}^{n} w_i \cdot x_i}{\sum_{i=1}^{n} w_i}
+$$
+
+Onde:
+
+- $x_i$ são os valores;
+- $w_i$ são os pesos (todos positivos).
+
+> Quando todos os pesos são iguais, a média ponderada vira a **média aritmética comum**.
+
+## Exemplo clássico — nota final
+
+Uma disciplina tem três avaliações:
+
+| Avaliação | Nota | Peso |
+| --- | --- | --- |
+| P1 | 7,0 | 2 |
+| P2 | 6,0 | 3 |
+| Trabalho | 9,0 | 1 |
+| Prova final | 8,0 | 4 |
+
+$$
+\bar{x}_w = \frac{7 \cdot 2 + 6 \cdot 3 + 9 \cdot 1 + 8 \cdot 4}{2 + 3 + 1 + 4} = \frac{14 + 18 + 9 + 32}{10} = \frac{73}{10} = 7{,}3
+$$
+
+A média aritmética simples daria 7,5 — mas como a prova final pesa mais e a P2 (pior nota) também tem peso alto, a média ponderada fica em 7,3.
+
+## Em biologia e medicina
+
+A média ponderada aparece em:
+
+- **Meta-análises**: estudos com amostras maiores recebem peso maior, porque suas estimativas são mais confiáveis.
+- **Cálculo de IDH ou IDS**: cada indicador entra com peso definido pela metodologia.
+- **Sistemas de pontuação clínica**: cada sinal/sintoma tem peso clínico diferente.
+
+## Pesos normalizados
+
+Se preferimos pesos que somam 1 (probabilidades, frações), a fórmula vira:
+
+$$
+\bar{x}_w = \sum_{i=1}^{n} w_i \cdot x_i \quad \text{com} \quad \sum_{i=1}^{n} w_i = 1
+$$
+
+Esse formato aparece muito em **expectativa matemática** — a média ponderada nada mais é do que o valor esperado quando os pesos representam probabilidades.
+
+## Detalhe importante
+
+Os pesos representam **importância relativa**, não probabilidades de erro ou qualidade absoluta. Se eu der peso 10 a um valor mal medido e peso 1 ao bem medido, vou puxar a média para o errado. Os pesos precisam ser escolhidos **antes** de olhar os dados, com base em um critério justificável.
+</script>
+  <div id="02-estatistica-descritiva-05-media-ponderada-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-06-media-geometrica-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/06_media_geometrica.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-06-media-geometrica-md-content"># Média geométrica
+
+A média geométrica é a "média natural" para dados **multiplicativos**: taxas de crescimento, fatores de diluição, títulos de anticorpos.
+
+## Fórmula
+
+Para $n$ valores positivos:
+
+$$
+\bar{x}_g = \sqrt[n]{x_1 \cdot x_2 \cdots x_n} = \left( \prod_{i=1}^{n} x_i \right)^{1/n}
+$$
+
+Equivalentemente, em termos de logaritmos (forma muito usada nas implementações):
+
+$$
+\bar{x}_g = \exp\!\left( \frac{1}{n} \sum_{i=1}^{n} \ln x_i \right)
+$$
+
+Em palavras: **calculamos a média aritmética dos logaritmos** e depois aplicamos a função inversa.
+
+## Quando faz sentido?
+
+Sempre que os dados crescem (ou diminuem) **multiplicativamente**, e não somando uma quantidade fixa.
+
+### Exemplo 1 — taxa de crescimento bacteriano
+
+Uma cultura cresce a taxas (vezes/h) de: 1,5; 2,0; 1,8; 2,2; 1,9.
+
+Se quisermos saber a taxa "típica" de crescimento, queremos o número que, repetido, daria o mesmo crescimento acumulado. Esse número é a média **geométrica**, não a aritmética.
+
+$$
+\bar{x}_g = \sqrt[5]{1{,}5 \cdot 2{,}0 \cdot 1{,}8 \cdot 2{,}2 \cdot 1{,}9} \approx 1{,}87
+$$
+
+### Exemplo 2 — diluições em série
+
+Em imunologia, títulos de anticorpos são comumente $1/40, 1/80, 1/160, \ldots$ — uma série geométrica. A média geométrica respeita essa escala.
+
+### Exemplo 3 — retorno de investimentos
+
+Se um ativo rende +10% num ano e -10% no outro, a média aritmética dos retornos é 0% (que seria voltar ao mesmo valor). Mas isso é falso: $1{,}10 \cdot 0{,}90 = 0{,}99$. O retorno médio **real** é dado pela média geométrica.
+
+## Comparação com a aritmética
+
+Para qualquer conjunto de valores positivos:
+
+$$
+\bar{x}_g \leq \bar{x}
+$$
+
+A igualdade só ocorre quando todos os valores são iguais. Quanto mais variados os dados, maior a diferença entre as duas médias.
+
+## Restrições
+
+- **Só funciona para valores positivos** (não definida para 0 ou negativos).
+- Pouca interpretabilidade em escalas aditivas (a média geométrica de alturas em cm é estranha).
+
+## Como reconhecer um caso de média geométrica
+
+Pergunte: **"Se eu repetir esse valor $n$ vezes, multiplicando, recupero o produto original?"** Se sim, é caso de média geométrica.
+
+> Em escala log, a média geométrica vira simplesmente a média aritmética dos logaritmos. Por isso, é comum **transformar dados** com $\log$ antes de aplicar testes estatísticos quando a distribuição é multiplicativa.
+</script>
+  <div id="02-estatistica-descritiva-06-media-geometrica-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-07-mediana-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/07_mediana.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-07-mediana-md-content"># Mediana
+
+A **mediana** é o valor que ocupa a posição do meio quando os dados estão ordenados. Divide o conjunto em duas metades de tamanho igual.
+
+## Como calcular
+
+1. **Ordene** os valores em ordem crescente.
+2. Se $n$ é **ímpar**, a mediana é o valor central.
+3. Se $n$ é **par**, a mediana é a **média dos dois valores centrais**.
+
+### Exemplo (n ímpar)
+
+Dados: $3, 1, 4, 1, 5, 9, 2$
+Ordenados: $1, 1, 2, \mathbf{3}, 4, 5, 9$
+Mediana = **3**.
+
+### Exemplo (n par)
+
+Dados: $3, 1, 4, 1, 5, 9, 2, 6$
+Ordenados: $1, 1, 2, \mathbf{3}, \mathbf{4}, 5, 6, 9$
+Mediana = $(3 + 4)/2 = 3{,}5$.
+
+## A propriedade fundamental
+
+Exatamente **50% dos dados estão abaixo** da mediana e **50% acima**. Por isso ela também é chamada de **segundo quartil** ($Q_2$) ou **percentil 50**.
+
+## Robustez a outliers
+
+A grande vantagem da mediana é não ser afetada por valores extremos:
+
+| Dados | Média | Mediana |
+| --- | --- | --- |
+| $1, 2, 3, 4, 5$ | 3,0 | 3 |
+| $1, 2, 3, 4, 500$ | 102,0 | 3 |
+
+A média explodiu, mas a mediana ficou igual. É por isso que reportamos mediana para variáveis como **renda**, **tempo até um evento**, **dose recebida** etc.
+
+## Generalização — quantis e percentis
+
+A mesma ideia da mediana se estende para outros pontos da distribuição:
+
+| Nome | O que é |
+| --- | --- |
+| Mediana / Q2 / P50 | 50% dos dados abaixo |
+| Q1 / P25 | 25% dos dados abaixo |
+| Q3 / P75 | 75% dos dados abaixo |
+| P10, P90 | percentis 10 e 90 |
+
+Esses pontos aparecem no **boxplot** e dão uma visão muito mais rica que apenas a média.
+
+## Limitações
+
+- Em **amostras pequenas**, a mediana pode ser instável: mudar 1 valor pode mudar muito.
+- Não é tão sensível à **forma** da distribuição — duas distribuições muito diferentes podem ter a mesma mediana.
+- Operações algébricas (combinar grupos, propagar erros) são mais complicadas com mediana do que com média.
+</script>
+  <div id="02-estatistica-descritiva-07-mediana-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-08-media-vs-mediana-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/08_media_vs_mediana.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-08-media-vs-mediana-md-content"># Média x mediana
+
+Qual delas reportar? A escolha depende da **forma da distribuição** e da **presença de outliers**.
+
+## Em distribuição simétrica
+
+Em uma distribuição simétrica (como a normal), média e mediana **coincidem**:
+
+$$
+\bar{x} \approx \text{mediana} \approx \text{moda}
+$$
+
+Nesse caso, tanto faz qual usar — costuma-se reportar a média porque tem propriedades matemáticas mais convenientes (se combina bem com soma, ANOVA, intervalos de confiança, etc.).
+
+## Em distribuição assimétrica
+
+A média é **puxada para a cauda**. A mediana fica mais perto do "centro de massa" da maior parte dos dados.
+
+### Assimetria à direita (cauda longa para valores altos)
+
+$$
+\bar{x} > \text{mediana}
+$$
+
+Exemplos: renda, tempo de espera, número de citações de um artigo, contagens de vírus.
+
+### Assimetria à esquerda (cauda longa para valores baixos)
+
+$$
+\bar{x} < \text{mediana}
+$$
+
+Exemplos: notas em provas muito fáceis, idade ao morrer (a maioria morre na velhice, com cauda nos jovens).
+
+## Como decidir na prática
+
+```mermaid
+flowchart TD
+    A[Faça um histograma] --> B{Simétrica?}
+    B -->|Sim| C[Use média]
+    B -->|Não| D{Outliers visíveis?}
+    D -->|Sim| E[Use mediana]
+    D -->|Não| F[Reporte ambas]
+```
+
+A regra de ouro: **sempre olhe o histograma antes de escolher**.
+
+## Em artigos científicos
+
+| Tipo de dado | Reporte |
+| --- | --- |
+| Pressão arterial, altura | média ± desvio padrão |
+| Tempo de sobrevida | mediana (IC 95%) |
+| Idade dos participantes (geralmente simétrico) | média ± desvio padrão |
+| Salário, dose, contagens raras | mediana (IQR) |
+
+> Atenção: a mediana costuma vir acompanhada do **intervalo interquartil (IQR)** ou de outros percentis, em vez de desvio padrão.
+
+## Um cuidado especial
+
+Algumas vezes, médias podem ser **enganosas**:
+
+- Uma média de "renda per capita" alta pode mascarar uma realidade em que 90% das pessoas ganham muito pouco — basta ter alguns poucos muito ricos.
+- A média de "tempo gasto em uma rede social" pode esconder que a maioria das pessoas usa muito menos do que a média sugere.
+
+Por isso, em comunicação científica e jornalística, a mediana frequentemente conta uma história mais honesta sobre o "indivíduo típico".
+</script>
+  <div id="02-estatistica-descritiva-08-media-vs-mediana-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-09-teorema-limite-central-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/09_teorema_limite_central.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-09-teorema-limite-central-md-content"># Teorema do limite central (TLC)
+
+Talvez o resultado mais importante da estatística. Em palavras:
+
+> **A média de muitas amostras tende a uma distribuição normal**, mesmo que a população original não seja normal.
+
+## Enunciado
+
+Seja uma população com média $\mu$ e desvio padrão $\sigma$ (finito). Tiramos amostras de tamanho $n$ e calculamos a média $\bar{x}$ de cada uma. À medida que $n$ cresce, a distribuição de $\bar{x}$ se aproxima de uma normal:
+
+$$
+\bar{x} \sim \mathcal{N}\!\left( \mu, \; \frac{\sigma^{2}}{n} \right)
+$$
+
+Ou, em forma padronizada:
+
+$$
+Z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}} \;\to\; \mathcal{N}(0, 1)
+$$
+
+A quantidade $\sigma / \sqrt{n}$ tem nome especial: **erro padrão da média** (em inglês, *standard error of the mean*, SEM).
+
+## Pontos-chave
+
+1. **A média da distribuição amostral** é $\mu$ (a mesma da população).
+2. **O desvio padrão da distribuição amostral** é $\sigma / \sqrt{n}$, sempre menor que $\sigma$.
+3. **A forma** se aproxima da normal — independentemente da forma da população original — desde que $n$ seja "grande o bastante".
+
+## Quão grande é "grande"?
+
+- Se a população já é normal, o TLC vale para qualquer $n$.
+- Se é moderadamente assimétrica, $n \geq 30$ costuma ser suficiente.
+- Para distribuições muito enviesadas (ex.: exponencial com cauda muito longa), pode ser necessário $n \gtrsim 100$.
+
+## Por que isso é fantástico?
+
+Muitos testes estatísticos (t, z, ANOVA, regressão) assumem que **alguma média** segue distribuição normal. O TLC garante que, com amostras razoáveis, isso é aproximadamente verdade — **mesmo que os dados originais não sejam normais**. Por isso podemos aplicar esses testes em uma variedade enorme de situações.
+
+## A intuição visual
+
+Imagine jogar dois dados e somar. A soma:
+
+- mínima: 2 (1+1);
+- máxima: 12 (6+6);
+- mais provável: 7 (várias combinações: 1+6, 2+5, 3+4, etc.).
+
+Mesmo que cada dado tenha distribuição **uniforme** (cada face com 1/6 de chance), a distribuição da **soma** tem cara de sino. Com 3, 4 ou 5 dados, fica cada vez mais parecida com uma normal.
+
+A média é apenas a soma dividida por $n$ — então o mesmo efeito acontece com qualquer média de muitas variáveis independentes.
+
+## O que o TLC NÃO diz
+
+- **Não** diz que a população é normal. Ela continua sendo o que era.
+- **Não** ajuda quando a amostra é única — ele descreve o comportamento de **muitas amostras**.
+- **Não** vale se a variância da população for infinita (algumas distribuições matemáticas extremas).
+
+## A consequência mais importante
+
+Quando você calcula a média de uma amostra grande de qualquer coisa razoavelmente bem comportada, sabe **automaticamente** como essa média se comporta. É isso que permite construir intervalos de confiança e testes de hipótese para a média.
+</script>
+  <div id="02-estatistica-descritiva-09-teorema-limite-central-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-10-amplitude-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/10_amplitude.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-10-amplitude-md-content"># Amplitude
+
+A medida de dispersão mais simples: a diferença entre o maior e o menor valor.
+
+## Definição
+
+$$
+A = x_{\max} - x_{\min}
+$$
+
+## Exemplo
+
+Notas: $4, 5, 6, 7, 8, 9, 10$.
+
+$$
+A = 10 - 4 = 6
+$$
+
+## Quando usar
+
+A amplitude é útil para:
+
+- **Comunicação rápida**: dá uma ideia imediata do intervalo dos dados.
+- **Controle de qualidade** simples: serve para detectar quando algo sai do esperado.
+- **Decisões iniciais** sobre escala de gráficos.
+
+## Limitações
+
+| Problema | Por quê |
+| --- | --- |
+| Usa **apenas dois valores** | descarta toda a informação intermediária |
+| **Muito sensível a outliers** | um valor extremo faz a amplitude explodir |
+| **Cresce com o tamanho da amostra** | quanto mais dados, maior a chance de encontrar valores extremos |
+
+Por exemplo:
+
+| Dados | Amplitude |
+| --- | --- |
+| $\{10, 12, 14, 16, 18\}$ | 8 |
+| $\{10, 12, 14, 16, 500\}$ | 490 |
+
+Apenas um valor extremo mudou tudo.
+
+## Alternativa robusta: o IQR
+
+O **intervalo interquartil** (IQR) é uma versão robusta da amplitude:
+
+$$
+\text{IQR} = Q_3 - Q_1
+$$
+
+Ele descreve a amplitude dos **50% centrais** dos dados, ignorando os 25% mais altos e os 25% mais baixos. É muito menos afetado por outliers.
+
+## Quando reportar
+
+Em artigos científicos, a amplitude raramente é a única medida reportada — mas costuma aparecer **junto com** outras medidas, escrita como `mínimo–máximo`:
+
+> "Idade dos participantes: 32 ± 8 anos (intervalo: 18–62)."
+
+Esse formato dá uma noção rápida dos extremos sem comprometer-se com eles como medida de dispersão.
+</script>
+  <div id="02-estatistica-descritiva-10-amplitude-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-11-desvio-medio-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/11_desvio_medio.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-11-desvio-medio-md-content"># Desvio médio
+
+Mede a **distância média** de cada valor até a média do conjunto.
+
+## A motivação
+
+Já vimos que a soma dos desvios $(x_i - \bar{x})$ sempre dá zero — os positivos cancelam os negativos. Para evitar esse cancelamento, podemos usar o **valor absoluto** das diferenças.
+
+## Fórmula
+
+$$
+\text{DM} = \frac{1}{n} \sum_{i=1}^{n} \left| x_i - \bar{x} \right|
+$$
+
+Em palavras: para cada valor, calcule a distância (sem sinal) até a média; depois tire a média dessas distâncias.
+
+## Exemplo
+
+Dados: $2, 4, 4, 4, 5, 5, 7, 9$. Média $\bar{x} = 5$.
+
+| $x_i$ | $|x_i - \bar{x}|$ |
+| --- | --- |
+| 2 | 3 |
+| 4 | 1 |
+| 4 | 1 |
+| 4 | 1 |
+| 5 | 0 |
+| 5 | 0 |
+| 7 | 2 |
+| 9 | 4 |
+
+Soma das distâncias = 12. Desvio médio = $12 / 8 = 1{,}5$.
+
+## Interpretação
+
+> Em média, cada valor está a 1,5 unidade de distância da média.
+
+## Por que o desvio médio é pouco usado?
+
+Apesar de intuitivo, o desvio médio quase não aparece em estatística clássica. A razão é matemática: a função valor absoluto tem um **bico** em zero e é mais difícil de manipular (não tem derivada nesse ponto). Por isso, o padrão é elevar ao quadrado em vez de tirar o módulo — chegando à **variância** e ao **desvio padrão**, que veremos a seguir.
+
+## Em estatística robusta
+
+Existe uma versão robusta chamada **MAD** (*median absolute deviation*):
+
+$$
+\text{MAD} = \text{mediana}\,(\,|\,x_i - \tilde{x}\,|\,)
+$$
+
+Onde $\tilde{x}$ é a mediana. É bem mais resistente a outliers que o desvio médio comum e aparece em métodos modernos como *robust statistics* e detecção de anomalias.
+</script>
+  <div id="02-estatistica-descritiva-11-desvio-medio-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-12-variancia-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/12_variancia.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-12-variancia-md-content"># Variância
+
+A medida de dispersão mais usada em estatística clássica. Em vez de tirar o módulo das diferenças, **elevamos ao quadrado**.
+
+## Fórmulas
+
+### Variância populacional
+
+$$
+\sigma^{2} = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^{2}
+$$
+
+### Variância amostral
+
+$$
+s^{2} = \frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^{2}
+$$
+
+A pequena diferença: dividimos por $n - 1$ em vez de $n$. Isso se chama **correção de Bessel** e existe porque, ao usar $\bar{x}$ (calculada da própria amostra) em vez de $\mu$ (verdadeira mas desconhecida), subestimaríamos a variância sem essa correção.
+
+## Exemplo
+
+Dados: $2, 4, 4, 4, 5, 5, 7, 9$. $\bar{x} = 5$.
+
+| $x_i$ | $(x_i - \bar{x})^2$ |
+| --- | --- |
+| 2 | 9 |
+| 4 | 1 |
+| 4 | 1 |
+| 4 | 1 |
+| 5 | 0 |
+| 5 | 0 |
+| 7 | 4 |
+| 9 | 16 |
+
+Soma dos quadrados = 32.
+
+- Variância populacional: $32 / 8 = 4{,}0$.
+- Variância amostral: $32 / 7 \approx 4{,}57$.
+
+## Por que elevar ao quadrado?
+
+1. **Elimina o sinal** — todas as parcelas viram positivas.
+2. **Penaliza desvios grandes**: um desvio de 4 contribui muito mais (16) que dois desvios de 2 (4+4=8).
+3. **Tem propriedades matemáticas convenientes**: diferenciável em todo lugar, comporta-se bem em operações.
+
+## O problema da unidade
+
+Se $x$ está em quilogramas, $\sigma^2$ está em **quilogramas ao quadrado** — uma unidade sem significado físico. Por isso, na prática, costuma-se tirar a raiz quadrada e reportar o **desvio padrão** $\sigma$, na mesma unidade dos dados.
+
+## Identidade útil
+
+A variância também pode ser escrita como:
+
+$$
+\sigma^{2} = \overline{x^{2}} - (\bar{x})^{2}
+$$
+
+Em palavras: **a média dos quadrados menos o quadrado da média**.
+
+## Propriedades importantes
+
+| Propriedade | Fórmula |
+| --- | --- |
+| Soma de uma constante | $\text{Var}(X + c) = \text{Var}(X)$ |
+| Multiplicação por constante | $\text{Var}(c \cdot X) = c^{2} \cdot \text{Var}(X)$ |
+| Soma de variáveis independentes | $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$ |
+
+A última é a base de muitos resultados em estatística — **variâncias se somam** quando as variáveis são independentes.
+
+## Por que isso aparece no denominador de testes?
+
+Em estatística inferencial, a variância aparece dividindo a diferença observada — basicamente para perguntar:
+
+> "Essa diferença é grande **comparada à variabilidade natural** dos dados?"
+
+Essa é a ideia por trás de praticamente todos os testes paramétricos (t, z, ANOVA, F).
+</script>
+  <div id="02-estatistica-descritiva-12-variancia-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-13-desvio-padrao-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/13_desvio_padrao.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-13-desvio-padrao-md-content"># Desvio padrão
+
+A raiz quadrada da variância. É a medida de dispersão mais reportada em ciência.
+
+## Fórmulas
+
+### População
+
+$$
+\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^{2}}
+$$
+
+### Amostra
+
+$$
+s = \sqrt{\frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^{2}}
+$$
+
+A correção $(n-1)$ no denominador é a mesma da variância amostral.
+
+## Por que tirar a raiz?
+
+Para voltar à **unidade original** dos dados. Se $x$ está em kg, $s$ também está em kg — e podemos dizer coisas como "o peso médio é $70 \pm 5$ kg" de forma direta.
+
+## Interpretação
+
+> Em média, os dados se afastam $s$ unidades da média.
+
+Em uma distribuição **aproximadamente normal**, vale a regra 68–95–99,7:
+
+| Intervalo | % dos dados |
+| --- | --- |
+| $\bar{x} \pm s$ | ~68% |
+| $\bar{x} \pm 2s$ | ~95% |
+| $\bar{x} \pm 3s$ | ~99,7% |
+
+Em distribuições não-normais, essas porcentagens são apenas aproximadas. Mas vale uma garantia mais fraca, válida para qualquer distribuição:
+
+### Desigualdade de Chebyshev
+
+$$
+P(|X - \mu| < k\sigma) \geq 1 - \frac{1}{k^{2}}
+$$
+
+Por exemplo, **pelo menos 75%** dos dados estão dentro de $\mu \pm 2\sigma$, mesmo que a distribuição seja muito esquisita.
+
+## Erro padrão da média
+
+Cuidado para não confundir:
+
+- **Desvio padrão** ($s$): variabilidade dos **dados** individuais.
+- **Erro padrão da média** (SEM): variabilidade da **média amostral**.
+
+$$
+\text{SEM} = \frac{s}{\sqrt{n}}
+$$
+
+O SEM **sempre é menor** que $s$ e diminui à medida que aumentamos a amostra. É o desvio padrão da distribuição amostral da média (vem do TLC).
+
+| Quando reportar | Por quê |
+| --- | --- |
+| Desvio padrão | Para descrever a **variabilidade dos indivíduos** |
+| SEM | Para descrever a **precisão da estimativa da média** |
+
+> Atenção: o SEM é menor, então faz a barra de erro parecer pequena. Mas isso **não significa** menos variabilidade nos dados — só significa que com $n$ grande estimamos a média com mais precisão.
+
+## Em artigos científicos
+
+A convenção mais comum é reportar:
+
+- **Variável contínua e simétrica**: $\bar{x} \pm s$.
+- **Em gráficos com barras de erro**: especificar se a barra é desvio padrão, SEM ou IC 95%. **Nunca** deixe ambíguo.
+</script>
+  <div id="02-estatistica-descritiva-13-desvio-padrao-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-14-desvio-interquartil-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/14_desvio_interquartil.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-14-desvio-interquartil-md-content"># Desvio interquartil (IQR)
+
+Mede a dispersão dos **50% centrais** dos dados, ignorando os 25% mais altos e os 25% mais baixos. É a alternativa robusta ao desvio padrão.
+
+## Definição
+
+$$
+\text{IQR} = Q_3 - Q_1
+$$
+
+Onde:
+
+- $Q_1$ é o **primeiro quartil** (percentil 25);
+- $Q_3$ é o **terceiro quartil** (percentil 75).
+
+## Quartis
+
+Os quartis dividem os dados ordenados em **quatro partes iguais**:
+
+```
+| 25% | 25% | 25% | 25% |
+^     ^     ^     ^     ^
+min   Q1    Q2    Q3   max
+            (mediana)
+```
+
+## Exemplo
+
+Dados ordenados: $4, 6, 7, 8, 10, 12, 14, 18, 20, 25$.
+
+- $Q_1$ (entre o 2º e o 3º valor): $\approx 6{,}75$.
+- $Q_2 = 11$ (mediana).
+- $Q_3 \approx 17$.
+- $\text{IQR} = 17 - 6{,}75 = 10{,}25$.
+
+> Existem várias convenções para calcular quartis em amostras pequenas — diferentes pacotes podem dar valores ligeiramente diferentes. Em amostras grandes, todas convergem.
+
+## Boxplot — IQR visualizado
+
+O **boxplot** é o gráfico construído em torno do IQR:
+
+| Elemento | Significado |
+| --- | --- |
+| Linha do meio da caixa | mediana ($Q_2$) |
+| Bordas da caixa | $Q_1$ e $Q_3$ |
+| Altura da caixa | IQR |
+| "Bigodes" | tipicamente até $Q_1 - 1{,}5 \cdot \text{IQR}$ e $Q_3 + 1{,}5 \cdot \text{IQR}$ |
+| Pontos isolados | outliers (além dos bigodes) |
+
+## Por que usar IQR em vez de desvio padrão?
+
+| IQR | Desvio padrão |
+| --- | --- |
+| Robusto a outliers | Muito sensível a outliers |
+| Não depende da forma da distribuição | Bem interpretável só na normal |
+| Vai bem com **mediana** | Vai bem com **média** |
+
+A regra prática:
+
+- Reportou a **mediana**? Reporte o **IQR** junto.
+- Reportou a **média**? Reporte o **desvio padrão** junto.
+
+## Detectando outliers
+
+Uma regra prática (mas não universal):
+
+$$
+\text{outlier} \iff x < Q_1 - 1{,}5 \cdot \text{IQR} \quad \text{ou} \quad x > Q_3 + 1{,}5 \cdot \text{IQR}
+$$
+
+> Atenção: outlier "estatístico" não significa "valor errado". Pode ser um caso raro mas legítimo (um paciente com doença atípica, por exemplo). Antes de remover, **investigue**.
+</script>
+  <div id="02-estatistica-descritiva-14-desvio-interquartil-md-content" class="markdown-body"></div>
+</article>
+<article id="02-estatistica-descritiva-15-coeficiente-variacao-md" class="topic" data-section="Parte 2 — Estatística Descritiva">
+  <div class="topic-meta">
+    <span class="badge">Parte 2 — Estatística Descritiva</span>
+    <a class="nb-link" href="02_estatistica_descritiva/15_coeficiente_variacao.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="02-estatistica-descritiva-15-coeficiente-variacao-md-content"># Coeficiente de variação
+
+O **coeficiente de variação** (CV) expressa a dispersão de forma **relativa** — como porcentagem da média.
+
+## Fórmula
+
+$$
+\text{CV} = \frac{s}{\bar{x}} \cdot 100\%
+$$
+
+## Por que usá-lo?
+
+O desvio padrão sozinho não diz muito sem o contexto da média. Um $s = 2$ kg é muito ou pouco?
+
+- Em adultos com peso médio de 70 kg, $s = 2$ é **pequeno** ($\text{CV} \approx 3\%$).
+- Em recém-nascidos com peso médio de 3 kg, $s = 2$ é **enorme** ($\text{CV} \approx 67\%$).
+
+O CV permite comparar dispersão entre grupos **com médias muito diferentes** ou **em unidades diferentes**.
+
+## Exemplo
+
+Comparando a variabilidade da pressão arterial e da glicemia:
+
+| Variável | Média | s | CV |
+| --- | --- | --- | --- |
+| Pressão arterial sistólica | 130 mmHg | 15 mmHg | 11,5% |
+| Glicemia em jejum | 95 mg/dL | 8 mg/dL | 8,4% |
+
+Apesar dos desvios padrão estarem em unidades totalmente diferentes, podemos dizer que a pressão é **relativamente mais variável** que a glicemia nessa amostra.
+
+## Usos típicos em biologia
+
+- **Reprodutibilidade de métodos**: um CV de 2–5% é excelente, 5–10% aceitável, >10% pode ser preocupante (em ensaios analíticos).
+- **Variação entre indivíduos**: comparar dispersão de um parâmetro entre populações com médias diferentes.
+- **Controle de qualidade**: limites de CV em laboratórios clínicos.
+
+## Limitações
+
+1. **Só faz sentido para variáveis em escala de razão** (com zero absoluto natural). Não use para temperatura em Celsius, pH ou pontuações de questionários.
+
+2. **Instável quando a média está próxima de zero**: pequenas variações na média geram CVs enormes.
+
+3. **Não é apropriado** para variáveis que podem assumir valores negativos.
+
+4. **Cuidado com dados muito enviesados** — como a média pode não ser representativa, o CV também pode enganar.
+
+## Outras versões
+
+- **CV em forma decimal**: alguns trabalhos reportam $s / \bar{x}$ sem multiplicar por 100.
+- **CV robusto**: $\text{IQR} / \text{mediana}$, mais resistente a outliers.
+</script>
+  <div id="02-estatistica-descritiva-15-coeficiente-variacao-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-01-evento-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/01_evento.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-01-evento-md-content"># Evento — definição
+
+A probabilidade é a linguagem matemática para falar de **incerteza**. Antes de calcular probabilidades, precisamos definir alguns termos.
+
+## Experimento aleatório
+
+É qualquer processo cujo resultado **não pode ser previsto com certeza**, mas cujos resultados possíveis são conhecidos.
+
+Exemplos:
+
+- Lançar uma moeda.
+- Sortear uma carta de um baralho.
+- Aplicar um teste diagnóstico em um paciente.
+- Medir a glicemia no sangue após uma refeição.
+
+## Espaço amostral ($\Omega$)
+
+É o **conjunto de todos os resultados possíveis** do experimento.
+
+| Experimento | $\Omega$ |
+| --- | --- |
+| Lançar uma moeda | $\{\text{cara}, \text{coroa}\}$ |
+| Lançar um dado | $\{1, 2, 3, 4, 5, 6\}$ |
+| Resultado de um teste de COVID | $\{\text{positivo}, \text{negativo}\}$ |
+| Medir a temperatura corporal | qualquer valor entre 34 °C e 42 °C |
+
+## Evento
+
+Um **evento** é um **subconjunto** do espaço amostral — um ou mais resultados que nos interessam.
+
+| Experimento | Evento de interesse |
+| --- | --- |
+| Lançar um dado | "sair número par" → $A = \{2, 4, 6\}$ |
+| Sortear uma carta | "sair um ás" → $A = \{\text{A}\heartsuit, \text{A}\diamondsuit, \text{A}\clubsuit, \text{A}\spadesuit\}$ |
+| Diagnóstico | "ter a doença" |
+
+## Probabilidade
+
+A probabilidade de um evento $A$, escrita $P(A)$, é um número entre 0 e 1:
+
+$$
+0 \leq P(A) \leq 1
+$$
+
+- $P(A) = 0$: evento **impossível**.
+- $P(A) = 1$: evento **certo**.
+- $P(A) = 0{,}5$: 50% de chance.
+
+## Como calcular?
+
+### Definição clássica (resultados equiprováveis)
+
+Quando todos os resultados de $\Omega$ têm a mesma chance:
+
+$$
+P(A) = \frac{|A|}{|\Omega|} = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados}}
+$$
+
+Exemplo: $P(\text{par em um dado}) = 3/6 = 0{,}5$.
+
+### Definição frequentista
+
+Em situações em que não temos simetria, definimos $P(A)$ como a **frequência relativa** com que $A$ ocorre em muitas repetições do experimento:
+
+$$
+P(A) = \lim_{n \to \infty} \frac{n_A}{n}
+$$
+
+Exemplo: em 10.000 pacientes diabéticos, 320 tiveram complicações cardiovasculares em 5 anos. $P(\text{complicação}) \approx 320/10\,000 = 0{,}032$.
+
+## Propriedades fundamentais
+
+1. **Evento complementar** $A^{c}$ (não $A$):
+
+$$
+P(A^{c}) = 1 - P(A)
+$$
+
+2. **União** (ao menos um deles ocorre):
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+
+3. **Eventos mutuamente exclusivos** (não podem ocorrer juntos): $P(A \cap B) = 0$, logo
+
+$$
+P(A \cup B) = P(A) + P(B)
+$$
+
+4. **Eventos independentes** (a ocorrência de um não afeta o outro):
+
+$$
+P(A \cap B) = P(A) \cdot P(B)
+$$
+
+Voltaremos a essas regras nos próximos tópicos.
+</script>
+  <div id="03-probabilidade-01-evento-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-02-eventos-compostos-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/02_eventos_compostos.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-02-eventos-compostos-md-content"># Probabilidade de eventos compostos
+
+Eventos compostos envolvem **dois ou mais eventos** combinados pelas operações **e**, **ou**, **não**.
+
+## União: $A \cup B$ (ao menos um deles)
+
+A probabilidade de **A ou B** ocorrerem:
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+
+> Subtraímos $P(A \cap B)$ para não contar duas vezes os casos em que ambos ocorrem.
+
+### Exemplo
+
+Em um dado:
+
+- $A$ = par → $\{2, 4, 6\}$, $P(A) = 3/6$.
+- $B$ = maior que 3 → $\{4, 5, 6\}$, $P(B) = 3/6$.
+- $A \cap B$ = par e maior que 3 → $\{4, 6\}$, $P(A \cap B) = 2/6$.
+
+$$
+P(A \cup B) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6}
+$$
+
+Confere com $\{2, 4, 5, 6\}$, que tem 4 elementos.
+
+## Interseção: $A \cap B$ (ambos)
+
+A probabilidade de **A e B** ocorrerem juntos depende se os eventos são independentes.
+
+### Eventos independentes
+
+Quando saber que $A$ ocorreu **não muda** a probabilidade de $B$:
+
+$$
+P(A \cap B) = P(A) \cdot P(B)
+$$
+
+Exemplo: lançar duas moedas. $P(\text{cara na 1ª} \cap \text{cara na 2ª}) = 0{,}5 \cdot 0{,}5 = 0{,}25$.
+
+### Eventos dependentes
+
+Usamos a probabilidade condicional (próximo tópico):
+
+$$
+P(A \cap B) = P(A) \cdot P(B \mid A)
+$$
+
+## Complemento: $A^{c}$ (não A)
+
+$$
+P(A^{c}) = 1 - P(A)
+$$
+
+Esse atalho é poderoso. Em vez de calcular "pelo menos um sucesso", calcula-se "**nenhum** sucesso" e subtrai-se de 1.
+
+### Exemplo
+
+Em 5 lançamentos de uma moeda, qual a probabilidade de pelo menos uma cara?
+
+- $P(\text{nenhuma cara}) = (1/2)^5 = 1/32$.
+- $P(\text{pelo menos uma cara}) = 1 - 1/32 = 31/32 \approx 0{,}97$.
+
+## Eventos mutuamente exclusivos
+
+Se $A$ e $B$ não podem ocorrer ao mesmo tempo:
+
+- $P(A \cap B) = 0$.
+- $P(A \cup B) = P(A) + P(B)$.
+
+Exemplo: ao lançar um dado, "sair 2" e "sair 5" são mutuamente exclusivos — não há como sair os dois ao mesmo tempo.
+
+## Diagrama de Venn
+
+| Região | Probabilidade |
+| --- | --- |
+| Só A | $P(A) - P(A \cap B)$ |
+| Só B | $P(B) - P(A \cap B)$ |
+| Ambos | $P(A \cap B)$ |
+| Nenhum | $1 - P(A \cup B)$ |
+
+## Resumo
+
+| Pergunta | Operação | Quando se aplica |
+| --- | --- | --- |
+| "A ou B?" | $\cup$ | sempre |
+| "A e B, independentes?" | $\cap$, multiplicar | quando os eventos não interferem |
+| "A e B, dependentes?" | $\cap$, com condicional | quando interferem (probabilidade condicional) |
+| "Pelo menos um?" | usar complemento | em geral simplifica |
+</script>
+  <div id="03-probabilidade-02-eventos-compostos-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-03-probabilidade-condicional-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/03_probabilidade_condicional.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-03-probabilidade-condicional-md-content"># Probabilidade condicional
+
+A **probabilidade condicional** mede a chance de um evento $A$ acontecer **sabendo que** outro evento $B$ já ocorreu.
+
+## Notação
+
+Lê-se "probabilidade de A dado B":
+
+$$
+P(A \mid B)
+$$
+
+## Fórmula
+
+$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0
+$$
+
+A intuição: **restringimos o espaço amostral** ao subconjunto em que $B$ é verdade.
+
+## Exemplo
+
+Considere os passageiros do Titanic:
+
+|   | Sobreviveu | Morreu | Total |
+| --- | --- | --- | --- |
+| Mulheres | 233 | 81 | 314 |
+| Homens | 109 | 468 | 577 |
+| **Total** | 342 | 549 | 891 |
+
+$P(\text{sobreviver}) = 342/891 \approx 0{,}38$.
+
+$P(\text{sobreviver} \mid \text{mulher}) = 233/314 \approx 0{,}74$.
+
+A probabilidade muda drasticamente quando condicionamos no sexo — os dois eventos **não são independentes**.
+
+## Independência
+
+Dois eventos são **independentes** se:
+
+$$
+P(A \mid B) = P(A)
+$$
+
+Ou equivalentemente:
+
+$$
+P(A \cap B) = P(A) \cdot P(B)
+$$
+
+Em palavras: saber que $B$ aconteceu **não muda** a probabilidade de $A$.
+
+## Regra da multiplicação geral
+
+A partir da definição, obtemos:
+
+$$
+P(A \cap B) = P(A) \cdot P(B \mid A) = P(B) \cdot P(A \mid B)
+$$
+
+Útil quando temos as condicionais e queremos a interseção.
+
+## Teorema de Bayes
+
+Combinando os dois lados da equação acima, chegamos a uma fórmula famosa:
+
+$$
+P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
+$$
+
+O teorema de Bayes permite **inverter** uma probabilidade condicional. Em outras palavras, se sei $P(B \mid A)$, posso descobrir $P(A \mid B)$ — desde que conheça $P(A)$ e $P(B)$.
+
+### Aplicação clínica
+
+Esse é o princípio por trás de:
+
+- calcular o **valor preditivo positivo** a partir de sensibilidade, especificidade e prevalência;
+- atualizar a probabilidade de uma doença depois de receber um resultado de exame;
+- raciocínio diagnóstico em geral.
+
+Veremos esse cálculo em detalhes em **Sensibilidade e especificidade** e **Valor preditivo**.
+
+## A simetria que NÃO existe
+
+Um erro muito comum:
+
+$$
+P(A \mid B) \neq P(B \mid A)
+$$
+
+Por exemplo, $P(\text{sintoma} \mid \text{doença})$ é tipicamente alto, mas $P(\text{doença} \mid \text{sintoma})$ pode ser baixíssimo (se a doença for rara). Confundir esses dois é a base do famoso **paradoxo do teste diagnóstico**.
+
+## Regra prática
+
+Toda vez que você lê uma probabilidade no jornal ou em um artigo, pergunte-se:
+
+> **Condicional a quê?**
+
+A resposta muda completamente o significado do número.
+</script>
+  <div id="03-probabilidade-03-probabilidade-condicional-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-04-analise-combinatoria-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/04_analise_combinatoria.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-04-analise-combinatoria-md-content"># Análise combinatória
+
+Ferramenta para **contar** o número de resultados possíveis quando organizamos ou escolhemos elementos.
+
+## Princípio fundamental da contagem
+
+Se um experimento tem $a$ resultados possíveis em uma etapa e $b$ na próxima, o total de resultados é $a \cdot b$.
+
+Exemplo: 3 camisas e 4 calças → $3 \cdot 4 = 12$ combinações.
+
+## Fatorial
+
+$$
+n! = n \cdot (n-1) \cdot (n-2) \cdots 2 \cdot 1
+$$
+
+Por convenção, $0! = 1$.
+
+Exemplos:
+
+- $5! = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120$.
+- $10! = 3\,628\,800$.
+
+## Permutações — a ordem importa
+
+Quantas formas de **organizar** $n$ objetos em fila?
+
+$$
+P_n = n!
+$$
+
+Exemplo: 4 pessoas em 4 cadeiras → $4! = 24$ arranjos.
+
+### Permutações de $k$ entre $n$
+
+Quantas formas de escolher $k$ objetos **em ordem** entre $n$ disponíveis?
+
+$$
+P(n, k) = \frac{n!}{(n - k)!}
+$$
+
+Exemplo: pódio de uma corrida de 10 atletas → $P(10, 3) = 10 \cdot 9 \cdot 8 = 720$.
+
+## Combinações — a ordem NÃO importa
+
+Quantas formas de **escolher** $k$ objetos entre $n$, sem se importar com a ordem?
+
+$$
+C(n, k) = \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}
+$$
+
+Exemplo clássico: jogo da Mega-Sena. Quantos resultados possíveis?
+
+$$
+\binom{60}{6} = 50\,063\,860
+$$
+
+Logo, a probabilidade de acertar um jogo simples é $1 / 50\,063\,860 \approx 2 \times 10^{-8}$.
+
+## Permutações com repetição
+
+Se temos $n$ objetos, dos quais $n_1$ são iguais entre si, $n_2$ iguais entre si, etc.:
+
+$$
+P_{\text{rep}} = \frac{n!}{n_1! \, n_2! \cdots}
+$$
+
+Exemplo: anagramas da palavra "ESTATÍSTICA" (11 letras, com repetições).
+
+## Quando usar cada um
+
+```mermaid
+flowchart TD
+    A[Escolhendo k entre n] --> B{Ordem importa?}
+    B -->|Sim| P[Permutação<br>n!/(n-k)!]
+    B -->|Não| C[Combinação<br>C(n,k)]
+```
+
+## Em bioestatística
+
+A análise combinatória aparece principalmente em:
+
+- cálculo de probabilidades em **distribuição binomial** (quantas sequências de sucessos);
+- problemas de **amostragem** sem reposição;
+- combinações em **estudos de associação genética**;
+- montagem de **brackets** em ensaios clínicos.
+</script>
+  <div id="03-probabilidade-04-analise-combinatoria-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-05-testes-binarios-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/05_testes_binarios.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-05-testes-binarios-md-content"># Testes binários
+
+Um teste binário é qualquer procedimento diagnóstico cujo resultado tem **apenas duas possibilidades**: positivo ou negativo.
+
+## Exemplos
+
+- Teste de COVID (PCR ou antígeno);
+- Sorologia para HIV;
+- Mamografia (alterada ou normal);
+- Verificação se um marcador está acima de um valor de corte.
+
+## Os quatro cenários possíveis
+
+Comparando o resultado do teste com a **verdade** (o paciente realmente tem ou não a doença), surgem 4 combinações:
+
+|   | Tem doença | Não tem doença |
+| --- | --- | --- |
+| **Teste positivo** | Verdadeiro Positivo (VP) | Falso Positivo (FP) |
+| **Teste negativo** | Falso Negativo (FN) | Verdadeiro Negativo (VN) |
+
+Essa tabela é a base de tudo que vem a seguir:
+
+- **Sensibilidade e especificidade** (próximo tópico): medem qualidades do **teste**.
+- **Valor preditivo positivo e negativo**: respondem à pergunta do paciente: "meu teste deu positivo, qual a chance de eu ter mesmo a doença?".
+- **Matriz de confusão**: forma de visualizar os 4 resultados.
+- **Curva ROC**: descreve o teste sob diferentes pontos de corte.
+
+## A tensão entre os erros
+
+Todo teste binário tem que decidir como tratar a incerteza. Existem dois tipos de erro:
+
+| Erro | O que é | Consequência |
+| --- | --- | --- |
+| **Falso positivo** | Teste positivo em quem **não** tem a doença | Ansiedade, exames adicionais, custos |
+| **Falso negativo** | Teste negativo em quem **tem** a doença | Atraso no tratamento, doença não detectada |
+
+> Reduzir um tipo de erro tipicamente **aumenta** o outro. Por isso, na prática, escolhemos onde colocar o ponto de corte dependendo do contexto clínico.
+
+## Quando minimizar cada tipo de erro
+
+- **Triagem de doenças graves**: priorizamos **alta sensibilidade** (não perder nenhum doente), aceitando mais falsos positivos. Ex.: triagem neonatal, mamografia.
+- **Confirmação diagnóstica**: priorizamos **alta especificidade** (não dar falso positivo), aceitando perder alguns. Ex.: teste confirmatório de HIV após triagem positiva.
+
+## Por que isso é tão estatístico?
+
+Porque cada teste tem **probabilidades** associadas a cada cenário, e essas probabilidades dependem:
+
+- da **qualidade do teste** (sensibilidade e especificidade);
+- da **prevalência da doença** na população testada;
+- do **valor de corte** escolhido.
+
+Nos próximos tópicos, vamos quantificar cada um desses elementos.
+</script>
+  <div id="03-probabilidade-05-testes-binarios-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-06-sensibilidade-especificidade-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/06_sensibilidade_especificidade.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-06-sensibilidade-especificidade-md-content"># Sensibilidade e especificidade
+
+São as duas propriedades fundamentais de um teste diagnóstico binário. Ambas são **propriedades do teste**, não do paciente — não dependem da prevalência da doença.
+
+## Sensibilidade
+
+Probabilidade do teste dar **positivo entre os doentes**.
+
+$$
+\text{Sensibilidade} = P(\text{teste +} \mid \text{doente}) = \frac{\text{VP}}{\text{VP} + \text{FN}}
+$$
+
+> "Dos que têm a doença, quantos o teste detecta?"
+
+Um teste com sensibilidade de 95% detecta 95 de cada 100 pessoas doentes.
+
+## Especificidade
+
+Probabilidade do teste dar **negativo entre os saudáveis**.
+
+$$
+\text{Especificidade} = P(\text{teste --} \mid \text{saudável}) = \frac{\text{VN}}{\text{VN} + \text{FP}}
+$$
+
+> "Dos que não têm a doença, quantos o teste descarta corretamente?"
+
+Um teste com especificidade de 98% dá negativo em 98 de cada 100 pessoas saudáveis.
+
+## Visualizando
+
+Lembrando a tabela 2x2:
+
+|   | Doente | Saudável |
+| --- | --- | --- |
+| Teste + | VP | FP |
+| Teste − | FN | VN |
+| **Total** | **VP+FN** | **FP+VN** |
+
+| Medida | Denominador | Frase |
+| --- | --- | --- |
+| Sensibilidade | Coluna dos doentes | "verdadeiros positivos entre os doentes" |
+| Especificidade | Coluna dos saudáveis | "verdadeiros negativos entre os saudáveis" |
+
+## A regra mnemônica clássica
+
+- **SnNOut**: um teste com alta **S**ensibilidade que dá **N**egativo → afasta a doença (rule **out**).
+- **SpPIn**: um teste com alta esp**P**ecificidade que dá **P**ositivo → confirma a doença (rule **in**).
+
+## Trade-off
+
+Em testes que usam um **valor de corte** numérico (ex.: PSA, glicemia, troponina), mover o corte muda sensibilidade e especificidade em sentidos opostos:
+
+| Corte | Sensibilidade | Especificidade |
+| --- | --- | --- |
+| Mais baixo | ↑ | ↓ |
+| Mais alto | ↓ | ↑ |
+
+A **curva ROC** (próximo tópico) mostra essa relação.
+
+## O que NÃO está incluído
+
+Sensibilidade e especificidade **não dizem** a probabilidade de o paciente ter a doença depois de um resultado de teste. Para isso, precisamos do **valor preditivo**, que depende também da **prevalência**.
+
+## Exemplo numérico
+
+Aplicamos um teste a 1.000 pessoas. Sabemos (por padrão-ouro) que 100 são doentes:
+
+|   | Doente | Saudável |
+| --- | --- | --- |
+| Teste + | 85 | 45 |
+| Teste − | 15 | 855 |
+
+- Sensibilidade = $85 / (85 + 15) = 0{,}85$.
+- Especificidade = $855 / (855 + 45) = 0{,}95$.
+</script>
+  <div id="03-probabilidade-06-sensibilidade-especificidade-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-07-matriz-confusao-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/07_matriz_confusao.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-07-matriz-confusao-md-content"># Matriz de confusão
+
+A **matriz de confusão** é uma tabela 2x2 (ou maior, para múltiplas categorias) que mostra **onde o teste acertou e onde errou**.
+
+O nome vem da ideia de que ela mostra **onde o classificador se confundiu**: em vez de só dizer "70% de acertos", ela mostra **quais classes foram trocadas por quais**.
+
+## Versão 2x2 (clássica)
+
+|   | Real positivo | Real negativo |
+| --- | --- | --- |
+| **Previsto positivo** | VP (verdadeiro positivo) | FP (falso positivo) |
+| **Previsto negativo** | FN (falso negativo) | VN (verdadeiro negativo) |
+
+## Métricas derivadas
+
+A partir dessa tabela conseguimos calcular várias métricas, cada uma respondendo a uma pergunta diferente:
+
+| Métrica | Fórmula | Pergunta |
+| --- | --- | --- |
+| **Acurácia** | $\dfrac{\text{VP} + \text{VN}}{\text{total}}$ | "Qual a fração de acertos?" |
+| **Sensibilidade** | $\dfrac{\text{VP}}{\text{VP} + \text{FN}}$ | "Dos doentes, quantos pegamos?" |
+| **Especificidade** | $\dfrac{\text{VN}}{\text{VN} + \text{FP}}$ | "Dos saudáveis, quantos descartamos?" |
+| **VPP** (precisão) | $\dfrac{\text{VP}}{\text{VP} + \text{FP}}$ | "Dos positivos do teste, quantos têm a doença?" |
+| **VPN** | $\dfrac{\text{VN}}{\text{VN} + \text{FN}}$ | "Dos negativos do teste, quantos não têm?" |
+| **F1-score** | média harmônica de sensibilidade e VPP | balanço entre as duas |
+
+## Por que "acurácia" sozinha engana
+
+Imagine uma doença rara que afeta 1% da população. Um teste que dá **sempre negativo** acerta 99% dos casos. A acurácia parece ótima, mas o teste é inútil — não identifica nenhum doente.
+
+Por isso, em desbalanceamento de classes, é essencial olhar **sensibilidade e VPP** separadamente.
+
+## Versão multiclasse
+
+Quando há mais de duas categorias, a matriz fica $k \times k$. Linhas são previsões, colunas são valores reais (ou vice-versa, conforme convenção).
+
+Exemplo: classificar espécies de pinguins.
+
+|   | Real Adelie | Real Chinstrap | Real Gentoo |
+| --- | --- | --- | --- |
+| Pred Adelie | 142 | 3 | 1 |
+| Pred Chinstrap | 4 | 65 | 0 |
+| Pred Gentoo | 0 | 0 | 119 |
+
+Os elementos da **diagonal** são acertos. Fora da diagonal, é onde o modelo "se confundiu".
+
+## Como interpretar a diagonal
+
+- **Diagonal forte** = classificador bom.
+- **Padrão fora da diagonal** = revela onde estão os erros (ex.: o modelo confunde frequentemente Adelie com Chinstrap).
+
+## Visualização
+
+Heatmap é a forma padrão de mostrar matrizes de confusão: a intensidade de cor mostra rapidamente onde estão os acertos e os erros.
+
+## Em pesquisa clínica
+
+A matriz de confusão é a forma padrão de reportar resultados de:
+
+- testes diagnósticos novos vs. padrão-ouro;
+- ferramentas de triagem;
+- modelos de aprendizado de máquina aplicados a imagens médicas, ECGs, sequências genéticas, etc.
+</script>
+  <div id="03-probabilidade-07-matriz-confusao-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-08-valor-preditivo-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/08_valor_preditivo.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-08-valor-preditivo-md-content"># Valor preditivo positivo e negativo
+
+Sensibilidade e especificidade descrevem o **teste**. Mas o paciente está fazendo outra pergunta:
+
+> "Meu teste deu positivo. Qual a chance de eu **realmente** ter a doença?"
+
+Quem responde isso é o **valor preditivo**.
+
+## Valor preditivo positivo (VPP)
+
+$$
+\text{VPP} = P(\text{doente} \mid \text{teste +}) = \frac{\text{VP}}{\text{VP} + \text{FP}}
+$$
+
+> Dos que tiveram teste positivo, quantos têm de fato a doença?
+
+## Valor preditivo negativo (VPN)
+
+$$
+\text{VPN} = P(\text{saudável} \mid \text{teste --}) = \frac{\text{VN}}{\text{VN} + \text{FN}}
+$$
+
+> Dos que tiveram teste negativo, quantos estão de fato sem a doença?
+
+## Detalhe crucial: VPP e VPN dependem da prevalência
+
+Diferentemente de sensibilidade e especificidade, o VPP e o VPN **mudam** conforme a doença é mais ou menos prevalente na população.
+
+## O famoso paradoxo do teste
+
+Imagine um teste com:
+
+- Sensibilidade = 99%;
+- Especificidade = 99%.
+
+Aplicado em uma doença **rara** (prevalência 0,1%) em 100.000 pessoas:
+
+|   | Doente | Saudável |
+| --- | --- | --- |
+| Teste + | 99 | 999 |
+| Teste − | 1 | 98.901 |
+| **Total** | 100 | 99.900 |
+
+$$
+\text{VPP} = \frac{99}{99 + 999} \approx 9\%
+$$
+
+**Apenas 9%** dos testes positivos correspondem a doentes reais! Apesar de o teste ser excelente, a doença é tão rara que a maioria dos positivos são falsos positivos.
+
+## Por que isso acontece?
+
+Porque o número de **saudáveis** é tão maior que o de doentes que, mesmo com poucos erros percentuais nos saudáveis, o número absoluto de falsos positivos supera o de verdadeiros positivos.
+
+## Cálculo via Bayes
+
+A relação formal vem do **Teorema de Bayes**:
+
+$$
+\text{VPP} = \frac{\text{Sens.} \cdot \text{Prev.}}{\text{Sens.} \cdot \text{Prev.} + (1 - \text{Esp.}) \cdot (1 - \text{Prev.})}
+$$
+
+$$
+\text{VPN} = \frac{\text{Esp.} \cdot (1 - \text{Prev.})}{\text{Esp.} \cdot (1 - \text{Prev.}) + (1 - \text{Sens.}) \cdot \text{Prev.}}
+$$
+
+Onde **Prev.** é a prevalência da doença.
+
+## Como aumentar o VPP
+
+1. **Testar populações com maior prevalência** (por isso fazemos testes de COVID em pessoas com sintomas, não em qualquer um).
+2. **Aumentar a especificidade** do teste.
+3. **Confirmar positivos** com um segundo teste mais específico.
+
+## Resumo prático
+
+| Medida | Depende da prevalência? | Pergunta |
+| --- | --- | --- |
+| Sensibilidade | não | "O teste pega os doentes?" |
+| Especificidade | não | "O teste descarta os saudáveis?" |
+| VPP | sim | "Sou doente, sabendo que dei positivo?" |
+| VPN | sim | "Sou saudável, sabendo que dei negativo?" |
+
+## Lições para o clínico
+
+- Testes de **triagem** ganham VPP em populações de **alto risco**.
+- Testes **muito específicos** são bons para **confirmação**, mesmo em doenças raras.
+- A interpretação de um resultado **depende do contexto** clínico — não só do número que aparece no laudo.
+</script>
+  <div id="03-probabilidade-08-valor-preditivo-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-09-curva-roc-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/09_curva_roc.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-09-curva-roc-md-content"># Curva ROC
+
+A **curva ROC** (em inglês, *Receiver Operating Characteristic*) descreve como um teste se comporta para **vários valores de corte**.
+
+## A ideia
+
+Muitos exames retornam **um número**, e a decisão de "positivo ou negativo" depende de um valor de corte. Por exemplo:
+
+- glicemia em jejum > 126 mg/dL → diabetes;
+- PSA > 4 ng/mL → suspeita de câncer de próstata;
+- febre > 37,8 °C → suspeita de infecção.
+
+Mudar o corte muda a sensibilidade e a especificidade. A curva ROC mostra **todas** as combinações possíveis dessas duas medidas, à medida que o corte varia.
+
+## Construção da curva
+
+No eixo de cada ponto da curva:
+
+| Eixo | O que é |
+| --- | --- |
+| Eixo **x** | $1 - \text{Especificidade}$ (taxa de falsos positivos) |
+| Eixo **y** | Sensibilidade (taxa de verdadeiros positivos) |
+
+Cada ponto corresponde a um valor de corte. Variando o corte, descrevemos uma curva.
+
+## Interpretação visual
+
+```
+sensibilidade
+   1 |          ____________
+     |     ____/
+     |    /          ← teste excelente
+     |   /
+     |  /
+     | /                ← teste mediano
+     |/
+   0 |________________________
+     0                        1
+                    1 - especificidade
+```
+
+- A **diagonal** representa um teste **inútil**, equivalente a sortear no cara-ou-coroa.
+- Quanto mais a curva se aproxima do **canto superior esquerdo**, melhor o teste.
+
+## AUC — área sob a curva
+
+A medida mais usada para comparar curvas ROC é a **área sob a curva** (*Area Under the Curve*):
+
+$$
+0 \leq \text{AUC} \leq 1
+$$
+
+| AUC | Interpretação |
+| --- | --- |
+| 1,0 | Teste perfeito |
+| 0,9–1,0 | Excelente |
+| 0,8–0,9 | Bom |
+| 0,7–0,8 | Razoável |
+| 0,5–0,7 | Fraco |
+| 0,5 | Equivalente ao acaso |
+| < 0,5 | Pior que acaso (inverter o critério resolve) |
+
+## Como escolher o ponto de corte ideal?
+
+Não existe resposta universal — depende do contexto clínico:
+
+1. **Ponto mais próximo do canto (0,1)**: minimiza a distância euclidiana ao teste perfeito.
+2. **Índice de Youden**: maximiza $\text{Sens.} + \text{Esp.} - 1$.
+3. **Trade-off custo-benefício**: pondera o custo de um FP versus um FN.
+
+Por exemplo, em **triagem**, escolhemos um corte que prioriza sensibilidade (não perder doentes). Em **confirmação**, priorizamos especificidade.
+
+## Aplicações típicas
+
+- Avaliação de **novos biomarcadores** versus padrão-ouro.
+- Comparação entre **dois testes** para a mesma doença.
+- Comparação de **modelos de aprendizado de máquina** para classificação.
+- Definição de **valores de corte** clínicos.
+
+## Vantagem da ROC
+
+A curva ROC sintetiza, em **um único gráfico**, o desempenho do teste em **todos** os pontos de corte possíveis. Por isso é a forma padrão de reportar a performance de um teste diagnóstico em artigos científicos.
+</script>
+  <div id="03-probabilidade-09-curva-roc-md-content" class="markdown-body"></div>
+</article>
+<article id="03-probabilidade-10-distribuicao-binomial-md" class="topic" data-section="Parte 3 — Probabilidade">
+  <div class="topic-meta">
+    <span class="badge">Parte 3 — Probabilidade</span>
+    <a class="nb-link" href="03_probabilidade/10_distribuicao_binomial.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="03-probabilidade-10-distribuicao-binomial-md-content"># Distribuição binomial
+
+A distribuição binomial conta **quantos sucessos** ocorrem em $n$ tentativas independentes, cada uma com a mesma probabilidade $p$ de sucesso.
+
+## Condições para aplicar
+
+| Condição | Significa |
+| --- | --- |
+| **Número fixo** de tentativas ($n$) | Você decide $n$ antes de começar |
+| Cada tentativa é **binária** | sucesso ou fracasso |
+| Probabilidade $p$ **constante** | mesma em todas as tentativas |
+| Tentativas **independentes** | uma não afeta a outra |
+
+## Fórmula
+
+A probabilidade de obter exatamente $k$ sucessos em $n$ tentativas é:
+
+$$
+P(X = k) = \binom{n}{k} p^{k} (1 - p)^{n - k}
+$$
+
+Onde:
+
+- $\binom{n}{k} = \dfrac{n!}{k!\,(n-k)!}$ é o coeficiente binomial (vem da análise combinatória).
+
+## Esperança e variância
+
+$$
+E(X) = n \cdot p
+$$
+
+$$
+\text{Var}(X) = n \cdot p \cdot (1 - p)
+$$
+
+## Exemplos típicos em biologia
+
+- Lançar uma moeda 10 vezes; contar caras.
+- Aplicar um teste com sensibilidade conhecida em 50 pacientes doentes; contar quantos vão positivar.
+- Em uma colônia onde 30% das células expressam um gene, escolher 20 ao acaso e contar quantas expressam.
+- Quantos pacientes em um ensaio de 100 vão apresentar um efeito adverso, se a taxa esperada é 5%?
+
+## Calculando probabilidades
+
+### Probabilidade de exatamente $k$ sucessos
+
+$$
+P(X = k) = \binom{n}{k} p^{k} (1 - p)^{n - k}
+$$
+
+### Probabilidade de no máximo $k$ sucessos (acumulada)
+
+$$
+P(X \leq k) = \sum_{i = 0}^{k} \binom{n}{i} p^{i} (1 - p)^{n - i}
+$$
+
+### Probabilidade de pelo menos $k$ sucessos
+
+$$
+P(X \geq k) = 1 - P(X \leq k - 1)
+$$
+
+## Exemplo: moeda
+
+Lançar uma moeda honesta 10 vezes. Qual a probabilidade de obter exatamente 7 caras?
+
+$$
+P(X = 7) = \binom{10}{7} (0{,}5)^{7} (0{,}5)^{3} = 120 \cdot 0{,}5^{10} \approx 0{,}117
+$$
+
+Ou seja, cerca de 11,7%.
+
+## Aproximação pela normal
+
+Quando $n$ é grande e $p$ não é próximo de 0 ou 1, a binomial pode ser aproximada por uma normal:
+
+$$
+X \approx \mathcal{N}\!\left( np, \; \sqrt{np(1-p)} \right)
+$$
+
+A regra prática: $np \geq 10$ e $n(1-p) \geq 10$. Essa aproximação é a base de muitos testes para proporções.
+
+## Conexão com Bernoulli
+
+Cada tentativa individual segue uma distribuição **Bernoulli** (caso especial da binomial com $n = 1$). A binomial é a soma de $n$ Bernoullis independentes.
+
+## Visualização
+
+A distribuição binomial tem formato dependente de $p$:
+
+- $p = 0{,}5$ → simétrica.
+- $p < 0{,}5$ → assimétrica à direita.
+- $p > 0{,}5$ → assimétrica à esquerda.
+
+À medida que $n$ aumenta, a forma se aproxima de uma curva normal (de novo, o TLC!).
+</script>
+  <div id="03-probabilidade-10-distribuicao-binomial-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-01-logica-inferencia-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/01_logica_inferencia.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-01-logica-inferencia-md-content"># Lógica da inferência estatística
+
+A inferência estatística é o conjunto de ferramentas que permite **tirar conclusões sobre uma população a partir de uma amostra**.
+
+## A pergunta fundamental
+
+Toda análise inferencial responde, em essência, à seguinte pergunta:
+
+> Os padrões que vejo na minha amostra refletem **algo real** sobre a população, ou podem ser apenas **acaso**?
+
+Por exemplo:
+
+- Um novo remédio realmente reduz a pressão arterial, ou a diferença observada foi coincidência?
+- Pinguins de duas ilhas diferentes têm pesos diferentes, ou a variação seria igual por acaso?
+- Existe associação entre fumar e câncer, ou os números parecidos são casualidade?
+
+## A estratégia geral
+
+A inferência usa uma lógica que pode parecer estranha à primeira vista. Em vez de tentar "provar" diretamente que existe um efeito, fazemos o caminho inverso:
+
+1. **Assumimos que não existe efeito** (hipótese nula, $H_0$).
+2. **Calculamos a probabilidade** de observar os dados (ou algo mais extremo) sob essa suposição.
+3. Se essa probabilidade for **muito baixa**, concluímos que $H_0$ provavelmente é falsa e rejeitamos.
+
+É a mesma lógica de um julgamento criminal: o acusado é considerado **inocente** (H₀) até que as evidências (dados) sejam fortes o suficiente para afastar essa hipótese.
+
+## As duas grandes famílias
+
+A inferência se divide em duas tarefas relacionadas:
+
+### Estimação
+
+Atribuir um valor (ou intervalo de valores) plausível a um parâmetro populacional desconhecido.
+
+- **Estimação pontual**: um único número (ex.: $\bar{x} = 170$ cm).
+- **Estimação intervalar**: um intervalo (ex.: IC 95% = [168, 172] cm).
+
+### Teste de hipóteses
+
+Decidir entre duas afirmações concorrentes ($H_0$ vs. $H_1$), com base nos dados.
+
+## A incerteza está sempre lá
+
+Como toda inferência se baseia em uma amostra finita, **sempre há risco de erro**. A estatística não elimina esse risco — ela o **quantifica**.
+
+Isso leva aos dois tipos de erro:
+
+| Erro | O que é | Probabilidade |
+| --- | --- | --- |
+| **Tipo I** | Rejeitar $H_0$ quando ela é verdadeira | $\alpha$ |
+| **Tipo II** | Não rejeitar $H_0$ quando ela é falsa | $\beta$ |
+
+Veremos esses conceitos em detalhes mais à frente.
+
+## Por que isso importa?
+
+Sem inferência estatística, qualquer um pode olhar para qualquer diferença na amostra e gritar "achei algo!". A estatística estabelece **critérios consensuais** para considerar uma diferença confiável. É um filtro contra o acaso e contra o viés do pesquisador.
+
+## Estrutura desta parte do curso
+
+Nos próximos tópicos, vamos:
+
+1. Aprender a **estimar** parâmetros (pontual e por intervalos de confiança).
+2. Entender a estrutura de um **teste de hipóteses**.
+3. Conhecer os principais testes em bioestatística (t, z, ANOVA, qui-quadrado, correlação, regressão).
+4. Ver alternativas **não paramétricas** quando as suposições falham.
+</script>
+  <div id="04-estatistica-inferencial-01-logica-inferencia-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-02-estimacao-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/02_estimacao.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-02-estimacao-md-content"># Estimação
+
+A **estimação** consiste em usar dados de uma amostra para chutar (com algum embasamento matemático) o valor de um parâmetro populacional.
+
+## Parâmetros vs. estatísticas — revisão
+
+| População | Amostra | Símbolo populacional | Símbolo amostral |
+| --- | --- | --- | --- |
+| Média | Média | $\mu$ | $\bar{x}$ |
+| Desvio padrão | Desvio padrão | $\sigma$ | $s$ |
+| Proporção | Proporção | $\pi$ ou $p$ | $\hat{p}$ |
+| Variância | Variância | $\sigma^{2}$ | $s^{2}$ |
+
+A média, desvio padrão etc. da amostra **são** os estimadores naturais dos respectivos parâmetros da população.
+
+## Estimação pontual
+
+Um único número como melhor "chute" para o parâmetro:
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_{i} \quad \text{estima} \quad \mu
+$$
+
+$$
+\hat{p} = \frac{k}{n} \quad \text{estima} \quad \pi
+$$
+
+## Estimação intervalar
+
+A estimação pontual é insatisfatória porque **nunca é exata**. A cada amostra teríamos uma estimativa um pouco diferente. Por isso preferimos um **intervalo** que contenha o valor verdadeiro com alta probabilidade.
+
+A forma geral é:
+
+$$
+\text{estimativa pontual} \pm \text{margem de erro}
+$$
+
+A "margem de erro" depende:
+
+- da **variabilidade** dos dados (mais variável → maior margem);
+- do **tamanho da amostra** (mais dados → menor margem);
+- do **nível de confiança** desejado (95% padrão).
+
+## Propriedades de um bom estimador
+
+| Propriedade | Significado |
+| --- | --- |
+| **Não viesado** | $E(\hat{\theta}) = \theta$ — em média, acerta o parâmetro |
+| **Eficiente** | tem variância pequena |
+| **Consistente** | quando $n \to \infty$, $\hat{\theta} \to \theta$ |
+| **Robusto** | pouco afetado por suposições violadas ou outliers |
+
+A média amostral $\bar{x}$ é não viesada e consistente para $\mu$. Por isso é o estimador padrão.
+
+## Erro padrão
+
+Toda estimativa amostral tem variabilidade — ela mesma é uma variável aleatória. O **erro padrão** mede essa variabilidade:
+
+$$
+\text{EP}(\bar{x}) = \frac{s}{\sqrt{n}}
+$$
+
+> O erro padrão diminui à medida que $n$ aumenta — por isso amostras maiores dão estimativas mais precisas.
+
+## Estimadores em pacotes
+
+A maioria dos pacotes estatísticos calcula automaticamente as estimativas pontuais junto com seus erros padrão e intervalos de confiança. No `scipy.stats`, por exemplo:
+
+- `stats.sem(x)` → erro padrão da média.
+- `stats.t.interval(...)` → intervalo de confiança para a média.
+
+Veremos os intervalos de confiança em detalhes no próximo tópico.
+</script>
+  <div id="04-estatistica-inferencial-02-estimacao-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-03-intervalo-confianca-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/03_intervalo_confianca.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-03-intervalo-confianca-md-content"># Intervalos de confiança
+
+Um **intervalo de confiança** (IC) é um intervalo de valores plausíveis para o parâmetro populacional, calculado a partir da amostra.
+
+## A definição correta
+
+Um IC de 95% **não** significa que "há 95% de chance de o parâmetro estar no intervalo".
+
+A interpretação correta é:
+
+> Se repetíssemos o experimento muitas vezes e construíssemos um IC 95% a cada vez, **cerca de 95% desses intervalos** conteriam o parâmetro verdadeiro.
+
+O parâmetro é um número fixo (desconhecido); quem varia é o intervalo, que muda de amostra para amostra.
+
+## IC para a média
+
+A fórmula geral é:
+
+$$
+\bar{x} \;\pm\; t^{*} \cdot \frac{s}{\sqrt{n}}
+$$
+
+Onde:
+
+- $\bar{x}$: média amostral;
+- $s / \sqrt{n}$: erro padrão da média;
+- $t^{*}$: valor crítico da distribuição $t$ com $n - 1$ graus de liberdade, correspondente ao nível de confiança escolhido.
+
+> Quando o desvio padrão $\sigma$ da população é **conhecido**, usamos $z^{*}$ da normal padrão em vez de $t^{*}$. Mas, em pesquisa real, $\sigma$ quase sempre é desconhecido.
+
+## Valores críticos comuns
+
+Para o teste bilateral:
+
+| Nível | $z^{*}$ (normal) |
+| --- | --- |
+| 90% | 1,645 |
+| 95% | 1,960 |
+| 99% | 2,576 |
+
+Para o $t$, o valor muda com os graus de liberdade — mas se aproxima de $z^{*}$ quando $n$ é grande.
+
+## Exemplo
+
+Pesos (em gramas) de 25 ratos: $\bar{x} = 240{,}2$, $s = 18$.
+
+Erro padrão = $18 / \sqrt{25} = 3{,}6$.
+
+Para 95% de confiança, $t^{*}_{24} \approx 2{,}064$.
+
+$$
+\text{IC 95\%} = 240{,}2 \pm 2{,}064 \cdot 3{,}6 \approx [232{,}8;\; 247{,}6] \text{ g}
+$$
+
+## O que controla a largura do IC
+
+| Fator | Efeito na largura |
+| --- | --- |
+| Aumentar $n$ | **reduz** |
+| Aumentar $s$ | **aumenta** |
+| Aumentar o nível de confiança | **aumenta** |
+
+> Para reduzir a margem de erro pela metade, é preciso **quadruplicar** o tamanho da amostra.
+
+## IC para uma proporção
+
+Para proporções (eleições, ensaios clínicos com desfechos binários):
+
+$$
+\hat{p} \;\pm\; z^{*} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}
+$$
+
+> Essa aproximação só vale para $n$ grande e $\hat{p}$ não muito próximo de 0 ou 1. Em caso contrário, usa-se métodos alternativos (Wilson, Clopper–Pearson).
+
+## IC para diferença entre duas médias
+
+$$
+(\bar{x}_1 - \bar{x}_2) \;\pm\; t^{*} \cdot \sqrt{\frac{s_1^{2}}{n_1} + \frac{s_2^{2}}{n_2}}
+$$
+
+Se o IC para a diferença **não inclui zero**, há evidência de que as médias são diferentes (equivalente a um teste t com $p < \alpha$).
+
+## A relação com testes de hipóteses
+
+Existe uma equivalência direta:
+
+| Resultado do teste | IC do parâmetro |
+| --- | --- |
+| Rejeita $H_0$: $\mu = \mu_0$ ao nível $\alpha = 0{,}05$ | IC 95% **não contém** $\mu_0$ |
+| Não rejeita $H_0$ | IC 95% **contém** $\mu_0$ |
+
+Por isso, em artigos modernos, é cada vez mais comum reportar o **IC junto com o valor-p** — ou até em vez dele. O IC traz a mesma informação do teste, com a vantagem de mostrar **a magnitude** do efeito.
+
+## Cuidados importantes
+
+1. **Interpretação frequentista**: o intervalo cobre o parâmetro em 95% das replicações.
+2. **Não confundir** com intervalo de **predição**, que é mais largo e prediz observações individuais.
+3. **Dados extremos** podem afetar o IC — verifique a distribuição.
+4. **IC muito largo** indica que a amostra é pequena demais para uma estimativa precisa.
+</script>
+  <div id="04-estatistica-inferencial-03-intervalo-confianca-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-04-hipoteses-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/04_hipoteses.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-04-hipoteses-md-content"># Hipótese nula (H₀) e alternativa (H₁)
+
+Todo teste de hipóteses compara duas afirmações concorrentes sobre a população.
+
+## Hipótese nula (H₀)
+
+A hipótese de **não-efeito**, **não-diferença**, **status quo**. É a hipótese que pretendemos colocar em prova.
+
+### Exemplos
+
+- "O novo remédio **não** altera a pressão arterial."
+- "**Não** há diferença entre as médias dos dois grupos."
+- "Os dados seguem **distribuição normal**."
+- "As variáveis são **independentes**."
+
+> A hipótese nula é sempre formulada como uma **igualdade** ou ausência de relação.
+
+## Hipótese alternativa (H₁ ou Hₐ)
+
+A hipótese que afirma **algum efeito** ou **alguma diferença**. É o que você normalmente está tentando demonstrar.
+
+### Exemplos
+
+- "O novo remédio reduz a pressão arterial."
+- "As médias são diferentes."
+- "Os dados não são normais."
+- "Há associação entre as variáveis."
+
+## Formulações
+
+H₁ pode ser **bilateral** (também chamada *two-sided*) ou **unilateral** (*one-sided*).
+
+### Bilateral
+
+Detecta diferença em qualquer direção:
+
+$$
+H_0: \mu = \mu_0 \quad \text{vs.} \quad H_1: \mu \neq \mu_0
+$$
+
+### Unilateral à direita
+
+Só rejeita H₀ se o efeito for "para mais":
+
+$$
+H_0: \mu \leq \mu_0 \quad \text{vs.} \quad H_1: \mu > \mu_0
+$$
+
+### Unilateral à esquerda
+
+Só rejeita H₀ se o efeito for "para menos":
+
+$$
+H_0: \mu \geq \mu_0 \quad \text{vs.} \quad H_1: \mu < \mu_0
+$$
+
+## Quando usar cada uma?
+
+| Caso | Hipótese |
+| --- | --- |
+| Não tenho ideia do sentido do efeito | Bilateral |
+| Sei (por razões biológicas/clínicas) que o efeito só pode ser em uma direção | Unilateral |
+
+> Atenção: a escolha **deve ser feita antes** de olhar os dados. Mudar para unilateral após ver os resultados é uma forma de manipulação.
+
+## A analogia do júri
+
+| Estatística | Júri criminal |
+| --- | --- |
+| H₀ | "Réu é inocente" |
+| H₁ | "Réu é culpado" |
+| Dados | Evidências |
+| Rejeitar H₀ | Condenar |
+| Não rejeitar H₀ | Absolver (por insuficiência de provas) |
+
+**Não rejeitar H₀ ≠ provar H₀.** Falta de evidências para condenar não é prova de inocência. Em estatística, é a mesma coisa: dizer "não rejeitamos H₀" significa apenas que **os dados não fornecem evidência suficiente** contra ela.
+
+## Exemplos práticos
+
+### Ensaio clínico
+
+- H₀: O remédio A e o remédio B têm a mesma eficácia.
+- H₁: A eficácia é diferente.
+
+### Estudo de associação
+
+- H₀: Não há associação entre tabagismo e câncer.
+- H₁: Há associação.
+
+### Validação de método de laboratório
+
+- H₀: Os dois métodos dão o mesmo resultado.
+- H₁: Os métodos diferem.
+
+## Resumo
+
+| Etapa | Pergunta |
+| --- | --- |
+| Formular H₀ | "O que significa 'nada acontece'?" |
+| Formular H₁ | "Qual é o efeito que eu quero demonstrar?" |
+| Coletar dados | Observar a amostra |
+| Calcular estatística | Comparar dados com H₀ |
+| Calcular valor-p | Quão extremos os dados são se H₀ for verdadeira? |
+| Decidir | Rejeitar ou não rejeitar H₀ |
+</script>
+  <div id="04-estatistica-inferencial-04-hipoteses-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-05-significancia-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/05_significancia.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-05-significancia-md-content"># Nível de significância (α)
+
+O **nível de significância** ($\alpha$) é o limiar que escolhemos para considerar um resultado "estatisticamente significativo".
+
+## Definição
+
+$\alpha$ é a probabilidade que aceitamos de rejeitar $H_0$ **quando ela é verdadeira** (cometer um erro do **tipo I**).
+
+$$
+\alpha = P(\text{rejeitar } H_0 \mid H_0 \text{ é verdadeira})
+$$
+
+## Valores típicos
+
+| $\alpha$ | Uso |
+| --- | --- |
+| 0,05 | Mais comum em biologia, ciências sociais |
+| 0,01 | Áreas que exigem maior rigor (clínica de risco) |
+| 0,001 | Quando o custo do erro tipo I é muito alto |
+| $5 \times 10^{-8}$ | Estudos GWAS (correção para milhões de testes) |
+
+> $\alpha = 0{,}05$ significa: aceitamos errar (rejeitar H₀ sem motivo) em 5 de cada 100 análises.
+
+## Como α é usado no teste
+
+1. **Antes** de coletar dados, fixamos $\alpha$ (geralmente 0,05).
+2. Calculamos o **valor-p** a partir dos dados.
+3. Comparamos:
+   - $p < \alpha$ → **rejeitamos** $H_0$ (resultado "significativo").
+   - $p \geq \alpha$ → **não rejeitamos** $H_0$.
+
+## Região crítica
+
+A estatística do teste cai em uma **região crítica** com probabilidade $\alpha$ sob H₀:
+
+```
+        zona de não-rejeição                rejeição (α/2)
+           ←──────────→
+   ←─ rej (α/2) ─→               ←────────────→
+   ┌──────────────────────────────────────────┐
+   │                  H₀                       │
+   │                                           │
+   └─────────────|──────────────|──────────────┘
+              -z*                +z*
+```
+
+Para um teste bilateral com $\alpha = 0{,}05$ usando a normal:
+
+- $z^{*} = 1{,}96$
+- Rejeita-se H₀ se a estatística cai além de $\pm 1{,}96$.
+
+## A escolha de α é arbitrária
+
+Não há nada de "mágico" em 0,05. É uma **convenção** estabelecida há quase um século. Em algumas áreas, outras escolhas fazem mais sentido:
+
+- **Triagem populacional**: pode-se aceitar $\alpha$ maior (0,10) porque o custo de perder um caso é alto.
+- **Genética populacional (GWAS)**: usa-se $\alpha$ extremamente pequeno porque se testam milhões de SNPs simultaneamente.
+- **Decisões irreversíveis**: $\alpha$ menor é mais prudente.
+
+## A relação com o IC
+
+Existe uma equivalência:
+
+$$
+\text{nível de confiança} + \alpha = 1
+$$
+
+- $\alpha = 0{,}05$ ↔ IC 95%.
+- $\alpha = 0{,}01$ ↔ IC 99%.
+
+## Erro tipo I e tipo II
+
+Reduzir $\alpha$ diminui a chance de **rejeitar H₀ por engano** (tipo I), mas aumenta a chance de **não detectar um efeito real** (tipo II). Os dois erros estão em **tensão**.
+
+| Decisão | H₀ verdadeira | H₀ falsa |
+| --- | --- | --- |
+| Rejeitar H₀ | **Erro tipo I** ($\alpha$) | Decisão correta (poder, $1 - \beta$) |
+| Não rejeitar H₀ | Decisão correta | **Erro tipo II** ($\beta$) |
+
+## Cuidados com a interpretação de "significativo"
+
+1. **"Significativo" não quer dizer importante.** Um efeito minúsculo pode ser estatisticamente significativo se $n$ for muito grande.
+2. **"Não significativo" não quer dizer "sem efeito".** Pode ser falta de poder estatístico.
+3. **Reportar apenas "significativo / não significativo" perde informação**: o valor-p exato e o tamanho de efeito carregam mais informação.
+</script>
+  <div id="04-estatistica-inferencial-05-significancia-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-06-valor-p-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/06_valor_p.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-06-valor-p-md-content"># Valor-p
+
+O **valor-p** (p-value) é talvez o número mais usado e mais mal interpretado da estatística.
+
+## Definição correta
+
+> O **valor-p** é a probabilidade de obter dados **tão ou mais extremos** que os observados, **supondo que H₀ seja verdadeira**.
+
+Formalmente:
+
+$$
+p = P(T \geq t_{\text{obs}} \mid H_0)
+$$
+
+(ou bilateral, conforme a hipótese).
+
+## Como interpretar
+
+| Valor-p | Interpretação informal |
+| --- | --- |
+| Muito pequeno (< 0,001) | Dados muito improváveis sob H₀ → forte evidência contra H₀ |
+| Pequeno (< 0,05) | Dados improváveis sob H₀ → evidência razoável contra H₀ |
+| Grande (> 0,05) | Dados compatíveis com H₀ → não há evidência para rejeitá-la |
+
+## A regra de decisão
+
+$$
+\text{rejeitar } H_0 \iff p < \alpha
+$$
+
+## O que o valor-p NÃO é
+
+**Erros comuns** que aparecem até em artigos publicados:
+
+1. **NÃO é** a probabilidade de H₀ ser verdadeira.
+   - $p \neq P(H_0 \mid \text{dados})$.
+2. **NÃO é** a probabilidade de o resultado ser por acaso.
+3. **NÃO mede** o tamanho do efeito — apenas a evidência **contra** H₀.
+4. **NÃO indica** importância prática. Um $p$ minúsculo pode ser irrelevante clinicamente.
+
+## A famosa "linha mágica" de 0,05
+
+A escolha de 0,05 é histórica e arbitrária. Em 2016, a *American Statistical Association* publicou um manifesto alertando contra a interpretação binária ("significativo / não significativo"). Algumas recomendações modernas:
+
+- Reportar **valores-p exatos** (ex.: $p = 0{,}034$), e não apenas "p < 0,05".
+- Sempre acompanhar de **tamanho de efeito** e **intervalo de confiança**.
+- Evitar dicotomizar resultados em "achou / não achou".
+
+## Exemplos numéricos
+
+### Moeda viciada?
+
+Lancei 100 vezes uma moeda e deu 60 caras. Se ela fosse honesta:
+
+$$
+p = P(X \geq 60 \mid p = 0{,}5) + P(X \leq 40 \mid p = 0{,}5)
+$$
+
+Em uma distribuição binomial(100, 0,5), $p \approx 0{,}057$. **Não rejeitamos** H₀ ao nível 5% — não temos evidência forte de que a moeda é viciada.
+
+### Pressão arterial antes e depois
+
+Comparando 30 pacientes antes e depois de um remédio, $p = 0{,}002$. Isso significa que se o remédio não tivesse efeito, dados como esses (ou mais extremos) apareceriam em apenas 2 de cada 1000 estudos. **Rejeitamos** H₀.
+
+## Valor-p unilateral vs. bilateral
+
+- **Bilateral**: considera desvios em qualquer direção.
+- **Unilateral**: considera desvios apenas em uma direção. O valor-p costuma ser **a metade** do bilateral, mas só é apropriado se a direção do efeito for **pré-especificada**.
+
+## Múltiplas comparações
+
+Se fizermos 20 testes independentes com $\alpha = 0{,}05$, esperamos **em média 1 falso positivo** por puro acaso. Por isso, em análises com muitos testes (por exemplo, microarranjos genéticos), precisamos **corrigir** o valor-p:
+
+- **Bonferroni**: divide $\alpha$ pelo número de testes (conservador).
+- **FDR (Benjamini–Hochberg)**: controla a taxa de descobertas falsas (menos conservador).
+
+## Resumo
+
+| Pergunta | Quem responde |
+| --- | --- |
+| "Há evidência contra H₀?" | Valor-p |
+| "Qual o tamanho do efeito?" | Estimativa pontual + IC |
+| "O efeito é clinicamente importante?" | Conhecimento da área, não a estatística |
+
+> Aprender a interpretar o valor-p corretamente é **a habilidade mais importante** ao consumir literatura científica.
+</script>
+  <div id="04-estatistica-inferencial-06-valor-p-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-07-erros-tipo-i-ii-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/07_erros_tipo_i_ii.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-07-erros-tipo-i-ii-md-content"># Erros tipo I e tipo II
+
+Como toda inferência é baseada em uma amostra finita, existem **dois tipos de erro** que podemos cometer ao tomar uma decisão sobre H₀.
+
+## A tabela 2x2 da decisão
+
+|   | H₀ é verdadeira | H₀ é falsa |
+| --- | --- | --- |
+| **Rejeitar H₀** | Erro tipo I (α) | Decisão correta (poder, $1-\beta$) |
+| **Não rejeitar H₀** | Decisão correta (1−α) | Erro tipo II (β) |
+
+## Erro tipo I (α)
+
+**Falso positivo**: rejeitar H₀ quando ela era verdadeira. Concluir que há efeito quando na verdade não há.
+
+$$
+\alpha = P(\text{rejeitar } H_0 \mid H_0 \text{ verdadeira})
+$$
+
+> Em pesquisa, um erro tipo I leva a "**falsas descobertas**" — afirmar que um remédio funciona quando não funciona.
+
+Controlamos diretamente: escolhemos $\alpha$ (geralmente 0,05) **antes** do teste.
+
+## Erro tipo II (β)
+
+**Falso negativo**: não rejeitar H₀ quando ela era falsa. Perder uma diferença real.
+
+$$
+\beta = P(\text{não rejeitar } H_0 \mid H_0 \text{ falsa})
+$$
+
+> Em pesquisa, um erro tipo II leva a perder uma descoberta real — concluir que um remédio não funciona quando ele funciona.
+
+$\beta$ **não** é escolhido diretamente; depende de:
+
+- tamanho real do efeito (quanto maior, menor o β);
+- tamanho da amostra (n maior reduz β);
+- variabilidade dos dados (menor σ reduz β);
+- nível de significância (α menor aumenta β).
+
+## Poder estatístico
+
+O **poder** do teste é a probabilidade de **detectar** um efeito real:
+
+$$
+\text{poder} = 1 - \beta = P(\text{rejeitar } H_0 \mid H_0 \text{ falsa})
+$$
+
+Convencionalmente, um estudo é considerado bem dimensionado quando o poder é **≥ 80%**.
+
+## A tensão entre α e β
+
+Reduzir $\alpha$ **aumenta** $\beta$ (e vice-versa), para um $n$ fixo:
+
+```
+α pequeno → critério mais rigoroso → ↑ β (perde efeitos reais)
+α grande  → critério mais leniente → ↓ β (mas mais falsos positivos)
+```
+
+A única forma de reduzir **os dois** ao mesmo tempo é **aumentar n** ou **reduzir a variabilidade**.
+
+## Analogia com julgamento criminal
+
+| Estatística | Justiça |
+| --- | --- |
+| Erro tipo I | Condenar inocente |
+| Erro tipo II | Absolver culpado |
+| α baixo | "Inocente até prova em contrário" |
+| Poder alto | Sistema judicial eficiente |
+
+Sociedades preferem $\alpha$ baixo (preferem deixar culpados livres a condenar inocentes). A estatística geralmente faz a mesma escolha: prioriza evitar falsos positivos.
+
+## Como aumentar o poder
+
+| Estratégia | Como afeta o poder |
+| --- | --- |
+| Aumentar $n$ | ↑ |
+| Aumentar o efeito real (impossível controlar) | ↑ |
+| Reduzir variabilidade (controle experimental) | ↑ |
+| Aumentar $\alpha$ | ↑ (mas aumenta erro tipo I) |
+| Usar teste unilateral em vez de bilateral | ↑ (apenas quando justificável) |
+| Usar teste mais eficiente | ↑ |
+
+## Cálculo do tamanho de amostra
+
+A pergunta clássica de planejamento de estudo:
+
+> Quantos pacientes preciso recrutar para ter 80% de chance de detectar um efeito de tamanho $d$, com $\alpha = 0{,}05$?
+
+Existem fórmulas e calculadoras para isso. Em comparação de médias com teste t, uma aproximação útil:
+
+$$
+n \approx 2 \cdot \left( \frac{z_{1-\alpha/2} + z_{1-\beta}}{d} \right)^{2}
+$$
+
+Onde $d = \dfrac{\mu_1 - \mu_2}{\sigma}$ é o **tamanho de efeito** padronizado (d de Cohen).
+
+| d | Tamanho do efeito |
+| --- | --- |
+| 0,2 | Pequeno |
+| 0,5 | Médio |
+| 0,8 | Grande |
+
+## Por que isso importa
+
+Um estudo **subdimensionado** (com poder baixo) é eticamente questionável:
+
+- Expõe pacientes a procedimentos sem ter chance real de chegar a uma conclusão.
+- Pode gerar resultados negativos espúrios, levando a descartar tratamentos eficazes.
+- Resultados positivos em estudos subdimensionados tendem a **exagerar o tamanho do efeito** (winner's curse).
+
+Por isso o **cálculo amostral** deve ser feito **antes** de iniciar o estudo, e reportado.
+</script>
+  <div id="04-estatistica-inferencial-07-erros-tipo-i-ii-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-08-teste-z-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/08_teste_z.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-08-teste-z-md-content"># Teste z para uma amostra
+
+O teste z é o teste mais simples para comparar uma média amostral com um **valor de referência**. Usa-se quando o **desvio padrão da população ($\sigma$) é conhecido**.
+
+## Quando usar
+
+| Condição | Necessária? |
+| --- | --- |
+| Variável quantitativa | sim |
+| População aproximadamente normal **ou** $n$ grande (TLC) | sim |
+| $\sigma$ conhecido | sim |
+
+> Na prática biomédica, $\sigma$ é raramente conhecido. Por isso o teste z para uma amostra é mais comum em **controle de qualidade industrial** ou quando há um padrão histórico bem estabelecido. Em pesquisa, usamos o **teste t** (próximo tópico).
+
+## Hipóteses
+
+$$
+H_0: \mu = \mu_0
+$$
+
+$$
+H_1: \mu \neq \mu_0 \quad (\text{bilateral})
+$$
+
+## Estatística do teste
+
+$$
+z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
+$$
+
+Sob H₀ verdadeira, $z$ segue uma distribuição **normal padrão**.
+
+## Decisão
+
+- **Pelo valor-p**:
+  - Bilateral: $p = 2 \cdot P(Z > |z|)$.
+  - Rejeitar H₀ se $p < \alpha$.
+
+- **Pela região crítica**:
+  - Rejeitar H₀ se $|z| > z^{*}_{1 - \alpha/2}$.
+  - Para $\alpha = 0{,}05$: $|z| > 1{,}96$.
+
+## Exemplo
+
+A glicemia média em jejum na população é conhecida: $\mu_0 = 90$ mg/dL, $\sigma = 12$ mg/dL.
+
+Coletamos $n = 40$ pacientes com fator de risco e obtemos $\bar{x} = 95$ mg/dL.
+
+$$
+z = \frac{95 - 90}{12 / \sqrt{40}} = \frac{5}{1{,}897} \approx 2{,}635
+$$
+
+Valor-p bilateral: $p \approx 0{,}008$. Rejeitamos H₀: a média do grupo de risco é diferente.
+
+## IC associado
+
+O IC de $(1 - \alpha) \cdot 100\%$ correspondente:
+
+$$
+\bar{x} \pm z^{*}_{1 - \alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
+$$
+
+No exemplo: $95 \pm 1{,}96 \cdot 1{,}897 = [91{,}3;\, 98{,}7]$. Como $\mu_0 = 90$ está fora do IC, rejeitamos (mesma conclusão).
+
+## Suposições
+
+1. Observações **independentes**.
+2. Variável aproximadamente **normal**, ou $n \geq 30$ (TLC).
+3. $\sigma$ **conhecido**.
+
+Se $\sigma$ for desconhecido, substituímos pelo desvio padrão amostral $s$ e usamos o **teste t** em vez de z.
+
+## Teste z para proporções
+
+Há uma versão para comparar proporções. A proporção amostral $\hat{p}$ tem distribuição aproximadamente normal para $n$ grande:
+
+$$
+z = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0) / n}}
+$$
+
+Aplicação típica: comparar a proporção de sucesso de um tratamento com um padrão histórico.
+
+## Teste z para duas amostras
+
+Generaliza para comparar duas médias quando ambos $\sigma_1$ e $\sigma_2$ são conhecidos:
+
+$$
+z = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}
+$$
+
+> Na prática, raramente conhecemos os $\sigma$s. Por isso, o teste t de duas amostras (próximos tópicos) é muito mais usado.
+</script>
+  <div id="04-estatistica-inferencial-08-teste-z-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-09-teste-t-uma-amostra-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/09_teste_t_uma_amostra.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-09-teste-t-uma-amostra-md-content"># Teste t para uma amostra
+
+Compara a média de uma amostra com um **valor de referência**, quando o desvio padrão da população **não é conhecido** (caso quase universal em pesquisa).
+
+## Hipóteses
+
+$$
+H_0: \mu = \mu_0
+$$
+
+$$
+H_1: \mu \neq \mu_0 \quad (\text{bilateral})
+$$
+
+## Estatística do teste
+
+$$
+t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
+$$
+
+A diferença para o teste z é que **usamos o desvio padrão amostral** $s$ em vez do populacional $\sigma$.
+
+Sob H₀, $t$ segue uma **distribuição t de Student** com $n - 1$ graus de liberdade.
+
+## A distribuição t
+
+A distribuição t é como uma normal, mas com **caudas mais pesadas** para amostras pequenas. Isso reflete a incerteza extra de estimar $\sigma$ a partir dos próprios dados.
+
+| Graus de liberdade | Cauda |
+| --- | --- |
+| Pequenos ($n \approx 5$) | Bem mais pesada que a normal |
+| Médios ($n \approx 30$) | Já bem parecida com a normal |
+| Grandes ($n > 100$) | Praticamente normal |
+
+Para $n \to \infty$, a t **converge para a normal padrão**.
+
+## Decisão
+
+- **Valor-p**: $p = 2 \cdot P(T > |t_{\text{obs}}|)$ com $n - 1$ gl.
+- **Região crítica**: rejeitar H₀ se $|t| > t^{*}_{n-1,\,1-\alpha/2}$.
+
+## Exemplo
+
+Suspeita-se que um determinado grupo de pacientes tem colesterol maior que a média geral ($\mu_0 = 200$ mg/dL).
+
+Amostra de $n = 25$ pacientes: $\bar{x} = 215$, $s = 30$.
+
+$$
+t = \frac{215 - 200}{30 / \sqrt{25}} = \frac{15}{6} = 2{,}5
+$$
+
+Para 24 gl, valor-p bilateral $\approx 0{,}020$. **Rejeitamos H₀**.
+
+## IC associado
+
+$$
+\bar{x} \pm t^{*}_{n-1,\,1-\alpha/2} \cdot \frac{s}{\sqrt{n}}
+$$
+
+No exemplo, com $t^{*}_{24} \approx 2{,}064$:
+
+$$
+215 \pm 2{,}064 \cdot 6 \approx [202{,}6;\; 227{,}4]
+$$
+
+Como $\mu_0 = 200$ está fora do IC, rejeitamos (mesma conclusão).
+
+## Suposições
+
+1. Observações **independentes**.
+2. Variável **aproximadamente normal**, ou $n \geq 30$ (TLC).
+3. Variável quantitativa.
+
+## Robustez
+
+O teste t é **bastante robusto** a desvios moderados da normalidade — especialmente com $n \geq 30$. Para amostras muito pequenas e dados muito enviesados, prefira o equivalente não paramétrico (teste de Wilcoxon do sinal).
+
+## Teste unilateral
+
+Se a direção do efeito é pré-especificada:
+
+- $H_1: \mu > \mu_0$ (direita): $p = P(T > t_{\text{obs}})$.
+- $H_1: \mu < \mu_0$ (esquerda): $p = P(T < t_{\text{obs}})$.
+
+> Atenção: a escolha da direção deve ser **antes** de ver os dados.
+
+## Quando NÃO usar
+
+- Dados muito enviesados em amostra pequena → use **Wilcoxon do sinal**.
+- Dados categóricos → use teste qui-quadrado ou binomial.
+- Várias medidas no mesmo indivíduo → use **teste t pareado** ou modelos mistos.
+</script>
+  <div id="04-estatistica-inferencial-09-teste-t-uma-amostra-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-10-teste-t-independente-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/10_teste_t_independente.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-10-teste-t-independente-md-content"># Teste t para duas amostras independentes
+
+Compara as médias de **dois grupos diferentes** de indivíduos. É o teste mais clássico em estudos comparativos.
+
+## Quando usar
+
+- Variável de interesse **quantitativa**.
+- Dois grupos **independentes** (indivíduos diferentes em cada).
+- Variável aproximadamente **normal** em cada grupo, ou amostras grandes.
+
+### Exemplos clínicos
+
+- Pacientes que receberam tratamento A vs. tratamento B.
+- Homens vs. mulheres em determinada medida fisiológica.
+- Camundongos *knock-out* vs. selvagens.
+
+## Hipóteses
+
+$$
+H_0: \mu_1 = \mu_2
+$$
+
+$$
+H_1: \mu_1 \neq \mu_2
+$$
+
+## Duas variantes
+
+### Teste t de Student (assume variâncias iguais)
+
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{s_p \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}
+$$
+
+Onde $s_p$ é o **desvio padrão combinado** (*pooled*):
+
+$$
+s_p = \sqrt{\frac{(n_1 - 1) s_1^{2} + (n_2 - 1) s_2^{2}}{n_1 + n_2 - 2}}
+$$
+
+Graus de liberdade: $n_1 + n_2 - 2$.
+
+### Teste t de Welch (não assume variâncias iguais) — recomendado
+
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^{2}}{n_1} + \dfrac{s_2^{2}}{n_2}}}
+$$
+
+Os graus de liberdade são ajustados por uma fórmula complicada (Welch–Satterthwaite). O `scipy.stats.ttest_ind` com `equal_var=False` faz tudo automaticamente.
+
+> Em **2024**, a recomendação amplamente aceita é usar **Welch por padrão**. Ele é tão bom quanto Student quando as variâncias são iguais, e muito melhor quando são diferentes — sem que precisemos fazer um pré-teste.
+
+## Exemplo
+
+Comparando peso (kg) entre dois grupos:
+
+| Grupo | $n$ | $\bar{x}$ | $s$ |
+| --- | --- | --- | --- |
+| Tratamento | 25 | 72 | 8 |
+| Controle | 28 | 78 | 10 |
+
+Pelo Welch:
+
+$$
+t = \frac{72 - 78}{\sqrt{8^{2}/25 + 10^{2}/28}} \approx \frac{-6}{2{,}48} \approx -2{,}42
+$$
+
+Valor-p $\approx 0{,}019$. Rejeitamos H₀: há diferença entre os grupos.
+
+## IC para a diferença
+
+$$
+(\bar{x}_1 - \bar{x}_2) \pm t^{*} \cdot \sqrt{\dfrac{s_1^{2}}{n_1} + \dfrac{s_2^{2}}{n_2}}
+$$
+
+No exemplo: $-6 \pm 2{,}01 \cdot 2{,}48 \approx [-11{,}0;\, -1{,}0]$. Como zero não está no intervalo, há diferença significativa.
+
+## Tamanho de efeito (d de Cohen)
+
+O valor-p depende de $n$; já o tamanho de efeito é independente:
+
+$$
+d = \frac{\bar{x}_1 - \bar{x}_2}{s_p}
+$$
+
+| $|d|$ | Interpretação |
+| --- | --- |
+| 0,2 | pequeno |
+| 0,5 | médio |
+| 0,8 | grande |
+
+> Reportar apenas o valor-p sem o tamanho de efeito é cada vez menos aceitável em revistas científicas.
+
+## Suposições
+
+| Suposição | Como verificar | O que fazer se violar |
+| --- | --- | --- |
+| Normalidade | histograma, Q-Q plot, Shapiro–Wilk | grande $n$ ou Mann–Whitney |
+| Independência | desenho do estudo | usar teste pareado se for o caso |
+| Variâncias iguais | teste F, Levene | usar Welch (já cobre isso) |
+
+## Erros comuns
+
+1. **Usar teste t pareado** quando os grupos são independentes — ou vice-versa. Cada um responde a uma pergunta diferente.
+2. **Comparar mais de dois grupos** dois a dois usando vários testes t. Isso infla o erro tipo I — use **ANOVA**.
+3. **Aplicar em dados ordinais** (escalas de Likert, graus de dor). Use Mann–Whitney.
+</script>
+  <div id="04-estatistica-inferencial-10-teste-t-independente-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-11-teste-t-pareado-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/11_teste_t_pareado.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-11-teste-t-pareado-md-content"># Teste t pareado
+
+Compara duas medidas feitas **no mesmo indivíduo** (ou em pares casados de indivíduos). Cada par é tratado como uma única observação.
+
+## Quando usar
+
+Sempre que houver **dependência natural** entre os dois conjuntos:
+
+- **Antes vs. depois** de uma intervenção no mesmo paciente.
+- Dois métodos analíticos aplicados à **mesma amostra**.
+- Dois olhos do mesmo paciente.
+- Gêmeos.
+- Pares casados em design *matched-pairs*.
+
+## A ideia
+
+Em vez de comparar duas distribuições, calculamos a **diferença** $d_i = x_i^{\text{depois}} - x_i^{\text{antes}}$ para cada indivíduo, e testamos se a média dessas diferenças é zero.
+
+$$
+H_0: \mu_d = 0
+$$
+
+$$
+H_1: \mu_d \neq 0
+$$
+
+Ou seja: o teste t pareado se reduz a um **teste t para uma amostra** aplicado às **diferenças**.
+
+## Estatística do teste
+
+$$
+t = \frac{\bar{d}}{s_d / \sqrt{n}}
+$$
+
+Onde:
+
+- $\bar{d}$: média das diferenças;
+- $s_d$: desvio padrão das diferenças;
+- $n$: número de pares.
+
+Sob H₀, $t$ segue distribuição t com $n - 1$ graus de liberdade.
+
+## Exemplo
+
+Pressão arterial sistólica antes e depois de um remédio em 8 pacientes:
+
+| Paciente | Antes | Depois | $d_i$ |
+| --- | --- | --- | --- |
+| 1 | 142 | 135 | 7 |
+| 2 | 138 | 130 | 8 |
+| 3 | 145 | 140 | 5 |
+| 4 | 150 | 142 | 8 |
+| 5 | 139 | 132 | 7 |
+| 6 | 144 | 138 | 6 |
+| 7 | 141 | 134 | 7 |
+| 8 | 147 | 139 | 8 |
+
+$\bar{d} = 7{,}0$, $s_d \approx 1{,}07$.
+
+$$
+t = \frac{7{,}0}{1{,}07 / \sqrt{8}} \approx 18{,}5
+$$
+
+Com 7 gl, $p$ é minúsculo. Rejeitamos H₀: o remédio reduz a pressão.
+
+## Por que pareado é mais poderoso
+
+Em estudos pareados, **eliminamos a variabilidade entre indivíduos** — só vemos a variação dentro de cada um. Isso torna o teste muito mais sensível para detectar pequenas diferenças.
+
+Se quiséssemos comparar dois grupos independentes (uns recebem o remédio, outros não), as variações entre pessoas (idade, peso, genética) atrapalhariam mais o sinal. Pareando, cada paciente é seu próprio controle.
+
+## Suposições
+
+- As **diferenças** $d_i$ devem seguir aproximadamente uma distribuição normal (não os dados originais!).
+- Os pares devem ser **independentes entre si** (paciente 1 independe do paciente 2).
+- Não há outliers extremos nas diferenças.
+
+> Se as diferenças não forem normais, ou se a amostra for muito pequena, use o **teste de Wilcoxon do sinal pareado** (alternativa não paramétrica).
+
+## Versão unilateral
+
+Se a direção do efeito é pré-especificada:
+
+- $H_1: \mu_d > 0$ → teste à direita.
+- $H_1: \mu_d < 0$ → teste à esquerda.
+
+## Diferença entre pareado e independente
+
+| Aspecto | Pareado | Independente |
+| --- | --- | --- |
+| Indivíduos | Os mesmos (ou pares casados) | Diferentes |
+| Pergunta | Mudança dentro do indivíduo | Diferença entre grupos |
+| Poder | Maior | Menor |
+| Aplicação errada | Confunde os pares | Trata pareados como independentes (perde poder) |
+
+## Cuidados
+
+1. Não tratar dados pareados como independentes — isso reduz o poder e **infla os erros padrão**.
+2. Não tratar dados independentes como pareados — isso é ainda pior; inverte completamente a análise.
+3. Em pareamento com **n pequeno**, considere usar Wilcoxon do sinal pareado por segurança.
+</script>
+  <div id="04-estatistica-inferencial-11-teste-t-pareado-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-12-anova-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/12_anova.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-12-anova-md-content"># ANOVA — análise de variância
+
+A ANOVA compara as médias de **três ou mais grupos** simultaneamente.
+
+## Por que não fazer vários testes t?
+
+Imagine comparar 4 grupos dois a dois: são 6 comparações. Se cada uma tem $\alpha = 0{,}05$, a chance de **pelo menos um falso positivo** vira:
+
+$$
+1 - (1 - 0{,}05)^{6} \approx 26\%
+$$
+
+Quase 1 em cada 4 análises geraria uma "diferença" espúria. A ANOVA resolve isso fazendo **um único teste global**.
+
+## A ideia central
+
+A ANOVA decompõe a variabilidade total em duas partes:
+
+- **Variabilidade entre grupos**: as médias dos grupos diferem?
+- **Variabilidade dentro de grupos**: quanto cada grupo varia internamente?
+
+Se a variabilidade **entre** grupos for muito maior que a variabilidade **dentro**, é evidência de que as médias são diferentes.
+
+## A estatística F
+
+$$
+F = \frac{\text{variância entre grupos}}{\text{variância dentro dos grupos}} = \frac{\text{MS}_{\text{entre}}}{\text{MS}_{\text{dentro}}}
+$$
+
+Sob H₀ (todas as médias iguais), $F$ segue a **distribuição F** com graus de liberdade $(k-1, n-k)$, onde $k$ é o número de grupos e $n$ o total de observações.
+
+## Hipóteses
+
+$$
+H_0: \mu_1 = \mu_2 = \cdots = \mu_k
+$$
+
+$$
+H_1: \text{pelo menos uma média é diferente}
+$$
+
+Atenção: H₁ não diz **qual** é a diferente — só que existe alguma. Isso requer testes posteriores.
+
+## Suposições
+
+| Suposição | Verificação |
+| --- | --- |
+| Independência das observações | Desenho do estudo |
+| Normalidade dentro de cada grupo | Histograma, Q-Q plot, Shapiro–Wilk |
+| Variâncias iguais (homocedasticidade) | Teste de Levene, Bartlett |
+
+> ANOVA é razoavelmente robusta a desvios moderados da normalidade, especialmente com grupos balanceados.
+
+## Exemplo
+
+Comparando 3 dietas em ratos quanto ao ganho de peso (g/semana):
+
+| Dieta | $n$ | $\bar{x}$ | $s$ |
+| --- | --- | --- | --- |
+| A | 10 | 15 | 2,1 |
+| B | 10 | 18 | 2,3 |
+| C | 10 | 22 | 2,0 |
+
+ANOVA retornaria $F \approx 25$, $p < 0{,}001$. Rejeitamos H₀: as dietas têm efeitos diferentes.
+
+## Tabela ANOVA típica
+
+| Fonte | SS | gl | MS | F | p |
+| --- | --- | --- | --- | --- | --- |
+| Entre grupos | 264 | 2 | 132 | 25 | < 0,001 |
+| Dentro de grupos | 130 | 27 | 4,8 | | |
+| Total | 394 | 29 | | | |
+
+Onde SS = soma de quadrados, MS = SS/gl, $F$ = MS entre / MS dentro.
+
+## E depois? Comparações múltiplas
+
+Se a ANOVA rejeita H₀, sabemos que **alguma média** é diferente, mas não qual. Para identificar, usamos comparações *post hoc*:
+
+| Método | Quando usar |
+| --- | --- |
+| **Tukey HSD** | Comparações dois a dois, com correção embutida |
+| **Bonferroni** | Mais conservador, simples de aplicar |
+| **Dunnett** | Comparar grupos com um controle |
+| **Scheffé** | Para combinações lineares de médias |
+
+A ideia é controlar o **erro tipo I familiar** (chance de pelo menos um falso positivo entre todas as comparações).
+
+## ANOVA de um fator vs. múltiplos fatores
+
+- **ANOVA one-way**: 1 fator (ex.: tipo de dieta).
+- **ANOVA two-way**: 2 fatores (ex.: dieta + sexo).
+- **ANOVA multifatorial**: vários fatores, com possíveis **interações**.
+
+A ANOVA two-way permite ver se um fator depende do nível do outro (interação).
+
+## Alternativa não paramétrica
+
+Quando as suposições não se sustentam, usa-se o **teste de Kruskal–Wallis**, que generaliza Mann–Whitney para $k$ grupos.
+
+## Resumo
+
+| Cenário | Teste |
+| --- | --- |
+| 2 grupos independentes | teste t |
+| 3+ grupos independentes | ANOVA |
+| 3+ grupos pareados (medidas repetidas) | ANOVA de medidas repetidas |
+| Dados não normais | Kruskal–Wallis |
+</script>
+  <div id="04-estatistica-inferencial-12-anova-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-13-qui-quadrado-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/13_qui_quadrado.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-13-qui-quadrado-md-content"># Teste do qui-quadrado ($\chi^2$)
+
+Testa **associação entre variáveis categóricas** comparando contagens observadas com as que esperaríamos sob H₀.
+
+## Quando usar
+
+- **Variáveis categóricas** (sexo, tipo sanguíneo, presença/ausência de doença, etc.).
+- Contagens, não médias.
+- Cada observação cai em **uma única categoria**.
+
+## Duas variantes principais
+
+### 1. Teste de aderência (*goodness-of-fit*)
+
+Compara as frequências observadas em **uma variável** com uma distribuição teórica esperada.
+
+$$
+H_0: \text{os dados seguem a distribuição esperada}
+$$
+
+Exemplo: testar se a proporção observada de tipos sanguíneos em uma amostra corresponde às proporções nacionais.
+
+### 2. Teste de independência (mais comum)
+
+Verifica se **duas variáveis categóricas** são independentes.
+
+$$
+H_0: \text{as variáveis são independentes}
+$$
+
+Exemplo: existe associação entre sexo e desfecho clínico?
+
+## A estatística qui-quadrado
+
+$$
+\chi^{2} = \sum_{i} \frac{(O_i - E_i)^{2}}{E_i}
+$$
+
+Onde:
+
+- $O_i$: frequência **observada** em cada célula;
+- $E_i$: frequência **esperada** sob H₀.
+
+Quanto maior $\chi^2$, maior a discrepância entre o que vimos e o que esperaríamos. Sob H₀, ele segue a distribuição **qui-quadrado** com $(r-1)(c-1)$ graus de liberdade (onde $r$ e $c$ são linhas e colunas da tabela).
+
+## Frequência esperada
+
+Para o teste de independência, a frequência esperada de cada célula é:
+
+$$
+E_{ij} = \frac{(\text{total da linha } i) \cdot (\text{total da coluna } j)}{\text{total geral}}
+$$
+
+## Exemplo — Titanic
+
+Sobrevivência por sexo:
+
+|   | Sobreviveu | Morreu | Total |
+| --- | --- | --- | --- |
+| Mulheres | 233 | 81 | 314 |
+| Homens | 109 | 468 | 577 |
+| **Total** | 342 | 549 | 891 |
+
+Frequência esperada (independência):
+
+$$
+E_{\text{mulher, sobrev.}} = \frac{314 \cdot 342}{891} \approx 120{,}5
+$$
+
+$$
+\chi^{2} = \frac{(233 - 120{,}5)^{2}}{120{,}5} + \cdots \approx 261{,}6
+$$
+
+Com 1 grau de liberdade, $p$ é praticamente zero. Sexo e sobrevivência **não são independentes**.
+
+## Suposições
+
+| Suposição | Verificação |
+| --- | --- |
+| Observações independentes | Desenho do estudo |
+| Cada observação em uma única célula | Categorias mutuamente exclusivas |
+| Frequência esperada $\geq 5$ em cada célula | Olhar a tabela de esperados |
+
+> Se mais de 20% das células têm $E < 5$, o qui-quadrado pode ser inadequado — use o **teste exato de Fisher**.
+
+## Variações importantes
+
+### Teste exato de Fisher
+
+Quando a amostra é **pequena** ou alguma célula tem expectativa baixa. Calcula a probabilidade exata, sem aproximação.
+
+### Correção de Yates
+
+Pequena correção para tabelas 2x2 com $n$ pequeno. Em geral, usá-la torna o teste levemente mais conservador.
+
+### Teste de McNemar
+
+Para dados pareados em tabela 2x2 (ex.: antes vs. depois, com resposta binária).
+
+## Tamanho de efeito
+
+Para associação entre categóricas:
+
+- **V de Cramér** (generaliza para tabelas $r \times c$):
+
+$$
+V = \sqrt{\frac{\chi^{2}}{n \cdot \min(r-1, c-1)}}
+$$
+
+- **Odds ratio** (para tabelas 2x2):
+
+$$
+\text{OR} = \frac{a \cdot d}{b \cdot c}
+$$
+
+> O valor-p sozinho não é suficiente — sempre reporte uma medida de tamanho de efeito.
+
+## Em que situações aparece
+
+- **Epidemiologia**: associação entre fator de risco e doença.
+- **Genética**: associação entre alelos e fenótipos (testes de Hardy–Weinberg).
+- **Ensaios clínicos**: comparar taxas de cura ou de eventos adversos entre grupos.
+- **Estudos de qualidade**: testar se uma característica afeta uma taxa.
+
+## Exemplo de relatório
+
+> "Houve associação significativa entre sexo e sobrevivência ($\chi^{2}(1) = 261{,}6$, $p < 0{,}001$, V de Cramér = 0,54)."
+</script>
+  <div id="04-estatistica-inferencial-13-qui-quadrado-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-14-correlacao-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/14_correlacao.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-14-correlacao-md-content"># Correlação
+
+A **correlação** quantifica a força e a direção da associação **linear** entre duas variáveis numéricas.
+
+## Coeficiente de Pearson ($r$)
+
+O mais usado quando ambas as variáveis são quantitativas e aproximadamente normais.
+
+$$
+r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^{2}} \cdot \sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^{2}}}
+$$
+
+## Interpretação
+
+| $r$ | Significado |
+| --- | --- |
+| **+1** | Correlação positiva perfeita (todos os pontos em uma reta crescente) |
+| **+0,5** | Correlação positiva moderada |
+| **0** | Nenhuma associação linear |
+| **−0,5** | Correlação negativa moderada |
+| **−1** | Correlação negativa perfeita |
+
+## Valor de p para correlação
+
+Testamos se $r$ é diferente de zero:
+
+$$
+H_0: \rho = 0 \quad \text{vs.} \quad H_1: \rho \neq 0
+$$
+
+A estatística do teste é:
+
+$$
+t = r \sqrt{\frac{n - 2}{1 - r^{2}}}
+$$
+
+com $n - 2$ graus de liberdade. Pacotes como `scipy.stats.pearsonr` fazem isso automaticamente.
+
+## Coeficiente de determinação ($r^2$)
+
+$$
+r^{2} = (\text{coef. de Pearson})^{2}
+$$
+
+Interpretação: **fração da variabilidade de $y$ explicada por $x$** (em modelo linear). Vai de 0 a 1.
+
+Exemplo: $r = 0{,}8$ → $r^{2} = 0{,}64$ → 64% da variabilidade de $y$ é "explicada" por $x$.
+
+## Spearman ($\rho$) — não paramétrica
+
+Substitui Pearson quando:
+
+- Os dados não são normais;
+- A relação é monotônica mas não linear;
+- Há outliers ou dados ordinais.
+
+A ideia é calcular Pearson **nos postos** (*ranks*), não nos valores originais.
+
+$$
+\rho_s = \text{Pearson aplicado aos postos de } x \text{ e } y
+$$
+
+## Kendall ($\tau$) — outra alternativa não paramétrica
+
+Mede a concordância de pares ordenados. Para cada par $(x_i, y_i)$, $(x_j, y_j)$ pergunta-se se ambos sobem ou ambos descem. Mais robusto a outliers, mas computacionalmente mais caro.
+
+## Cuidados importantes
+
+### 1. Correlação NÃO implica causalidade
+
+Duas variáveis podem correlacionar por:
+
+- $X$ causa $Y$;
+- $Y$ causa $X$;
+- Uma terceira variável causa ambas (confundidor);
+- Pura coincidência (especialmente em séries temporais).
+
+> Um exemplo famoso: o consumo de chocolate per capita correlaciona com o número de Prêmios Nobel por país. Isso **não significa** que comer chocolate ganha Nobel.
+
+### 2. Pearson só detecta relações lineares
+
+Variáveis podem ter relação **forte mas não linear** e Pearson dar zero. Por exemplo, $y = x^2$ no intervalo $[-1, 1]$.
+
+### 3. Outliers podem distorcer
+
+Um único ponto extremo pode tanto **criar** uma correlação inexistente quanto **mascarar** uma correlação real.
+
+### 4. Sempre faça um diagrama de dispersão
+
+O quarteto de Anscombe mostra que datasets muito diferentes podem ter o mesmo $r$. **Olhar o gráfico** é essencial.
+
+## Quando usar cada um
+
+| Caso | Recomendação |
+| --- | --- |
+| Duas variáveis quantitativas, ambas aproximadamente normais | Pearson |
+| Dados ordinais | Spearman ou Kendall |
+| Variáveis não normais ou com outliers | Spearman |
+| Relação monotônica não linear | Spearman |
+| Amostras muito pequenas | Kendall |
+
+## Tabela de exemplos
+
+Em pinguins:
+
+| Par | r de Pearson |
+| --- | --- |
+| Comprimento da nadadeira × massa | ~0,87 (forte positivo) |
+| Comprimento do bico × profundidade do bico | ~−0,24 (fraco negativo) |
+| Massa × ano de coleta | ~0 (independentes) |
+
+## Relação com regressão
+
+A correlação $r$ tem **sinal igual** ao da inclinação da reta de regressão. O coeficiente de determinação $r^2$ é exatamente o mesmo $R^2$ que aparece em regressão linear simples.
+</script>
+  <div id="04-estatistica-inferencial-14-correlacao-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-15-regressao-linear-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/15_regressao_linear.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-15-regressao-linear-md-content"># Regressão linear simples
+
+A regressão linear ajusta uma **reta** que descreve como uma variável $y$ depende de uma variável $x$.
+
+## O modelo
+
+$$
+y = \beta_0 + \beta_1 \cdot x + \varepsilon
+$$
+
+Onde:
+
+- $\beta_0$: **intercepto** (valor de $y$ quando $x = 0$);
+- $\beta_1$: **inclinação** (quanto $y$ muda para cada unidade de $x$);
+- $\varepsilon$: erro aleatório (incluí tudo o que $x$ não explica).
+
+Após o ajuste, ficamos com:
+
+$$
+\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x
+$$
+
+## Como ajustar — método dos mínimos quadrados
+
+A reta é escolhida para **minimizar a soma dos quadrados dos resíduos**:
+
+$$
+\sum_{i=1}^{n} (y_i - \hat{y}_i)^{2}
+$$
+
+As soluções explícitas:
+
+$$
+\hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^{2}}
+$$
+
+$$
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \cdot \bar{x}
+$$
+
+Repare: a inclinação está **diretamente ligada à covariância** entre $x$ e $y$ (numerador).
+
+## Interpretação
+
+- $\hat{\beta}_1$ é a **mudança esperada em $y$ por unidade de $x$**.
+- Se $x$ está em kg e $y$ em mmHg, $\hat{\beta}_1$ está em "mmHg por kg".
+
+> A reta passa **sempre pelo ponto $(\bar{x}, \bar{y})$**.
+
+## Coeficiente de determinação $R^{2}$
+
+$$
+R^{2} = 1 - \frac{\sum (y_i - \hat{y}_i)^{2}}{\sum (y_i - \bar{y})^{2}}
+$$
+
+Em palavras: a fração da variabilidade de $y$ "explicada" pelo modelo.
+
+| $R^{2}$ | Interpretação |
+| --- | --- |
+| 1 | Reta passa por todos os pontos |
+| 0,8 | Modelo captura 80% da variabilidade |
+| 0 | Modelo não é melhor que a média de $y$ |
+
+## Significância da inclinação
+
+Pacotes (como `scipy.stats.linregress`) testam:
+
+$$
+H_0: \beta_1 = 0 \quad \text{vs.} \quad H_1: \beta_1 \neq 0
+$$
+
+Se rejeitamos H₀, há evidência de que $x$ está linearmente associado a $y$.
+
+## Suposições
+
+1. **Linearidade**: a relação entre $x$ e $y$ é razoavelmente linear.
+2. **Independência** das observações.
+3. **Homocedasticidade**: a variabilidade dos resíduos é constante ao longo de $x$.
+4. **Normalidade dos resíduos** (necessário só para testes de hipótese e ICs).
+5. **Sem outliers extremos** que distorçam o ajuste.
+
+## Diagnóstico do modelo
+
+Olhe sempre:
+
+- **Diagrama de dispersão** dos dados originais — a relação parece linear?
+- **Gráfico de resíduos** vs. $x$ — há padrão (curva, leque)?
+- **Q-Q plot dos resíduos** — são aproximadamente normais?
+
+## Exemplo
+
+Em pinguins, relacionando comprimento da nadadeira ($x$, em mm) com massa corporal ($y$, em g):
+
+$$
+\hat{y} = -5800 + 49{,}7 \cdot x
+$$
+
+Interpretação:
+
+- Cada 1 mm adicional de nadadeira está associado a 49,7 g a mais de massa.
+- O intercepto (-5800 g) é só uma extrapolação matemática — não tem significado biológico, pois nenhum pinguim tem nadadeira zero.
+
+## Predição
+
+O modelo pode ser usado para prever $y$ dado um novo $x$:
+
+$$
+\hat{y}_{\text{novo}} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x_{\text{novo}}
+$$
+
+> Cuidado: **não extrapole** muito além do intervalo dos dados originais. O modelo não tem informação sobre o que acontece fora do range observado.
+
+## Regressão múltipla
+
+Generalização para vários preditores:
+
+$$
+\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 x_2 + \cdots + \hat{\beta}_k x_k
+$$
+
+Cada coeficiente é o efeito de seu preditor **mantendo os outros constantes**. Para isso, normalmente usa-se `statsmodels` ou `scikit-learn` (fora do escopo desta introdução).
+
+## Erros comuns
+
+1. **Reportar $R^2$ alto como prova de causalidade.** $R^2$ mede ajuste, não causalidade.
+2. **Confundir correlação com regressão.** A correlação é simétrica ($r_{xy} = r_{yx}$); a regressão não — a inclinação de $y$ em $x$ não é igual à de $x$ em $y$.
+3. **Não verificar suposições** antes de interpretar.
+4. **Extrapolar** além dos dados observados.
+</script>
+  <div id="04-estatistica-inferencial-15-regressao-linear-md-content" class="markdown-body"></div>
+</article>
+<article id="04-estatistica-inferencial-16-testes-nao-parametricos-md" class="topic" data-section="Parte 4 — Estatística Inferencial">
+  <div class="topic-meta">
+    <span class="badge">Parte 4 — Estatística Inferencial</span>
+    <a class="nb-link" href="04_estatistica_inferencial/16_testes_nao_parametricos.ipynb" target="_blank" rel="noopener">notebook ↗</a>
+  </div>
+  <script type="text/markdown" data-target="04-estatistica-inferencial-16-testes-nao-parametricos-md-content"># Testes não paramétricos
+
+Os testes paramétricos (t, ANOVA, etc.) assumem que os dados seguem alguma distribuição (geralmente normal). Quando essa suposição falha, ou quando os dados são **ordinais**, recorremos aos **testes não paramétricos**.
+
+## Quando usar
+
+| Situação | Por que testes paramétricos podem falhar |
+| --- | --- |
+| Dados ordinais (escalas tipo Likert, graus de dor) | Não fazem sentido em escala numérica |
+| Distribuição muito assimétrica em amostras pequenas | TLC ainda não "salvou" |
+| Outliers extremos não removíveis | Distorcem média e desvio padrão |
+| Amostras muito pequenas | Difícil verificar normalidade |
+
+## A ideia geral
+
+A maioria dos testes não paramétricos opera com **postos** (em inglês, *ranks*) em vez dos valores brutos:
+
+1. Ordenam-se todos os valores.
+2. Cada valor recebe um posto (1 para o menor, $n$ para o maior).
+3. Testam-se hipóteses sobre os postos.
+
+Por usar postos, ficam imunes a outliers e não exigem normalidade.
+
+## Os principais testes
+
+### Mann–Whitney U — substitui o teste t independente
+
+Compara **duas amostras independentes**.
+
+- $H_0$: as duas distribuições são iguais.
+- $H_1$: uma tende a ter valores maiores que a outra.
+
+Em pacotes, está como `mannwhitneyu` ou *Wilcoxon rank-sum* (são equivalentes).
+
+### Wilcoxon do sinal pareado — substitui o teste t pareado
+
+Compara **duas medidas no mesmo indivíduo**.
+
+- $H_0$: a mediana das diferenças é zero.
+- $H_1$: a mediana das diferenças não é zero.
+
+### Kruskal–Wallis — substitui a ANOVA one-way
+
+Compara **três ou mais grupos independentes**.
+
+- $H_0$: as distribuições dos grupos são iguais.
+- $H_1$: pelo menos um grupo difere.
+
+Se rejeita H₀, usa-se Dunn ou Wilcoxon pareados com correção de Bonferroni para identificar quais grupos diferem.
+
+### Friedman — substitui a ANOVA de medidas repetidas
+
+Para **três ou mais medidas pareadas** no mesmo indivíduo.
+
+### Spearman / Kendall — substituem Pearson
+
+Para correlação. Vistos no tópico de correlação.
+
+### Qui-quadrado / Fisher exato
+
+Para variáveis categóricas. Esses são "não paramétricos" no sentido de não pressuporem distribuição contínua.
+
+## Mapa de equivalências
+
+| Pergunta | Teste paramétrico | Teste não paramétrico |
+| --- | --- | --- |
+| Média ≠ valor de referência? | Teste t uma amostra | Wilcoxon do sinal |
+| Duas médias independentes diferem? | Teste t independente | Mann–Whitney U |
+| Duas medidas pareadas diferem? | Teste t pareado | Wilcoxon do sinal pareado |
+| Três ou mais grupos independentes diferem? | ANOVA one-way | Kruskal–Wallis |
+| Três ou mais medidas pareadas diferem? | ANOVA medidas repetidas | Friedman |
+| Duas variáveis numéricas se associam? | Pearson | Spearman ou Kendall |
+| Variáveis categóricas se associam? | – | Qui-quadrado / Fisher |
+
+## Vantagens e desvantagens
+
+### Vantagens
+
+- Não exigem normalidade.
+- Robustos a outliers.
+- Aplicáveis a dados ordinais.
+
+### Desvantagens
+
+- Menor **poder estatístico** quando as suposições paramétricas são válidas.
+- Testam **distribuições** ou **medianas**, não médias — interpretação pode ser menos intuitiva.
+- IC para mediana é mais difícil de calcular.
+
+## Quando preferir paramétrico
+
+- Amostra grande ($n \geq 30$) e dados não muito assimétricos: paramétrico costuma ser mais poderoso.
+- Necessidade de modelos complexos (regressão, modelos mistos): mais natural em paramétrico.
+
+## Quando preferir não paramétrico
+
+- Amostras pequenas com clara violação da normalidade.
+- Dados ordinais.
+- Outliers extremos que não dá para remover.
+- Quando o foco é a **mediana** ou a **distribuição**, não a média.
+
+## Resumo
+
+A escolha não é uma religião — depende dos dados e da pergunta. Em muitos estudos, os autores reportam **ambos** os testes e mostram que dão a mesma conclusão. Isso fortalece a robustez da análise.
+
+> Regra prática: olhe a distribuição **antes** de escolher o teste. Se for clara e razoável a aproximação normal (especialmente com $n \geq 30$), use paramétrico. Se houver dúvida, use o não paramétrico — ou ambos.
+</script>
+  <div id="04-estatistica-inferencial-16-testes-nao-parametricos-md-content" class="markdown-body"></div>
+</article>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/languages/bash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+<script>
+// ---- Theme ----
+const root = document.documentElement;
+const stored = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const initial = stored || (prefersDark ? 'dark' : 'light');
+applyTheme(initial);
+
+function applyTheme(theme) {
+  root.setAttribute('data-theme', theme);
+  document.getElementById('hljs-light').disabled = theme === 'dark';
+  document.getElementById('hljs-dark').disabled = theme === 'light';
+  document.getElementById('iconSun').style.display = theme === 'dark' ? 'none' : '';
+  document.getElementById('iconMoon').style.display = theme === 'dark' ? '' : 'none';
+  if (window.mermaid) {
+    mermaid.initialize({ startOnLoad: false, theme: theme === 'dark' ? 'dark' : 'default', securityLevel: 'loose' });
+  }
+}
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const current = root.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
+});
+
+// ---- Mermaid init ----
+mermaid.initialize({ startOnLoad: false, theme: initial === 'dark' ? 'dark' : 'default', securityLevel: 'loose' });
+
+// ---- Marked customization ----
+marked.use({
+  renderer: {
+    code(code, lang) {
+      if (lang === 'mermaid') {
+        return `<div class="mermaid">${code}</div>`;
+      }
+      const valid = hljs.getLanguage(lang) ? lang : 'plaintext';
+      const highlighted = hljs.highlight(code, { language: valid }).value;
+      return `<pre><button class="code-copy">copiar</button><code class="hljs language-${valid}">${highlighted}</code></pre>`;
+    }
+  }
+});
+
+// ---- Render all markdown blocks ----
+document.querySelectorAll('script[type="text/markdown"]').forEach(s => {
+  const targetId = s.dataset.target;
+  const target = document.getElementById(targetId);
+  if (!target) return;
+  let md = s.textContent;
+  // Proteger blocos $$ ... $$ e $ ... $ contra interpretação do markdown
+  const placeholders = [];
+  md = md.replace(/\$\$([\s\S]+?)\$\$/g, (_, expr) => {
+    placeholders.push('$$' + expr + '$$');
+    return `@@MATHBLOCK${placeholders.length - 1}@@`;
+  });
+  md = md.replace(/\$([^\n$]+?)\$/g, (_, expr) => {
+    placeholders.push('$' + expr + '$');
+    return `@@MATHINLINE${placeholders.length - 1}@@`;
+  });
+  let html = marked.parse(md);
+  html = html.replace(/@@MATH(BLOCK|INLINE)(\d+)@@/g, (_, _t, i) => placeholders[parseInt(i)]);
+  target.innerHTML = html;
+});
+
+// ---- KaTeX render ----
+renderMathInElement(document.body, {
+  delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false}
+  ],
+  throwOnError: false
+});
+
+// ---- Mermaid render after content is in ----
+mermaid.run({ querySelector: '.mermaid' });
+
+// ---- Copy buttons ----
+document.querySelectorAll('.code-copy').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const code = btn.parentElement.querySelector('code').innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      btn.textContent = 'copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'copiar'; btn.classList.remove('copied'); }, 1500);
+    });
+  });
+});
+
+// ---- Sidebar active-item highlighting ----
+const navLinks = document.querySelectorAll('.nav-section a');
+const linkByTarget = {};
+navLinks.forEach(a => { linkByTarget[a.dataset.target] = a; });
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = linkByTarget[entry.target.id];
+      if (link) {
+        link.classList.add('active');
+        // garantir que está visível no sidebar
+        const rect = link.getBoundingClientRect();
+        if (rect.top < 80 || rect.bottom > window.innerHeight - 20) {
+          link.scrollIntoView({ block: 'nearest' });
+        }
+      }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+document.querySelectorAll('article.topic').forEach(t => observer.observe(t));
+
+// ---- Progress bar ----
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  progressBar.style.width = scrolled + '%';
+});
+
+// ---- Search ----
+const searchInput = document.getElementById('search');
+const noResults = document.getElementById('noResults');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  let anyVisible = false;
+  document.querySelectorAll('.nav-section').forEach(sec => {
+    let sectionHasMatch = false;
+    sec.querySelectorAll('li').forEach(li => {
+      const text = li.textContent.toLowerCase();
+      const match = !q || text.includes(q);
+      li.classList.toggle('hidden', !match);
+      if (match) sectionHasMatch = true;
+    });
+    sec.classList.toggle('hidden', !sectionHasMatch);
+    if (sectionHasMatch) anyVisible = true;
+  });
+  noResults.classList.toggle('show', !anyVisible);
+});
+
+// ---- Mobile menu ----
+const sidebar = document.getElementById('sidebar');
+document.getElementById('menuToggle').addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+});
+sidebar.addEventListener('click', e => {
+  if (e.target.tagName === 'A') sidebar.classList.remove('open');
+});
+
+// ---- Smooth scroll on initial hash ----
+if (window.location.hash) {
+  setTimeout(() => {
+    const el = document.getElementById(window.location.hash.slice(1));
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 100);
+}
+</script>
+</body>
+</html>
