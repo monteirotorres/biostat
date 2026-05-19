@@ -10,7 +10,7 @@ from pathlib import Path
 
 BASE = Path(__file__).parent.parent
 SUMMARY = BASE / "SUMMARY.md"
-OUT = BASE / "bioestatistica.html"
+OUT = BASE / "index.html"
 
 
 def parse_summary():
