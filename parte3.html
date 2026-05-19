@@ -77,9 +77,9 @@
 </table>
 <h2>Probabilidade</h2>
 <p>A probabilidade de um evento $A$, escrita $P(A)$, é um número entre 0 e 1:</p>
-<p>$$
+<div class="math-display">$$
 0 \leq P(A) \leq 1
-$$</p>
+$$</div>
 <ul>
 <li>$P(A) = 0$: evento <strong>impossível</strong>.</li>
 <li>$P(A) = 1$: evento <strong>certo</strong>.</li>
@@ -88,47 +88,47 @@ $$</p>
 <h2>Como calcular?</h2>
 <h3>Definição clássica (resultados equiprováveis)</h3>
 <p>Quando todos os resultados de $\Omega$ têm a mesma chance:</p>
-<p>$$
+<div class="math-display">$$
 P(A) = \frac{|A|}{|\Omega|} = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados}}
-$$</p>
+$$</div>
 <p>Exemplo: $P(\text{par em um dado}) = 3/6 = 0{,}5$.</p>
 <h3>Definição frequentista</h3>
 <p>Em situações em que não temos simetria, definimos $P(A)$ como a <strong>frequência relativa</strong> com que $A$ ocorre em muitas repetições do experimento:</p>
-<p>$$
+<div class="math-display">$$
 P(A) = \lim_{n \to \infty} \frac{n_A}{n}
-$$</p>
+$$</div>
 <p>Exemplo: em 10.000 pacientes diabéticos, 320 tiveram complicações cardiovasculares em 5 anos. $P(\text{complicação}) \approx 320/10\,000 = 0{,}032$.</p>
 <h2>Propriedades fundamentais</h2>
 <ol>
 <li><strong>Evento complementar</strong> $A^{c}$ (não $A$):</li>
 </ol>
-<p>$$
+<div class="math-display">$$
 P(A^{c}) = 1 - P(A)
-$$</p>
+$$</div>
 <ol start="2">
 <li><strong>União</strong> (ao menos um deles ocorre):</li>
 </ol>
-<p>$$
+<div class="math-display">$$
 P(A \cup B) = P(A) + P(B) - P(A \cap B)
-$$</p>
+$$</div>
 <ol start="3">
 <li><strong>Eventos mutuamente exclusivos</strong> (não podem ocorrer juntos): $P(A \cap B) = 0$, logo</li>
 </ol>
-<p>$$
+<div class="math-display">$$
 P(A \cup B) = P(A) + P(B)
-$$</p>
+$$</div>
 <ol start="4">
 <li><strong>Eventos independentes</strong> (a ocorrência de um não afeta o outro):</li>
 </ol>
-<p>$$
+<div class="math-display">$$
 P(A \cap B) = P(A) \cdot P(B)
-$$</p>
+$$</div>
 <p>Voltaremos a essas regras nos próximos tópicos.</p><a class="nb-link" href="03_probabilidade/01_evento.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-02-eventos-compostos-md" class="topic"><h1>Eventos compostos</h1><p>Eventos compostos envolvem <strong>dois ou mais eventos</strong> combinados pelas operações <strong>e</strong>, <strong>ou</strong>, <strong>não</strong>.</p>
 <h2>União: $A \cup B$ (ao menos um deles)</h2>
 <p>A probabilidade de <strong>A ou B</strong> ocorrerem:</p>
-<p>$$
+<div class="math-display">$$
 P(A \cup B) = P(A) + P(B) - P(A \cap B)
-$$</p>
+$$</div>
 <blockquote>
 <p>Subtraímos $P(A \cap B)$ para não contar duas vezes os casos em que ambos ocorrem.</p>
 </blockquote>
@@ -139,27 +139,27 @@ $$</p>
 <li>$B$ = maior que 3 → $\{4, 5, 6\}$, $P(B) = 3/6$.</li>
 <li>$A \cap B$ = par e maior que 3 → $\{4, 6\}$, $P(A \cap B) = 2/6$.</li>
 </ul>
-<p>$$
+<div class="math-display">$$
 P(A \cup B) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6}
-$$</p>
+$$</div>
 <p>Confere com $\{2, 4, 5, 6\}$, que tem 4 elementos.</p>
 <h2>Interseção: $A \cap B$ (ambos)</h2>
 <p>A probabilidade de <strong>A e B</strong> ocorrerem juntos depende se os eventos são independentes.</p>
 <h3>Eventos independentes</h3>
 <p>Quando saber que $A$ ocorreu <strong>não muda</strong> a probabilidade de $B$:</p>
-<p>$$
+<div class="math-display">$$
 P(A \cap B) = P(A) \cdot P(B)
-$$</p>
+$$</div>
 <p>Exemplo: lançar duas moedas. $P(\text{cara na 1ª} \cap \text{cara na 2ª}) = 0{,}5 \cdot 0{,}5 = 0{,}25$.</p>
 <h3>Eventos dependentes</h3>
 <p>Usamos a probabilidade condicional (próximo tópico):</p>
-<p>$$
+<div class="math-display">$$
 P(A \cap B) = P(A) \cdot P(B \mid A)
-$$</p>
+$$</div>
 <h2>Complemento: $A^{c}$ (não A)</h2>
-<p>$$
+<div class="math-display">$$
 P(A^{c}) = 1 - P(A)
-$$</p>
+$$</div>
 <p>Esse atalho é poderoso. Em vez de calcular "pelo menos um sucesso", calcula-se "<strong>nenhum</strong> sucesso" e subtrai-se de 1.</p>
 <h3>Exemplo</h3>
 <p>Em 5 lançamentos de uma moeda, qual a probabilidade de pelo menos uma cara?</p>
@@ -235,13 +235,13 @@ $$</p>
 </table><a class="nb-link" href="03_probabilidade/02_eventos_compostos.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-03-probabilidade-condicional-md" class="topic"><h1>Probabilidade condicional</h1><p>A <strong>probabilidade condicional</strong> mede a chance de um evento $A$ acontecer <strong>sabendo que</strong> outro evento $B$ já ocorreu.</p>
 <h2>Notação</h2>
 <p>Lê-se "probabilidade de A dado B":</p>
-<p>$$
+<div class="math-display">$$
 P(A \mid B)
-$$</p>
+$$</div>
 <h2>Fórmula</h2>
-<p>$$
+<div class="math-display">$$
 P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0
-$$</p>
+$$</div>
 <p>A intuição: <strong>restringimos o espaço amostral</strong> ao subconjunto em que $B$ é verdade.</p>
 <h2>Exemplo</h2>
 <p>Considere os passageiros do Titanic:</p>
@@ -280,25 +280,25 @@ $$</p>
 <p>A probabilidade muda drasticamente quando condicionamos no sexo — os dois eventos <strong>não são independentes</strong>.</p>
 <h2>Independência</h2>
 <p>Dois eventos são <strong>independentes</strong> se:</p>
-<p>$$
+<div class="math-display">$$
 P(A \mid B) = P(A)
-$$</p>
+$$</div>
 <p>Ou equivalentemente:</p>
-<p>$$
+<div class="math-display">$$
 P(A \cap B) = P(A) \cdot P(B)
-$$</p>
+$$</div>
 <p>Em palavras: saber que $B$ aconteceu <strong>não muda</strong> a probabilidade de $A$.</p>
 <h2>Regra da multiplicação geral</h2>
 <p>A partir da definição, obtemos:</p>
-<p>$$
+<div class="math-display">$$
 P(A \cap B) = P(A) \cdot P(B \mid A) = P(B) \cdot P(A \mid B)
-$$</p>
+$$</div>
 <p>Útil quando temos as condicionais e queremos a interseção.</p>
 <h2>Teorema de Bayes</h2>
 <p>Combinando os dois lados da equação acima, chegamos a uma fórmula famosa:</p>
-<p>$$
+<div class="math-display">$$
 P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
-$$</p>
+$$</div>
 <p>O teorema de Bayes permite <strong>inverter</strong> uma probabilidade condicional. Em outras palavras, se sei $P(B \mid A)$, posso descobrir $P(A \mid B)$ — desde que conheça $P(A)$ e $P(B)$.</p>
 <h3>Aplicação clínica</h3>
 <p>Esse é o princípio por trás de:</p>
@@ -310,9 +310,9 @@ $$</p>
 <p>Veremos esse cálculo em detalhes em <strong>Sensibilidade e especificidade</strong> e <strong>Valor preditivo</strong>.</p>
 <h2>A simetria que NÃO existe</h2>
 <p>Um erro muito comum:</p>
-<p>$$
+<div class="math-display">$$
 P(A \mid B) \neq P(B \mid A)
-$$</p>
+$$</div>
 <p>Por exemplo, $P(\text{sintoma} \mid \text{doença})$ é tipicamente alto, mas $P(\text{doença} \mid \text{sintoma})$ pode ser baixíssimo (se a doença for rara). Confundir esses dois é a base do famoso <strong>paradoxo do teste diagnóstico</strong>.</p>
 <h2>Regra prática</h2>
 <p>Toda vez que você lê uma probabilidade no jornal ou em um artigo, pergunte-se:</p>
@@ -324,9 +324,9 @@ $$</p>
 <p>Se um experimento tem $a$ resultados possíveis em uma etapa e $b$ na próxima, o total de resultados é $a \cdot b$.</p>
 <p>Exemplo: 3 camisas e 4 calças → $3 \cdot 4 = 12$ combinações.</p>
 <h2>Fatorial</h2>
-<p>$$
+<div class="math-display">$$
 n! = n \cdot (n-1) \cdot (n-2) \cdots 2 \cdot 1
-$$</p>
+$$</div>
 <p>Por convenção, $0! = 1$.</p>
 <p>Exemplos:</p>
 <ul>
@@ -335,31 +335,31 @@ $$</p>
 </ul>
 <h2>Permutações — a ordem importa</h2>
 <p>Quantas formas de <strong>organizar</strong> $n$ objetos em fila?</p>
-<p>$$
+<div class="math-display">$$
 P_n = n!
-$$</p>
+$$</div>
 <p>Exemplo: 4 pessoas em 4 cadeiras → $4! = 24$ arranjos.</p>
 <h3>Permutações de $k$ entre $n$</h3>
 <p>Quantas formas de escolher $k$ objetos <strong>em ordem</strong> entre $n$ disponíveis?</p>
-<p>$$
+<div class="math-display">$$
 P(n, k) = \frac{n!}{(n - k)!}
-$$</p>
+$$</div>
 <p>Exemplo: pódio de uma corrida de 10 atletas → $P(10, 3) = 10 \cdot 9 \cdot 8 = 720$.</p>
 <h2>Combinações — a ordem NÃO importa</h2>
 <p>Quantas formas de <strong>escolher</strong> $k$ objetos entre $n$, sem se importar com a ordem?</p>
-<p>$$
+<div class="math-display">$$
 C(n, k) = \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}
-$$</p>
+$$</div>
 <p>Exemplo clássico: jogo da Mega-Sena. Quantos resultados possíveis?</p>
-<p>$$
+<div class="math-display">$$
 \binom{60}{6} = 50\,063\,860
-$$</p>
+$$</div>
 <p>Logo, a probabilidade de acertar um jogo simples é $1 / 50\,063\,860 \approx 2 \times 10^{-8}$.</p>
 <h2>Permutações com repetição</h2>
 <p>Se temos $n$ objetos, dos quais $n_1$ são iguais entre si, $n_2$ iguais entre si, etc.:</p>
-<p>$$
+<div class="math-display">$$
 P_{\text{rep}} = \frac{n!}{n_1! \, n_2! \cdots}
-$$</p>
+$$</div>
 <p>Exemplo: anagramas da palavra "ESTATÍSTICA" (11 letras, com repetições).</p>
 <h2>Quando usar cada um</h2>
 <div class="mermaid-container"><pre class="mermaid">flowchart TD
@@ -453,18 +453,18 @@ $$</p>
 <p>Nos próximos tópicos, vamos quantificar cada um desses elementos.</p><a class="nb-link" href="03_probabilidade/05_testes_binarios.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-06-sensibilidade-especificidade-md" class="topic"><h1>Sensibilidade e especificidade</h1><p>São as duas propriedades fundamentais de um teste diagnóstico binário. Ambas são <strong>propriedades do teste</strong>, não do paciente — não dependem da prevalência da doença.</p>
 <h2>Sensibilidade</h2>
 <p>Probabilidade do teste dar <strong>positivo entre os doentes</strong>.</p>
-<p>$$
+<div class="math-display">$$
 \text{Sensibilidade} = P(\text{teste +} \mid \text{doente}) = \frac{\text{VP}}{\text{VP} + \text{FN}}
-$$</p>
+$$</div>
 <blockquote>
 <p>"Dos que têm a doença, quantos o teste detecta?"</p>
 </blockquote>
 <p>Um teste com sensibilidade de 95% detecta 95 de cada 100 pessoas doentes.</p>
 <h2>Especificidade</h2>
 <p>Probabilidade do teste dar <strong>negativo entre os saudáveis</strong>.</p>
-<p>$$
+<div class="math-display">$$
 \text{Especificidade} = P(\text{teste --} \mid \text{saudável}) = \frac{\text{VN}}{\text{VN} + \text{FP}}
-$$</p>
+$$</div>
 <blockquote>
 <p>"Dos que não têm a doença, quantos o teste descarta corretamente?"</p>
 </blockquote>
@@ -576,7 +576,7 @@ $$</p>
 <li>Sensibilidade = $85 / (85 + 15) = 0{,}85$.</li>
 <li>Especificidade = $855 / (855 + 45) = 0{,}95$.</li>
 </ul>
-<div class="widget">
+<div class="widget" data-widget="wSensEsp" data-id="sens_3_6">
   <div class="widget-title">Calculadora — Sensibilidade, Especificidade, VPP e VPN</div>
   <div class="controls">
     <div class="ctrl-row">
@@ -607,7 +607,6 @@ $$</p>
     <div class="stat-card"><div class="slabel">VPN</div><div class="sval" id="sens_3_6-vpn" style="color:#3266ad;">—</div><div class="sdesc">P(saudável | teste −)</div></div>
   </div>
 </div>
-<script>wSensEsp('sens_3_6');</script>
 <a class="nb-link" href="03_probabilidade/06_sensibilidade_especificidade.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-07-matriz-confusao-md" class="topic"><h1>Matriz de confusão</h1><p>A <strong>matriz de confusão</strong> é uma tabela 2x2 (ou maior, para múltiplas categorias) que mostra <strong>onde o teste acertou e onde errou</strong>.</p>
 <p>O nome vem da ideia de que ela mostra <strong>onde o classificador se confundiu</strong>: em vez de só dizer "70% de acertos", ela mostra <strong>quais classes foram trocadas por quais</strong>.</p>
 <h2>Versão 2x2 (clássica)</h2>
@@ -731,16 +730,16 @@ $$</p>
 </blockquote>
 <p>Quem responde isso é o <strong>valor preditivo</strong>.</p>
 <h2>Valor preditivo positivo (VPP)</h2>
-<p>$$
+<div class="math-display">$$
 \text{VPP} = P(\text{doente} \mid \text{teste +}) = \frac{\text{VP}}{\text{VP} + \text{FP}}
-$$</p>
+$$</div>
 <blockquote>
 <p>Dos que tiveram teste positivo, quantos têm de fato a doença?</p>
 </blockquote>
 <h2>Valor preditivo negativo (VPN)</h2>
-<p>$$
+<div class="math-display">$$
 \text{VPN} = P(\text{saudável} \mid \text{teste --}) = \frac{\text{VN}}{\text{VN} + \text{FN}}
-$$</p>
+$$</div>
 <blockquote>
 <p>Dos que tiveram teste negativo, quantos estão de fato sem a doença?</p>
 </blockquote>
@@ -779,20 +778,20 @@ $$</p>
 </tr>
 </tbody>
 </table>
-<p>$$
+<div class="math-display">$$
 \text{VPP} = \frac{99}{99 + 999} \approx 9\%
-$$</p>
+$$</div>
 <p><strong>Apenas 9%</strong> dos testes positivos correspondem a doentes reais! Apesar de o teste ser excelente, a doença é tão rara que a maioria dos positivos são falsos positivos.</p>
 <h2>Por que isso acontece?</h2>
 <p>Porque o número de <strong>saudáveis</strong> é tão maior que o de doentes que, mesmo com poucos erros percentuais nos saudáveis, o número absoluto de falsos positivos supera o de verdadeiros positivos.</p>
 <h2>Cálculo via Bayes</h2>
 <p>A relação formal vem do <strong>Teorema de Bayes</strong>:</p>
-<p>$$
+<div class="math-display">$$
 \text{VPP} = \frac{\text{Sens.} \cdot \text{Prev.}}{\text{Sens.} \cdot \text{Prev.} + (1 - \text{Esp.}) \cdot (1 - \text{Prev.})}
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 \text{VPN} = \frac{\text{Esp.} \cdot (1 - \text{Prev.})}{\text{Esp.} \cdot (1 - \text{Prev.}) + (1 - \text{Sens.}) \cdot \text{Prev.}}
-$$</p>
+$$</div>
 <p>Onde <strong>Prev.</strong> é a prevalência da doença.</p>
 <h2>Como aumentar o VPP</h2>
 <ol>
@@ -838,7 +837,7 @@ $$</p>
 <li>Testes <strong>muito específicos</strong> são bons para <strong>confirmação</strong>, mesmo em doenças raras.</li>
 <li>A interpretação de um resultado <strong>depende do contexto</strong> clínico — não só do número que aparece no laudo.</li>
 </ul>
-<div class="widget">
+<div class="widget" data-widget="wSensEsp" data-id="vpp_3_8">
   <div class="widget-title">Calculadora — Sensibilidade, Especificidade, VPP e VPN</div>
   <div class="controls">
     <div class="ctrl-row">
@@ -869,7 +868,6 @@ $$</p>
     <div class="stat-card"><div class="slabel">VPN</div><div class="sval" id="vpp_3_8-vpn" style="color:#3266ad;">—</div><div class="sdesc">P(saudável | teste −)</div></div>
   </div>
 </div>
-<script>wSensEsp('vpp_3_8');</script>
 <a class="nb-link" href="03_probabilidade/08_valor_preditivo.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-09-curva-roc-md" class="topic"><h1>Curva ROC</h1><p>A <strong>curva ROC</strong> (em inglês, <em>Receiver Operating Characteristic</em>) descreve como um teste se comporta para <strong>vários valores de corte</strong>.</p>
 <h2>A ideia</h2>
 <p>Muitos exames retornam <strong>um número</strong>, e a decisão de "positivo ou negativo" depende de um valor de corte. Por exemplo:</p>
@@ -919,9 +917,9 @@ $$</p>
 </ul>
 <h2>AUC — área sob a curva</h2>
 <p>A medida mais usada para comparar curvas ROC é a <strong>área sob a curva</strong> (<em>Area Under the Curve</em>):</p>
-<p>$$
+<div class="math-display">$$
 0 \leq \text{AUC} \leq 1
-$$</p>
+$$</div>
 <table>
 <thead>
 <tr>
@@ -977,7 +975,7 @@ $$</p>
 </ul>
 <h2>Vantagem da ROC</h2>
 <p>A curva ROC sintetiza, em <strong>um único gráfico</strong>, o desempenho do teste em <strong>todos</strong> os pontos de corte possíveis. Por isso é a forma padrão de reportar a performance de um teste diagnóstico em artigos científicos.</p>
-<div class="widget">
+<div class="widget" data-widget="wROC" data-id="roc_3_9">
   <div class="widget-title">Demonstração interativa — Curva ROC</div>
   <div class="controls">
     <div class="ctrl-row">
@@ -993,7 +991,6 @@ $$</p>
     <div class="stat-card"><div class="slabel">Especificidade*</div><div class="sval" id="roc_3_9-esp">—</div><div class="sdesc">no corte ótimo</div></div>
   </div>
 </div>
-<script>wROC('roc_3_9');</script>
 <a class="nb-link" href="03_probabilidade/09_curva_roc.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-10-distribuicao-binomial-md" class="topic"><h1>Distribuição binomial</h1><p>A distribuição binomial conta <strong>quantos sucessos</strong> ocorrem em $n$ tentativas independentes, cada uma com a mesma probabilidade $p$ de sucesso.</p>
 <h2>Condições para aplicar</h2>
 <table>
@@ -1024,20 +1021,20 @@ $$</p>
 </table>
 <h2>Fórmula</h2>
 <p>A probabilidade de obter exatamente $k$ sucessos em $n$ tentativas é:</p>
-<p>$$
+<div class="math-display">$$
 P(X = k) = \binom{n}{k} p^{k} (1 - p)^{n - k}
-$$</p>
+$$</div>
 <p>Onde:</p>
 <ul>
 <li>$\binom{n}{k} = \dfrac{n!}{k!\,(n-k)!}$ é o coeficiente binomial (vem da análise combinatória).</li>
 </ul>
 <h2>Esperança e variância</h2>
-<p>$$
+<div class="math-display">$$
 E(X) = n \cdot p
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 \text{Var}(X) = n \cdot p \cdot (1 - p)
-$$</p>
+$$</div>
 <h2>Exemplos típicos em biologia</h2>
 <ul>
 <li>Lançar uma moeda 10 vezes; contar caras.</li>
@@ -1047,28 +1044,28 @@ $$</p>
 </ul>
 <h2>Calculando probabilidades</h2>
 <h3>Probabilidade de exatamente $k$ sucessos</h3>
-<p>$$
+<div class="math-display">$$
 P(X = k) = \binom{n}{k} p^{k} (1 - p)^{n - k}
-$$</p>
+$$</div>
 <h3>Probabilidade de no máximo $k$ sucessos (acumulada)</h3>
-<p>$$
+<div class="math-display">$$
 P(X \leq k) = \sum_{i = 0}^{k} \binom{n}{i} p^{i} (1 - p)^{n - i}
-$$</p>
+$$</div>
 <h3>Probabilidade de pelo menos $k$ sucessos</h3>
-<p>$$
+<div class="math-display">$$
 P(X \geq k) = 1 - P(X \leq k - 1)
-$$</p>
+$$</div>
 <h2>Exemplo: moeda</h2>
 <p>Lançar uma moeda honesta 10 vezes. Qual a probabilidade de obter exatamente 7 caras?</p>
-<p>$$
+<div class="math-display">$$
 P(X = 7) = \binom{10}{7} (0{,}5)^{7} (0{,}5)^{3} = 120 \cdot 0{,}5^{10} \approx 0{,}117
-$$</p>
+$$</div>
 <p>Ou seja, cerca de 11,7%.</p>
 <h2>Aproximação pela normal</h2>
 <p>Quando $n$ é grande e $p$ não é próximo de 0 ou 1, a binomial pode ser aproximada por uma normal:</p>
-<p>$$
+<div class="math-display">$$
 X \approx \mathcal{N}\!\left( np, \; \sqrt{np(1-p)} \right)
-$$</p>
+$$</div>
 <p>A regra prática: $np \geq 10$ e $n(1-p) \geq 10$. Essa aproximação é a base de muitos testes para proporções.</p>
 <h2>Conexão com Bernoulli</h2>
 <p>Cada tentativa individual segue uma distribuição <strong>Bernoulli</strong> (caso especial da binomial com $n = 1$). A binomial é a soma de $n$ Bernoullis independentes.</p>
@@ -1080,7 +1077,7 @@ $$</p>
 <li>$p > 0{,}5$ → assimétrica à esquerda.</li>
 </ul>
 <p>À medida que $n$ aumenta, a forma se aproxima de uma curva normal (de novo, o TLC!).</p>
-<div class="widget">
+<div class="widget" data-widget="wBinomial" data-id="binom_3_10">
   <div class="widget-title">Demonstração interativa — Distribuição Binomial</div>
   <div class="controls">
     <div class="ctrl-row">
@@ -1101,7 +1098,6 @@ $$</p>
     <div class="stat-card"><div class="slabel">Moda</div><div class="sval" id="binom_3_10-modek">—</div><div class="sdesc">valor mais provável</div></div>
   </div>
 </div>
-<script>wBinomial('binom_3_10');</script>
 <a class="nb-link" href="03_probabilidade/10_distribuicao_binomial.ipynb" target="_blank">⓪ Abrir notebook</a></section>
 <div class="footer">Produzido para fins didáticos — bioestatística — UFRJ / IBCCF</div>
 </div>

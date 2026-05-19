@@ -30,6 +30,15 @@ WIDGETS = {
 
 # ---- HTML do widget e chamada JS ----
 def widget_html(wid: str, fn: str) -> str:
+    raw = _widget_body(wid, fn)
+    return raw.replace(
+        '<div class="widget">',
+        f'<div class="widget" data-widget="{fn}" data-id="{wid}">',
+        1,
+    )
+
+
+def _widget_body(wid: str, fn: str) -> str:
     if fn == "wCurvaNormal":
         return f"""
 <div class="widget">
@@ -58,7 +67,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">±3σ</div><div class="sval" id="{wid}-p3">—</div><div class="sdesc">cobertura</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wTLC":
         return f"""
@@ -82,7 +90,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">Desvio padrão</div><div class="sval" id="{wid}-sd">—</div><div class="sdesc">erro padrão da média</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wBinomial":
         return f"""
@@ -107,7 +114,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">Moda</div><div class="sval" id="{wid}-modek">—</div><div class="sdesc">valor mais provável</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wSensEsp":
         return f"""
@@ -142,7 +148,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">VPN</div><div class="sval" id="{wid}-vpn" style="color:#3266ad;">—</div><div class="sdesc">P(saudável | teste −)</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wROC":
         return f"""
@@ -162,7 +167,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">Especificidade*</div><div class="sval" id="{wid}-esp">—</div><div class="sdesc">no corte ótimo</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wIC":
         return f"""
@@ -190,7 +194,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">Cobertura observada</div><div class="sval" id="{wid}-cov">—</div><div class="sdesc">em 60 amostras simuladas</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wValorP":
         return f"""
@@ -213,7 +216,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">valor-p</div><div class="sval" id="{wid}-p" style="color:#c0392b;">—</div><div class="sdesc">área sombreada</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wErros":
         return f"""
@@ -245,7 +247,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">z*</div><div class="sval" id="{wid}-vZ">—</div><div class="sdesc">corte de rejeição</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wCorrelacao":
         return f"""
@@ -264,7 +265,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">R²</div><div class="sval" id="{wid}-r2">—</div><div class="sdesc">variância explicada</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     if fn == "wHistograma":
         return f"""
@@ -293,7 +293,6 @@ def widget_html(wid: str, fn: str) -> str:
     <div class="stat-card"><div class="slabel">Desvio padrão</div><div class="sval" id="{wid}-sd">—</div><div class="sdesc">desvio padrão amostral</div></div>
   </div>
 </div>
-<script>{fn}('{wid}');</script>
 """
     return ""
 
@@ -333,6 +332,13 @@ def md_to_html(text: str) -> str:
         html = html.replace(f"@@MATHB{i}@@", b)
     for i, b in enumerate(math_inline):
         html = html.replace(f"@@MATHI{i}@@", b)
+
+    # Tira display math de dentro de <p> (HTML inválido + render quebrado)
+    html = re.sub(
+        r"<p>\s*(\$\$[\s\S]+?\$\$)\s*</p>",
+        r'<div class="math-display">\1</div>',
+        html,
+    )
 
     return html
 

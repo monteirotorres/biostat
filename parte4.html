@@ -118,18 +118,18 @@
 <p>A média, desvio padrão etc. da amostra <strong>são</strong> os estimadores naturais dos respectivos parâmetros da população.</p>
 <h2>Estimação pontual</h2>
 <p>Um único número como melhor "chute" para o parâmetro:</p>
-<p>$$
+<div class="math-display">$$
 \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_{i} \quad \text{estima} \quad \mu
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 \hat{p} = \frac{k}{n} \quad \text{estima} \quad \pi
-$$</p>
+$$</div>
 <h2>Estimação intervalar</h2>
 <p>A estimação pontual é insatisfatória porque <strong>nunca é exata</strong>. A cada amostra teríamos uma estimativa um pouco diferente. Por isso preferimos um <strong>intervalo</strong> que contenha o valor verdadeiro com alta probabilidade.</p>
 <p>A forma geral é:</p>
-<p>$$
+<div class="math-display">$$
 \text{estimativa pontual} \pm \text{margem de erro}
-$$</p>
+$$</div>
 <p>A "margem de erro" depende:</p>
 <ul>
 <li>da <strong>variabilidade</strong> dos dados (mais variável → maior margem);</li>
@@ -166,9 +166,9 @@ $$</p>
 <p>A média amostral $\bar{x}$ é não viesada e consistente para $\mu$. Por isso é o estimador padrão.</p>
 <h2>Erro padrão</h2>
 <p>Toda estimativa amostral tem variabilidade — ela mesma é uma variável aleatória. O <strong>erro padrão</strong> mede essa variabilidade:</p>
-<p>$$
+<div class="math-display">$$
 \text{EP}(\bar{x}) = \frac{s}{\sqrt{n}}
-$$</p>
+$$</div>
 <blockquote>
 <p>O erro padrão diminui à medida que $n$ aumenta — por isso amostras maiores dão estimativas mais precisas.</p>
 </blockquote>
@@ -188,9 +188,9 @@ $$</p>
 <p>O parâmetro é um número fixo (desconhecido); quem varia é o intervalo, que muda de amostra para amostra.</p>
 <h2>IC para a média</h2>
 <p>A fórmula geral é:</p>
-<p>$$
+<div class="math-display">$$
 \bar{x} \;\pm\; t^{*} \cdot \frac{s}{\sqrt{n}}
-$$</p>
+$$</div>
 <p>Onde:</p>
 <ul>
 <li>$\bar{x}$: média amostral;</li>
@@ -229,9 +229,9 @@ $$</p>
 <p>Pesos (em gramas) de 25 ratos: $\bar{x} = 240{,}2$, $s = 18$.</p>
 <p>Erro padrão = $18 / \sqrt{25} = 3{,}6$.</p>
 <p>Para 95% de confiança, $t^{*}_{24} \approx 2{,}064$.</p>
-<p>$$
+<div class="math-display">$$
 \text{IC 95\%} = 240{,}2 \pm 2{,}064 \cdot 3{,}6 \approx [232{,}8;\; 247{,}6] \text{ g}
-$$</p>
+$$</div>
 <h2>O que controla a largura do IC</h2>
 <table>
 <thead>
@@ -260,16 +260,16 @@ $$</p>
 </blockquote>
 <h2>IC para uma proporção</h2>
 <p>Para proporções (eleições, ensaios clínicos com desfechos binários):</p>
-<p>$$
+<div class="math-display">$$
 \hat{p} \;\pm\; z^{*} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}
-$$</p>
+$$</div>
 <blockquote>
 <p>Essa aproximação só vale para $n$ grande e $\hat{p}$ não muito próximo de 0 ou 1. Em caso contrário, usa-se métodos alternativos (Wilson, Clopper–Pearson).</p>
 </blockquote>
 <h2>IC para diferença entre duas médias</h2>
-<p>$$
+<div class="math-display">$$
 (\bar{x}_1 - \bar{x}_2) \;\pm\; t^{*} \cdot \sqrt{\frac{s_1^{2}}{n_1} + \frac{s_2^{2}}{n_2}}
-$$</p>
+$$</div>
 <p>Se o IC para a diferença <strong>não inclui zero</strong>, há evidência de que as médias são diferentes (equivalente a um teste t com $p < \alpha$).</p>
 <h2>A relação com testes de hipóteses</h2>
 <p>Existe uma equivalência direta:</p>
@@ -299,7 +299,7 @@ $$</p>
 <li><strong>Dados extremos</strong> podem afetar o IC — verifique a distribuição.</li>
 <li><strong>IC muito largo</strong> indica que a amostra é pequena demais para uma estimativa precisa.</li>
 </ol>
-<div class="widget">
+<div class="widget" data-widget="wIC" data-id="ic_4_3">
   <div class="widget-title">Demonstração interativa — Intervalo de Confiança</div>
   <p style="font-size:0.85rem;color:#666;margin-bottom:0.6rem;">
     Cada linha é o IC de uma amostra independente da mesma população (μ = 100, σ = 15).
@@ -323,7 +323,6 @@ $$</p>
     <div class="stat-card"><div class="slabel">Cobertura observada</div><div class="sval" id="ic_4_3-cov">—</div><div class="sdesc">em 60 amostras simuladas</div></div>
   </div>
 </div>
-<script>wIC('ic_4_3');</script>
 <a class="nb-link" href="04_estatistica_inferencial/03_intervalo_confianca.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="04-estatistica-inferencial-04-hipoteses-md" class="topic"><h1>Hipótese nula e alternativa</h1><p>Todo teste de hipóteses compara duas afirmações concorrentes sobre a população.</p>
 <h2>Hipótese nula (H₀)</h2>
 <p>A hipótese de <strong>não-efeito</strong>, <strong>não-diferença</strong>, <strong>status quo</strong>. É a hipótese que pretendemos colocar em prova.</p>
@@ -350,19 +349,19 @@ $$</p>
 <p>H₁ pode ser <strong>bilateral</strong> (também chamada <em>two-sided</em>) ou <strong>unilateral</strong> (<em>one-sided</em>).</p>
 <h3>Bilateral</h3>
 <p>Detecta diferença em qualquer direção:</p>
-<p>$$
+<div class="math-display">$$
 H_0: \mu = \mu_0 \quad \text{vs.} \quad H_1: \mu \neq \mu_0
-$$</p>
+$$</div>
 <h3>Unilateral à direita</h3>
 <p>Só rejeita H₀ se o efeito for "para mais":</p>
-<p>$$
+<div class="math-display">$$
 H_0: \mu \leq \mu_0 \quad \text{vs.} \quad H_1: \mu > \mu_0
-$$</p>
+$$</div>
 <h3>Unilateral à esquerda</h3>
 <p>Só rejeita H₀ se o efeito for "para menos":</p>
-<p>$$
+<div class="math-display">$$
 H_0: \mu \geq \mu_0 \quad \text{vs.} \quad H_1: \mu < \mu_0
-$$</p>
+$$</div>
 <h2>Quando usar cada uma?</h2>
 <table>
 <thead>
@@ -470,9 +469,9 @@ $$</p>
 </table><a class="nb-link" href="04_estatistica_inferencial/04_hipoteses.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="04-estatistica-inferencial-05-significancia-md" class="topic"><h1>Nível de significância</h1><p>O <strong>nível de significância</strong> ($\alpha$) é o limiar que escolhemos para considerar um resultado "estatisticamente significativo".</p>
 <h2>Definição</h2>
 <p>$\alpha$ é a probabilidade que aceitamos de rejeitar $H_0$ <strong>quando ela é verdadeira</strong> (cometer um erro do <strong>tipo I</strong>).</p>
-<p>$$
+<div class="math-display">$$
 \alpha = P(\text{rejeitar } H_0 \mid H_0 \text{ é verdadeira})
-$$</p>
+$$</div>
 <h2>Valores típicos</h2>
 <table>
 <thead>
@@ -536,9 +535,9 @@ $$</p>
 </ul>
 <h2>A relação com o IC</h2>
 <p>Existe uma equivalência:</p>
-<p>$$
+<div class="math-display">$$
 \text{nível de confiança} + \alpha = 1
-$$</p>
+$$</div>
 <ul>
 <li>$\alpha = 0{,}05$ ↔ IC 95%.</li>
 <li>$\alpha = 0{,}01$ ↔ IC 99%.</li>
@@ -577,9 +576,9 @@ $$</p>
 <p>O <strong>valor-p</strong> é a probabilidade de obter dados <strong>tão ou mais extremos</strong> que os observados, <strong>supondo que H₀ seja verdadeira</strong>.</p>
 </blockquote>
 <p>Formalmente:</p>
-<p>$$
+<div class="math-display">$$
 p = P(T \geq t_{\text{obs}} \mid H_0)
-$$</p>
+$$</div>
 <p>(ou bilateral, conforme a hipótese).</p>
 <h2>Como interpretar</h2>
 <table>
@@ -605,9 +604,9 @@ $$</p>
 </tbody>
 </table>
 <h2>A regra de decisão</h2>
-<p>$$
+<div class="math-display">$$
 \text{rejeitar } H_0 \iff p < \alpha
-$$</p>
+$$</div>
 <h2>O que o valor-p NÃO é</h2>
 <p><strong>Erros comuns</strong> que aparecem até em artigos publicados:</p>
 <ol>
@@ -627,9 +626,9 @@ $$</p>
 <h2>Exemplos numéricos</h2>
 <h3>Moeda viciada?</h3>
 <p>Lancei 100 vezes uma moeda e deu 60 caras. Se ela fosse honesta:</p>
-<p>$$
+<div class="math-display">$$
 p = P(X \geq 60 \mid p = 0{,}5) + P(X \leq 40 \mid p = 0{,}5)
-$$</p>
+$$</div>
 <p>Em uma distribuição binomial(100, 0,5), $p \approx 0{,}057$. <strong>Não rejeitamos</strong> H₀ ao nível 5% — não temos evidência forte de que a moeda é viciada.</p>
 <h3>Pressão arterial antes e depois</h3>
 <p>Comparando 30 pacientes antes e depois de um remédio, $p = 0{,}002$. Isso significa que se o remédio não tivesse efeito, dados como esses (ou mais extremos) apareceriam em apenas 2 de cada 1000 estudos. <strong>Rejeitamos</strong> H₀.</p>
@@ -670,7 +669,7 @@ $$</p>
 <blockquote>
 <p>Aprender a interpretar o valor-p corretamente é <strong>a habilidade mais importante</strong> ao consumir literatura científica.</p>
 </blockquote>
-<div class="widget">
+<div class="widget" data-widget="wValorP" data-id="vp_4_6">
   <div class="widget-title">Demonstração interativa — Valor-p</div>
   <div class="controls">
     <div class="ctrl-row">
@@ -689,7 +688,6 @@ $$</p>
     <div class="stat-card"><div class="slabel">valor-p</div><div class="sval" id="vp_4_6-p" style="color:#c0392b;">—</div><div class="sdesc">área sombreada</div></div>
   </div>
 </div>
-<script>wValorP('vp_4_6');</script>
 <a class="nb-link" href="04_estatistica_inferencial/06_valor_p.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="04-estatistica-inferencial-07-erros-tipo-i-ii-md" class="topic"><h1>Erros tipo I e tipo II</h1><p>Como toda inferência é baseada em uma amostra finita, existem <strong>dois tipos de erro</strong> que podemos cometer ao tomar uma decisão sobre H₀.</p>
 <h2>A tabela 2x2 da decisão</h2>
 <table>
@@ -715,18 +713,18 @@ $$</p>
 </table>
 <h2>Erro tipo I (α)</h2>
 <p><strong>Falso positivo</strong>: rejeitar H₀ quando ela era verdadeira. Concluir que há efeito quando na verdade não há.</p>
-<p>$$
+<div class="math-display">$$
 \alpha = P(\text{rejeitar } H_0 \mid H_0 \text{ verdadeira})
-$$</p>
+$$</div>
 <blockquote>
 <p>Em pesquisa, um erro tipo I leva a "<strong>falsas descobertas</strong>" — afirmar que um remédio funciona quando não funciona.</p>
 </blockquote>
 <p>Controlamos diretamente: escolhemos $\alpha$ (geralmente 0,05) <strong>antes</strong> do teste.</p>
 <h2>Erro tipo II (β)</h2>
 <p><strong>Falso negativo</strong>: não rejeitar H₀ quando ela era falsa. Perder uma diferença real.</p>
-<p>$$
+<div class="math-display">$$
 \beta = P(\text{não rejeitar } H_0 \mid H_0 \text{ falsa})
-$$</p>
+$$</div>
 <blockquote>
 <p>Em pesquisa, um erro tipo II leva a perder uma descoberta real — concluir que um remédio não funciona quando ele funciona.</p>
 </blockquote>
@@ -739,9 +737,9 @@ $$</p>
 </ul>
 <h2>Poder estatístico</h2>
 <p>O <strong>poder</strong> do teste é a probabilidade de <strong>detectar</strong> um efeito real:</p>
-<p>$$
+<div class="math-display">$$
 \text{poder} = 1 - \beta = P(\text{rejeitar } H_0 \mid H_0 \text{ falsa})
-$$</p>
+$$</div>
 <p>Convencionalmente, um estudo é considerado bem dimensionado quando o poder é <strong>≥ 80%</strong>.</p>
 <h2>A tensão entre α e β</h2>
 <p>Reduzir $\alpha$ <strong>aumenta</strong> $\beta$ (e vice-versa), para um $n$ fixo:</p>
@@ -818,9 +816,9 @@ $$</p>
 <p>Quantos pacientes preciso recrutar para ter 80% de chance de detectar um efeito de tamanho $d$, com $\alpha = 0{,}05$?</p>
 </blockquote>
 <p>Existem fórmulas e calculadoras para isso. Em comparação de médias com teste t, uma aproximação útil:</p>
-<p>$$
+<div class="math-display">$$
 n \approx 2 \cdot \left( \frac{z_{1-\alpha/2} + z_{1-\beta}}{d} \right)^{2}
-$$</p>
+$$</div>
 <p>Onde $d = \dfrac{\mu_1 - \mu_2}{\sigma}$ é o <strong>tamanho de efeito</strong> padronizado (d de Cohen).</p>
 <table>
 <thead>
@@ -852,7 +850,7 @@ $$</p>
 <li>Resultados positivos em estudos subdimensionados tendem a <strong>exagerar o tamanho do efeito</strong> (winner's curse).</li>
 </ul>
 <p>Por isso o <strong>cálculo amostral</strong> deve ser feito <strong>antes</strong> de iniciar o estudo, e reportado.</p>
-<div class="widget">
+<div class="widget" data-widget="wErros" data-id="err_4_7">
   <div class="widget-title">Demonstração interativa — Erros Tipo I e Tipo II</div>
   <div class="legend">
     <span class="legend-item"><span class="swatch" style="background:#3266ad"></span>H₀ verdadeira</span>
@@ -880,7 +878,6 @@ $$</p>
     <div class="stat-card"><div class="slabel">z*</div><div class="sval" id="err_4_7-vZ">—</div><div class="sdesc">corte de rejeição</div></div>
   </div>
 </div>
-<script>wErros('err_4_7');</script>
 <a class="nb-link" href="04_estatistica_inferencial/07_erros_tipo_i_ii.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="04-estatistica-inferencial-08-teste-z-md" class="topic"><h1>Teste z</h1><p>O teste z é o teste mais simples para comparar uma média amostral com um <strong>valor de referência</strong>. Usa-se quando o <strong>desvio padrão da população ($\sigma$) é conhecido</strong>.</p>
 <h2>Quando usar</h2>
 <table>
@@ -909,16 +906,16 @@ $$</p>
 <p>Na prática biomédica, $\sigma$ é raramente conhecido. Por isso o teste z para uma amostra é mais comum em <strong>controle de qualidade industrial</strong> ou quando há um padrão histórico bem estabelecido. Em pesquisa, usamos o <strong>teste t</strong> (próximo tópico).</p>
 </blockquote>
 <h2>Hipóteses</h2>
-<p>$$
+<div class="math-display">$$
 H_0: \mu = \mu_0
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 H_1: \mu \neq \mu_0 \quad (\text{bilateral})
-$$</p>
+$$</div>
 <h2>Estatística do teste</h2>
-<p>$$
+<div class="math-display">$$
 z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
-$$</p>
+$$</div>
 <p>Sob H₀ verdadeira, $z$ segue uma distribuição <strong>normal padrão</strong>.</p>
 <h2>Decisão</h2>
 <ul>
@@ -936,15 +933,15 @@ $$</p>
 <h2>Exemplo</h2>
 <p>A glicemia média em jejum na população é conhecida: $\mu_0 = 90$ mg/dL, $\sigma = 12$ mg/dL.</p>
 <p>Coletamos $n = 40$ pacientes com fator de risco e obtemos $\bar{x} = 95$ mg/dL.</p>
-<p>$$
+<div class="math-display">$$
 z = \frac{95 - 90}{12 / \sqrt{40}} = \frac{5}{1{,}897} \approx 2{,}635
-$$</p>
+$$</div>
 <p>Valor-p bilateral: $p \approx 0{,}008$. Rejeitamos H₀: a média do grupo de risco é diferente.</p>
 <h2>IC associado</h2>
 <p>O IC de $(1 - \alpha) \cdot 100\%$ correspondente:</p>
-<p>$$
+<div class="math-display">$$
 \bar{x} \pm z^{*}_{1 - \alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
-$$</p>
+$$</div>
 <p>No exemplo: $95 \pm 1{,}96 \cdot 1{,}897 = [91{,}3;\, 98{,}7]$. Como $\mu_0 = 90$ está fora do IC, rejeitamos (mesma conclusão).</p>
 <h2>Suposições</h2>
 <ol>
@@ -955,29 +952,29 @@ $$</p>
 <p>Se $\sigma$ for desconhecido, substituímos pelo desvio padrão amostral $s$ e usamos o <strong>teste t</strong> em vez de z.</p>
 <h2>Teste z para proporções</h2>
 <p>Há uma versão para comparar proporções. A proporção amostral $\hat{p}$ tem distribuição aproximadamente normal para $n$ grande:</p>
-<p>$$
+<div class="math-display">$$
 z = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0) / n}}
-$$</p>
+$$</div>
 <p>Aplicação típica: comparar a proporção de sucesso de um tratamento com um padrão histórico.</p>
 <h2>Teste z para duas amostras</h2>
 <p>Generaliza para comparar duas médias quando ambos $\sigma_1$ e $\sigma_2$ são conhecidos:</p>
-<p>$$
+<div class="math-display">$$
 z = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}
-$$</p>
+$$</div>
 <blockquote>
 <p>Na prática, raramente conhecemos os $\sigma$s. Por isso, o teste t de duas amostras (próximos tópicos) é muito mais usado.</p>
 </blockquote><a class="nb-link" href="04_estatistica_inferencial/08_teste_z.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="04-estatistica-inferencial-09-teste-t-uma-amostra-md" class="topic"><h1>Teste t de uma amostra</h1><p>Compara a média de uma amostra com um <strong>valor de referência</strong>, quando o desvio padrão da população <strong>não é conhecido</strong> (caso quase universal em pesquisa).</p>
 <h2>Hipóteses</h2>
-<p>$$
+<div class="math-display">$$
 H_0: \mu = \mu_0
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 H_1: \mu \neq \mu_0 \quad (\text{bilateral})
-$$</p>
+$$</div>
 <h2>Estatística do teste</h2>
-<p>$$
+<div class="math-display">$$
 t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
-$$</p>
+$$</div>
 <p>A diferença para o teste z é que <strong>usamos o desvio padrão amostral</strong> $s$ em vez do populacional $\sigma$.</p>
 <p>Sob H₀, $t$ segue uma <strong>distribuição t de Student</strong> com $n - 1$ graus de liberdade.</p>
 <h2>A distribuição t</h2>
@@ -1013,18 +1010,18 @@ $$</p>
 <h2>Exemplo</h2>
 <p>Suspeita-se que um determinado grupo de pacientes tem colesterol maior que a média geral ($\mu_0 = 200$ mg/dL).</p>
 <p>Amostra de $n = 25$ pacientes: $\bar{x} = 215$, $s = 30$.</p>
-<p>$$
+<div class="math-display">$$
 t = \frac{215 - 200}{30 / \sqrt{25}} = \frac{15}{6} = 2{,}5
-$$</p>
+$$</div>
 <p>Para 24 gl, valor-p bilateral $\approx 0{,}020$. <strong>Rejeitamos H₀</strong>.</p>
 <h2>IC associado</h2>
-<p>$$
+<div class="math-display">$$
 \bar{x} \pm t^{*}_{n-1,\,1-\alpha/2} \cdot \frac{s}{\sqrt{n}}
-$$</p>
+$$</div>
 <p>No exemplo, com $t^{*}_{24} \approx 2{,}064$:</p>
-<p>$$
+<div class="math-display">$$
 215 \pm 2{,}064 \cdot 6 \approx [202{,}6;\; 227{,}4]
-$$</p>
+$$</div>
 <p>Como $\mu_0 = 200$ está fora do IC, rejeitamos (mesma conclusão).</p>
 <h2>Suposições</h2>
 <ol>
@@ -1062,26 +1059,26 @@ $$</p>
 <li>Camundongos <em>knock-out</em> vs. selvagens.</li>
 </ul>
 <h2>Hipóteses</h2>
-<p>$$
+<div class="math-display">$$
 H_0: \mu_1 = \mu_2
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 H_1: \mu_1 \neq \mu_2
-$$</p>
+$$</div>
 <h2>Duas variantes</h2>
 <h3>Teste t de Student (assume variâncias iguais)</h3>
-<p>$$
+<div class="math-display">$$
 t = \frac{\bar{x}_1 - \bar{x}_2}{s_p \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}
-$$</p>
+$$</div>
 <p>Onde $s_p$ é o <strong>desvio padrão combinado</strong> (<em>pooled</em>):</p>
-<p>$$
+<div class="math-display">$$
 s_p = \sqrt{\frac{(n_1 - 1) s_1^{2} + (n_2 - 1) s_2^{2}}{n_1 + n_2 - 2}}
-$$</p>
+$$</div>
 <p>Graus de liberdade: $n_1 + n_2 - 2$.</p>
 <h3>Teste t de Welch (não assume variâncias iguais) — recomendado</h3>
-<p>$$
+<div class="math-display">$$
 t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^{2}}{n_1} + \dfrac{s_2^{2}}{n_2}}}
-$$</p>
+$$</div>
 <p>Os graus de liberdade são ajustados por uma fórmula complicada (Welch–Satterthwaite). O <code>scipy.stats.ttest_ind</code> com <code>equal_var=False</code> faz tudo automaticamente.</p>
 <blockquote>
 <p>Em <strong>2024</strong>, a recomendação amplamente aceita é usar <strong>Welch por padrão</strong>. Ele é tão bom quanto Student quando as variâncias são iguais, e muito melhor quando são diferentes — sem que precisemos fazer um pré-teste.</p>
@@ -1113,20 +1110,20 @@ $$</p>
 </tbody>
 </table>
 <p>Pelo Welch:</p>
-<p>$$
+<div class="math-display">$$
 t = \frac{72 - 78}{\sqrt{8^{2}/25 + 10^{2}/28}} \approx \frac{-6}{2{,}48} \approx -2{,}42
-$$</p>
+$$</div>
 <p>Valor-p $\approx 0{,}019$. Rejeitamos H₀: há diferença entre os grupos.</p>
 <h2>IC para a diferença</h2>
-<p>$$
+<div class="math-display">$$
 (\bar{x}_1 - \bar{x}_2) \pm t^{*} \cdot \sqrt{\dfrac{s_1^{2}}{n_1} + \dfrac{s_2^{2}}{n_2}}
-$$</p>
+$$</div>
 <p>No exemplo: $-6 \pm 2{,}01 \cdot 2{,}48 \approx [-11{,}0;\, -1{,}0]$. Como zero não está no intervalo, há diferença significativa.</p>
 <h2>Tamanho de efeito (d de Cohen)</h2>
 <p>O valor-p depende de $n$; já o tamanho de efeito é independente:</p>
-<p>$$
+<div class="math-display">$$
 d = \frac{\bar{x}_1 - \bar{x}_2}{s_p}
-$$</p>
+$$</div>
 <table>
 <thead>
 <tr>
@@ -1196,17 +1193,17 @@ $$</p>
 </ul>
 <h2>A ideia</h2>
 <p>Em vez de comparar duas distribuições, calculamos a <strong>diferença</strong> $d_i = x_i^{\text{depois}} - x_i^{\text{antes}}$ para cada indivíduo, e testamos se a média dessas diferenças é zero.</p>
-<p>$$
+<div class="math-display">$$
 H_0: \mu_d = 0
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 H_1: \mu_d \neq 0
-$$</p>
+$$</div>
 <p>Ou seja: o teste t pareado se reduz a um <strong>teste t para uma amostra</strong> aplicado às <strong>diferenças</strong>.</p>
 <h2>Estatística do teste</h2>
-<p>$$
+<div class="math-display">$$
 t = \frac{\bar{d}}{s_d / \sqrt{n}}
-$$</p>
+$$</div>
 <p>Onde:</p>
 <ul>
 <li>$\bar{d}$: média das diferenças;</li>
@@ -1277,9 +1274,9 @@ $$</p>
 </tbody>
 </table>
 <p>$\bar{d} = 7{,}0$, $s_d \approx 1{,}07$.</p>
-<p>$$
+<div class="math-display">$$
 t = \frac{7{,}0}{1{,}07 / \sqrt{8}} \approx 18{,}5
-$$</p>
+$$</div>
 <p>Com 7 gl, $p$ é minúsculo. Rejeitamos H₀: o remédio reduz a pressão.</p>
 <h2>Por que pareado é mais poderoso</h2>
 <p>Em estudos pareados, <strong>eliminamos a variabilidade entre indivíduos</strong> — só vemos a variação dentro de cada um. Isso torna o teste muito mais sensível para detectar pequenas diferenças.</p>
@@ -1339,9 +1336,9 @@ $$</p>
 </ol><a class="nb-link" href="04_estatistica_inferencial/11_teste_t_pareado.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="04-estatistica-inferencial-12-anova-md" class="topic"><h1>ANOVA</h1><p>A ANOVA compara as médias de <strong>três ou mais grupos</strong> simultaneamente.</p>
 <h2>Por que não fazer vários testes t?</h2>
 <p>Imagine comparar 4 grupos dois a dois: são 6 comparações. Se cada uma tem $\alpha = 0{,}05$, a chance de <strong>pelo menos um falso positivo</strong> vira:</p>
-<p>$$
+<div class="math-display">$$
 1 - (1 - 0{,}05)^{6} \approx 26\%
-$$</p>
+$$</div>
 <p>Quase 1 em cada 4 análises geraria uma "diferença" espúria. A ANOVA resolve isso fazendo <strong>um único teste global</strong>.</p>
 <h2>A ideia central</h2>
 <p>A ANOVA decompõe a variabilidade total em duas partes:</p>
@@ -1351,17 +1348,17 @@ $$</p>
 </ul>
 <p>Se a variabilidade <strong>entre</strong> grupos for muito maior que a variabilidade <strong>dentro</strong>, é evidência de que as médias são diferentes.</p>
 <h2>A estatística F</h2>
-<p>$$
+<div class="math-display">$$
 F = \frac{\text{variância entre grupos}}{\text{variância dentro dos grupos}} = \frac{\text{MS}_{\text{entre}}}{\text{MS}_{\text{dentro}}}
-$$</p>
+$$</div>
 <p>Sob H₀ (todas as médias iguais), $F$ segue a <strong>distribuição F</strong> com graus de liberdade $(k-1, n-k)$, onde $k$ é o número de grupos e $n$ o total de observações.</p>
 <h2>Hipóteses</h2>
-<p>$$
+<div class="math-display">$$
 H_0: \mu_1 = \mu_2 = \cdots = \mu_k
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 H_1: \text{pelo menos uma média é diferente}
-$$</p>
+$$</div>
 <p>Atenção: H₁ não diz <strong>qual</strong> é a diferente — só que existe alguma. Isso requer testes posteriores.</p>
 <h2>Suposições</h2>
 <table>
@@ -1536,20 +1533,20 @@ $$</p>
 <h2>Duas variantes principais</h2>
 <h3>1. Teste de aderência (<em>goodness-of-fit</em>)</h3>
 <p>Compara as frequências observadas em <strong>uma variável</strong> com uma distribuição teórica esperada.</p>
-<p>$$
+<div class="math-display">$$
 H_0: \text{os dados seguem a distribuição esperada}
-$$</p>
+$$</div>
 <p>Exemplo: testar se a proporção observada de tipos sanguíneos em uma amostra corresponde às proporções nacionais.</p>
 <h3>2. Teste de independência (mais comum)</h3>
 <p>Verifica se <strong>duas variáveis categóricas</strong> são independentes.</p>
-<p>$$
+<div class="math-display">$$
 H_0: \text{as variáveis são independentes}
-$$</p>
+$$</div>
 <p>Exemplo: existe associação entre sexo e desfecho clínico?</p>
 <h2>A estatística qui-quadrado</h2>
-<p>$$
+<div class="math-display">$$
 \chi^{2} = \sum_{i} \frac{(O_i - E_i)^{2}}{E_i}
-$$</p>
+$$</div>
 <p>Onde:</p>
 <ul>
 <li>$O_i$: frequência <strong>observada</strong> em cada célula;</li>
@@ -1558,9 +1555,9 @@ $$</p>
 <p>Quanto maior $\chi^2$, maior a discrepância entre o que vimos e o que esperaríamos. Sob H₀, ele segue a distribuição <strong>qui-quadrado</strong> com $(r-1)(c-1)$ graus de liberdade (onde $r$ e $c$ são linhas e colunas da tabela).</p>
 <h2>Frequência esperada</h2>
 <p>Para o teste de independência, a frequência esperada de cada célula é:</p>
-<p>$$
+<div class="math-display">$$
 E_{ij} = \frac{(\text{total da linha } i) \cdot (\text{total da coluna } j)}{\text{total geral}}
-$$</p>
+$$</div>
 <h2>Exemplo — Titanic</h2>
 <p>Sobrevivência por sexo:</p>
 <table>
@@ -1594,12 +1591,12 @@ $$</p>
 </tbody>
 </table>
 <p>Frequência esperada (independência):</p>
-<p>$$
+<div class="math-display">$$
 E_{\text{mulher, sobrev.}} = \frac{314 \cdot 342}{891} \approx 120{,}5
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 \chi^{2} = \frac{(233 - 120{,}5)^{2}}{120{,}5} + \cdots \approx 261{,}6
-$$</p>
+$$</div>
 <p>Com 1 grau de liberdade, $p$ é praticamente zero. Sexo e sobrevivência <strong>não são independentes</strong>.</p>
 <h2>Suposições</h2>
 <table>
@@ -1639,15 +1636,15 @@ $$</p>
 <ul>
 <li><strong>V de Cramér</strong> (generaliza para tabelas $r \times c$):</li>
 </ul>
-<p>$$
+<div class="math-display">$$
 V = \sqrt{\frac{\chi^{2}}{n \cdot \min(r-1, c-1)}}
-$$</p>
+$$</div>
 <ul>
 <li><strong>Odds ratio</strong> (para tabelas 2x2):</li>
 </ul>
-<p>$$
+<div class="math-display">$$
 \text{OR} = \frac{a \cdot d}{b \cdot c}
-$$</p>
+$$</div>
 <blockquote>
 <p>O valor-p sozinho não é suficiente — sempre reporte uma medida de tamanho de efeito.</p>
 </blockquote>
@@ -1664,9 +1661,9 @@ $$</p>
 </blockquote><a class="nb-link" href="04_estatistica_inferencial/13_qui_quadrado.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="04-estatistica-inferencial-14-correlacao-md" class="topic"><h1>Correlação</h1><p>A <strong>correlação</strong> quantifica a força e a direção da associação <strong>linear</strong> entre duas variáveis numéricas.</p>
 <h2>Coeficiente de Pearson ($r$)</h2>
 <p>O mais usado quando ambas as variáveis são quantitativas e aproximadamente normais.</p>
-<p>$$
+<div class="math-display">$$
 r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^{2}} \cdot \sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^{2}}}
-$$</p>
+$$</div>
 <h2>Interpretação</h2>
 <table>
 <thead>
@@ -1700,18 +1697,18 @@ $$</p>
 </table>
 <h2>Valor de p para correlação</h2>
 <p>Testamos se $r$ é diferente de zero:</p>
-<p>$$
+<div class="math-display">$$
 H_0: \rho = 0 \quad \text{vs.} \quad H_1: \rho \neq 0
-$$</p>
+$$</div>
 <p>A estatística do teste é:</p>
-<p>$$
+<div class="math-display">$$
 t = r \sqrt{\frac{n - 2}{1 - r^{2}}}
-$$</p>
+$$</div>
 <p>com $n - 2$ graus de liberdade. Pacotes como <code>scipy.stats.pearsonr</code> fazem isso automaticamente.</p>
 <h2>Coeficiente de determinação ($r^2$)</h2>
-<p>$$
+<div class="math-display">$$
 r^{2} = (\text{coef. de Pearson})^{2}
-$$</p>
+$$</div>
 <p>Interpretação: <strong>fração da variabilidade de $y$ explicada por $x$</strong> (em modelo linear). Vai de 0 a 1.</p>
 <p>Exemplo: $r = 0{,}8$ → $r^{2} = 0{,}64$ → 64% da variabilidade de $y$ é "explicada" por $x$.</p>
 <h2>Spearman ($\rho$) — não paramétrica</h2>
@@ -1722,9 +1719,9 @@ $$</p>
 <li>Há outliers ou dados ordinais.</li>
 </ul>
 <p>A ideia é calcular Pearson <strong>nos postos</strong> (<em>ranks</em>), não nos valores originais.</p>
-<p>$$
+<div class="math-display">$$
 \rho_s = \text{Pearson aplicado aos postos de } x \text{ e } y
-$$</p>
+$$</div>
 <h2>Kendall ($\tau$) — outra alternativa não paramétrica</h2>
 <p>Mede a concordância de pares ordenados. Para cada par $(x_i, y_i)$, $(x_j, y_j)$ pergunta-se se ambos sobem ou ambos descem. Mais robusto a outliers, mas computacionalmente mais caro.</p>
 <h2>Cuidados importantes</h2>
@@ -1802,7 +1799,7 @@ $$</p>
 </table>
 <h2>Relação com regressão</h2>
 <p>A correlação $r$ tem <strong>sinal igual</strong> ao da inclinação da reta de regressão. O coeficiente de determinação $r^2$ é exatamente o mesmo $R^2$ que aparece em regressão linear simples.</p>
-<div class="widget">
+<div class="widget" data-widget="wCorrelacao" data-id="corr_4_14">
   <div class="widget-title">Demonstração interativa — Correlação</div>
   <div class="controls">
     <div class="ctrl-row">
@@ -1817,12 +1814,11 @@ $$</p>
     <div class="stat-card"><div class="slabel">R²</div><div class="sval" id="corr_4_14-r2">—</div><div class="sdesc">variância explicada</div></div>
   </div>
 </div>
-<script>wCorrelacao('corr_4_14');</script>
 <a class="nb-link" href="04_estatistica_inferencial/14_correlacao.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="04-estatistica-inferencial-15-regressao-linear-md" class="topic"><h1>Regressão linear</h1><p>A regressão linear ajusta uma <strong>reta</strong> que descreve como uma variável $y$ depende de uma variável $x$.</p>
 <h2>O modelo</h2>
-<p>$$
+<div class="math-display">$$
 y = \beta_0 + \beta_1 \cdot x + \varepsilon
-$$</p>
+$$</div>
 <p>Onde:</p>
 <ul>
 <li>$\beta_0$: <strong>intercepto</strong> (valor de $y$ quando $x = 0$);</li>
@@ -1830,21 +1826,21 @@ $$</p>
 <li>$\varepsilon$: erro aleatório (incluí tudo o que $x$ não explica).</li>
 </ul>
 <p>Após o ajuste, ficamos com:</p>
-<p>$$
+<div class="math-display">$$
 \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x
-$$</p>
+$$</div>
 <h2>Como ajustar — método dos mínimos quadrados</h2>
 <p>A reta é escolhida para <strong>minimizar a soma dos quadrados dos resíduos</strong>:</p>
-<p>$$
+<div class="math-display">$$
 \sum_{i=1}^{n} (y_i - \hat{y}_i)^{2}
-$$</p>
+$$</div>
 <p>As soluções explícitas:</p>
-<p>$$
+<div class="math-display">$$
 \hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^{2}}
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \cdot \bar{x}
-$$</p>
+$$</div>
 <p>Repare: a inclinação está <strong>diretamente ligada à covariância</strong> entre $x$ e $y$ (numerador).</p>
 <h2>Interpretação</h2>
 <ul>
@@ -1855,9 +1851,9 @@ $$</p>
 <p>A reta passa <strong>sempre pelo ponto $(\bar{x}, \bar{y})$</strong>.</p>
 </blockquote>
 <h2>Coeficiente de determinação $R^{2}$</h2>
-<p>$$
+<div class="math-display">$$
 R^{2} = 1 - \frac{\sum (y_i - \hat{y}_i)^{2}}{\sum (y_i - \bar{y})^{2}}
-$$</p>
+$$</div>
 <p>Em palavras: a fração da variabilidade de $y$ "explicada" pelo modelo.</p>
 <table>
 <thead>
@@ -1883,9 +1879,9 @@ $$</p>
 </table>
 <h2>Significância da inclinação</h2>
 <p>Pacotes (como <code>scipy.stats.linregress</code>) testam:</p>
-<p>$$
+<div class="math-display">$$
 H_0: \beta_1 = 0 \quad \text{vs.} \quad H_1: \beta_1 \neq 0
-$$</p>
+$$</div>
 <p>Se rejeitamos H₀, há evidência de que $x$ está linearmente associado a $y$.</p>
 <h2>Suposições</h2>
 <ol>
@@ -1904,9 +1900,9 @@ $$</p>
 </ul>
 <h2>Exemplo</h2>
 <p>Em pinguins, relacionando comprimento da nadadeira ($x$, em mm) com massa corporal ($y$, em g):</p>
-<p>$$
+<div class="math-display">$$
 \hat{y} = -5800 + 49{,}7 \cdot x
-$$</p>
+$$</div>
 <p>Interpretação:</p>
 <ul>
 <li>Cada 1 mm adicional de nadadeira está associado a 49,7 g a mais de massa.</li>
@@ -1914,17 +1910,17 @@ $$</p>
 </ul>
 <h2>Predição</h2>
 <p>O modelo pode ser usado para prever $y$ dado um novo $x$:</p>
-<p>$$
+<div class="math-display">$$
 \hat{y}_{\text{novo}} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x_{\text{novo}}
-$$</p>
+$$</div>
 <blockquote>
 <p>Cuidado: <strong>não extrapole</strong> muito além do intervalo dos dados originais. O modelo não tem informação sobre o que acontece fora do range observado.</p>
 </blockquote>
 <h2>Regressão múltipla</h2>
 <p>Generalização para vários preditores:</p>
-<p>$$
+<div class="math-display">$$
 \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 x_2 + \cdots + \hat{\beta}_k x_k
-$$</p>
+$$</div>
 <p>Cada coeficiente é o efeito de seu preditor <strong>mantendo os outros constantes</strong>. Para isso, normalmente usa-se <code>statsmodels</code> ou <code>scikit-learn</code> (fora do escopo desta introdução).</p>
 <h2>Erros comuns</h2>
 <ol>

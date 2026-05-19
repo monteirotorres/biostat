@@ -252,12 +252,12 @@
 </tbody>
 </table>
 <h3>Exemplos</h3>
-<p>$$
+<div class="math-display">$$
 12{,}11 + 8{,}3 = 20{,}4 \quad (\text{e não } 20{,}41)
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 3{,}24 \times 5{,}6 = 18 \quad (\text{e não } 18{,}144)
-$$</p>
+$$</div>
 <h2>Em bioestatística</h2>
 <p>Quando reportamos resultados:</p>
 <ul>
@@ -266,9 +266,9 @@ $$</p>
 <li>Porcentagens: 1 casa decimal costuma ser suficiente (<code>32,5%</code>).</li>
 </ul><a class="nb-link" href="01_introducao/04_algarismos_significativos.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="01-introducao-05-notacao-cientifica-md" class="topic"><h1>Notação científica</h1><p>Forma compacta de escrever números muito grandes ou muito pequenos.</p>
 <h2>A regra</h2>
-<p>$$
+<div class="math-display">$$
 N = a \times 10^{n}
-$$</p>
+$$</div>
 <p>Onde:</p>
 <ul>
 <li>$1 \leq |a| < 10$ (a chamada <strong>mantissa</strong>);</li>
@@ -302,24 +302,24 @@ $$</p>
 <li><strong>Positivo</strong> → número grande. Desloca a vírgula para a <strong>direita</strong>.</li>
 <li><strong>Negativo</strong> → número pequeno. Desloca a vírgula para a <strong>esquerda</strong>.</li>
 </ul>
-<p>$$
+<div class="math-display">$$
 2{,}5 \times 10^{4} = 25\,000
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 2{,}5 \times 10^{-4} = 0{,}000\,25
-$$</p>
+$$</div>
 <h2>Operações</h2>
 <p>Em multiplicação e divisão, os expoentes somam e subtraem:</p>
-<p>$$
+<div class="math-display">$$
 (a \times 10^{m}) \cdot (b \times 10^{n}) = (a \cdot b) \times 10^{m+n}
-$$</p>
-<p>$$
+$$</div>
+<div class="math-display">$$
 \frac{a \times 10^{m}}{b \times 10^{n}} = \frac{a}{b} \times 10^{m-n}
-$$</p>
+$$</div>
 <h3>Exemplo</h3>
-<p>$$
+<div class="math-display">$$
 (3 \times 10^{6}) \times (2 \times 10^{-3}) = 6 \times 10^{3} = 6\,000
-$$</p>
+$$</div>
 <h2>Em Python</h2>
 <p>Python escreve automaticamente em notação científica para números muito grandes ou pequenos. Use <code>e</code> no lugar de "$\times 10$":</p>
 <table>
@@ -523,10 +523,10 @@ $$</p>
 </table>
 <h2>Histograma de densidade</h2>
 <p>Quando o eixo y mostra <strong>densidade</strong> (em vez de contagem), a área total sob o histograma vale 1. Isso permite comparar amostras de tamanhos diferentes na mesma escala.</p>
-<p>$$
+<div class="math-display">$$
 \text{densidade} = \frac{\text{contagem}}{n \cdot \text{largura da faixa}}
-$$</p>
-<div class="widget">
+$$</div>
+<div class="widget" data-widget="wHistograma" data-id="histograma_1_7">
   <div class="widget-title">Demonstração interativa — Histograma e amostragem</div>
   <div class="btn-row">
     <button class="btn outline active" data-hist-dist="histograma_1_7" data-dist="uniforme">Uniforme</button>
@@ -551,13 +551,12 @@ $$</p>
     <div class="stat-card"><div class="slabel">Desvio padrão</div><div class="sval" id="histograma_1_7-sd">—</div><div class="sdesc">desvio padrão amostral</div></div>
   </div>
 </div>
-<script>wHistograma('histograma_1_7');</script>
 <a class="nb-link" href="01_introducao/07_histogramas.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="01-introducao-08-curva-normal-md" class="topic"><h1>Curva normal</h1><p>A <strong>curva normal</strong> (também chamada <strong>gaussiana</strong> ou <strong>curva em sino</strong>) é a distribuição mais importante da estatística. Várias medidas biológicas seguem (ou se aproximam) dessa forma.</p>
 <h2>Forma e equação</h2>
 <p>A curva normal é definida por dois parâmetros: a média $\mu$ e o desvio padrão $\sigma$. A função de densidade é:</p>
-<p>$$
+<div class="math-display">$$
 f(x) = \frac{1}{\sigma\sqrt{2\pi}} \cdot e^{-\frac{1}{2} \left( \frac{x - \mu}{\sigma} \right)^{2}}
-$$</p>
+$$</div>
 <p>Não precisa decorar essa fórmula. O que importa é entender:</p>
 <ul>
 <li>$\mu$ define <strong>onde está o centro</strong> da curva;</li>
@@ -600,15 +599,15 @@ $$</p>
 <h2>A normal padrão (Z)</h2>
 <p>Quando $\mu = 0$ e $\sigma = 1$, chamamos a distribuição de <strong>normal padrão</strong> e representamos a variável por $Z$.</p>
 <p>Qualquer normal pode ser convertida para Z pela <strong>padronização</strong>:</p>
-<p>$$
+<div class="math-display">$$
 Z = \frac{X - \mu}{\sigma}
-$$</p>
+$$</div>
 <p>Isso é útil porque permite comparar valores que vieram de distribuições normais diferentes — todos passam a estar na mesma escala.</p>
 <h2>Por que ela aparece tanto?</h2>
 <p>Pelo <strong>Teorema do Limite Central</strong>: quando uma medida resulta da soma de muitos pequenos efeitos independentes, a distribuição resultante tende à normal. A altura, por exemplo, é influenciada por genética, alimentação, sono, doenças na infância — cada um contribuindo um pouco. O resultado se aproxima de uma normal.</p>
 <h2>Cuidado!</h2>
 <p>Nem tudo é normal. Antes de assumir normalidade, <strong>olhe o histograma</strong> ou faça um teste formal. Distribuições assimétricas (renda, tempo de sobrevida, contagens raras) precisam de outra abordagem.</p>
-<div class="widget">
+<div class="widget" data-widget="wCurvaNormal" data-id="curva_normal_1_8">
   <div class="widget-title">Demonstração interativa — Curva Normal</div>
   <canvas id="curva_normal_1_8"></canvas>
   <div class="legend">
@@ -634,7 +633,6 @@ $$</p>
     <div class="stat-card"><div class="slabel">±3σ</div><div class="sval" id="curva_normal_1_8-p3">—</div><div class="sdesc">cobertura</div></div>
   </div>
 </div>
-<script>wCurvaNormal('curva_normal_1_8');</script>
 <a class="nb-link" href="01_introducao/08_curva_normal.ipynb" target="_blank">⓪ Abrir notebook</a></section>
 <div class="footer">Produzido para fins didáticos — bioestatística — UFRJ / IBCCF</div>
 </div>

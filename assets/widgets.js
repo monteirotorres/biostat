@@ -834,6 +834,18 @@ function initTabs() {
 window.addEventListener('DOMContentLoaded', () => {
   initTabs();
 
+  // inicializa todos os widgets pelo data-attribute
+  document.querySelectorAll('[data-widget]').forEach(el => {
+    const fn = window[el.dataset.widget];
+    const id = el.dataset.id;
+    if (typeof fn === 'function') {
+      try { fn(id); }
+      catch (e) { console.error('Widget init failed:', el.dataset.widget, id, e); }
+    } else {
+      console.warn('Widget function not found:', el.dataset.widget);
+    }
+  });
+
   // ativa tab via hash
   if (window.location.hash) {
     const target = window.location.hash.slice(1);
