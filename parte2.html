@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parte 2 — Estatística Descritiva — Bioestatística</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, { delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="topnav"><span class="brand"><strong>Bioestatística</strong> · IBCCF / UFRJ</span><a href="index.html">Início</a><a href="parte1.html">Parte 1</a><a href="parte2.html" class="current">Parte 2</a><a href="parte3.html">Parte 3</a><a href="parte4.html">Parte 4</a></div><header class="page-head"><h1>Parte 2 — Parte 2 — Estatística Descritiva</h1><div class="subtitle">15 tópicos · navegue pelas abas abaixo</div></header><div class="tabs"><button class="tab active" data-target="02-estatistica-descritiva-01-tendencia-central-md"><span class="num">01</span>Medidas de tendência central</button><button class="tab" data-target="02-estatistica-descritiva-02-moda-md"><span class="num">02</span>Moda</button><button class="tab" data-target="02-estatistica-descritiva-03-media-aritmetica-md"><span class="num">03</span>Média aritmética</button><button class="tab" data-target="02-estatistica-descritiva-04-media-cortada-md"><span class="num">04</span>Média cortada</button><button class="tab" data-target="02-estatistica-descritiva-05-media-ponderada-md"><span class="num">05</span>Média ponderada</button><button class="tab" data-target="02-estatistica-descritiva-06-media-geometrica-md"><span class="num">06</span>Média geométrica</button><button class="tab" data-target="02-estatistica-descritiva-07-mediana-md"><span class="num">07</span>Mediana</button><button class="tab" data-target="02-estatistica-descritiva-08-media-vs-mediana-md"><span class="num">08</span>Média vs. mediana</button><button class="tab" data-target="02-estatistica-descritiva-09-teorema-limite-central-md"><span class="num">09</span>Teorema do limite central</button><button class="tab" data-target="02-estatistica-descritiva-10-amplitude-md"><span class="num">10</span>Amplitude</button><button class="tab" data-target="02-estatistica-descritiva-11-desvio-medio-md"><span class="num">11</span>Desvio médio</button><button class="tab" data-target="02-estatistica-descritiva-12-variancia-md"><span class="num">12</span>Variância</button><button class="tab" data-target="02-estatistica-descritiva-13-desvio-padrao-md"><span class="num">13</span>Desvio padrão</button><button class="tab" data-target="02-estatistica-descritiva-14-desvio-interquartil-md"><span class="num">14</span>Desvio interquartil</button><button class="tab" data-target="02-estatistica-descritiva-15-coeficiente-variacao-md"><span class="num">15</span>Coeficiente de variação</button></div><section id="02-estatistica-descritiva-01-tendencia-central-md" class="topic active"><h1>Medidas de tendência central</h1><p>Quando temos um conjunto de números, é natural perguntar: <strong>qual é o valor "típico"?</strong> As medidas de tendência central respondem a essa pergunta de formas diferentes.</p>
+<h2>As três principais</h2>
+<table>
+<thead>
+<tr>
+<th>Medida</th>
+<th>O que é</th>
+<th>Quando usar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Moda</strong></td>
+<td>valor mais frequente</td>
+<td>dados categóricos, ou distribuições com picos claros</td>
+</tr>
+<tr>
+<td><strong>Média</strong></td>
+<td>soma dividida pela contagem</td>
+<td>distribuições simétricas</td>
+</tr>
+<tr>
+<td><strong>Mediana</strong></td>
+<td>valor do meio quando os dados estão ordenados</td>
+<td>distribuições assimétricas, com outliers</td>
+</tr>
+</tbody>
+</table>
+<h2>A grande lição</h2>
+<p>Não existe a medida "correta". Cada uma resume os dados de um jeito diferente, e a escolha depende:</p>
+<ul>
+<li>do <strong>tipo</strong> de dados (categórico? numérico?);</li>
+<li>da <strong>forma</strong> da distribuição (simétrica? com outliers?);</li>
+<li>da <strong>pergunta</strong> que se quer responder.</li>
+</ul>
+<p>Por isso é comum reportar <strong>mais de uma</strong> ao descrever uma amostra.</p>
+<h2>Um exemplo motivador</h2>
+<p>Imagine os salários (em milhares de reais) de uma empresa pequena:</p>
+<p>$$
+2{,}5 \quad 2{,}8 \quad 3{,}0 \quad 3{,}2 \quad 3{,}5 \quad 4{,}0 \quad 50
+$$</p>
+<ul>
+<li>Moda: não há valor repetido.</li>
+<li>Mediana: 3,2 mil reais (valor do meio).</li>
+<li>Média: ~9,7 mil reais (puxada pelo dono que ganha 50 mil).</li>
+</ul>
+<p>Qual deles representa melhor o "funcionário típico"? Claramente a <strong>mediana</strong>, porque a média foi distorcida por um único valor extremo.</p>
+<h2>Quando cada uma falha</h2>
+<table>
+<thead>
+<tr>
+<th>Medida</th>
+<th>Onde ela falha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Moda</td>
+<td>quando os dados são todos diferentes, ou quando há vários picos parecidos</td>
+</tr>
+<tr>
+<td>Média</td>
+<td>quando há outliers ou a distribuição é muito assimétrica</td>
+</tr>
+<tr>
+<td>Mediana</td>
+<td>em amostras muito pequenas, é instável (mudar 1 valor pode mudar muito)</td>
+</tr>
+</tbody>
+</table>
+<p>Nos próximos tópicos veremos cada medida em detalhes, junto com algumas variações (média cortada, média ponderada, média geométrica).</p><a class="nb-link" href="02_estatistica_descritiva/01_tendencia_central.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-02-moda-md" class="topic"><h1>Moda</h1><p>A <strong>moda</strong> é o valor que aparece com maior frequência em um conjunto de dados.</p>
+<h2>Definição</h2>
+<p>Dado um conjunto $\{x_1, x_2, \ldots, x_n\}$, a moda é o valor (ou valores) que mais se repete.</p>
+<h2>Casos</h2>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>Nome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Um único valor mais frequente</td>
+<td><strong>unimodal</strong></td>
+</tr>
+<tr>
+<td>Dois valores empatados</td>
+<td><strong>bimodal</strong></td>
+</tr>
+<tr>
+<td>Três ou mais valores empatados</td>
+<td><strong>multimodal</strong></td>
+</tr>
+<tr>
+<td>Todos diferentes</td>
+<td><strong>amodal</strong> (sem moda)</td>
+</tr>
+</tbody>
+</table>
+<h3>Exemplos</h3>
+<ul>
+<li>$\{1, 2, 2, 3, 4\}$ → moda = 2 (unimodal).</li>
+<li>$\{1, 2, 2, 3, 3\}$ → modas = 2 e 3 (bimodal).</li>
+<li>$\{1, 2, 3, 4, 5\}$ → não há moda (amodal).</li>
+</ul>
+<h2>Quando usar</h2>
+<p>A moda é particularmente útil em:</p>
+<ul>
+<li><strong>Variáveis categóricas</strong>, em que média e mediana nem fazem sentido. Ex.: a moda do tipo sanguíneo no Brasil é "O+".</li>
+<li><strong>Distribuições com picos claros</strong>, em que a "categoria mais comum" é a informação de interesse.</li>
+</ul>
+<blockquote>
+<p>Em distribuições contínuas, é raro dois valores serem <strong>exatamente</strong> iguais. Nesses casos, a moda é localizada visualmente no histograma: corresponde ao <strong>pico</strong> da distribuição.</p>
+</blockquote>
+<h2>Limitações</h2>
+<ol>
+<li><strong>Pode não ser única</strong> ou nem existir.</li>
+<li><strong>Não usa todos os dados</strong>: depende apenas das frequências.</li>
+<li><strong>Sensível à precisão</strong> dos dados: arredondar pode mudar drasticamente a moda.</li>
+</ol>
+<h2>Distribuições multimodais — uma pista</h2>
+<p>Quando o histograma tem <strong>mais de um pico</strong>, vale investigar: pode haver duas subpopulações misturadas. Por exemplo, a altura de adultos mostra um histograma bimodal quando misturamos homens e mulheres — cada grupo tem sua própria moda.</p><a class="nb-link" href="02_estatistica_descritiva/02_moda.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-03-media-aritmetica-md" class="topic"><h1>Média aritmética</h1><p>A medida de tendência central mais conhecida. Soma todos os valores e divide pelo número deles.</p>
+<h2>Fórmula</h2>
+<p>Para uma <strong>amostra</strong> com $n$ valores:</p>
+<p>$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + \cdots + x_n}{n}
+$$</p>
+<p>Para uma <strong>população</strong> com $N$ valores:</p>
+<p>$$
+\mu = \frac{1}{N} \sum_{i=1}^{N} x_i
+$$</p>
+<p>A fórmula é a mesma — muda apenas o símbolo, dependendo se estamos falando de amostra ($\bar{x}$, "x-barra") ou de população ($\mu$, "mi").</p>
+<h2>Exemplo</h2>
+<p>Cinco notas de uma prova: $6{,}0; 7{,}5; 8{,}0; 5{,}5; 9{,}0$.</p>
+<p>$$
+\bar{x} = \frac{6{,}0 + 7{,}5 + 8{,}0 + 5{,}5 + 9{,}0}{5} = \frac{36{,}0}{5} = 7{,}2
+$$</p>
+<h2>Propriedades importantes</h2>
+<ol>
+<li><strong>Usa todos os valores</strong> — diferente da mediana, que usa só o do meio.</li>
+<li><strong>Sensível a outliers</strong> — um único valor extremo pode puxar a média muito.</li>
+<li><strong>A soma dos desvios em relação à média é zero</strong>:</li>
+</ol>
+<p>$$
+\sum_{i=1}^{n} (x_i - \bar{x}) = 0
+$$</p>
+<p>Isso significa que a média é o <strong>"ponto de equilíbrio"</strong> dos dados — se colocássemos cada valor como um pesinho numa régua, a régua se equilibraria sobre a média.</p>
+<h2>Quando usar</h2>
+<p>A média é apropriada quando:</p>
+<ul>
+<li>a distribuição é <strong>aproximadamente simétrica</strong>;</li>
+<li>não há outliers extremos;</li>
+<li>os dados são <strong>quantitativos</strong> (não categóricos).</li>
+</ul>
+<h2>Quando NÃO usar</h2>
+<ul>
+<li>Em distribuições <strong>muito assimétricas</strong> (renda, tempo de sobrevida) — a mediana é mais informativa.</li>
+<li>Em variáveis <strong>ordinais</strong> — a média entre "leve", "moderada" e "intensa" não significa nada.</li>
+<li>Em variáveis <strong>nominais</strong> — não dá nem para calcular.</li>
+</ul>
+<h2>Atenção ao jargão</h2>
+<p>Quando alguém diz "a média", geralmente está se referindo à média aritmética. Mas existem outras médias (geométrica, harmônica, cortada, ponderada) que você verá nos próximos tópicos.</p><a class="nb-link" href="02_estatistica_descritiva/03_media_aritmetica.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-04-media-cortada-md" class="topic"><h1>Média cortada</h1><p>A <strong>média cortada</strong> é uma variação da média aritmética em que <strong>removemos uma porcentagem dos valores extremos</strong> antes de calcular a média.</p>
+<h2>A ideia</h2>
+<p>Como a média comum é sensível a outliers, uma forma de torná-la mais <strong>robusta</strong> é descartar uma fatia dos valores mais altos e mais baixos. O que sobra é menos influenciado por valores extremos.</p>
+<h2>Fórmula</h2>
+<p>Cortando $k$ valores de cada lado (após ordenar) em uma amostra de $n$:</p>
+<p>$$
+\bar{x}_{\text{cortada}} = \frac{1}{n - 2k} \sum_{i=k+1}^{n-k} x_{(i)}
+$$</p>
+<p>onde $x_{(i)}$ é o $i$-ésimo valor <strong>ordenado</strong>.</p>
+<p>Costuma-se especificar o corte em <strong>porcentagem</strong>: cortar 10% significa remover 10% dos valores de cada extremo.</p>
+<h2>Exemplo</h2>
+<p>Dados ordenados: $10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 200$. São 12 valores.</p>
+<p>Cortando 10% de cada lado → removemos 1 de cada extremo (10 e 200):</p>
+<p>$$
+\bar{x}_{\text{cortada 10\%}} = \frac{11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20}{10} = 15{,}5
+$$</p>
+<p>Compare com a média comum: $\approx 30{,}4$ (puxada pelo 200).</p>
+<h2>Quanto cortar?</h2>
+<table>
+<thead>
+<tr>
+<th>Corte</th>
+<th>Comentário</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0%</td>
+<td>é a média comum</td>
+</tr>
+<tr>
+<td>5%</td>
+<td>corte leve, comum em estudos esportivos</td>
+</tr>
+<tr>
+<td>10–25%</td>
+<td>reduz bem a influência de outliers</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>é a <strong>mediana</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>Onde aparece</h2>
+<ul>
+<li>Olimpíadas, ginástica artística: descartam-se a maior e a menor nota dos juízes.</li>
+<li>Notas finais de programas que ignoram a melhor e a pior prova.</li>
+<li>Estudos econômicos que querem reduzir o impacto de valores extremos.</li>
+</ul>
+<h2>Vantagens e desvantagens</h2>
+<table>
+<thead>
+<tr>
+<th>Vantagem</th>
+<th>Desvantagem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mais robusta a outliers que a média</td>
+<td>Descarta informação</td>
+</tr>
+<tr>
+<td>Mantém a interpretação de "média"</td>
+<td>Definição depende do corte escolhido</td>
+</tr>
+</tbody>
+</table><a class="nb-link" href="02_estatistica_descritiva/04_media_cortada.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-05-media-ponderada-md" class="topic"><h1>Média ponderada</h1><p>Cada valor recebe um <strong>peso</strong> diferente, refletindo sua importância relativa.</p>
+<h2>Fórmula</h2>
+<p>$$
+\bar{x}_w = \frac{\sum_{i=1}^{n} w_i \cdot x_i}{\sum_{i=1}^{n} w_i}
+$$</p>
+<p>Onde:</p>
+<ul>
+<li>$x_i$ são os valores;</li>
+<li>$w_i$ são os pesos (todos positivos).</li>
+</ul>
+<blockquote>
+<p>Quando todos os pesos são iguais, a média ponderada vira a <strong>média aritmética comum</strong>.</p>
+</blockquote>
+<h2>Exemplo clássico — nota final</h2>
+<p>Uma disciplina tem três avaliações:</p>
+<table>
+<thead>
+<tr>
+<th>Avaliação</th>
+<th>Nota</th>
+<th>Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>7,0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>6,0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Trabalho</td>
+<td>9,0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Prova final</td>
+<td>8,0</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>$$
+\bar{x}_w = \frac{7 \cdot 2 + 6 \cdot 3 + 9 \cdot 1 + 8 \cdot 4}{2 + 3 + 1 + 4} = \frac{14 + 18 + 9 + 32}{10} = \frac{73}{10} = 7{,}3
+$$</p>
+<p>A média aritmética simples daria 7,5 — mas como a prova final pesa mais e a P2 (pior nota) também tem peso alto, a média ponderada fica em 7,3.</p>
+<h2>Em biologia e medicina</h2>
+<p>A média ponderada aparece em:</p>
+<ul>
+<li><strong>Meta-análises</strong>: estudos com amostras maiores recebem peso maior, porque suas estimativas são mais confiáveis.</li>
+<li><strong>Cálculo de IDH ou IDS</strong>: cada indicador entra com peso definido pela metodologia.</li>
+<li><strong>Sistemas de pontuação clínica</strong>: cada sinal/sintoma tem peso clínico diferente.</li>
+</ul>
+<h2>Pesos normalizados</h2>
+<p>Se preferimos pesos que somam 1 (probabilidades, frações), a fórmula vira:</p>
+<p>$$
+\bar{x}_w = \sum_{i=1}^{n} w_i \cdot x_i \quad \text{com} \quad \sum_{i=1}^{n} w_i = 1
+$$</p>
+<p>Esse formato aparece muito em <strong>expectativa matemática</strong> — a média ponderada nada mais é do que o valor esperado quando os pesos representam probabilidades.</p>
+<h2>Detalhe importante</h2>
+<p>Os pesos representam <strong>importância relativa</strong>, não probabilidades de erro ou qualidade absoluta. Se eu der peso 10 a um valor mal medido e peso 1 ao bem medido, vou puxar a média para o errado. Os pesos precisam ser escolhidos <strong>antes</strong> de olhar os dados, com base em um critério justificável.</p><a class="nb-link" href="02_estatistica_descritiva/05_media_ponderada.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-06-media-geometrica-md" class="topic"><h1>Média geométrica</h1><p>A média geométrica é a "média natural" para dados <strong>multiplicativos</strong>: taxas de crescimento, fatores de diluição, títulos de anticorpos.</p>
+<h2>Fórmula</h2>
+<p>Para $n$ valores positivos:</p>
+<p>$$
+\bar{x}_g = \sqrt[n]{x_1 \cdot x_2 \cdots x_n} = \left( \prod_{i=1}^{n} x_i \right)^{1/n}
+$$</p>
+<p>Equivalentemente, em termos de logaritmos (forma muito usada nas implementações):</p>
+<p>$$
+\bar{x}_g = \exp\!\left( \frac{1}{n} \sum_{i=1}^{n} \ln x_i \right)
+$$</p>
+<p>Em palavras: <strong>calculamos a média aritmética dos logaritmos</strong> e depois aplicamos a função inversa.</p>
+<h2>Quando faz sentido?</h2>
+<p>Sempre que os dados crescem (ou diminuem) <strong>multiplicativamente</strong>, e não somando uma quantidade fixa.</p>
+<h3>Exemplo 1 — taxa de crescimento bacteriano</h3>
+<p>Uma cultura cresce a taxas (vezes/h) de: 1,5; 2,0; 1,8; 2,2; 1,9.</p>
+<p>Se quisermos saber a taxa "típica" de crescimento, queremos o número que, repetido, daria o mesmo crescimento acumulado. Esse número é a média <strong>geométrica</strong>, não a aritmética.</p>
+<p>$$
+\bar{x}_g = \sqrt[5]{1{,}5 \cdot 2{,}0 \cdot 1{,}8 \cdot 2{,}2 \cdot 1{,}9} \approx 1{,}87
+$$</p>
+<h3>Exemplo 2 — diluições em série</h3>
+<p>Em imunologia, títulos de anticorpos são comumente $1/40, 1/80, 1/160, \ldots$ — uma série geométrica. A média geométrica respeita essa escala.</p>
+<h3>Exemplo 3 — retorno de investimentos</h3>
+<p>Se um ativo rende +10% num ano e -10% no outro, a média aritmética dos retornos é 0% (que seria voltar ao mesmo valor). Mas isso é falso: $1{,}10 \cdot 0{,}90 = 0{,}99$. O retorno médio <strong>real</strong> é dado pela média geométrica.</p>
+<h2>Comparação com a aritmética</h2>
+<p>Para qualquer conjunto de valores positivos:</p>
+<p>$$
+\bar{x}_g \leq \bar{x}
+$$</p>
+<p>A igualdade só ocorre quando todos os valores são iguais. Quanto mais variados os dados, maior a diferença entre as duas médias.</p>
+<h2>Restrições</h2>
+<ul>
+<li><strong>Só funciona para valores positivos</strong> (não definida para 0 ou negativos).</li>
+<li>Pouca interpretabilidade em escalas aditivas (a média geométrica de alturas em cm é estranha).</li>
+</ul>
+<h2>Como reconhecer um caso de média geométrica</h2>
+<p>Pergunte: <strong>"Se eu repetir esse valor $n$ vezes, multiplicando, recupero o produto original?"</strong> Se sim, é caso de média geométrica.</p>
+<blockquote>
+<p>Em escala log, a média geométrica vira simplesmente a média aritmética dos logaritmos. Por isso, é comum <strong>transformar dados</strong> com $\log$ antes de aplicar testes estatísticos quando a distribuição é multiplicativa.</p>
+</blockquote><a class="nb-link" href="02_estatistica_descritiva/06_media_geometrica.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-07-mediana-md" class="topic"><h1>Mediana</h1><p>A <strong>mediana</strong> é o valor que ocupa a posição do meio quando os dados estão ordenados. Divide o conjunto em duas metades de tamanho igual.</p>
+<h2>Como calcular</h2>
+<ol>
+<li><strong>Ordene</strong> os valores em ordem crescente.</li>
+<li>Se $n$ é <strong>ímpar</strong>, a mediana é o valor central.</li>
+<li>Se $n$ é <strong>par</strong>, a mediana é a <strong>média dos dois valores centrais</strong>.</li>
+</ol>
+<h3>Exemplo (n ímpar)</h3>
+<p>Dados: $3, 1, 4, 1, 5, 9, 2$
+Ordenados: $1, 1, 2, \mathbf{3}, 4, 5, 9$
+Mediana = <strong>3</strong>.</p>
+<h3>Exemplo (n par)</h3>
+<p>Dados: $3, 1, 4, 1, 5, 9, 2, 6$
+Ordenados: $1, 1, 2, \mathbf{3}, \mathbf{4}, 5, 6, 9$
+Mediana = $(3 + 4)/2 = 3{,}5$.</p>
+<h2>A propriedade fundamental</h2>
+<p>Exatamente <strong>50% dos dados estão abaixo</strong> da mediana e <strong>50% acima</strong>. Por isso ela também é chamada de <strong>segundo quartil</strong> ($Q_2$) ou <strong>percentil 50</strong>.</p>
+<h2>Robustez a outliers</h2>
+<p>A grande vantagem da mediana é não ser afetada por valores extremos:</p>
+<table>
+<thead>
+<tr>
+<th>Dados</th>
+<th>Média</th>
+<th>Mediana</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$1, 2, 3, 4, 5$</td>
+<td>3,0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>$1, 2, 3, 4, 500$</td>
+<td>102,0</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>A média explodiu, mas a mediana ficou igual. É por isso que reportamos mediana para variáveis como <strong>renda</strong>, <strong>tempo até um evento</strong>, <strong>dose recebida</strong> etc.</p>
+<h2>Generalização — quantis e percentis</h2>
+<p>A mesma ideia da mediana se estende para outros pontos da distribuição:</p>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>O que é</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mediana / Q2 / P50</td>
+<td>50% dos dados abaixo</td>
+</tr>
+<tr>
+<td>Q1 / P25</td>
+<td>25% dos dados abaixo</td>
+</tr>
+<tr>
+<td>Q3 / P75</td>
+<td>75% dos dados abaixo</td>
+</tr>
+<tr>
+<td>P10, P90</td>
+<td>percentis 10 e 90</td>
+</tr>
+</tbody>
+</table>
+<p>Esses pontos aparecem no <strong>boxplot</strong> e dão uma visão muito mais rica que apenas a média.</p>
+<h2>Limitações</h2>
+<ul>
+<li>Em <strong>amostras pequenas</strong>, a mediana pode ser instável: mudar 1 valor pode mudar muito.</li>
+<li>Não é tão sensível à <strong>forma</strong> da distribuição — duas distribuições muito diferentes podem ter a mesma mediana.</li>
+<li>Operações algébricas (combinar grupos, propagar erros) são mais complicadas com mediana do que com média.</li>
+</ul><a class="nb-link" href="02_estatistica_descritiva/07_mediana.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-08-media-vs-mediana-md" class="topic"><h1>Média vs. mediana</h1><p>Qual delas reportar? A escolha depende da <strong>forma da distribuição</strong> e da <strong>presença de outliers</strong>.</p>
+<h2>Em distribuição simétrica</h2>
+<p>Em uma distribuição simétrica (como a normal), média e mediana <strong>coincidem</strong>:</p>
+<p>$$
+\bar{x} \approx \text{mediana} \approx \text{moda}
+$$</p>
+<p>Nesse caso, tanto faz qual usar — costuma-se reportar a média porque tem propriedades matemáticas mais convenientes (se combina bem com soma, ANOVA, intervalos de confiança, etc.).</p>
+<h2>Em distribuição assimétrica</h2>
+<p>A média é <strong>puxada para a cauda</strong>. A mediana fica mais perto do "centro de massa" da maior parte dos dados.</p>
+<h3>Assimetria à direita (cauda longa para valores altos)</h3>
+<p>$$
+\bar{x} > \text{mediana}
+$$</p>
+<p>Exemplos: renda, tempo de espera, número de citações de um artigo, contagens de vírus.</p>
+<h3>Assimetria à esquerda (cauda longa para valores baixos)</h3>
+<p>$$
+\bar{x} < \text{mediana}
+$$</p>
+<p>Exemplos: notas em provas muito fáceis, idade ao morrer (a maioria morre na velhice, com cauda nos jovens).</p>
+<h2>Como decidir na prática</h2>
+<div class="mermaid-container"><pre class="mermaid">flowchart TD
+    A[Faça um histograma] --&gt; B{Simétrica?}
+    B --&gt;|Sim| C[Use média]
+    B --&gt;|Não| D{Outliers visíveis?}
+    D --&gt;|Sim| E[Use mediana]
+    D --&gt;|Não| F[Reporte ambas]
+</pre></div>
+<p>A regra de ouro: <strong>sempre olhe o histograma antes de escolher</strong>.</p>
+<h2>Em artigos científicos</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo de dado</th>
+<th>Reporte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pressão arterial, altura</td>
+<td>média ± desvio padrão</td>
+</tr>
+<tr>
+<td>Tempo de sobrevida</td>
+<td>mediana (IC 95%)</td>
+</tr>
+<tr>
+<td>Idade dos participantes (geralmente simétrico)</td>
+<td>média ± desvio padrão</td>
+</tr>
+<tr>
+<td>Salário, dose, contagens raras</td>
+<td>mediana (IQR)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Atenção: a mediana costuma vir acompanhada do <strong>intervalo interquartil (IQR)</strong> ou de outros percentis, em vez de desvio padrão.</p>
+</blockquote>
+<h2>Um cuidado especial</h2>
+<p>Algumas vezes, médias podem ser <strong>enganosas</strong>:</p>
+<ul>
+<li>Uma média de "renda per capita" alta pode mascarar uma realidade em que 90% das pessoas ganham muito pouco — basta ter alguns poucos muito ricos.</li>
+<li>A média de "tempo gasto em uma rede social" pode esconder que a maioria das pessoas usa muito menos do que a média sugere.</li>
+</ul>
+<p>Por isso, em comunicação científica e jornalística, a mediana frequentemente conta uma história mais honesta sobre o "indivíduo típico".</p><a class="nb-link" href="02_estatistica_descritiva/08_media_vs_mediana.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-09-teorema-limite-central-md" class="topic"><h1>Teorema do limite central</h1><p>Talvez o resultado mais importante da estatística. Em palavras:</p>
+<blockquote>
+<p><strong>A média de muitas amostras tende a uma distribuição normal</strong>, mesmo que a população original não seja normal.</p>
+</blockquote>
+<h2>Enunciado</h2>
+<p>Seja uma população com média $\mu$ e desvio padrão $\sigma$ (finito). Tiramos amostras de tamanho $n$ e calculamos a média $\bar{x}$ de cada uma. À medida que $n$ cresce, a distribuição de $\bar{x}$ se aproxima de uma normal:</p>
+<p>$$
+\bar{x} \sim \mathcal{N}\!\left( \mu, \; \frac{\sigma^{2}}{n} \right)
+$$</p>
+<p>Ou, em forma padronizada:</p>
+<p>$$
+Z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}} \;\to\; \mathcal{N}(0, 1)
+$$</p>
+<p>A quantidade $\sigma / \sqrt{n}$ tem nome especial: <strong>erro padrão da média</strong> (em inglês, <em>standard error of the mean</em>, SEM).</p>
+<h2>Pontos-chave</h2>
+<ol>
+<li><strong>A média da distribuição amostral</strong> é $\mu$ (a mesma da população).</li>
+<li><strong>O desvio padrão da distribuição amostral</strong> é $\sigma / \sqrt{n}$, sempre menor que $\sigma$.</li>
+<li><strong>A forma</strong> se aproxima da normal — independentemente da forma da população original — desde que $n$ seja "grande o bastante".</li>
+</ol>
+<h2>Quão grande é "grande"?</h2>
+<ul>
+<li>Se a população já é normal, o TLC vale para qualquer $n$.</li>
+<li>Se é moderadamente assimétrica, $n \geq 30$ costuma ser suficiente.</li>
+<li>Para distribuições muito enviesadas (ex.: exponencial com cauda muito longa), pode ser necessário $n \gtrsim 100$.</li>
+</ul>
+<h2>Por que isso é fantástico?</h2>
+<p>Muitos testes estatísticos (t, z, ANOVA, regressão) assumem que <strong>alguma média</strong> segue distribuição normal. O TLC garante que, com amostras razoáveis, isso é aproximadamente verdade — <strong>mesmo que os dados originais não sejam normais</strong>. Por isso podemos aplicar esses testes em uma variedade enorme de situações.</p>
+<h2>A intuição visual</h2>
+<p>Imagine jogar dois dados e somar. A soma:</p>
+<ul>
+<li>mínima: 2 (1+1);</li>
+<li>máxima: 12 (6+6);</li>
+<li>mais provável: 7 (várias combinações: 1+6, 2+5, 3+4, etc.).</li>
+</ul>
+<p>Mesmo que cada dado tenha distribuição <strong>uniforme</strong> (cada face com 1/6 de chance), a distribuição da <strong>soma</strong> tem cara de sino. Com 3, 4 ou 5 dados, fica cada vez mais parecida com uma normal.</p>
+<p>A média é apenas a soma dividida por $n$ — então o mesmo efeito acontece com qualquer média de muitas variáveis independentes.</p>
+<h2>O que o TLC NÃO diz</h2>
+<ul>
+<li><strong>Não</strong> diz que a população é normal. Ela continua sendo o que era.</li>
+<li><strong>Não</strong> ajuda quando a amostra é única — ele descreve o comportamento de <strong>muitas amostras</strong>.</li>
+<li><strong>Não</strong> vale se a variância da população for infinita (algumas distribuições matemáticas extremas).</li>
+</ul>
+<h2>A consequência mais importante</h2>
+<p>Quando você calcula a média de uma amostra grande de qualquer coisa razoavelmente bem comportada, sabe <strong>automaticamente</strong> como essa média se comporta. É isso que permite construir intervalos de confiança e testes de hipótese para a média.</p>
+<div class="widget">
+  <div class="widget-title">Demonstração interativa — Teorema do Limite Central</div>
+  <div class="btn-row">
+    <button class="btn outline active" data-tlc-dist="tlc_2_9" data-dist="uniforme">Uniforme</button>
+    <button class="btn outline" data-tlc-dist="tlc_2_9" data-dist="exponencial">Exponencial</button>
+    <button class="btn outline" data-tlc-dist="tlc_2_9" data-dist="bimodal">Bimodal</button>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row">
+      <span class="ctrl-label">Tamanho de cada amostra (n)</span>
+      <input type="range" min="1" max="100" step="1" value="5" id="tlc_2_9-n">
+      <span class="ctrl-val" id="tlc_2_9-n-v">5</span>
+    </div>
+  </div>
+  <canvas id="tlc_2_9"></canvas>
+  <div class="stat-grid" style="margin-top:0.6rem;">
+    <div class="stat-card"><div class="slabel">Média</div><div class="sval" id="tlc_2_9-mean">—</div><div class="sdesc">das 2000 amostras</div></div>
+    <div class="stat-card"><div class="slabel">Desvio padrão</div><div class="sval" id="tlc_2_9-sd">—</div><div class="sdesc">erro padrão da média</div></div>
+  </div>
+</div>
+<script>wTLC('tlc_2_9');</script>
+<a class="nb-link" href="02_estatistica_descritiva/09_teorema_limite_central.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-10-amplitude-md" class="topic"><h1>Amplitude</h1><p>A medida de dispersão mais simples: a diferença entre o maior e o menor valor.</p>
+<h2>Definição</h2>
+<p>$$
+A = x_{\max} - x_{\min}
+$$</p>
+<h2>Exemplo</h2>
+<p>Notas: $4, 5, 6, 7, 8, 9, 10$.</p>
+<p>$$
+A = 10 - 4 = 6
+$$</p>
+<h2>Quando usar</h2>
+<p>A amplitude é útil para:</p>
+<ul>
+<li><strong>Comunicação rápida</strong>: dá uma ideia imediata do intervalo dos dados.</li>
+<li><strong>Controle de qualidade</strong> simples: serve para detectar quando algo sai do esperado.</li>
+<li><strong>Decisões iniciais</strong> sobre escala de gráficos.</li>
+</ul>
+<h2>Limitações</h2>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Por quê</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usa <strong>apenas dois valores</strong></td>
+<td>descarta toda a informação intermediária</td>
+</tr>
+<tr>
+<td><strong>Muito sensível a outliers</strong></td>
+<td>um valor extremo faz a amplitude explodir</td>
+</tr>
+<tr>
+<td><strong>Cresce com o tamanho da amostra</strong></td>
+<td>quanto mais dados, maior a chance de encontrar valores extremos</td>
+</tr>
+</tbody>
+</table>
+<p>Por exemplo:</p>
+<table>
+<thead>
+<tr>
+<th>Dados</th>
+<th>Amplitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\{10, 12, 14, 16, 18\}$</td>
+<td>8</td>
+</tr>
+<tr>
+<td>$\{10, 12, 14, 16, 500\}$</td>
+<td>490</td>
+</tr>
+</tbody>
+</table>
+<p>Apenas um valor extremo mudou tudo.</p>
+<h2>Alternativa robusta: o IQR</h2>
+<p>O <strong>intervalo interquartil</strong> (IQR) é uma versão robusta da amplitude:</p>
+<p>$$
+\text{IQR} = Q_3 - Q_1
+$$</p>
+<p>Ele descreve a amplitude dos <strong>50% centrais</strong> dos dados, ignorando os 25% mais altos e os 25% mais baixos. É muito menos afetado por outliers.</p>
+<h2>Quando reportar</h2>
+<p>Em artigos científicos, a amplitude raramente é a única medida reportada — mas costuma aparecer <strong>junto com</strong> outras medidas, escrita como <code>mínimo–máximo</code>:</p>
+<blockquote>
+<p>"Idade dos participantes: 32 ± 8 anos (intervalo: 18–62)."</p>
+</blockquote>
+<p>Esse formato dá uma noção rápida dos extremos sem comprometer-se com eles como medida de dispersão.</p><a class="nb-link" href="02_estatistica_descritiva/10_amplitude.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-11-desvio-medio-md" class="topic"><h1>Desvio médio</h1><p>Mede a <strong>distância média</strong> de cada valor até a média do conjunto.</p>
+<h2>A motivação</h2>
+<p>Já vimos que a soma dos desvios $(x_i - \bar{x})$ sempre dá zero — os positivos cancelam os negativos. Para evitar esse cancelamento, podemos usar o <strong>valor absoluto</strong> das diferenças.</p>
+<h2>Fórmula</h2>
+<p>$$
+\text{DM} = \frac{1}{n} \sum_{i=1}^{n} \left| x_i - \bar{x} \right|
+$$</p>
+<p>Em palavras: para cada valor, calcule a distância (sem sinal) até a média; depois tire a média dessas distâncias.</p>
+<h2>Exemplo</h2>
+<p>Dados: $2, 4, 4, 4, 5, 5, 7, 9$. Média $\bar{x} = 5$.</p>
+<table>
+<thead>
+<tr>
+<th>$x_i$</th>
+<th>$|x_i - \bar{x}|$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>Soma das distâncias = 12. Desvio médio = $12 / 8 = 1{,}5$.</p>
+<h2>Interpretação</h2>
+<blockquote>
+<p>Em média, cada valor está a 1,5 unidade de distância da média.</p>
+</blockquote>
+<h2>Por que o desvio médio é pouco usado?</h2>
+<p>Apesar de intuitivo, o desvio médio quase não aparece em estatística clássica. A razão é matemática: a função valor absoluto tem um <strong>bico</strong> em zero e é mais difícil de manipular (não tem derivada nesse ponto). Por isso, o padrão é elevar ao quadrado em vez de tirar o módulo — chegando à <strong>variância</strong> e ao <strong>desvio padrão</strong>, que veremos a seguir.</p>
+<h2>Em estatística robusta</h2>
+<p>Existe uma versão robusta chamada <strong>MAD</strong> (<em>median absolute deviation</em>):</p>
+<p>$$
+\text{MAD} = \text{mediana}\,(\,|\,x_i - \tilde{x}\,|\,)
+$$</p>
+<p>Onde $\tilde{x}$ é a mediana. É bem mais resistente a outliers que o desvio médio comum e aparece em métodos modernos como <em>robust statistics</em> e detecção de anomalias.</p><a class="nb-link" href="02_estatistica_descritiva/11_desvio_medio.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-12-variancia-md" class="topic"><h1>Variância</h1><p>A medida de dispersão mais usada em estatística clássica. Em vez de tirar o módulo das diferenças, <strong>elevamos ao quadrado</strong>.</p>
+<h2>Fórmulas</h2>
+<h3>Variância populacional</h3>
+<p>$$
+\sigma^{2} = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^{2}
+$$</p>
+<h3>Variância amostral</h3>
+<p>$$
+s^{2} = \frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^{2}
+$$</p>
+<p>A pequena diferença: dividimos por $n - 1$ em vez de $n$. Isso se chama <strong>correção de Bessel</strong> e existe porque, ao usar $\bar{x}$ (calculada da própria amostra) em vez de $\mu$ (verdadeira mas desconhecida), subestimaríamos a variância sem essa correção.</p>
+<h2>Exemplo</h2>
+<p>Dados: $2, 4, 4, 4, 5, 5, 7, 9$. $\bar{x} = 5$.</p>
+<table>
+<thead>
+<tr>
+<th>$x_i$</th>
+<th>$(x_i - \bar{x})^2$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>9</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+<p>Soma dos quadrados = 32.</p>
+<ul>
+<li>Variância populacional: $32 / 8 = 4{,}0$.</li>
+<li>Variância amostral: $32 / 7 \approx 4{,}57$.</li>
+</ul>
+<h2>Por que elevar ao quadrado?</h2>
+<ol>
+<li><strong>Elimina o sinal</strong> — todas as parcelas viram positivas.</li>
+<li><strong>Penaliza desvios grandes</strong>: um desvio de 4 contribui muito mais (16) que dois desvios de 2 (4+4=8).</li>
+<li><strong>Tem propriedades matemáticas convenientes</strong>: diferenciável em todo lugar, comporta-se bem em operações.</li>
+</ol>
+<h2>O problema da unidade</h2>
+<p>Se $x$ está em quilogramas, $\sigma^2$ está em <strong>quilogramas ao quadrado</strong> — uma unidade sem significado físico. Por isso, na prática, costuma-se tirar a raiz quadrada e reportar o <strong>desvio padrão</strong> $\sigma$, na mesma unidade dos dados.</p>
+<h2>Identidade útil</h2>
+<p>A variância também pode ser escrita como:</p>
+<p>$$
+\sigma^{2} = \overline{x^{2}} - (\bar{x})^{2}
+$$</p>
+<p>Em palavras: <strong>a média dos quadrados menos o quadrado da média</strong>.</p>
+<h2>Propriedades importantes</h2>
+<table>
+<thead>
+<tr>
+<th>Propriedade</th>
+<th>Fórmula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Soma de uma constante</td>
+<td>$\text{Var}(X + c) = \text{Var}(X)$</td>
+</tr>
+<tr>
+<td>Multiplicação por constante</td>
+<td>$\text{Var}(c \cdot X) = c^{2} \cdot \text{Var}(X)$</td>
+</tr>
+<tr>
+<td>Soma de variáveis independentes</td>
+<td>$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$</td>
+</tr>
+</tbody>
+</table>
+<p>A última é a base de muitos resultados em estatística — <strong>variâncias se somam</strong> quando as variáveis são independentes.</p>
+<h2>Por que isso aparece no denominador de testes?</h2>
+<p>Em estatística inferencial, a variância aparece dividindo a diferença observada — basicamente para perguntar:</p>
+<blockquote>
+<p>"Essa diferença é grande <strong>comparada à variabilidade natural</strong> dos dados?"</p>
+</blockquote>
+<p>Essa é a ideia por trás de praticamente todos os testes paramétricos (t, z, ANOVA, F).</p><a class="nb-link" href="02_estatistica_descritiva/12_variancia.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-13-desvio-padrao-md" class="topic"><h1>Desvio padrão</h1><p>A raiz quadrada da variância. É a medida de dispersão mais reportada em ciência.</p>
+<h2>Fórmulas</h2>
+<h3>População</h3>
+<p>$$
+\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^{2}}
+$$</p>
+<h3>Amostra</h3>
+<p>$$
+s = \sqrt{\frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^{2}}
+$$</p>
+<p>A correção $(n-1)$ no denominador é a mesma da variância amostral.</p>
+<h2>Por que tirar a raiz?</h2>
+<p>Para voltar à <strong>unidade original</strong> dos dados. Se $x$ está em kg, $s$ também está em kg — e podemos dizer coisas como "o peso médio é $70 \pm 5$ kg" de forma direta.</p>
+<h2>Interpretação</h2>
+<blockquote>
+<p>Em média, os dados se afastam $s$ unidades da média.</p>
+</blockquote>
+<p>Em uma distribuição <strong>aproximadamente normal</strong>, vale a regra 68–95–99,7:</p>
+<table>
+<thead>
+<tr>
+<th>Intervalo</th>
+<th>% dos dados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\bar{x} \pm s$</td>
+<td>~68%</td>
+</tr>
+<tr>
+<td>$\bar{x} \pm 2s$</td>
+<td>~95%</td>
+</tr>
+<tr>
+<td>$\bar{x} \pm 3s$</td>
+<td>~99,7%</td>
+</tr>
+</tbody>
+</table>
+<p>Em distribuições não-normais, essas porcentagens são apenas aproximadas. Mas vale uma garantia mais fraca, válida para qualquer distribuição:</p>
+<h3>Desigualdade de Chebyshev</h3>
+<p>$$
+P(|X - \mu| < k\sigma) \geq 1 - \frac{1}{k^{2}}
+$$</p>
+<p>Por exemplo, <strong>pelo menos 75%</strong> dos dados estão dentro de $\mu \pm 2\sigma$, mesmo que a distribuição seja muito esquisita.</p>
+<h2>Erro padrão da média</h2>
+<p>Cuidado para não confundir:</p>
+<ul>
+<li><strong>Desvio padrão</strong> ($s$): variabilidade dos <strong>dados</strong> individuais.</li>
+<li><strong>Erro padrão da média</strong> (SEM): variabilidade da <strong>média amostral</strong>.</li>
+</ul>
+<p>$$
+\text{SEM} = \frac{s}{\sqrt{n}}
+$$</p>
+<p>O SEM <strong>sempre é menor</strong> que $s$ e diminui à medida que aumentamos a amostra. É o desvio padrão da distribuição amostral da média (vem do TLC).</p>
+<table>
+<thead>
+<tr>
+<th>Quando reportar</th>
+<th>Por quê</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desvio padrão</td>
+<td>Para descrever a <strong>variabilidade dos indivíduos</strong></td>
+</tr>
+<tr>
+<td>SEM</td>
+<td>Para descrever a <strong>precisão da estimativa da média</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Atenção: o SEM é menor, então faz a barra de erro parecer pequena. Mas isso <strong>não significa</strong> menos variabilidade nos dados — só significa que com $n$ grande estimamos a média com mais precisão.</p>
+</blockquote>
+<h2>Em artigos científicos</h2>
+<p>A convenção mais comum é reportar:</p>
+<ul>
+<li><strong>Variável contínua e simétrica</strong>: $\bar{x} \pm s$.</li>
+<li><strong>Em gráficos com barras de erro</strong>: especificar se a barra é desvio padrão, SEM ou IC 95%. <strong>Nunca</strong> deixe ambíguo.</li>
+</ul><a class="nb-link" href="02_estatistica_descritiva/13_desvio_padrao.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-14-desvio-interquartil-md" class="topic"><h1>Desvio interquartil</h1><p>Mede a dispersão dos <strong>50% centrais</strong> dos dados, ignorando os 25% mais altos e os 25% mais baixos. É a alternativa robusta ao desvio padrão.</p>
+<h2>Definição</h2>
+<p>$$
+\text{IQR} = Q_3 - Q_1
+$$</p>
+<p>Onde:</p>
+<ul>
+<li>$Q_1$ é o <strong>primeiro quartil</strong> (percentil 25);</li>
+<li>$Q_3$ é o <strong>terceiro quartil</strong> (percentil 75).</li>
+</ul>
+<h2>Quartis</h2>
+<p>Os quartis dividem os dados ordenados em <strong>quatro partes iguais</strong>:</p>
+<pre><code>| 25% | 25% | 25% | 25% |
+^     ^     ^     ^     ^
+min   Q1    Q2    Q3   max
+            (mediana)
+</code></pre>
+<h2>Exemplo</h2>
+<p>Dados ordenados: $4, 6, 7, 8, 10, 12, 14, 18, 20, 25$.</p>
+<ul>
+<li>$Q_1$ (entre o 2º e o 3º valor): $\approx 6{,}75$.</li>
+<li>$Q_2 = 11$ (mediana).</li>
+<li>$Q_3 \approx 17$.</li>
+<li>$\text{IQR} = 17 - 6{,}75 = 10{,}25$.</li>
+</ul>
+<blockquote>
+<p>Existem várias convenções para calcular quartis em amostras pequenas — diferentes pacotes podem dar valores ligeiramente diferentes. Em amostras grandes, todas convergem.</p>
+</blockquote>
+<h2>Boxplot — IQR visualizado</h2>
+<p>O <strong>boxplot</strong> é o gráfico construído em torno do IQR:</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linha do meio da caixa</td>
+<td>mediana ($Q_2$)</td>
+</tr>
+<tr>
+<td>Bordas da caixa</td>
+<td>$Q_1$ e $Q_3$</td>
+</tr>
+<tr>
+<td>Altura da caixa</td>
+<td>IQR</td>
+</tr>
+<tr>
+<td>"Bigodes"</td>
+<td>tipicamente até $Q_1 - 1{,}5 \cdot \text{IQR}$ e $Q_3 + 1{,}5 \cdot \text{IQR}$</td>
+</tr>
+<tr>
+<td>Pontos isolados</td>
+<td>outliers (além dos bigodes)</td>
+</tr>
+</tbody>
+</table>
+<h2>Por que usar IQR em vez de desvio padrão?</h2>
+<table>
+<thead>
+<tr>
+<th>IQR</th>
+<th>Desvio padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Robusto a outliers</td>
+<td>Muito sensível a outliers</td>
+</tr>
+<tr>
+<td>Não depende da forma da distribuição</td>
+<td>Bem interpretável só na normal</td>
+</tr>
+<tr>
+<td>Vai bem com <strong>mediana</strong></td>
+<td>Vai bem com <strong>média</strong></td>
+</tr>
+</tbody>
+</table>
+<p>A regra prática:</p>
+<ul>
+<li>Reportou a <strong>mediana</strong>? Reporte o <strong>IQR</strong> junto.</li>
+<li>Reportou a <strong>média</strong>? Reporte o <strong>desvio padrão</strong> junto.</li>
+</ul>
+<h2>Detectando outliers</h2>
+<p>Uma regra prática (mas não universal):</p>
+<p>$$
+\text{outlier} \iff x < Q_1 - 1{,}5 \cdot \text{IQR} \quad \text{ou} \quad x > Q_3 + 1{,}5 \cdot \text{IQR}
+$$</p>
+<blockquote>
+<p>Atenção: outlier "estatístico" não significa "valor errado". Pode ser um caso raro mas legítimo (um paciente com doença atípica, por exemplo). Antes de remover, <strong>investigue</strong>.</p>
+</blockquote><a class="nb-link" href="02_estatistica_descritiva/14_desvio_interquartil.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="02-estatistica-descritiva-15-coeficiente-variacao-md" class="topic"><h1>Coeficiente de variação</h1><p>O <strong>coeficiente de variação</strong> (CV) expressa a dispersão de forma <strong>relativa</strong> — como porcentagem da média.</p>
+<h2>Fórmula</h2>
+<p>$$
+\text{CV} = \frac{s}{\bar{x}} \cdot 100\%
+$$</p>
+<h2>Por que usá-lo?</h2>
+<p>O desvio padrão sozinho não diz muito sem o contexto da média. Um $s = 2$ kg é muito ou pouco?</p>
+<ul>
+<li>Em adultos com peso médio de 70 kg, $s = 2$ é <strong>pequeno</strong> ($\text{CV} \approx 3\%$).</li>
+<li>Em recém-nascidos com peso médio de 3 kg, $s = 2$ é <strong>enorme</strong> ($\text{CV} \approx 67\%$).</li>
+</ul>
+<p>O CV permite comparar dispersão entre grupos <strong>com médias muito diferentes</strong> ou <strong>em unidades diferentes</strong>.</p>
+<h2>Exemplo</h2>
+<p>Comparando a variabilidade da pressão arterial e da glicemia:</p>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>Média</th>
+<th>s</th>
+<th>CV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pressão arterial sistólica</td>
+<td>130 mmHg</td>
+<td>15 mmHg</td>
+<td>11,5%</td>
+</tr>
+<tr>
+<td>Glicemia em jejum</td>
+<td>95 mg/dL</td>
+<td>8 mg/dL</td>
+<td>8,4%</td>
+</tr>
+</tbody>
+</table>
+<p>Apesar dos desvios padrão estarem em unidades totalmente diferentes, podemos dizer que a pressão é <strong>relativamente mais variável</strong> que a glicemia nessa amostra.</p>
+<h2>Usos típicos em biologia</h2>
+<ul>
+<li><strong>Reprodutibilidade de métodos</strong>: um CV de 2–5% é excelente, 5–10% aceitável, &gt;10% pode ser preocupante (em ensaios analíticos).</li>
+<li><strong>Variação entre indivíduos</strong>: comparar dispersão de um parâmetro entre populações com médias diferentes.</li>
+<li><strong>Controle de qualidade</strong>: limites de CV em laboratórios clínicos.</li>
+</ul>
+<h2>Limitações</h2>
+<ol>
+<li>
+<p><strong>Só faz sentido para variáveis em escala de razão</strong> (com zero absoluto natural). Não use para temperatura em Celsius, pH ou pontuações de questionários.</p>
+</li>
+<li>
+<p><strong>Instável quando a média está próxima de zero</strong>: pequenas variações na média geram CVs enormes.</p>
+</li>
+<li>
+<p><strong>Não é apropriado</strong> para variáveis que podem assumir valores negativos.</p>
+</li>
+<li>
+<p><strong>Cuidado com dados muito enviesados</strong> — como a média pode não ser representativa, o CV também pode enganar.</p>
+</li>
+</ol>
+<h2>Outras versões</h2>
+<ul>
+<li><strong>CV em forma decimal</strong>: alguns trabalhos reportam $s / \bar{x}$ sem multiplicar por 100.</li>
+<li><strong>CV robusto</strong>: $\text{IQR} / \text{mediana}$, mais resistente a outliers.</li>
+</ul><a class="nb-link" href="02_estatistica_descritiva/15_coeficiente_variacao.ipynb" target="_blank">⓪ Abrir notebook</a></section>
+<div class="footer">Produzido para fins didáticos — bioestatística — UFRJ / IBCCF</div>
+</div>
+<script src="assets/widgets.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });</script>
+</body>
+</html>

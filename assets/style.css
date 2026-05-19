@@ -1,0 +1,437 @@
+/* ============================================================
+   Bioestatística — estilo unificado (Georgia + Courier New)
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Georgia', serif;
+  background: #f8f7f4;
+  color: #1a1a1a;
+  padding: 2rem 1.5rem 4rem;
+  min-height: 100vh;
+  line-height: 1.55;
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+a { color: #1a1a1a; }
+
+/* ---------- Top nav ---------- */
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e0ddd6;
+}
+.topnav a {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: #888;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+.topnav a:hover { color: #1a1a1a; }
+.topnav a.current {
+  background: #1a1a1a;
+  color: #f8f7f4;
+}
+.topnav .brand {
+  margin-right: auto;
+  font-family: 'Georgia', serif;
+  font-size: 0.95rem;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 6px 0;
+  color: #1a1a1a;
+}
+.topnav .brand strong { font-weight: normal; }
+
+/* ---------- Page header ---------- */
+header.page-head {
+  margin-bottom: 1rem;
+}
+header.page-head h1 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  letter-spacing: -0.005em;
+}
+header.page-head .subtitle {
+  font-size: 0.8rem;
+  color: #888;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Tabs ---------- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0ddd6;
+}
+.tab {
+  font-family: 'Courier New', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #777;
+  cursor: pointer;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border 0.15s;
+}
+.tab:hover { color: #1a1a1a; border-color: #e0ddd6; }
+.tab.active {
+  background: #1a1a1a;
+  color: #f8f7f4;
+  border-color: #1a1a1a;
+}
+.tab .num {
+  display: inline-block;
+  margin-right: 6px;
+  color: #aaa;
+}
+.tab.active .num { color: #888; }
+
+/* ---------- Topic panes ---------- */
+.topic { display: none; }
+.topic.active { display: block; animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.topic h1 {
+  font-size: 1.65rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+  letter-spacing: -0.005em;
+}
+.topic h2 {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 1.75rem 0 0.65rem;
+  border-bottom: 1px solid #e0ddd6;
+  padding-bottom: 0.3rem;
+}
+.topic h3 {
+  font-size: 0.98rem;
+  font-weight: bold;
+  margin: 1.25rem 0 0.45rem;
+  font-style: italic;
+}
+.topic p { margin: 0 0 0.85rem; }
+.topic ul, .topic ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+.topic li { margin-bottom: 0.25rem; }
+.topic strong { font-weight: bold; }
+.topic em { font-style: italic; }
+
+.topic blockquote {
+  margin: 1rem 0;
+  padding: 0.6rem 1rem;
+  background: #fff;
+  border-left: 3px solid #1a1a1a;
+  border-radius: 0 4px 4px 0;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  color: #444;
+}
+.topic blockquote p:last-child { margin: 0; }
+
+.topic code {
+  font-family: 'Courier New', monospace;
+  background: #efece5;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.88em;
+}
+.topic pre {
+  background: #efece5;
+  border: 1px solid #e0ddd6;
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin: 0.85rem 0;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+.topic pre code { background: transparent; padding: 0; }
+
+.topic table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.92rem;
+  width: 100%;
+}
+.topic th, .topic td {
+  padding: 7px 12px;
+  border: 1px solid #e0ddd6;
+  text-align: left;
+  background: #fff;
+}
+.topic th {
+  background: #efece5;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+}
+
+.topic hr {
+  border: 0;
+  border-top: 1px solid #e0ddd6;
+  margin: 1.5rem 0;
+}
+
+/* ---------- KaTeX display blocks ---------- */
+.katex-display {
+  margin: 1rem 0 !important;
+  padding: 0.4rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.katex { font-size: 1.05em; }
+
+/* ---------- Interactive widget block ---------- */
+.widget {
+  background: #fff;
+  border: 1px solid #e0ddd6;
+  border-radius: 4px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+.widget-title {
+  font-family: 'Courier New', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+.widget canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0.75rem 0 1rem;
+}
+.ctrl-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ctrl-label {
+  font-size: 0.78rem;
+  color: #666;
+  font-family: 'Courier New', monospace;
+  min-width: 200px;
+}
+input[type=range] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: #ccc;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  cursor: pointer;
+  border: none;
+}
+.ctrl-val {
+  font-size: 0.78rem;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  min-width: 48px;
+  color: #1a1a1a;
+  text-align: right;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+.btn {
+  font-family: 'Courier New', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: 1px solid #1a1a1a;
+  background: #1a1a1a;
+  color: #f8f7f4;
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+}
+.btn:hover { opacity: 0.85; }
+.btn.outline {
+  background: transparent;
+  color: #1a1a1a;
+}
+.btn.outline.active {
+  background: #1a1a1a;
+  color: #f8f7f4;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+@media (max-width: 600px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .ctrl-label { min-width: 130px; font-size: 0.72rem; }
+}
+.stat-card {
+  background: #f8f7f4;
+  border: 1px solid #e0ddd6;
+  border-radius: 4px;
+  padding: 9px 11px;
+}
+.stat-card .slabel {
+  font-size: 0.66rem;
+  color: #999;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 3px;
+}
+.stat-card .sval {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+.stat-card .sdesc {
+  font-size: 0.62rem;
+  color: #aaa;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* ---------- Legend ---------- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 6px 0 14px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #555;
+  font-family: 'Courier New', monospace;
+}
+.swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  margin-top: 3rem;
+  font-size: 0.68rem;
+  color: #bbb;
+  font-family: 'Courier New', monospace;
+  border-top: 1px solid #e0ddd6;
+  padding-top: 0.75rem;
+}
+
+/* ---------- Cards (index) ---------- */
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 1.5rem; }
+@media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
+.card {
+  background: #fff;
+  border: 1px solid #e0ddd6;
+  border-radius: 4px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: #1a1a1a;
+  display: block;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.card:hover { border-color: #1a1a1a; transform: translateY(-1px); }
+.card .cnum {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: #888;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.card .ctitle {
+  font-size: 1.1rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.card .cdesc {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+}
+.card .ccount {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: #aaa;
+  margin-top: 0.75rem;
+}
+
+/* ---------- Mermaid container ---------- */
+.mermaid-container {
+  text-align: center;
+  margin: 1rem 0;
+  background: #fff;
+  border: 1px solid #e0ddd6;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+/* ---------- Notebook link ---------- */
+.nb-link {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.nb-link:hover { background: #1a1a1a; color: #f8f7f4; }
