@@ -409,7 +409,7 @@ def sidebar(sections, current_file):
 
 def footer():
     return ('<div class="footer">'
-            '<img src="assets/ibccf-logo.svg" alt="IBCCF" class="footer-logo">'
+            '<img src="assets/ibccf-logo.png" alt="IBCCF" class="footer-logo">'
             '<div class="footer-text">Instituto de Biofísica Carlos Chagas Filho — UFRJ<br>'
             'Material didático de Bioestatística · Pedro Torres &amp; Gilberto Weissmuller</div>'
             '</div>')
