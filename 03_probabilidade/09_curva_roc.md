@@ -25,19 +25,7 @@ Cada ponto corresponde a um valor de corte. Variando o corte, descrevemos uma cu
 
 ## Interpretação visual
 
-```
-sensibilidade
-   1 |          ____________
-     |     ____/
-     |    /          ← teste excelente
-     |   /
-     |  /
-     | /                ← teste mediano
-     |/
-   0 |________________________
-     0                        1
-                    1 - especificidade
-```
+![Curva ROC para testes de diferentes qualidades](assets/roc_exemplo.png)
 
 - A **diagonal** representa um teste **inútil**, equivalente a sortear no cara-ou-coroa.
 - Quanto mais a curva se aproxima do **canto superior esquerdo**, melhor o teste.
