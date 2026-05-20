@@ -51,7 +51,22 @@ A comparação de mortalidade envolve proporções, não médias, e por isso usa
 
 ## Exercício 4 — Pressão de homens e mulheres
 
-A partir de dados simulados de pressão sistólica de homens e mulheres, com cerca de doze valores por grupo, um teste t indica diferença significativa?
+A partir de dados simulados de pressão sistólica (mmHg) de homens e mulheres, gerados conforme as estatísticas do Wolfram\|Alpha (homens em torno de 122, mulheres em torno de 119, desvios da ordem de 17 a 21), um teste t indica diferença significativa?
+
+| Homens | Mulheres |
+| --- | --- |
+| 72 | 57 |
+| 124 | 143 |
+| 138 | 112 |
+| 84 | 133 |
+| 123 | 140 |
+| 139 | 156 |
+| 128 | 132 |
+| 128 | 121 |
+| 115 | 140 |
+| 107 | 175 |
+| 105 | 98 |
+| 141 | 142 |
 
 <details markdown="1">
 <summary>Mostrar resposta</summary>
@@ -64,7 +79,22 @@ O resultado provável é não rejeitar a hipótese nula, não porque a diferenç
 
 ## Exercício 5 — Teste t pela tabela e pelo software
 
-Compare as amostras A1, com dez valores de média 4,5 e desvio 3,03, e A2, com dez valores de média 7,5 e mesmo desvio.
+Compare as amostras A1 e A2 abaixo, primeiro pela tabela t e depois com software dedicado.
+
+| A1 | A2 |
+| --- | --- |
+| 0 | 3 |
+| 1 | 4 |
+| 2 | 5 |
+| 3 | 6 |
+| 4 | 7 |
+| 5 | 8 |
+| 6 | 9 |
+| 7 | 10 |
+| 8 | 11 |
+| 9 | 12 |
+
+As duas têm dez valores; A1 tem média 4,5 e A2 tem média 7,5, ambas com desvio 3,03.
 
 <details markdown="1">
 <summary>Mostrar resposta</summary>

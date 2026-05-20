@@ -4,7 +4,19 @@ Exercícios sobre associação entre variáveis e ajuste de retas.
 
 ## Exercício 1 — Peso e altura
 
-A partir de uma pequena tabela de altura e peso, com pares como (152, 38) até (193, 68), calcule o coeficiente de correlação, o R², a reta de melhor ajuste e critique o uso da regressão.
+A partir da tabela de altura e peso abaixo, calcule o coeficiente de correlação, o R², a reta de melhor ajuste e critique o uso da regressão.
+
+| Altura (cm) | Peso (kg) |
+| --- | --- |
+| 152 | 38 |
+| 157 | 43 |
+| 163 | 64 |
+| 168 | 70 |
+| 173 | 54 |
+| 178 | 79 |
+| 183 | 66 |
+| 188 | 89 |
+| 193 | 68 |
 
 <details markdown="1">
 <summary>Mostrar resposta</summary>

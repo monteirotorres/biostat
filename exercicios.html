@@ -661,14 +661,123 @@ $$</div>
 <p>A comparação de mortalidade envolve proporções, não médias, e por isso usa uma tabela de contingência com o teste do qui-quadrado. As proporções 13,1% e 16,4% não diferem significativamente, ou seja, não há evidência de que um anestésico cause mais fatalidades que o outro.</p>
 </details>
 <h2>Exercício 4 — Pressão de homens e mulheres</h2>
-<p>A partir de dados simulados de pressão sistólica de homens e mulheres, com cerca de doze valores por grupo, um teste t indica diferença significativa?</p>
+<p>A partir de dados simulados de pressão sistólica (mmHg) de homens e mulheres, gerados conforme as estatísticas do Wolfram|Alpha (homens em torno de 122, mulheres em torno de 119, desvios da ordem de 17 a 21), um teste t indica diferença significativa?</p>
+<table>
+<thead>
+<tr>
+<th>Homens</th>
+<th>Mulheres</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>72</td>
+<td>57</td>
+</tr>
+<tr>
+<td>124</td>
+<td>143</td>
+</tr>
+<tr>
+<td>138</td>
+<td>112</td>
+</tr>
+<tr>
+<td>84</td>
+<td>133</td>
+</tr>
+<tr>
+<td>123</td>
+<td>140</td>
+</tr>
+<tr>
+<td>139</td>
+<td>156</td>
+</tr>
+<tr>
+<td>128</td>
+<td>132</td>
+</tr>
+<tr>
+<td>128</td>
+<td>121</td>
+</tr>
+<tr>
+<td>115</td>
+<td>140</td>
+</tr>
+<tr>
+<td>107</td>
+<td>175</td>
+</tr>
+<tr>
+<td>105</td>
+<td>98</td>
+</tr>
+<tr>
+<td>141</td>
+<td>142</td>
+</tr>
+</tbody>
+</table>
 <details>
 <summary>Mostrar resposta</summary>
 <p>A diferença real entre as médias é de apenas cerca de 3 mmHg, enquanto os desvios padrão são grandes, da ordem de 17 a 21 mmHg. Com apenas doze valores por grupo, o teste tem poder muito baixo para detectar um efeito tão pequeno diante de tanta variabilidade.</p>
 <p>O resultado provável é não rejeitar a hipótese nula, não porque a diferença não exista, mas porque a amostra é pequena demais. Esse exercício prepara o terreno para a discussão de potência: a ausência de significância não prova ausência de efeito.</p>
 </details>
 <h2>Exercício 5 — Teste t pela tabela e pelo software</h2>
-<p>Compare as amostras A1, com dez valores de média 4,5 e desvio 3,03, e A2, com dez valores de média 7,5 e mesmo desvio.</p>
+<p>Compare as amostras A1 e A2 abaixo, primeiro pela tabela t e depois com software dedicado.</p>
+<table>
+<thead>
+<tr>
+<th>A1</th>
+<th>A2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>4</td>
+<td>7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>8</td>
+</tr>
+<tr>
+<td>6</td>
+<td>9</td>
+</tr>
+<tr>
+<td>7</td>
+<td>10</td>
+</tr>
+<tr>
+<td>8</td>
+<td>11</td>
+</tr>
+<tr>
+<td>9</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<p>As duas têm dez valores; A1 tem média 4,5 e A2 tem média 7,5, ambas com desvio 3,03.</p>
 <details>
 <summary>Mostrar resposta</summary>
 <p>A estatística t é a diferença das médias dividida pelo erro padrão da diferença. Com desvios iguais ($s = 3{,}03$) e dez valores em cada grupo:</p>
@@ -692,14 +801,120 @@ $$</div>
 <div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/11_anova.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
 <p>Exercícios sobre comparação de três ou mais grupos.</p>
 <h2>Exercício 1 — Drogas A, B e placebo</h2>
-<p>Avalia-se a contagem de linfócitos sob duas drogas e um placebo, usando sete ninhadas de camundongos, com animais da mesma ninhada distribuídos entre os três tratamentos. Os pesquisadores querem saber se as drogas diferem do placebo. Que análise usar?</p>
+<p>Avalia-se a contagem de linfócitos (milhares por mm³) sob duas drogas e um placebo, usando sete ninhadas de camundongos, com animais da mesma ninhada distribuídos entre os três tratamentos. Os pesquisadores querem saber se as drogas diferem do placebo. Reproduza a análise com os dados abaixo.</p>
+<table>
+<thead>
+<tr>
+<th>Placebo</th>
+<th>Droga A</th>
+<th>Droga B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5,4</td>
+<td>6,0</td>
+<td>5,1</td>
+</tr>
+<tr>
+<td>4,0</td>
+<td>4,8</td>
+<td>3,9</td>
+</tr>
+<tr>
+<td>7,0</td>
+<td>6,9</td>
+<td>6,5</td>
+</tr>
+<tr>
+<td>5,8</td>
+<td>6,4</td>
+<td>5,6</td>
+</tr>
+<tr>
+<td>3,5</td>
+<td>5,5</td>
+<td>3,9</td>
+</tr>
+<tr>
+<td>7,6</td>
+<td>9,0</td>
+<td>7,0</td>
+</tr>
+<tr>
+<td>5,5</td>
+<td>6,8</td>
+<td>5,4</td>
+</tr>
+</tbody>
+</table>
 <details>
 <summary>Mostrar resposta</summary>
 <p>O fato de os animais virem da mesma ninhada cria um pareamento natural, porque irmãos respondem de forma mais parecida entre si. Isso indica uma ANOVA de medidas repetidas, que controla a variabilidade entre ninhadas, em vez da ANOVA comum.</p>
 <p>A pergunta "as drogas diferem do placebo" pede comparações de cada tratamento contra um grupo de referência, e não de todos contra todos. O pós-teste apropriado é o de Dunnett, que compara cada grupo com o controle. Na prática, o teste global retorna um valor-p de cerca de 0,002, e o pós-teste de Dunnett encontra diferença significativa apenas entre a droga A e o placebo.</p>
 </details>
 <h2>Exercício 2 — Concurso na UFRJ</h2>
-<p>Seis candidatos foram avaliados por cinco membros de uma banca. Pergunta-se se a banca consegue de fato diferenciar os candidatos e se há empates estatísticos que tornariam a classificação um sorteio.</p>
+<p>Seis candidatos foram avaliados por cinco membros de uma banca de concurso (notas reais, com nomes alterados). Pergunta-se se a banca consegue de fato diferenciar os candidatos e se há empates estatísticos que tornariam a classificação um sorteio.</p>
+<table>
+<thead>
+<tr>
+<th>Avaliador</th>
+<th>Cand. 1</th>
+<th>Cand. 2</th>
+<th>Cand. 3</th>
+<th>Cand. 4</th>
+<th>Cand. 5</th>
+<th>Cand. 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>9,43</td>
+<td>9,00</td>
+<td>8,63</td>
+<td>8,35</td>
+<td>7,80</td>
+<td>7,95</td>
+</tr>
+<tr>
+<td>2</td>
+<td>9,20</td>
+<td>8,88</td>
+<td>8,65</td>
+<td>8,18</td>
+<td>8,33</td>
+<td>7,55</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8,95</td>
+<td>9,13</td>
+<td>8,70</td>
+<td>8,60</td>
+<td>8,18</td>
+<td>8,03</td>
+</tr>
+<tr>
+<td>4</td>
+<td>8,90</td>
+<td>8,75</td>
+<td>8,38</td>
+<td>7,85</td>
+<td>7,75</td>
+<td>8,08</td>
+</tr>
+<tr>
+<td>5</td>
+<td>9,10</td>
+<td>9,15</td>
+<td>8,95</td>
+<td>8,35</td>
+<td>7,68</td>
+<td>8,08</td>
+</tr>
+</tbody>
+</table>
 <details>
 <summary>Mostrar resposta</summary>
 <p>Os avaliadores diferem em rigor, então cada candidato é avaliado pelos mesmos cinco juízes, o que configura um delineamento de medidas repetidas. A pergunta sobre diferenciar candidatos se traduz em comparar a variabilidade entre candidatos com a variabilidade entre avaliadores.</p>
@@ -713,7 +928,53 @@ $$</div>
 <div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/12_correlacao_regressao.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
 <p>Exercícios sobre associação entre variáveis e ajuste de retas.</p>
 <h2>Exercício 1 — Peso e altura</h2>
-<p>A partir de uma pequena tabela de altura e peso, com pares como (152, 38) até (193, 68), calcule o coeficiente de correlação, o R², a reta de melhor ajuste e critique o uso da regressão.</p>
+<p>A partir da tabela de altura e peso abaixo, calcule o coeficiente de correlação, o R², a reta de melhor ajuste e critique o uso da regressão.</p>
+<table>
+<thead>
+<tr>
+<th>Altura (cm)</th>
+<th>Peso (kg)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>152</td>
+<td>38</td>
+</tr>
+<tr>
+<td>157</td>
+<td>43</td>
+</tr>
+<tr>
+<td>163</td>
+<td>64</td>
+</tr>
+<tr>
+<td>168</td>
+<td>70</td>
+</tr>
+<tr>
+<td>173</td>
+<td>54</td>
+</tr>
+<tr>
+<td>178</td>
+<td>79</td>
+</tr>
+<tr>
+<td>183</td>
+<td>66</td>
+</tr>
+<tr>
+<td>188</td>
+<td>89</td>
+</tr>
+<tr>
+<td>193</td>
+<td>68</td>
+</tr>
+</tbody>
+</table>
 <details>
 <summary>Mostrar resposta</summary>
 <p>O coeficiente de correlação de Pearson fica em torno de 0,77, uma associação positiva forte: pessoas mais altas tendem a pesar mais. O R² é o quadrado desse valor:</p>
@@ -749,7 +1010,40 @@ $$</div>
 <div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/13_potencia.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
 <p>Exercícios sobre poder estatístico e tamanho de amostra.</p>
 <h2>Exercício 1 — Tamanho da amostra e precisão</h2>
-<p>Tomando amostras de tamanhos 2, 3, 4, 6, 10 e 20 de uma população normal, como variam o desvio da média, o desvio padrão estimado, o erro padrão da média e o intervalo de confiança?</p>
+<p>De uma população normal de média e desvio padrão iguais a 1, tomaram-se cem amostras de cada tamanho (2, 3, 4, 6, 10 e 20) e calcularam-se as médias do desvio da média e do desvio padrão estimado, resumidas abaixo. Como variam o desvio da média, o desvio padrão estimado, o erro padrão da média e o intervalo de confiança com o tamanho da amostra?</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>6</th>
+<th>10</th>
+<th>20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>desvio da média</td>
+<td>0,573</td>
+<td>0,454</td>
+<td>0,439</td>
+<td>0,310</td>
+<td>0,239</td>
+<td>0,187</td>
+</tr>
+<tr>
+<td>desvio padrão estimado</td>
+<td>1,269</td>
+<td>1,196</td>
+<td>1,116</td>
+<td>1,049</td>
+<td>1,033</td>
+<td>1,027</td>
+</tr>
+</tbody>
+</table>
 <details>
 <summary>Mostrar resposta</summary>
 <p>À medida que a amostra cresce, o desvio padrão estimado se aproxima do valor da população, com flutuações menores. O erro padrão da média segue</p>

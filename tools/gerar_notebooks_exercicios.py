@@ -132,6 +132,10 @@ save("07_exercicios/10_testes_dois_grupos.ipynb", [
          "stats.mannwhitneyu(a1, a2, alternative='two-sided')"),
     md("## Exercício 3 — Halotano x Morfina (t a partir de resumos)"),
     code("res = stats.ttest_ind_from_stats(66.9,12.2,61, 73.2,14.4,61)\nres"),
+    md("## Exercício 4 — Pressão de homens e mulheres"),
+    code("homens   = pd.Series([72,124,138,84,123,139,128,128,115,107,105,141])\n"
+         "mulheres = pd.Series([57,143,112,133,140,156,132,121,140,175,98,142])\n"
+         "stats.ttest_ind(homens, mulheres)"),
     md("## Exercício 5 — t não pareado"),
     code("a1 = pd.Series(range(0,10), dtype=float)\n"
          "a2 = pd.Series(range(3,13), dtype=float)\n"
@@ -145,6 +149,18 @@ save("07_exercicios/11_anova.ipynb", [
          "A = [6.0,4.8,6.9,6.4,5.5,9.0,6.8]\n"
          "B = [5.1,3.9,6.5,5.6,3.9,7.0,5.4]\n"
          "stats.f_oneway(P, A, B)"),
+    md("## Exercício 2 — Concurso (5 avaliadores × 6 candidatos)"),
+    code("notas = pd.DataFrame({\n"
+         "    'c1': [9.43,9.20,8.95,8.90,9.10],\n"
+         "    'c2': [9.00,8.88,9.13,8.75,9.15],\n"
+         "    'c3': [8.63,8.65,8.70,8.38,8.95],\n"
+         "    'c4': [8.35,8.18,8.60,7.85,8.35],\n"
+         "    'c5': [7.80,8.33,8.18,7.75,7.68],\n"
+         "    'c6': [7.95,7.55,8.03,8.08,8.08],\n"
+         "})\n"
+         "print('médias dos candidatos:')\n"
+         "print(notas.mean().round(3))\n"
+         "stats.f_oneway(*[notas[c] for c in notas])"),
 ])
 
 save("07_exercicios/12_correlacao_regressao.ipynb", [

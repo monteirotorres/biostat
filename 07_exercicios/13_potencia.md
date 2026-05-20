@@ -4,7 +4,12 @@ Exercícios sobre poder estatístico e tamanho de amostra.
 
 ## Exercício 1 — Tamanho da amostra e precisão
 
-Tomando amostras de tamanhos 2, 3, 4, 6, 10 e 20 de uma população normal, como variam o desvio da média, o desvio padrão estimado, o erro padrão da média e o intervalo de confiança?
+De uma população normal de média e desvio padrão iguais a 1, tomaram-se cem amostras de cada tamanho (2, 3, 4, 6, 10 e 20) e calcularam-se as médias do desvio da média e do desvio padrão estimado, resumidas abaixo. Como variam o desvio da média, o desvio padrão estimado, o erro padrão da média e o intervalo de confiança com o tamanho da amostra?
+
+| n | 2 | 3 | 4 | 6 | 10 | 20 |
+| --- | --- | --- | --- | --- | --- | --- |
+| desvio da média | 0,573 | 0,454 | 0,439 | 0,310 | 0,239 | 0,187 |
+| desvio padrão estimado | 1,269 | 1,196 | 1,116 | 1,049 | 1,033 | 1,027 |
 
 <details markdown="1">
 <summary>Mostrar resposta</summary>
