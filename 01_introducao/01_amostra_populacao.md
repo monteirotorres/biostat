@@ -47,7 +47,7 @@ Uma amostra mal coletada gera conclusões erradas, mesmo com matemática perfeit
 
 ```mermaid
 flowchart LR
-    P[População<br>μ, σ desconhecidos] -->|amostragem aleatória| A[Amostra<br>x̄, s calculados]
+    P["População (μ, σ desconhecidos)"] -->|amostragem aleatória| A["Amostra (x̄, s calculados)"]
     A -->|inferência| P
 ```
 

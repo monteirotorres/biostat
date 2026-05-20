@@ -71,9 +71,9 @@ Exemplo: anagramas da palavra "ESTATÍSTICA" (11 letras, com repetições).
 
 ```mermaid
 flowchart TD
-    A[Escolhendo k entre n] --> B{Ordem importa?}
-    B -->|Sim| P[Permutação<br>n!/(n-k)!]
-    B -->|Não| C[Combinação<br>C(n,k)]
+    A["Escolhendo k entre n"] --> B{"A ordem importa?"}
+    B -->|Sim| P["Permutação: n! / (n-k)!"]
+    B -->|Não| C["Combinação: C(n,k)"]
 ```
 
 ## Em bioestatística

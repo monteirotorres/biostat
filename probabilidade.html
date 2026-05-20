@@ -3,17 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parte 3 — Probabilidade — Bioestatística</title>
+<title>Probabilidade — Bioestatística IBCCF</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-  onload="renderMathInElement(document.body, { delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });"></script>
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 </head>
 <body>
-<div class="container">
-<div class="topnav"><span class="brand"><strong>Bioestatística</strong> · IBCCF / UFRJ</span><a href="index.html">Início</a><a href="parte1.html">Parte 1</a><a href="parte2.html">Parte 2</a><a href="parte3.html" class="current">Parte 3</a><a href="parte4.html">Parte 4</a></div><header class="page-head"><h1>Parte 3 — Parte 3 — Probabilidade</h1><div class="subtitle">10 tópicos · navegue pelas abas abaixo</div></header><div class="tabs"><button class="tab active" data-target="03-probabilidade-01-evento-md"><span class="num">01</span>Evento — definição</button><button class="tab" data-target="03-probabilidade-02-eventos-compostos-md"><span class="num">02</span>Eventos compostos</button><button class="tab" data-target="03-probabilidade-03-probabilidade-condicional-md"><span class="num">03</span>Probabilidade condicional</button><button class="tab" data-target="03-probabilidade-04-analise-combinatoria-md"><span class="num">04</span>Análise combinatória</button><button class="tab" data-target="03-probabilidade-05-testes-binarios-md"><span class="num">05</span>Testes binários</button><button class="tab" data-target="03-probabilidade-06-sensibilidade-especificidade-md"><span class="num">06</span>Sensibilidade e especificidade</button><button class="tab" data-target="03-probabilidade-07-matriz-confusao-md"><span class="num">07</span>Matriz de confusão</button><button class="tab" data-target="03-probabilidade-08-valor-preditivo-md"><span class="num">08</span>Valor preditivo</button><button class="tab" data-target="03-probabilidade-09-curva-roc-md"><span class="num">09</span>Curva ROC</button><button class="tab" data-target="03-probabilidade-10-distribuicao-binomial-md"><span class="num">10</span>Distribuição binomial</button></div><section id="03-probabilidade-01-evento-md" class="topic active"><h1>Evento — definição</h1><p>A probabilidade é a linguagem matemática para falar de <strong>incerteza</strong>. Antes de calcular probabilidades, precisamos definir alguns termos.</p>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+<nav class="sidebar" id="sidebar">
+<a class="sidebar-brand" href="index.html">Bioestatística<span>IBCCF · UFRJ</span></a>
+<div class="nav-group">
+<div class="nav-group-title">1. Introdução</div>
+<ul>
+<li><a href="introducao.html#01-introducao-01-amostra-populacao-md"><span class="n">1.1</span>Amostra e população</a></li>
+<li><a href="introducao.html#01-introducao-02-descricao-inferencia-md"><span class="n">1.2</span>Descrição vs. inferência</a></li>
+<li><a href="introducao.html#01-introducao-03-precisao-acuracia-md"><span class="n">1.3</span>Precisão e acurácia</a></li>
+<li><a href="introducao.html#01-introducao-04-algarismos-significativos-md"><span class="n">1.4</span>Algarismos significativos</a></li>
+<li><a href="introducao.html#01-introducao-05-notacao-cientifica-md"><span class="n">1.5</span>Notação científica</a></li>
+<li><a href="introducao.html#01-introducao-06-tipos-variaveis-md"><span class="n">1.6</span>Tipos de variáveis</a></li>
+<li><a href="introducao.html#01-introducao-07-histogramas-md"><span class="n">1.7</span>Histogramas</a></li>
+<li><a href="introducao.html#01-introducao-08-curva-normal-md"><span class="n">1.8</span>Curva normal</a></li>
+<li><a href="introducao.html#01-introducao-09-tecnicas-amostragem-md"><span class="n">1.9</span>Técnicas de amostragem</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">2. Estatística Descritiva</div>
+<ul>
+<li><a href="descritiva.html#02-estatistica-descritiva-01-tendencia-central-md"><span class="n">2.1</span>Medidas de tendência central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-02-moda-md"><span class="n">2.2</span>Moda</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-03-media-aritmetica-md"><span class="n">2.3</span>Média aritmética</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-04-media-cortada-md"><span class="n">2.4</span>Média cortada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-05-media-ponderada-md"><span class="n">2.5</span>Média ponderada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-06-media-geometrica-md"><span class="n">2.6</span>Média geométrica</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-07-mediana-md"><span class="n">2.7</span>Mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-08-media-vs-mediana-md"><span class="n">2.8</span>Média vs. mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-09-teorema-limite-central-md"><span class="n">2.9</span>Teorema do limite central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-10-amplitude-md"><span class="n">2.10</span>Amplitude</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-11-desvio-medio-md"><span class="n">2.11</span>Desvio médio</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-12-variancia-md"><span class="n">2.12</span>Variância</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-13-desvio-padrao-md"><span class="n">2.13</span>Desvio padrão</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-14-desvio-interquartil-md"><span class="n">2.14</span>Desvio interquartil</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-15-coeficiente-variacao-md"><span class="n">2.15</span>Coeficiente de variação</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">3. Probabilidade</div>
+<ul>
+<li><a class="nav-link" data-target="03-probabilidade-01-evento-md" href="#03-probabilidade-01-evento-md"><span class="n">3.1</span>Evento — definição</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-02-eventos-compostos-md" href="#03-probabilidade-02-eventos-compostos-md"><span class="n">3.2</span>Eventos compostos</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-03-probabilidade-condicional-md" href="#03-probabilidade-03-probabilidade-condicional-md"><span class="n">3.3</span>Probabilidade condicional</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-04-analise-combinatoria-md" href="#03-probabilidade-04-analise-combinatoria-md"><span class="n">3.4</span>Análise combinatória</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-05-testes-binarios-md" href="#03-probabilidade-05-testes-binarios-md"><span class="n">3.5</span>Testes binários</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-06-sensibilidade-especificidade-md" href="#03-probabilidade-06-sensibilidade-especificidade-md"><span class="n">3.6</span>Sensibilidade e especificidade</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-07-matriz-confusao-md" href="#03-probabilidade-07-matriz-confusao-md"><span class="n">3.7</span>Matriz de confusão</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-08-valor-preditivo-md" href="#03-probabilidade-08-valor-preditivo-md"><span class="n">3.8</span>Valor preditivo</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-09-curva-roc-md" href="#03-probabilidade-09-curva-roc-md"><span class="n">3.9</span>Curva ROC</a></li>
+<li><a class="nav-link" data-target="03-probabilidade-10-distribuicao-binomial-md" href="#03-probabilidade-10-distribuicao-binomial-md"><span class="n">3.10</span>Distribuição binomial</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">4. Distribuições amostrais</div>
+<ul>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-01-de-onde-vem-md"><span class="n">4.1</span>De onde vêm t, F e χ²</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-02-qui-quadrado-md"><span class="n">4.2</span>Distribuição qui-quadrado</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-03-t-student-md"><span class="n">4.3</span>Distribuição t de Student</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-04-f-distribuicao-md"><span class="n">4.4</span>Distribuição F</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">5. Estatística Inferencial</div>
+<ul>
+<li><a href="inferencial.html#04-estatistica-inferencial-01-logica-inferencia-md"><span class="n">5.1</span>Lógica da inferência</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-02-estimacao-md"><span class="n">5.2</span>Estimação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-03-intervalo-confianca-md"><span class="n">5.3</span>Intervalos de confiança</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-04-hipoteses-md"><span class="n">5.4</span>Hipótese nula e alternativa</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-05-significancia-md"><span class="n">5.5</span>Nível de significância</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-06-valor-p-md"><span class="n">5.6</span>Valor-p</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-07-erros-tipo-i-ii-md"><span class="n">5.7</span>Erros tipo I e tipo II</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-08-teste-z-md"><span class="n">5.8</span>Teste z</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-09-teste-t-uma-amostra-md"><span class="n">5.9</span>Teste t de uma amostra</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-10-teste-t-independente-md"><span class="n">5.10</span>Teste t para duas amostras independentes</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-11-teste-t-pareado-md"><span class="n">5.11</span>Teste t pareado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-12-anova-md"><span class="n">5.12</span>ANOVA</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-13-qui-quadrado-md"><span class="n">5.13</span>Teste do qui-quadrado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-14-correlacao-md"><span class="n">5.14</span>Correlação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-15-regressao-linear-md"><span class="n">5.15</span>Regressão linear</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-16-testes-nao-parametricos-md"><span class="n">5.16</span>Testes não paramétricos</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-17-design-experimental-md"><span class="n">5.17</span>Design experimental e potência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">6. Tabelas estatísticas</div>
+<ul>
+<li><a href="tabelas.html#06-tabelas-01-tabelas-md"><span class="n">6.1</span>Tabelas de referência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">7. Exercícios</div>
+<ul>
+<li><a href="exercicios.html#07-exercicios-01-exercicios-md"><span class="n">7.1</span>Exercícios resolvidos por tema</a></li>
+</ul></div>
+</nav>
+<main class="content"><div class="content-inner">
+<div class="page-eyebrow">3. Probabilidade</div>
+<article id="03-probabilidade-01-evento-md" class="topic">
+<div class="topic-num">3.1</div>
+<h1 class="topic-title">Evento — definição</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/01_evento.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A probabilidade é a linguagem matemática para falar de <strong>incerteza</strong>. Antes de calcular probabilidades, precisamos definir alguns termos.</p>
 <h2>Experimento aleatório</h2>
 <p>É qualquer processo cujo resultado <strong>não pode ser previsto com certeza</strong>, mas cujos resultados possíveis são conhecidos.</p>
 <p>Exemplos:</p>
@@ -123,7 +218,14 @@ $$</div>
 <div class="math-display">$$
 P(A \cap B) = P(A) \cdot P(B)
 $$</div>
-<p>Voltaremos a essas regras nos próximos tópicos.</p><a class="nb-link" href="03_probabilidade/01_evento.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-02-eventos-compostos-md" class="topic"><h1>Eventos compostos</h1><p>Eventos compostos envolvem <strong>dois ou mais eventos</strong> combinados pelas operações <strong>e</strong>, <strong>ou</strong>, <strong>não</strong>.</p>
+<p>Voltaremos a essas regras nos próximos tópicos.</p>
+
+</article>
+<article id="03-probabilidade-02-eventos-compostos-md" class="topic">
+<div class="topic-num">3.2</div>
+<h1 class="topic-title">Eventos compostos</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/02_eventos_compostos.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Eventos compostos envolvem <strong>dois ou mais eventos</strong> combinados pelas operações <strong>e</strong>, <strong>ou</strong>, <strong>não</strong>.</p>
 <h2>União: $A \cup B$ (ao menos um deles)</h2>
 <p>A probabilidade de <strong>A ou B</strong> ocorrerem:</p>
 <div class="math-display">$$
@@ -232,7 +334,14 @@ $$</div>
 <td>em geral simplifica</td>
 </tr>
 </tbody>
-</table><a class="nb-link" href="03_probabilidade/02_eventos_compostos.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-03-probabilidade-condicional-md" class="topic"><h1>Probabilidade condicional</h1><p>A <strong>probabilidade condicional</strong> mede a chance de um evento $A$ acontecer <strong>sabendo que</strong> outro evento $B$ já ocorreu.</p>
+</table>
+
+</article>
+<article id="03-probabilidade-03-probabilidade-condicional-md" class="topic">
+<div class="topic-num">3.3</div>
+<h1 class="topic-title">Probabilidade condicional</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/03_probabilidade_condicional.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A <strong>probabilidade condicional</strong> mede a chance de um evento $A$ acontecer <strong>sabendo que</strong> outro evento $B$ já ocorreu.</p>
 <h2>Notação</h2>
 <p>Lê-se "probabilidade de A dado B":</p>
 <div class="math-display">$$
@@ -319,7 +428,14 @@ $$</div>
 <blockquote>
 <p><strong>Condicional a quê?</strong></p>
 </blockquote>
-<p>A resposta muda completamente o significado do número.</p><a class="nb-link" href="03_probabilidade/03_probabilidade_condicional.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-04-analise-combinatoria-md" class="topic"><h1>Análise combinatória</h1><p>Ferramenta para <strong>contar</strong> o número de resultados possíveis quando organizamos ou escolhemos elementos.</p>
+<p>A resposta muda completamente o significado do número.</p>
+
+</article>
+<article id="03-probabilidade-04-analise-combinatoria-md" class="topic">
+<div class="topic-num">3.4</div>
+<h1 class="topic-title">Análise combinatória</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/04_analise_combinatoria.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Ferramenta para <strong>contar</strong> o número de resultados possíveis quando organizamos ou escolhemos elementos.</p>
 <h2>Princípio fundamental da contagem</h2>
 <p>Se um experimento tem $a$ resultados possíveis em uma etapa e $b$ na próxima, o total de resultados é $a \cdot b$.</p>
 <p>Exemplo: 3 camisas e 4 calças → $3 \cdot 4 = 12$ combinações.</p>
@@ -363,9 +479,9 @@ $$</div>
 <p>Exemplo: anagramas da palavra "ESTATÍSTICA" (11 letras, com repetições).</p>
 <h2>Quando usar cada um</h2>
 <div class="mermaid-container"><pre class="mermaid">flowchart TD
-    A[Escolhendo k entre n] --&gt; B{Ordem importa?}
-    B --&gt;|Sim| P[Permutação&lt;br&gt;n!/(n-k)!]
-    B --&gt;|Não| C[Combinação&lt;br&gt;C(n,k)]
+    A[&quot;Escolhendo k entre n&quot;] --&gt; B{&quot;A ordem importa?&quot;}
+    B --&gt;|Sim| P[&quot;Permutação: n! / (n-k)!&quot;]
+    B --&gt;|Não| C[&quot;Combinação: C(n,k)&quot;]
 </pre></div>
 <h2>Em bioestatística</h2>
 <p>A análise combinatória aparece principalmente em:</p>
@@ -374,7 +490,14 @@ $$</div>
 <li>problemas de <strong>amostragem</strong> sem reposição;</li>
 <li>combinações em <strong>estudos de associação genética</strong>;</li>
 <li>montagem de <strong>brackets</strong> em ensaios clínicos.</li>
-</ul><a class="nb-link" href="03_probabilidade/04_analise_combinatoria.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-05-testes-binarios-md" class="topic"><h1>Testes binários</h1><p>Um teste binário é qualquer procedimento diagnóstico cujo resultado tem <strong>apenas duas possibilidades</strong>: positivo ou negativo.</p>
+</ul>
+
+</article>
+<article id="03-probabilidade-05-testes-binarios-md" class="topic">
+<div class="topic-num">3.5</div>
+<h1 class="topic-title">Testes binários</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/05_testes_binarios.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Um teste binário é qualquer procedimento diagnóstico cujo resultado tem <strong>apenas duas possibilidades</strong>: positivo ou negativo.</p>
 <h2>Exemplos</h2>
 <ul>
 <li>Teste de COVID (PCR ou antígeno);</li>
@@ -450,7 +573,14 @@ $$</div>
 <li>da <strong>prevalência da doença</strong> na população testada;</li>
 <li>do <strong>valor de corte</strong> escolhido.</li>
 </ul>
-<p>Nos próximos tópicos, vamos quantificar cada um desses elementos.</p><a class="nb-link" href="03_probabilidade/05_testes_binarios.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-06-sensibilidade-especificidade-md" class="topic"><h1>Sensibilidade e especificidade</h1><p>São as duas propriedades fundamentais de um teste diagnóstico binário. Ambas são <strong>propriedades do teste</strong>, não do paciente — não dependem da prevalência da doença.</p>
+<p>Nos próximos tópicos, vamos quantificar cada um desses elementos.</p>
+
+</article>
+<article id="03-probabilidade-06-sensibilidade-especificidade-md" class="topic">
+<div class="topic-num">3.6</div>
+<h1 class="topic-title">Sensibilidade e especificidade</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/06_sensibilidade_especificidade.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>São as duas propriedades fundamentais de um teste diagnóstico binário. Ambas são <strong>propriedades do teste</strong>, não do paciente — não dependem da prevalência da doença.</p>
 <h2>Sensibilidade</h2>
 <p>Probabilidade do teste dar <strong>positivo entre os doentes</strong>.</p>
 <div class="math-display">$$
@@ -576,24 +706,13 @@ $$</div>
 <li>Sensibilidade = $85 / (85 + 15) = 0{,}85$.</li>
 <li>Especificidade = $855 / (855 + 45) = 0{,}95$.</li>
 </ul>
+
 <div class="widget" data-widget="wSensEsp" data-id="sens_3_6">
   <div class="widget-title">Calculadora — Sensibilidade, Especificidade, VPP e VPN</div>
   <div class="controls">
-    <div class="ctrl-row">
-      <span class="ctrl-label">Sensibilidade</span>
-      <input type="range" min="0.5" max="1" step="0.01" value="0.95" id="sens_3_6-sens">
-      <span class="ctrl-val" id="sens_3_6-sens-v">0.95</span>
-    </div>
-    <div class="ctrl-row">
-      <span class="ctrl-label">Especificidade</span>
-      <input type="range" min="0.5" max="1" step="0.01" value="0.95" id="sens_3_6-esp">
-      <span class="ctrl-val" id="sens_3_6-esp-v">0.95</span>
-    </div>
-    <div class="ctrl-row">
-      <span class="ctrl-label">Prevalência</span>
-      <input type="range" min="0.001" max="0.5" step="0.001" value="0.01" id="sens_3_6-prev">
-      <span class="ctrl-val" id="sens_3_6-prev-v">1.0%</span>
-    </div>
+    <div class="ctrl-row"><span class="ctrl-label">Sensibilidade</span><input type="range" min="0.5" max="1" step="0.01" value="0.95" id="sens_3_6-sens"><span class="ctrl-val" id="sens_3_6-sens-v">0.95</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Especificidade</span><input type="range" min="0.5" max="1" step="0.01" value="0.95" id="sens_3_6-esp"><span class="ctrl-val" id="sens_3_6-esp-v">0.95</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Prevalência</span><input type="range" min="0.001" max="0.5" step="0.001" value="0.01" id="sens_3_6-prev"><span class="ctrl-val" id="sens_3_6-prev-v">0.01</span></div>
   </div>
   <table style="font-family:'Courier New',monospace;font-size:0.85rem;text-align:center;">
     <thead><tr><th></th><th>Doente</th><th>Saudável</th></tr></thead>
@@ -603,11 +722,15 @@ $$</div>
     </tbody>
   </table>
   <div class="stat-grid" style="margin-top:0.6rem;">
-    <div class="stat-card"><div class="slabel">VPP</div><div class="sval" id="sens_3_6-vpp" style="color:#3266ad;">—</div><div class="sdesc">P(doente | teste +)</div></div>
-    <div class="stat-card"><div class="slabel">VPN</div><div class="sval" id="sens_3_6-vpn" style="color:#3266ad;">—</div><div class="sdesc">P(saudável | teste −)</div></div>
+    <div class="stat-card"><div class="slabel">VPP</div><div class="sval" id="sens_3_6-vpp" style="color:#3266ad;">—</div><div class="sdesc">P(doente | teste +)</div></div><div class="stat-card"><div class="slabel">VPN</div><div class="sval" id="sens_3_6-vpn" style="color:#3266ad;">—</div><div class="sdesc">P(saudável | teste −)</div></div>
   </div>
 </div>
-<a class="nb-link" href="03_probabilidade/06_sensibilidade_especificidade.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-07-matriz-confusao-md" class="topic"><h1>Matriz de confusão</h1><p>A <strong>matriz de confusão</strong> é uma tabela 2x2 (ou maior, para múltiplas categorias) que mostra <strong>onde o teste acertou e onde errou</strong>.</p>
+</article>
+<article id="03-probabilidade-07-matriz-confusao-md" class="topic">
+<div class="topic-num">3.7</div>
+<h1 class="topic-title">Matriz de confusão</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/07_matriz_confusao.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A <strong>matriz de confusão</strong> é uma tabela 2x2 (ou maior, para múltiplas categorias) que mostra <strong>onde o teste acertou e onde errou</strong>.</p>
 <p>O nome vem da ideia de que ela mostra <strong>onde o classificador se confundiu</strong>: em vez de só dizer "70% de acertos", ela mostra <strong>quais classes foram trocadas por quais</strong>.</p>
 <h2>Versão 2x2 (clássica)</h2>
 <table>
@@ -724,7 +847,14 @@ $$</div>
 <li>testes diagnósticos novos vs. padrão-ouro;</li>
 <li>ferramentas de triagem;</li>
 <li>modelos de aprendizado de máquina aplicados a imagens médicas, ECGs, sequências genéticas, etc.</li>
-</ul><a class="nb-link" href="03_probabilidade/07_matriz_confusao.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-08-valor-preditivo-md" class="topic"><h1>Valor preditivo</h1><p>Sensibilidade e especificidade descrevem o <strong>teste</strong>. Mas o paciente está fazendo outra pergunta:</p>
+</ul>
+
+</article>
+<article id="03-probabilidade-08-valor-preditivo-md" class="topic">
+<div class="topic-num">3.8</div>
+<h1 class="topic-title">Valor preditivo</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/08_valor_preditivo.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Sensibilidade e especificidade descrevem o <strong>teste</strong>. Mas o paciente está fazendo outra pergunta:</p>
 <blockquote>
 <p>"Meu teste deu positivo. Qual a chance de eu <strong>realmente</strong> ter a doença?"</p>
 </blockquote>
@@ -837,24 +967,13 @@ $$</div>
 <li>Testes <strong>muito específicos</strong> são bons para <strong>confirmação</strong>, mesmo em doenças raras.</li>
 <li>A interpretação de um resultado <strong>depende do contexto</strong> clínico — não só do número que aparece no laudo.</li>
 </ul>
+
 <div class="widget" data-widget="wSensEsp" data-id="vpp_3_8">
   <div class="widget-title">Calculadora — Sensibilidade, Especificidade, VPP e VPN</div>
   <div class="controls">
-    <div class="ctrl-row">
-      <span class="ctrl-label">Sensibilidade</span>
-      <input type="range" min="0.5" max="1" step="0.01" value="0.95" id="vpp_3_8-sens">
-      <span class="ctrl-val" id="vpp_3_8-sens-v">0.95</span>
-    </div>
-    <div class="ctrl-row">
-      <span class="ctrl-label">Especificidade</span>
-      <input type="range" min="0.5" max="1" step="0.01" value="0.95" id="vpp_3_8-esp">
-      <span class="ctrl-val" id="vpp_3_8-esp-v">0.95</span>
-    </div>
-    <div class="ctrl-row">
-      <span class="ctrl-label">Prevalência</span>
-      <input type="range" min="0.001" max="0.5" step="0.001" value="0.01" id="vpp_3_8-prev">
-      <span class="ctrl-val" id="vpp_3_8-prev-v">1.0%</span>
-    </div>
+    <div class="ctrl-row"><span class="ctrl-label">Sensibilidade</span><input type="range" min="0.5" max="1" step="0.01" value="0.95" id="vpp_3_8-sens"><span class="ctrl-val" id="vpp_3_8-sens-v">0.95</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Especificidade</span><input type="range" min="0.5" max="1" step="0.01" value="0.95" id="vpp_3_8-esp"><span class="ctrl-val" id="vpp_3_8-esp-v">0.95</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Prevalência</span><input type="range" min="0.001" max="0.5" step="0.001" value="0.01" id="vpp_3_8-prev"><span class="ctrl-val" id="vpp_3_8-prev-v">0.01</span></div>
   </div>
   <table style="font-family:'Courier New',monospace;font-size:0.85rem;text-align:center;">
     <thead><tr><th></th><th>Doente</th><th>Saudável</th></tr></thead>
@@ -864,11 +983,15 @@ $$</div>
     </tbody>
   </table>
   <div class="stat-grid" style="margin-top:0.6rem;">
-    <div class="stat-card"><div class="slabel">VPP</div><div class="sval" id="vpp_3_8-vpp" style="color:#3266ad;">—</div><div class="sdesc">P(doente | teste +)</div></div>
-    <div class="stat-card"><div class="slabel">VPN</div><div class="sval" id="vpp_3_8-vpn" style="color:#3266ad;">—</div><div class="sdesc">P(saudável | teste −)</div></div>
+    <div class="stat-card"><div class="slabel">VPP</div><div class="sval" id="vpp_3_8-vpp" style="color:#3266ad;">—</div><div class="sdesc">P(doente | teste +)</div></div><div class="stat-card"><div class="slabel">VPN</div><div class="sval" id="vpp_3_8-vpn" style="color:#3266ad;">—</div><div class="sdesc">P(saudável | teste −)</div></div>
   </div>
 </div>
-<a class="nb-link" href="03_probabilidade/08_valor_preditivo.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-09-curva-roc-md" class="topic"><h1>Curva ROC</h1><p>A <strong>curva ROC</strong> (em inglês, <em>Receiver Operating Characteristic</em>) descreve como um teste se comporta para <strong>vários valores de corte</strong>.</p>
+</article>
+<article id="03-probabilidade-09-curva-roc-md" class="topic">
+<div class="topic-num">3.9</div>
+<h1 class="topic-title">Curva ROC</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/09_curva_roc.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A <strong>curva ROC</strong> (em inglês, <em>Receiver Operating Characteristic</em>) descreve como um teste se comporta para <strong>vários valores de corte</strong>.</p>
 <h2>A ideia</h2>
 <p>Muitos exames retornam <strong>um número</strong>, e a decisão de "positivo ou negativo" depende de um valor de corte. Por exemplo:</p>
 <ul>
@@ -975,23 +1098,37 @@ $$</div>
 </ul>
 <h2>Vantagem da ROC</h2>
 <p>A curva ROC sintetiza, em <strong>um único gráfico</strong>, o desempenho do teste em <strong>todos</strong> os pontos de corte possíveis. Por isso é a forma padrão de reportar a performance de um teste diagnóstico em artigos científicos.</p>
+
 <div class="widget" data-widget="wROC" data-id="roc_3_9">
-  <div class="widget-title">Demonstração interativa — Curva ROC</div>
+  <div class="widget-title">Demonstração interativa — Curva ROC + Matriz de Confusão</div>
+  <p style="font-size:0.85rem;color:#666;margin-bottom:0.6rem;">Ajuste a separação entre doentes e saudáveis, a prevalência e o ponto de corte. A matriz de confusão e as métricas se atualizam.</p>
   <div class="controls">
-    <div class="ctrl-row">
-      <span class="ctrl-label">Separação entre doentes e saudáveis</span>
-      <input type="range" min="0" max="5" step="0.1" value="2" id="roc_3_9-sep">
-      <span class="ctrl-val" id="roc_3_9-sep-v">2.0</span>
-    </div>
+    <div class="ctrl-row"><span class="ctrl-label">Separação (efeito do teste)</span><input type="range" min="0" max="5" step="0.1" value="2" id="roc_3_9-sep"><span class="ctrl-val" id="roc_3_9-sep-v">2</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Prevalência</span><input type="range" min="0.05" max="0.9" step="0.05" value="0.3" id="roc_3_9-prev"><span class="ctrl-val" id="roc_3_9-prev-v">0.3</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Ponto de corte</span><input type="range" min="-3" max="6" step="0.1" value="1" id="roc_3_9-thr"><span class="ctrl-val" id="roc_3_9-thr-v">1</span></div>
   </div>
   <canvas id="roc_3_9"></canvas>
+  <table style="font-family:'Courier New',monospace;font-size:0.85rem;text-align:center;margin-top:0.6rem;">
+    <thead><tr><th></th><th>Doente</th><th>Saudável</th></tr></thead>
+    <tbody>
+      <tr><th>Teste +</th><td id="roc_3_9-tp" style="color:#3266ad;font-weight:bold">—</td><td id="roc_3_9-fp" style="color:#c0392b;font-weight:bold">—</td></tr>
+      <tr><th>Teste −</th><td id="roc_3_9-fn" style="color:#c0392b;font-weight:bold">—</td><td id="roc_3_9-tn" style="color:#3266ad;font-weight:bold">—</td></tr>
+    </tbody>
+  </table>
   <div class="stat-grid" style="margin-top:0.6rem;">
-    <div class="stat-card"><div class="slabel">AUC</div><div class="sval" id="roc_3_9-auc">—</div><div class="sdesc">área sob a curva</div></div>
-    <div class="stat-card"><div class="slabel">Sensibilidade*</div><div class="sval" id="roc_3_9-sens">—</div><div class="sdesc">no corte ótimo</div></div>
-    <div class="stat-card"><div class="slabel">Especificidade*</div><div class="sval" id="roc_3_9-esp">—</div><div class="sdesc">no corte ótimo</div></div>
+    <div class="stat-card"><div class="slabel">Sensibilidade</div><div class="sval" id="roc_3_9-sens">—</div><div class="sdesc">VP/(VP+FN)</div></div><div class="stat-card"><div class="slabel">Especificidade</div><div class="sval" id="roc_3_9-spec">—</div><div class="sdesc">VN/(VN+FP)</div></div>
+    <div class="stat-card"><div class="slabel">VPP</div><div class="sval" id="roc_3_9-ppv">—</div><div class="sdesc">VP/(VP+FP)</div></div><div class="stat-card"><div class="slabel">VPN</div><div class="sval" id="roc_3_9-npv">—</div><div class="sdesc">VN/(VN+FN)</div></div>
+  </div>
+  <div class="stat-grid" style="margin-top:0.4rem;">
+    <div class="stat-card"><div class="slabel">Acurácia</div><div class="sval" id="roc_3_9-acc">—</div><div class="sdesc">(VP+VN)/N</div></div><div class="stat-card"><div class="slabel">AUC</div><div class="sval" id="roc_3_9-auc">—</div><div class="sdesc">área sob a curva</div></div>
   </div>
 </div>
-<a class="nb-link" href="03_probabilidade/09_curva_roc.ipynb" target="_blank">⓪ Abrir notebook</a></section><section id="03-probabilidade-10-distribuicao-binomial-md" class="topic"><h1>Distribuição binomial</h1><p>A distribuição binomial conta <strong>quantos sucessos</strong> ocorrem em $n$ tentativas independentes, cada uma com a mesma probabilidade $p$ de sucesso.</p>
+</article>
+<article id="03-probabilidade-10-distribuicao-binomial-md" class="topic">
+<div class="topic-num">3.10</div>
+<h1 class="topic-title">Distribuição binomial</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/03_probabilidade/10_distribuicao_binomial.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A distribuição binomial conta <strong>quantos sucessos</strong> ocorrem em $n$ tentativas independentes, cada uma com a mesma probabilidade $p$ de sucesso.</p>
 <h2>Condições para aplicar</h2>
 <table>
 <thead>
@@ -1077,31 +1214,24 @@ $$</div>
 <li>$p > 0{,}5$ → assimétrica à esquerda.</li>
 </ul>
 <p>À medida que $n$ aumenta, a forma se aproxima de uma curva normal (de novo, o TLC!).</p>
+
 <div class="widget" data-widget="wBinomial" data-id="binom_3_10">
   <div class="widget-title">Demonstração interativa — Distribuição Binomial</div>
   <div class="controls">
-    <div class="ctrl-row">
-      <span class="ctrl-label">Número de tentativas (n)</span>
-      <input type="range" min="2" max="60" step="1" value="20" id="binom_3_10-n">
-      <span class="ctrl-val" id="binom_3_10-n-v">20</span>
-    </div>
-    <div class="ctrl-row">
-      <span class="ctrl-label">Probabilidade de sucesso (p)</span>
-      <input type="range" min="0.01" max="0.99" step="0.01" value="0.5" id="binom_3_10-p">
-      <span class="ctrl-val" id="binom_3_10-p-v">0.50</span>
-    </div>
+    <div class="ctrl-row"><span class="ctrl-label">Número de tentativas (n)</span><input type="range" min="2" max="60" step="1" value="20" id="binom_3_10-n"><span class="ctrl-val" id="binom_3_10-n-v">20</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Probabilidade de sucesso (p)</span><input type="range" min="0.01" max="0.99" step="0.01" value="0.5" id="binom_3_10-p"><span class="ctrl-val" id="binom_3_10-p-v">0.5</span></div>
   </div>
   <canvas id="binom_3_10"></canvas>
   <div class="stat-grid">
-    <div class="stat-card"><div class="slabel">E[X] = np</div><div class="sval" id="binom_3_10-mean">—</div><div class="sdesc">média esperada</div></div>
-    <div class="stat-card"><div class="slabel">SD = √(np(1−p))</div><div class="sval" id="binom_3_10-sd">—</div><div class="sdesc">desvio padrão</div></div>
-    <div class="stat-card"><div class="slabel">Moda</div><div class="sval" id="binom_3_10-modek">—</div><div class="sdesc">valor mais provável</div></div>
+    <div class="stat-card"><div class="slabel">E[X] = np</div><div class="sval" id="binom_3_10-mean">—</div><div class="sdesc">média esperada</div></div><div class="stat-card"><div class="slabel">SD</div><div class="sval" id="binom_3_10-sd">—</div><div class="sdesc">√(np(1−p))</div></div><div class="stat-card"><div class="slabel">Moda</div><div class="sval" id="binom_3_10-modek">—</div><div class="sdesc">valor mais provável</div></div>
   </div>
 </div>
-<a class="nb-link" href="03_probabilidade/10_distribuicao_binomial.ipynb" target="_blank">⓪ Abrir notebook</a></section>
-<div class="footer">Produzido para fins didáticos — bioestatística — UFRJ / IBCCF</div>
+</article>
 </div>
+<div class="footer"><img src="assets/ibccf-logo.svg" alt="IBCCF" class="footer-logo"><div class="footer-text">Instituto de Biofísica Carlos Chagas Filho — UFRJ<br>Material didático de Bioestatística · Pedro Torres &amp; Gilberto Weissmuller</div></div>
+</main>
+
 <script src="assets/widgets.js"></script>
-<script>mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });</script>
+<script>mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'loose'});</script>
 </body>
 </html>

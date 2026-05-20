@@ -3,20 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bioestatística — Bioestatística</title>
+<title>Início — Bioestatística IBCCF</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-  onload="renderMathInElement(document.body, { delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });"></script>
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 </head>
 <body>
-<div class="container">
-<div class="topnav"><span class="brand"><strong>Bioestatística</strong> · IBCCF / UFRJ</span><a href="index.html" class="current">Início</a><a href="parte1.html">Parte 1</a><a href="parte2.html">Parte 2</a><a href="parte3.html">Parte 3</a><a href="parte4.html">Parte 4</a></div><header class="page-head"><h1>Bioestatística</h1><div class="subtitle">Curso · IBCCF · Universidade Federal do Rio de Janeiro</div></header><p style="margin-bottom:1.2rem;">Material didático com abordagem intuitiva. Cada tópico tem um capítulo explicativo e um notebook em Python (pandas, seaborn e scipy.stats) para experimentar os conceitos.</p><p style="margin-bottom:1.2rem;color:#555;font-size:0.92rem;">Em vários capítulos você encontrará <strong>demonstrações interativas</strong> — manipule os parâmetros e veja, em tempo real, como os conceitos se comportam.</p><p style="margin-bottom:1.5rem;font-family:'Courier New',monospace;font-size:0.78rem;color:#888;">Pedro Torres &nbsp;·&nbsp; Gilberto Weissmuller</p><div class="cards"><a class="card" href="parte1.html"><div class="cnum">Parte 1</div><div class="ctitle">Parte 1 — Introdução</div><div class="cdesc">Amostra, população, variáveis, histogramas e curva normal.</div><div class="ccount">8 tópicos</div></a><a class="card" href="parte2.html"><div class="cnum">Parte 2</div><div class="ctitle">Parte 2 — Estatística Descritiva</div><div class="cdesc">Tendência central, dispersão e o teorema do limite central.</div><div class="ccount">15 tópicos</div></a><a class="card" href="parte3.html"><div class="cnum">Parte 3</div><div class="ctitle">Parte 3 — Probabilidade</div><div class="cdesc">Eventos, testes diagnósticos, ROC e distribuição binomial.</div><div class="ccount">10 tópicos</div></a><a class="card" href="parte4.html"><div class="cnum">Parte 4</div><div class="ctitle">Parte 4 — Estatística Inferencial</div><div class="cdesc">Intervalos de confiança, testes t, ANOVA, qui-quadrado, regressão.</div><div class="ccount">16 tópicos</div></a></div>
-<div class="footer">Produzido para fins didáticos — bioestatística — UFRJ / IBCCF</div>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+<nav class="sidebar" id="sidebar">
+<a class="sidebar-brand" href="index.html">Bioestatística<span>IBCCF · UFRJ</span></a>
+<div class="nav-group">
+<div class="nav-group-title">1. Introdução</div>
+<ul>
+<li><a href="introducao.html#01-introducao-01-amostra-populacao-md"><span class="n">1.1</span>Amostra e população</a></li>
+<li><a href="introducao.html#01-introducao-02-descricao-inferencia-md"><span class="n">1.2</span>Descrição vs. inferência</a></li>
+<li><a href="introducao.html#01-introducao-03-precisao-acuracia-md"><span class="n">1.3</span>Precisão e acurácia</a></li>
+<li><a href="introducao.html#01-introducao-04-algarismos-significativos-md"><span class="n">1.4</span>Algarismos significativos</a></li>
+<li><a href="introducao.html#01-introducao-05-notacao-cientifica-md"><span class="n">1.5</span>Notação científica</a></li>
+<li><a href="introducao.html#01-introducao-06-tipos-variaveis-md"><span class="n">1.6</span>Tipos de variáveis</a></li>
+<li><a href="introducao.html#01-introducao-07-histogramas-md"><span class="n">1.7</span>Histogramas</a></li>
+<li><a href="introducao.html#01-introducao-08-curva-normal-md"><span class="n">1.8</span>Curva normal</a></li>
+<li><a href="introducao.html#01-introducao-09-tecnicas-amostragem-md"><span class="n">1.9</span>Técnicas de amostragem</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">2. Estatística Descritiva</div>
+<ul>
+<li><a href="descritiva.html#02-estatistica-descritiva-01-tendencia-central-md"><span class="n">2.1</span>Medidas de tendência central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-02-moda-md"><span class="n">2.2</span>Moda</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-03-media-aritmetica-md"><span class="n">2.3</span>Média aritmética</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-04-media-cortada-md"><span class="n">2.4</span>Média cortada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-05-media-ponderada-md"><span class="n">2.5</span>Média ponderada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-06-media-geometrica-md"><span class="n">2.6</span>Média geométrica</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-07-mediana-md"><span class="n">2.7</span>Mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-08-media-vs-mediana-md"><span class="n">2.8</span>Média vs. mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-09-teorema-limite-central-md"><span class="n">2.9</span>Teorema do limite central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-10-amplitude-md"><span class="n">2.10</span>Amplitude</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-11-desvio-medio-md"><span class="n">2.11</span>Desvio médio</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-12-variancia-md"><span class="n">2.12</span>Variância</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-13-desvio-padrao-md"><span class="n">2.13</span>Desvio padrão</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-14-desvio-interquartil-md"><span class="n">2.14</span>Desvio interquartil</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-15-coeficiente-variacao-md"><span class="n">2.15</span>Coeficiente de variação</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">3. Probabilidade</div>
+<ul>
+<li><a href="probabilidade.html#03-probabilidade-01-evento-md"><span class="n">3.1</span>Evento — definição</a></li>
+<li><a href="probabilidade.html#03-probabilidade-02-eventos-compostos-md"><span class="n">3.2</span>Eventos compostos</a></li>
+<li><a href="probabilidade.html#03-probabilidade-03-probabilidade-condicional-md"><span class="n">3.3</span>Probabilidade condicional</a></li>
+<li><a href="probabilidade.html#03-probabilidade-04-analise-combinatoria-md"><span class="n">3.4</span>Análise combinatória</a></li>
+<li><a href="probabilidade.html#03-probabilidade-05-testes-binarios-md"><span class="n">3.5</span>Testes binários</a></li>
+<li><a href="probabilidade.html#03-probabilidade-06-sensibilidade-especificidade-md"><span class="n">3.6</span>Sensibilidade e especificidade</a></li>
+<li><a href="probabilidade.html#03-probabilidade-07-matriz-confusao-md"><span class="n">3.7</span>Matriz de confusão</a></li>
+<li><a href="probabilidade.html#03-probabilidade-08-valor-preditivo-md"><span class="n">3.8</span>Valor preditivo</a></li>
+<li><a href="probabilidade.html#03-probabilidade-09-curva-roc-md"><span class="n">3.9</span>Curva ROC</a></li>
+<li><a href="probabilidade.html#03-probabilidade-10-distribuicao-binomial-md"><span class="n">3.10</span>Distribuição binomial</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">4. Distribuições amostrais</div>
+<ul>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-01-de-onde-vem-md"><span class="n">4.1</span>De onde vêm t, F e χ²</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-02-qui-quadrado-md"><span class="n">4.2</span>Distribuição qui-quadrado</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-03-t-student-md"><span class="n">4.3</span>Distribuição t de Student</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-04-f-distribuicao-md"><span class="n">4.4</span>Distribuição F</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">5. Estatística Inferencial</div>
+<ul>
+<li><a href="inferencial.html#04-estatistica-inferencial-01-logica-inferencia-md"><span class="n">5.1</span>Lógica da inferência</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-02-estimacao-md"><span class="n">5.2</span>Estimação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-03-intervalo-confianca-md"><span class="n">5.3</span>Intervalos de confiança</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-04-hipoteses-md"><span class="n">5.4</span>Hipótese nula e alternativa</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-05-significancia-md"><span class="n">5.5</span>Nível de significância</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-06-valor-p-md"><span class="n">5.6</span>Valor-p</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-07-erros-tipo-i-ii-md"><span class="n">5.7</span>Erros tipo I e tipo II</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-08-teste-z-md"><span class="n">5.8</span>Teste z</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-09-teste-t-uma-amostra-md"><span class="n">5.9</span>Teste t de uma amostra</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-10-teste-t-independente-md"><span class="n">5.10</span>Teste t para duas amostras independentes</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-11-teste-t-pareado-md"><span class="n">5.11</span>Teste t pareado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-12-anova-md"><span class="n">5.12</span>ANOVA</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-13-qui-quadrado-md"><span class="n">5.13</span>Teste do qui-quadrado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-14-correlacao-md"><span class="n">5.14</span>Correlação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-15-regressao-linear-md"><span class="n">5.15</span>Regressão linear</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-16-testes-nao-parametricos-md"><span class="n">5.16</span>Testes não paramétricos</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-17-design-experimental-md"><span class="n">5.17</span>Design experimental e potência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">6. Tabelas estatísticas</div>
+<ul>
+<li><a href="tabelas.html#06-tabelas-01-tabelas-md"><span class="n">6.1</span>Tabelas de referência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">7. Exercícios</div>
+<ul>
+<li><a href="exercicios.html#07-exercicios-01-exercicios-md"><span class="n">7.1</span>Exercícios resolvidos por tema</a></li>
+</ul></div>
+</nav>
+<main class="content"><div class="content-inner">
+<div class="hero">
+<h1 class="hero-title">Bioestatística</h1>
+<p class="hero-sub">Instituto de Biofísica Carlos Chagas Filho · UFRJ</p>
+<p class="hero-desc">Curso com abordagem intuitiva, demonstrações interativas e notebooks em Python (pandas, seaborn, scipy.stats). Navegue pelo menu à esquerda.</p>
+<p class="hero-authors">Pedro Torres · Gilberto Weissmuller</p>
 </div>
+<div class="cards">
+<a class="card" href="introducao.html#01-introducao-01-amostra-populacao-md"><div class="cnum">1</div><div class="ctitle">Introdução</div><div class="cdesc">Amostra, população, variáveis, histogramas, curva normal e amostragem.</div><div class="ccount">9 tópicos</div></a>
+<a class="card" href="descritiva.html#02-estatistica-descritiva-01-tendencia-central-md"><div class="cnum">2</div><div class="ctitle">Estatística Descritiva</div><div class="cdesc">Tendência central, dispersão e o teorema do limite central.</div><div class="ccount">15 tópicos</div></a>
+<a class="card" href="probabilidade.html#03-probabilidade-01-evento-md"><div class="cnum">3</div><div class="ctitle">Probabilidade</div><div class="cdesc">Eventos, testes diagnósticos, ROC e distribuição binomial.</div><div class="ccount">10 tópicos</div></a>
+<a class="card" href="distribuicoes.html#05-distribuicoes-amostrais-01-de-onde-vem-md"><div class="cnum">4</div><div class="ctitle">Distribuições amostrais</div><div class="cdesc">De onde vêm as distribuições t, χ² e F.</div><div class="ccount">4 tópicos</div></a>
+<a class="card" href="inferencial.html#04-estatistica-inferencial-01-logica-inferencia-md"><div class="cnum">5</div><div class="ctitle">Estatística Inferencial</div><div class="cdesc">Intervalos, testes t, ANOVA, qui-quadrado, regressão e potência.</div><div class="ccount">17 tópicos</div></a>
+<a class="card" href="tabelas.html#06-tabelas-01-tabelas-md"><div class="cnum">6</div><div class="ctitle">Tabelas estatísticas</div><div class="cdesc">Tabelas Z, t, χ² e F para consulta.</div><div class="ccount">1 tópicos</div></a>
+<a class="card" href="exercicios.html#07-exercicios-01-exercicios-md"><div class="cnum">7</div><div class="ctitle">Exercícios</div><div class="cdesc">Exercícios resolvidos por tema, com soluções em Python.</div><div class="ccount">1 tópicos</div></a>
+</div>
+<div class="footer"><img src="assets/ibccf-logo.svg" alt="IBCCF" class="footer-logo"><div class="footer-text">Instituto de Biofísica Carlos Chagas Filho — UFRJ<br>Material didático de Bioestatística · Pedro Torres &amp; Gilberto Weissmuller</div></div>
+</main>
+
 <script src="assets/widgets.js"></script>
-<script>mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });</script>
+<script>mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'loose'});</script>
 </body>
 </html>

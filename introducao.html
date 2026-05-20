@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introdução — Bioestatística IBCCF</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+<nav class="sidebar" id="sidebar">
+<a class="sidebar-brand" href="index.html">Bioestatística<span>IBCCF · UFRJ</span></a>
+<div class="nav-group">
+<div class="nav-group-title">1. Introdução</div>
+<ul>
+<li><a class="nav-link" data-target="01-introducao-01-amostra-populacao-md" href="#01-introducao-01-amostra-populacao-md"><span class="n">1.1</span>Amostra e população</a></li>
+<li><a class="nav-link" data-target="01-introducao-02-descricao-inferencia-md" href="#01-introducao-02-descricao-inferencia-md"><span class="n">1.2</span>Descrição vs. inferência</a></li>
+<li><a class="nav-link" data-target="01-introducao-03-precisao-acuracia-md" href="#01-introducao-03-precisao-acuracia-md"><span class="n">1.3</span>Precisão e acurácia</a></li>
+<li><a class="nav-link" data-target="01-introducao-04-algarismos-significativos-md" href="#01-introducao-04-algarismos-significativos-md"><span class="n">1.4</span>Algarismos significativos</a></li>
+<li><a class="nav-link" data-target="01-introducao-05-notacao-cientifica-md" href="#01-introducao-05-notacao-cientifica-md"><span class="n">1.5</span>Notação científica</a></li>
+<li><a class="nav-link" data-target="01-introducao-06-tipos-variaveis-md" href="#01-introducao-06-tipos-variaveis-md"><span class="n">1.6</span>Tipos de variáveis</a></li>
+<li><a class="nav-link" data-target="01-introducao-07-histogramas-md" href="#01-introducao-07-histogramas-md"><span class="n">1.7</span>Histogramas</a></li>
+<li><a class="nav-link" data-target="01-introducao-08-curva-normal-md" href="#01-introducao-08-curva-normal-md"><span class="n">1.8</span>Curva normal</a></li>
+<li><a class="nav-link" data-target="01-introducao-09-tecnicas-amostragem-md" href="#01-introducao-09-tecnicas-amostragem-md"><span class="n">1.9</span>Técnicas de amostragem</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">2. Estatística Descritiva</div>
+<ul>
+<li><a href="descritiva.html#02-estatistica-descritiva-01-tendencia-central-md"><span class="n">2.1</span>Medidas de tendência central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-02-moda-md"><span class="n">2.2</span>Moda</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-03-media-aritmetica-md"><span class="n">2.3</span>Média aritmética</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-04-media-cortada-md"><span class="n">2.4</span>Média cortada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-05-media-ponderada-md"><span class="n">2.5</span>Média ponderada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-06-media-geometrica-md"><span class="n">2.6</span>Média geométrica</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-07-mediana-md"><span class="n">2.7</span>Mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-08-media-vs-mediana-md"><span class="n">2.8</span>Média vs. mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-09-teorema-limite-central-md"><span class="n">2.9</span>Teorema do limite central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-10-amplitude-md"><span class="n">2.10</span>Amplitude</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-11-desvio-medio-md"><span class="n">2.11</span>Desvio médio</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-12-variancia-md"><span class="n">2.12</span>Variância</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-13-desvio-padrao-md"><span class="n">2.13</span>Desvio padrão</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-14-desvio-interquartil-md"><span class="n">2.14</span>Desvio interquartil</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-15-coeficiente-variacao-md"><span class="n">2.15</span>Coeficiente de variação</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">3. Probabilidade</div>
+<ul>
+<li><a href="probabilidade.html#03-probabilidade-01-evento-md"><span class="n">3.1</span>Evento — definição</a></li>
+<li><a href="probabilidade.html#03-probabilidade-02-eventos-compostos-md"><span class="n">3.2</span>Eventos compostos</a></li>
+<li><a href="probabilidade.html#03-probabilidade-03-probabilidade-condicional-md"><span class="n">3.3</span>Probabilidade condicional</a></li>
+<li><a href="probabilidade.html#03-probabilidade-04-analise-combinatoria-md"><span class="n">3.4</span>Análise combinatória</a></li>
+<li><a href="probabilidade.html#03-probabilidade-05-testes-binarios-md"><span class="n">3.5</span>Testes binários</a></li>
+<li><a href="probabilidade.html#03-probabilidade-06-sensibilidade-especificidade-md"><span class="n">3.6</span>Sensibilidade e especificidade</a></li>
+<li><a href="probabilidade.html#03-probabilidade-07-matriz-confusao-md"><span class="n">3.7</span>Matriz de confusão</a></li>
+<li><a href="probabilidade.html#03-probabilidade-08-valor-preditivo-md"><span class="n">3.8</span>Valor preditivo</a></li>
+<li><a href="probabilidade.html#03-probabilidade-09-curva-roc-md"><span class="n">3.9</span>Curva ROC</a></li>
+<li><a href="probabilidade.html#03-probabilidade-10-distribuicao-binomial-md"><span class="n">3.10</span>Distribuição binomial</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">4. Distribuições amostrais</div>
+<ul>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-01-de-onde-vem-md"><span class="n">4.1</span>De onde vêm t, F e χ²</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-02-qui-quadrado-md"><span class="n">4.2</span>Distribuição qui-quadrado</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-03-t-student-md"><span class="n">4.3</span>Distribuição t de Student</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-04-f-distribuicao-md"><span class="n">4.4</span>Distribuição F</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">5. Estatística Inferencial</div>
+<ul>
+<li><a href="inferencial.html#04-estatistica-inferencial-01-logica-inferencia-md"><span class="n">5.1</span>Lógica da inferência</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-02-estimacao-md"><span class="n">5.2</span>Estimação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-03-intervalo-confianca-md"><span class="n">5.3</span>Intervalos de confiança</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-04-hipoteses-md"><span class="n">5.4</span>Hipótese nula e alternativa</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-05-significancia-md"><span class="n">5.5</span>Nível de significância</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-06-valor-p-md"><span class="n">5.6</span>Valor-p</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-07-erros-tipo-i-ii-md"><span class="n">5.7</span>Erros tipo I e tipo II</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-08-teste-z-md"><span class="n">5.8</span>Teste z</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-09-teste-t-uma-amostra-md"><span class="n">5.9</span>Teste t de uma amostra</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-10-teste-t-independente-md"><span class="n">5.10</span>Teste t para duas amostras independentes</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-11-teste-t-pareado-md"><span class="n">5.11</span>Teste t pareado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-12-anova-md"><span class="n">5.12</span>ANOVA</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-13-qui-quadrado-md"><span class="n">5.13</span>Teste do qui-quadrado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-14-correlacao-md"><span class="n">5.14</span>Correlação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-15-regressao-linear-md"><span class="n">5.15</span>Regressão linear</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-16-testes-nao-parametricos-md"><span class="n">5.16</span>Testes não paramétricos</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-17-design-experimental-md"><span class="n">5.17</span>Design experimental e potência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">6. Tabelas estatísticas</div>
+<ul>
+<li><a href="tabelas.html#06-tabelas-01-tabelas-md"><span class="n">6.1</span>Tabelas de referência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">7. Exercícios</div>
+<ul>
+<li><a href="exercicios.html#07-exercicios-01-exercicios-md"><span class="n">7.1</span>Exercícios resolvidos por tema</a></li>
+</ul></div>
+</nav>
+<main class="content"><div class="content-inner">
+<div class="page-eyebrow">1. Introdução</div>
+<article id="01-introducao-01-amostra-populacao-md" class="topic">
+<div class="topic-num">1.1</div>
+<h1 class="topic-title">Amostra e população</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/01_amostra_populacao.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Quando estudamos um fenômeno biológico, normalmente queremos tirar conclusões sobre <strong>todos</strong> os indivíduos de um determinado grupo. Mas, na prática, é quase sempre impossível medir todos eles. Por isso, medimos apenas alguns e tentamos generalizar o resultado.</p>
+<h2>População</h2>
+<p>A <strong>população</strong> é o conjunto completo de todos os indivíduos, objetos ou medidas que nos interessa estudar.</p>
+<p>Exemplos de população em pesquisa biomédica:</p>
+<ul>
+<li>todos os adultos brasileiros com hipertensão;</li>
+<li>todos os camundongos de uma determinada linhagem;</li>
+<li>todas as células de uma cultura;</li>
+<li>todos os pacientes que receberam um determinado tratamento.</li>
+</ul>
+<blockquote>
+<p>A população é definida pela <strong>pergunta</strong> de pesquisa, não pelo tamanho. Pode ser pequena (todos os pacientes de um hospital) ou enorme (toda a humanidade).</p>
+</blockquote>
+<h2>Amostra</h2>
+<p>A <strong>amostra</strong> é um subconjunto da população, escolhido para representá-la.</p>
+<p>Trabalhamos com amostras porque:</p>
+<ul>
+<li>medir toda a população é caro;</li>
+<li>medir toda a população demora muito;</li>
+<li>em muitos casos é fisicamente impossível.</li>
+</ul>
+<h2>Parâmetro vs. estatística</h2>
+<p>Esta distinção é fundamental e aparecerá ao longo de todo o curso:</p>
+<table>
+<thead>
+<tr>
+<th>Conceito</th>
+<th>Refere-se a</th>
+<th>Símbolo da média</th>
+<th>Símbolo do desvio padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parâmetro</strong></td>
+<td>População inteira</td>
+<td>$\mu$ (mi)</td>
+<td>$\sigma$ (sigma)</td>
+</tr>
+<tr>
+<td><strong>Estatística</strong></td>
+<td>Amostra</td>
+<td>$\bar{x}$ (x-barra)</td>
+<td>$s$</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>O <strong>parâmetro</strong> é o valor <em>verdadeiro</em>, mas geralmente desconhecido.</li>
+<li>A <strong>estatística</strong> é o valor <em>calculado</em> a partir da amostra. Ela é o que usamos para <em>estimar</em> o parâmetro.</li>
+</ul>
+<h2>Por que amostragem aleatória?</h2>
+<p>Para que uma amostra represente bem a população, ela precisa ser <strong>aleatória</strong> — ou seja, cada indivíduo da população deve ter a mesma chance de ser escolhido.</p>
+<p>Uma amostra mal coletada gera conclusões erradas, mesmo com matemática perfeita. Por exemplo, se você quer saber o peso médio dos adultos brasileiros e mede apenas frequentadores de academia, sua amostra é <strong>enviesada</strong> (em inglês, <em>biased</em>).</p>
+<h2>Resumo</h2>
+<div class="mermaid-container"><pre class="mermaid">flowchart LR
+    P[&quot;População (μ, σ desconhecidos)&quot;] --&gt;|amostragem aleatória| A[&quot;Amostra (x̄, s calculados)&quot;]
+    A --&gt;|inferência| P
+</pre></div>
+<p>Repare na ideia central da estatística: <strong>medimos a amostra para aprender sobre a população</strong>.</p>
+
+</article>
+<article id="01-introducao-02-descricao-inferencia-md" class="topic">
+<div class="topic-num">1.2</div>
+<h1 class="topic-title">Descrição vs. inferência</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/02_descricao_inferencia.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A bioestatística tem duas grandes tarefas: <strong>descrever</strong> dados e <strong>inferir</strong> propriedades de uma população a partir deles.</p>
+<h2>Estatística descritiva</h2>
+<p>A estatística descritiva <strong>resume</strong> os dados que você tem em mãos. Não tira conclusões além deles. Inclui:</p>
+<ul>
+<li>medidas de tendência central (média, mediana, moda);</li>
+<li>medidas de dispersão (desvio padrão, amplitude);</li>
+<li>gráficos (histograma, boxplot, dispersão);</li>
+<li>tabelas de frequência.</li>
+</ul>
+<blockquote>
+<p>Exemplo: "A altura média dos 30 voluntários do estudo foi de 1,72 m, com desvio padrão de 8 cm."</p>
+</blockquote>
+<h2>Estatística inferencial</h2>
+<p>A estatística inferencial <strong>generaliza</strong> os resultados da amostra para a população. Como nunca medimos todo mundo, sempre há <strong>incerteza</strong>, e a estatística inferencial é a linguagem para quantificá-la.</p>
+<p>Inclui:</p>
+<ul>
+<li>intervalos de confiança;</li>
+<li>testes de hipóteses (teste t, ANOVA, qui-quadrado);</li>
+<li>valor-p;</li>
+<li>regressão.</li>
+</ul>
+<blockquote>
+<p>Exemplo: "A diferença média entre os grupos foi de 5 mmHg (IC 95%: 2 a 8; p = 0,003), sugerindo que o tratamento reduz a pressão arterial em pacientes hipertensos."</p>
+</blockquote>
+<h2>Comparação direta</h2>
+<table>
+<thead>
+<tr>
+<th>Pergunta</th>
+<th>Estatística descritiva</th>
+<th>Estatística inferencial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quem?</td>
+<td>A amostra</td>
+<td>A população</td>
+</tr>
+<tr>
+<td>Como?</td>
+<td>Resume</td>
+<td>Generaliza</td>
+</tr>
+<tr>
+<td>Conclusões?</td>
+<td>Apenas sobre os dados coletados</td>
+<td>Vão além dos dados coletados</td>
+</tr>
+<tr>
+<td>Há incerteza?</td>
+<td>Pouca (depende só da medição)</td>
+<td>Sim, sempre</td>
+</tr>
+</tbody>
+</table>
+<h2>Por que isso importa?</h2>
+<p>Confundir os dois leva a erros sérios:</p>
+<ul>
+<li>Afirmar que "no Brasil, as pessoas pesam X kg" tendo medido apenas 50 voluntários é fazer inferência sem o aparato estatístico necessário.</li>
+<li>Reportar apenas a média sem nenhum dado de dispersão é dar uma visão incompleta da amostra.</li>
+</ul>
+<p>A regra de ouro: <strong>descreva os dados</strong> antes de inferir qualquer coisa.</p>
+
+</article>
+<article id="01-introducao-03-precisao-acuracia-md" class="topic">
+<div class="topic-num">1.3</div>
+<h1 class="topic-title">Precisão e acurácia</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/03_precisao_acuracia.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>São conceitos parecidos no dia-a-dia, mas significam coisas bem distintas em estatística e ciência.</p>
+<h2>Acurácia</h2>
+<p><strong>Acurácia</strong> mede quão perto as medidas estão do <strong>valor verdadeiro</strong> — ou seja, o quanto elas estão <strong>certas em média</strong>.</p>
+<h2>Precisão</h2>
+<p><strong>Precisão</strong> mede quão <strong>consistentes</strong> as medidas são entre si — ou seja, o quão <strong>próximas umas das outras</strong> estão. Pouco importa se estão certas ou erradas em relação ao valor verdadeiro, basta que sejam parecidas.</p>
+<h2>A clássica analogia do alvo</h2>
+<p>Imagine quatro atiradores disparando contra um alvo. O centro do alvo é o "valor verdadeiro":</p>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Acurado</th>
+<th>Preciso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tiros agrupados no centro</td>
+<td>sim</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>Tiros agrupados, mas fora do centro</td>
+<td>não</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>Tiros espalhados, mas centrados no alvo</td>
+<td>sim</td>
+<td>não</td>
+</tr>
+<tr>
+<td>Tiros espalhados e longe do centro</td>
+<td>não</td>
+<td>não</td>
+</tr>
+</tbody>
+</table>
+<h2>Aplicação prática</h2>
+<ul>
+<li>Um instrumento <strong>calibrado</strong> é acurado.</li>
+<li>Um instrumento <strong>de boa qualidade</strong> é preciso.</li>
+<li>O ideal é ter os dois.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Solução</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Falta de acurácia (viés)</td>
+<td>calibrar o equipamento, controle interno</td>
+</tr>
+<tr>
+<td>Falta de precisão (ruído)</td>
+<td>tomar mais medidas e usar a média; melhorar o método</td>
+</tr>
+</tbody>
+</table>
+<h2>Em termos estatísticos</h2>
+<p>Se $\mu$ é o valor verdadeiro e fazemos várias medidas $x_1, x_2, \ldots, x_n$:</p>
+<ul>
+<li><strong>Acurácia</strong> está relacionada ao <strong>viés</strong>: $\bar{x} - \mu$.</li>
+<li><strong>Precisão</strong> está relacionada à <strong>variância</strong>: $\text{Var}(x)$.</li>
+</ul>
+<blockquote>
+<p>Repare: a média de muitas medidas precisas mas inacuradas continua inacurada. Aumentar o número de medições resolve a precisão, mas não corrige um viés sistemático.</p>
+</blockquote>
+
+<div class="widget" data-widget="wPrecisao" data-id="precisao_1_3">
+  <div class="widget-title">Demonstração interativa — Precisão e Acurácia</div>
+  <p style="font-size:0.85rem;color:#666;margin-bottom:0.6rem;">O centro do alvo é o valor verdadeiro. <strong>Viés</strong> afasta os tiros do centro (perde acurácia); <strong>ruído</strong> os espalha (perde precisão).</p>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">Viés (afeta acurácia)</span><input type="range" min="0" max="3" step="0.1" value="0.3" id="precisao_1_3-bias"><span class="ctrl-val" id="precisao_1_3-bias-v">0.3</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Ruído (afeta precisão)</span><input type="range" min="0.2" max="3" step="0.1" value="0.5" id="precisao_1_3-noise"><span class="ctrl-val" id="precisao_1_3-noise-v">0.5</span></div>
+  </div>
+  <div class="btn-row"><button class="btn" id="precisao_1_3-redraw">Nova amostra ↺</button></div>
+  <canvas id="precisao_1_3"></canvas>
+  <div class="stat-grid" style="margin-top:0.6rem;">
+    <div class="stat-card"><div class="slabel">Acurácia</div><div class="sval" id="precisao_1_3-acc">—</div><div class="sdesc">proximidade do centro</div></div><div class="stat-card"><div class="slabel">Precisão</div><div class="sval" id="precisao_1_3-prec">—</div><div class="sdesc">agrupamento dos tiros</div></div>
+  </div>
+</div>
+</article>
+<article id="01-introducao-04-algarismos-significativos-md" class="topic">
+<div class="topic-num">1.4</div>
+<h1 class="topic-title">Algarismos significativos</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/04_algarismos_significativos.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>São os dígitos de uma medida que carregam <strong>informação real</strong> — refletem a precisão do instrumento usado.</p>
+<h2>Por que importa?</h2>
+<p>Escrever "a massa é 4,2371928 g" quando a balança só mede até décimos de grama é <strong>mentir</strong> sobre a precisão. Os dígitos sobrando não vieram da medida — são lixo.</p>
+<h2>Regras práticas</h2>
+<ol>
+<li>
+<p><strong>Todos os dígitos diferentes de zero são significativos.</strong>
+   - <code>1234</code> tem 4 significativos.</p>
+</li>
+<li>
+<p><strong>Zeros entre dígitos significativos contam.</strong>
+   - <code>1002</code> tem 4 significativos.</p>
+</li>
+<li>
+<p><strong>Zeros à esquerda NÃO contam.</strong> Servem só de preenchimento.
+   - <code>0,0034</code> tem 2 significativos (o 3 e o 4).</p>
+</li>
+<li>
+<p><strong>Zeros à direita após a vírgula contam.</strong>
+   - <code>1,200</code> tem 4 significativos.</p>
+</li>
+<li>
+<p><strong>Zeros à direita sem vírgula são ambíguos.</strong> Use notação científica para deixar claro.
+   - <code>1500</code> pode ter 2, 3 ou 4 significativos.
+   - <code>1,5 \times 10^3</code> tem 2.
+   - <code>1,50 \times 10^3</code> tem 3.</p>
+</li>
+</ol>
+<h2>Em operações</h2>
+<table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Soma/subtração</td>
+<td>O resultado tem tantas <strong>casas decimais</strong> quanto o termo com <strong>menos</strong> casas decimais</td>
+</tr>
+<tr>
+<td>Multiplicação/divisão</td>
+<td>O resultado tem tantos <strong>algarismos significativos</strong> quanto o fator com <strong>menos</strong> significativos</td>
+</tr>
+</tbody>
+</table>
+<h3>Exemplos</h3>
+<div class="math-display">$$
+12{,}11 + 8{,}3 = 20{,}4 \quad (\text{e não } 20{,}41)
+$$</div>
+<div class="math-display">$$
+3{,}24 \times 5{,}6 = 18 \quad (\text{e não } 18{,}144)
+$$</div>
+<h2>Em bioestatística</h2>
+<p>Quando reportamos resultados:</p>
+<ul>
+<li>Médias e desvios padrão: normalmente <strong>1 a 2 casas além do dado bruto</strong> já é o limite razoável.</li>
+<li>Valor-p: até 3 casas (<code>p = 0,032</code>), ou notação científica para muito pequenos (<code>p &lt; 0,001</code>).</li>
+<li>Porcentagens: 1 casa decimal costuma ser suficiente (<code>32,5%</code>).</li>
+</ul>
+
+</article>
+<article id="01-introducao-05-notacao-cientifica-md" class="topic">
+<div class="topic-num">1.5</div>
+<h1 class="topic-title">Notação científica</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/05_notacao_cientifica.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Forma compacta de escrever números muito grandes ou muito pequenos.</p>
+<h2>A regra</h2>
+<div class="math-display">$$
+N = a \times 10^{n}
+$$</div>
+<p>Onde:</p>
+<ul>
+<li>$1 \leq |a| < 10$ (a chamada <strong>mantissa</strong>);</li>
+<li>$n$ é um inteiro (o <strong>expoente</strong>).</li>
+</ul>
+<h2>Exemplos</h2>
+<table>
+<thead>
+<tr>
+<th>Número</th>
+<th>Notação científica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$6\,022\,000\,000\,000\,000\,000\,000\,000$ (número de Avogadro)</td>
+<td>$6{,}022 \times 10^{23}$</td>
+</tr>
+<tr>
+<td>$0{,}000\,000\,001\,602$ (carga do elétron, em C)</td>
+<td>$1{,}602 \times 10^{-9}$</td>
+</tr>
+<tr>
+<td>$300\,000\,000$ (velocidade da luz, em m/s)</td>
+<td>$3 \times 10^{8}$</td>
+</tr>
+</tbody>
+</table>
+<h2>Sinal do expoente</h2>
+<ul>
+<li><strong>Positivo</strong> → número grande. Desloca a vírgula para a <strong>direita</strong>.</li>
+<li><strong>Negativo</strong> → número pequeno. Desloca a vírgula para a <strong>esquerda</strong>.</li>
+</ul>
+<div class="math-display">$$
+2{,}5 \times 10^{4} = 25\,000
+$$</div>
+<div class="math-display">$$
+2{,}5 \times 10^{-4} = 0{,}000\,25
+$$</div>
+<h2>Operações</h2>
+<p>Em multiplicação e divisão, os expoentes somam e subtraem:</p>
+<div class="math-display">$$
+(a \times 10^{m}) \cdot (b \times 10^{n}) = (a \cdot b) \times 10^{m+n}
+$$</div>
+<div class="math-display">$$
+\frac{a \times 10^{m}}{b \times 10^{n}} = \frac{a}{b} \times 10^{m-n}
+$$</div>
+<h3>Exemplo</h3>
+<div class="math-display">$$
+(3 \times 10^{6}) \times (2 \times 10^{-3}) = 6 \times 10^{3} = 6\,000
+$$</div>
+<h2>Em Python</h2>
+<p>Python escreve automaticamente em notação científica para números muito grandes ou pequenos. Use <code>e</code> no lugar de "$\times 10$":</p>
+<table>
+<thead>
+<tr>
+<th>Em ciência</th>
+<th>Em Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$6{,}022 \times 10^{23}$</td>
+<td><code>6.022e23</code></td>
+</tr>
+<tr>
+<td>$1{,}602 \times 10^{-9}$</td>
+<td><code>1.602e-9</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Em bioestatística</h2>
+<p>Aparece com frequência quando reportamos:</p>
+<ul>
+<li>p-valores muito pequenos (<code>p = 3.2e-7</code>);</li>
+<li>concentrações em biologia molecular (<code>1 nM = 1e-9 M</code>);</li>
+<li>contagens muito grandes (<code>6e9</code> células no corpo humano).</li>
+</ul>
+
+</article>
+<article id="01-introducao-06-tipos-variaveis-md" class="topic">
+<div class="topic-num">1.6</div>
+<h1 class="topic-title">Tipos de variáveis</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/06_tipos_variaveis.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Reconhecer o tipo de cada variável é o <strong>primeiro passo</strong> ao analisar qualquer conjunto de dados. O tipo determina:</p>
+<ul>
+<li>quais gráficos fazem sentido;</li>
+<li>quais medidas resumir (média? proporção?);</li>
+<li>qual teste estatístico usar.</li>
+</ul>
+<h2>Mapa geral</h2>
+<div class="mermaid-container"><pre class="mermaid">flowchart TD
+    V[&quot;Variável&quot;] --&gt; Q[&quot;Qualitativa (categórica)&quot;]
+    V --&gt; N[&quot;Quantitativa (numérica)&quot;]
+    Q --&gt; Q1[&quot;Nominal&quot;]
+    Q --&gt; Q2[&quot;Ordinal&quot;]
+    N --&gt; N1[&quot;Discreta&quot;]
+    N --&gt; N2[&quot;Contínua&quot;]
+</pre></div>
+<h2>Variáveis qualitativas (categóricas)</h2>
+<p>Representam <strong>categorias</strong>, não números (ainda que possam ser codificadas como números).</p>
+<h3>Nominais</h3>
+<p>Categorias <strong>sem ordem natural</strong>.</p>
+<ul>
+<li>Sexo: masculino, feminino;</li>
+<li>Tipo sanguíneo: A, B, AB, O;</li>
+<li>Espécie: cão, gato, hamster;</li>
+<li>Estado civil.</li>
+</ul>
+<h3>Ordinais</h3>
+<p>Categorias <strong>com ordem natural</strong>, mas sem distância definida entre elas.</p>
+<ul>
+<li>Grau de dor: leve, moderada, intensa;</li>
+<li>Escolaridade: fundamental, médio, superior;</li>
+<li>Estágio de câncer: I, II, III, IV.</li>
+</ul>
+<blockquote>
+<p>Atenção: ordinal <strong>não é</strong> o mesmo que numérico. A diferença entre "leve" e "moderada" não é necessariamente igual à diferença entre "moderada" e "intensa".</p>
+</blockquote>
+<h2>Variáveis quantitativas (numéricas)</h2>
+<p>Representam <strong>quantidades</strong> mensuráveis.</p>
+<h3>Discretas</h3>
+<p>Assumem valores <strong>isolados</strong> — tipicamente contagens.</p>
+<ul>
+<li>Número de filhos;</li>
+<li>Número de células em um campo de microscópio;</li>
+<li>Contagem de mutações em uma sequência de DNA.</li>
+</ul>
+<h3>Contínuas</h3>
+<p>Podem assumir qualquer valor dentro de um intervalo — limitadas só pela precisão do instrumento.</p>
+<ul>
+<li>Peso, altura;</li>
+<li>Pressão arterial;</li>
+<li>Concentração de uma proteína no plasma;</li>
+<li>Tempo de sobrevida.</li>
+</ul>
+<h2>Resumo</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Exemplo</th>
+<th>Resumo usual</th>
+<th>Gráfico usual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominal</td>
+<td>tipo sanguíneo</td>
+<td>frequências, proporções</td>
+<td>barras, pizza</td>
+</tr>
+<tr>
+<td>Ordinal</td>
+<td>grau de dor</td>
+<td>mediana, frequências</td>
+<td>barras</td>
+</tr>
+<tr>
+<td>Discreta</td>
+<td>nº de células</td>
+<td>média, mediana</td>
+<td>barras, histograma</td>
+</tr>
+<tr>
+<td>Contínua</td>
+<td>altura</td>
+<td>média, desvio padrão</td>
+<td>histograma, boxplot</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<article id="01-introducao-07-histogramas-md" class="topic">
+<div class="topic-num">1.7</div>
+<h1 class="topic-title">Histogramas</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/07_histogramas.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>O histograma é o gráfico padrão para visualizar a distribuição de uma <strong>variável quantitativa</strong>.</p>
+<h2>Como funciona</h2>
+<ol>
+<li>Dividimos o intervalo dos dados em <strong>faixas</strong> (em inglês, <em>bins</em>).</li>
+<li>Contamos quantos valores caem em cada faixa.</li>
+<li>Desenhamos uma barra com <strong>altura proporcional</strong> à contagem.</li>
+</ol>
+<p>O resultado é uma "fotografia" da distribuição.</p>
+<h2>O que ele revela</h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>O que observar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Forma</strong></td>
+<td>simétrica, assimétrica, multimodal?</td>
+</tr>
+<tr>
+<td><strong>Centro</strong></td>
+<td>onde está a "massa" dos dados?</td>
+</tr>
+<tr>
+<td><strong>Dispersão</strong></td>
+<td>as barras se espalham por uma faixa larga ou estreita?</td>
+</tr>
+<tr>
+<td><strong>Outliers</strong></td>
+<td>barras isoladas longe do resto?</td>
+</tr>
+</tbody>
+</table>
+<h2>Formas comuns</h2>
+<ul>
+<li><strong>Simétrica em forma de sino</strong> → distribuição normal.</li>
+<li><strong>Assimétrica à direita</strong> (cauda longa para valores altos) → renda, tempo de espera, contagens.</li>
+<li><strong>Assimétrica à esquerda</strong> (cauda para valores baixos) → notas em provas fáceis, idade ao morrer.</li>
+<li><strong>Bimodal</strong> (duas cumes) → mistura de duas populações.</li>
+</ul>
+<h2>Quantas barras usar?</h2>
+<table>
+<thead>
+<tr>
+<th>Poucas barras</th>
+<th>Muitas barras</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Perde detalhe</td>
+<td>Vira ruído</td>
+</tr>
+</tbody>
+</table>
+<p>Algumas regras de bolso:</p>
+<ul>
+<li><strong>Raiz quadrada:</strong> $k = \lceil \sqrt{n} \rceil$;</li>
+<li><strong>Sturges:</strong> $k = \lceil 1 + \log_2 n \rceil$;</li>
+<li><strong>Freedman–Diaconis:</strong> ajusta para dados com outliers.</li>
+</ul>
+<p>Mas o melhor é experimentar alguns valores e escolher o que <strong>revela a estrutura</strong> sem mostrar ruído.</p>
+<h2>Histograma vs. gráfico de barras</h2>
+<table>
+<thead>
+<tr>
+<th>Histograma</th>
+<th>Gráfico de barras</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variável <strong>contínua</strong></td>
+<td>Variável <strong>categórica</strong></td>
+</tr>
+<tr>
+<td>Barras encostadas</td>
+<td>Barras separadas</td>
+</tr>
+<tr>
+<td>Eixo x = números</td>
+<td>Eixo x = categorias</td>
+</tr>
+</tbody>
+</table>
+<h2>Histograma de densidade</h2>
+<p>Quando o eixo y mostra <strong>densidade</strong> (em vez de contagem), a área total sob o histograma vale 1. Isso permite comparar amostras de tamanhos diferentes na mesma escala.</p>
+<div class="math-display">$$
+\text{densidade} = \frac{\text{contagem}}{n \cdot \text{largura da faixa}}
+$$</div>
+
+<div class="widget" data-widget="wHistograma" data-id="histograma_1_7">
+  <div class="widget-title">Demonstração interativa — Histograma e amostragem</div>
+  <div class="btn-row">
+    <button class="btn outline active" data-hist-dist="histograma_1_7" data-dist="uniforme">Uniforme</button>
+    <button class="btn outline" data-hist-dist="histograma_1_7" data-dist="normal">Normal</button>
+    <button class="btn" id="histograma_1_7-redraw">Nova amostra ↺</button>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">Tamanho da amostra (N)</span><input type="range" min="1" max="8" step="1" value="3" id="histograma_1_7-n"><span class="ctrl-val" id="histograma_1_7-n-v">3</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Número de bins</span><input type="range" min="3" max="60" step="1" value="15" id="histograma_1_7-bins"><span class="ctrl-val" id="histograma_1_7-bins-v">15</span></div>
+  </div>
+  <canvas id="histograma_1_7"></canvas>
+  <div class="stat-grid" style="margin-top:0.6rem;">
+    <div class="stat-card"><div class="slabel">Média</div><div class="sval" id="histograma_1_7-mean">—</div><div class="sdesc">média amostral</div></div><div class="stat-card"><div class="slabel">Desvio padrão</div><div class="sval" id="histograma_1_7-sd">—</div><div class="sdesc">desvio padrão amostral</div></div>
+  </div>
+</div>
+</article>
+<article id="01-introducao-08-curva-normal-md" class="topic">
+<div class="topic-num">1.8</div>
+<h1 class="topic-title">Curva normal</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/08_curva_normal.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A <strong>curva normal</strong> (também chamada <strong>gaussiana</strong> ou <strong>curva em sino</strong>) é a distribuição mais importante da estatística. Várias medidas biológicas seguem (ou se aproximam) dessa forma.</p>
+<h2>Forma e equação</h2>
+<p>A curva normal é definida por dois parâmetros: a média $\mu$ e o desvio padrão $\sigma$. A função de densidade é:</p>
+<div class="math-display">$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} \cdot e^{-\frac{1}{2} \left( \frac{x - \mu}{\sigma} \right)^{2}}
+$$</div>
+<p>Não precisa decorar essa fórmula. O que importa é entender:</p>
+<ul>
+<li>$\mu$ define <strong>onde está o centro</strong> da curva;</li>
+<li>$\sigma$ define <strong>quão larga</strong> ela é.</li>
+</ul>
+<h2>Propriedades importantes</h2>
+<ol>
+<li><strong>Simétrica</strong> em torno da média.</li>
+<li><strong>Média = mediana = moda</strong> (no centro).</li>
+<li>A área total sob a curva é <strong>1</strong> (ou 100%).</li>
+<li>Tem caudas que se estendem para $-\infty$ e $+\infty$, mas a densidade fica muito pequena longe do centro.</li>
+</ol>
+<h2>A regra 68-95-99,7</h2>
+<p>A propriedade mais útil da normal:</p>
+<table>
+<thead>
+<tr>
+<th>Intervalo</th>
+<th>Porcentagem dos valores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\mu \pm 1\sigma$</td>
+<td>~68%</td>
+</tr>
+<tr>
+<td>$\mu \pm 2\sigma$</td>
+<td>~95%</td>
+</tr>
+<tr>
+<td>$\mu \pm 3\sigma$</td>
+<td>~99,7%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Exemplo: se a altura segue $\mathcal{N}(170, 8)$, então cerca de 95% das pessoas medem entre 154 e 186 cm.</p>
+</blockquote>
+<h2>A normal padrão (Z)</h2>
+<p>Quando $\mu = 0$ e $\sigma = 1$, chamamos a distribuição de <strong>normal padrão</strong> e representamos a variável por $Z$.</p>
+<p>Qualquer normal pode ser convertida para Z pela <strong>padronização</strong>:</p>
+<div class="math-display">$$
+Z = \frac{X - \mu}{\sigma}
+$$</div>
+<p>Isso é útil porque permite comparar valores que vieram de distribuições normais diferentes — todos passam a estar na mesma escala.</p>
+<h2>Por que ela aparece tanto?</h2>
+<p>Pelo <strong>Teorema do Limite Central</strong>: quando uma medida resulta da soma de muitos pequenos efeitos independentes, a distribuição resultante tende à normal. A altura, por exemplo, é influenciada por genética, alimentação, sono, doenças na infância — cada um contribuindo um pouco. O resultado se aproxima de uma normal.</p>
+<h2>Cuidado!</h2>
+<p>Nem tudo é normal. Antes de assumir normalidade, <strong>olhe o histograma</strong> ou faça um teste formal. Distribuições assimétricas (renda, tempo de sobrevida, contagens raras) precisam de outra abordagem.</p>
+
+<div class="widget" data-widget="wCurvaNormal" data-id="curva_normal_1_8">
+  <div class="widget-title">Demonstração interativa — Curva Normal</div>
+  <canvas id="curva_normal_1_8"></canvas>
+  <div class="legend">
+    <span class="legend-item"><span class="swatch" style="background:#3266ad;opacity:0.3"></span>±1σ ≈ 68%</span>
+    <span class="legend-item"><span class="swatch" style="background:#3266ad;opacity:0.18"></span>±2σ ≈ 95%</span>
+    <span class="legend-item"><span class="swatch" style="background:#3266ad;opacity:0.10"></span>±3σ ≈ 99,7%</span>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">Média (μ)</span><input type="range" min="-5" max="5" step="0.1" value="0" id="curva_normal_1_8-mu"><span class="ctrl-val" id="curva_normal_1_8-mu-v">0</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Desvio padrão (σ)</span><input type="range" min="0.5" max="4" step="0.1" value="1" id="curva_normal_1_8-sg"><span class="ctrl-val" id="curva_normal_1_8-sg-v">1</span></div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="slabel">±1σ</div><div class="sval" id="curva_normal_1_8-p1">—</div><div class="sdesc">cobertura</div></div><div class="stat-card"><div class="slabel">±2σ</div><div class="sval" id="curva_normal_1_8-p2">—</div><div class="sdesc">cobertura</div></div><div class="stat-card"><div class="slabel">±3σ</div><div class="sval" id="curva_normal_1_8-p3">—</div><div class="sdesc">cobertura</div></div>
+  </div>
+</div>
+</article>
+<article id="01-introducao-09-tecnicas-amostragem-md" class="topic">
+<div class="topic-num">1.9</div>
+<h1 class="topic-title">Técnicas de amostragem</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/01_introducao/09_tecnicas_amostragem.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>De nada adianta uma análise estatística sofisticada se a <strong>amostra</strong> foi mal coletada. A forma como escolhemos quem entra no estudo determina se podemos (ou não) generalizar os resultados.</p>
+<blockquote>
+<p>"Garbage in, garbage out." Uma amostra enviesada produz conclusões erradas, por mais correta que seja a matemática aplicada depois.</p>
+</blockquote>
+<h2>O objetivo: representatividade</h2>
+<p>Uma boa amostra é <strong>representativa</strong> da população — tem, em miniatura, as mesmas características do todo. A melhor forma de conseguir isso é introduzir o <strong>acaso</strong> na seleção.</p>
+<h2>Amostragem probabilística</h2>
+<p>Cada indivíduo tem uma probabilidade <strong>conhecida e não nula</strong> de ser escolhido. São os métodos que permitem inferência estatística válida.</p>
+<h3>Amostragem aleatória simples</h3>
+<p>Todo indivíduo tem a <strong>mesma</strong> chance de ser sorteado, como em um sorteio de loteria.</p>
+<ul>
+<li><strong>Vantagem:</strong> simples, sem viés.</li>
+<li><strong>Desvantagem:</strong> pode, por azar, sub-representar subgrupos pequenos.</li>
+</ul>
+<h3>Amostragem sistemática</h3>
+<p>Escolhe-se um a cada $k$ indivíduos de uma lista (ex.: a cada 10º paciente que chega).</p>
+<ul>
+<li><strong>Vantagem:</strong> prática.</li>
+<li><strong>Cuidado:</strong> se a lista tiver um padrão periódico, pode introduzir viés.</li>
+</ul>
+<h3>Amostragem estratificada</h3>
+<p>A população é dividida em <strong>estratos</strong> homogêneos (ex.: faixas etárias, sexo) e sorteia-se dentro de cada estrato, proporcionalmente.</p>
+<ul>
+<li><strong>Vantagem:</strong> garante representação de todos os subgrupos; reduz variabilidade.</li>
+<li><strong>Uso típico:</strong> quando há subgrupos com características muito diferentes.</li>
+</ul>
+<h3>Amostragem por conglomerados (clusters)</h3>
+<p>Divide-se a população em grupos (ex.: escolas, bairros), sorteiam-se alguns grupos inteiros e estuda-se todos dentro deles.</p>
+<ul>
+<li><strong>Vantagem:</strong> barata logisticamente quando a população é dispersa.</li>
+<li><strong>Desvantagem:</strong> menos precisa que a estratificada.</li>
+</ul>
+<h2>Amostragem não probabilística</h2>
+<p>A seleção <strong>não</strong> é aleatória. Útil em estudos exploratórios, mas <strong>não permite generalização estatística válida</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Como funciona</th>
+<th>Problema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Por conveniência</td>
+<td>quem está à mão (voluntários, alunos)</td>
+<td>viés de seleção</td>
+</tr>
+<tr>
+<td>Por julgamento</td>
+<td>o pesquisador escolhe quem acha "típico"</td>
+<td>subjetivo</td>
+</tr>
+<tr>
+<td>Bola de neve</td>
+<td>participantes indicam outros</td>
+<td>redes enviesadas</td>
+</tr>
+</tbody>
+</table>
+<h2>O perigo dos voluntários</h2>
+<p>Um erro clássico: estudar <strong>voluntários</strong> para avaliar uma intervenção.</p>
+<blockquote>
+<p>Exemplo (da planilha do curso): um hospital quer testar um treinamento de lavagem das mãos. Se os <strong>100 funcionários voluntários</strong> recebem o treinamento e são comparados com os demais, o estudo é inválido — quem se voluntaria já é, em média, mais cuidadoso. O resultado fica artificialmente positivo.</p>
+</blockquote>
+<p>A solução é <strong>sortear</strong> quem recebe o treinamento (aleatorização), de modo que a própria seleção não influencie o resultado.</p>
+<h2>Variáveis de confusão (confounding)</h2>
+<p>Uma <strong>variável de confusão</strong> afeta o desfecho e, ao mesmo tempo, difere entre os grupos comparados — criando associações enganosas.</p>
+<blockquote>
+<p>Exemplo clássico (motoristas vs. cobradores de ônibus de Londres, 1961): cobradores andavam o dia todo e tinham menos doença cardíaca que os motoristas, sentados. Mas <strong>idade</strong>, <strong>estado de saúde prévio</strong> e <strong>estresse</strong> são confundidores possíveis. O estudo mostra <strong>associação</strong>, não <strong>causa</strong>.</p>
+</blockquote>
+<p>Para uma variável ser confundidora, ela precisa:</p>
+<ol>
+<li>afetar o desfecho por si só; e</li>
+<li>estar distribuída de forma diferente entre os grupos.</li>
+</ol>
+<p>A <strong>aleatorização</strong> é a principal arma contra confundidores: distribui-os igualmente entre os grupos, em média.</p>
+<h2>Pareamento e blocos</h2>
+<p>Quando há uma fonte conhecida de variabilidade (ex.: ninhadas de ratos, onde irmãos são parecidos), podemos <strong>parear</strong> ou organizar em <strong>blocos</strong>:</p>
+<blockquote>
+<p>Exemplo (da planilha): para testar uma droga em filhotes de rato, <strong>não</strong> misture as ninhadas ao acaso entre as doses. Pegue um filhote de <strong>cada ninhada</strong> para <strong>cada dose</strong>. Assim, a variabilidade entre ninhadas não se confunde com o efeito da droga. Isso é amostragem <strong>estratificada/em blocos</strong> e leva a análises pareadas (mais potentes).</p>
+</blockquote>
+<h2>Resumo</h2>
+<table>
+<thead>
+<tr>
+<th>Pergunta</th>
+<th>Resposta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quero generalizar?</td>
+<td>use amostragem <strong>probabilística</strong></td>
+</tr>
+<tr>
+<td>Há subgrupos importantes?</td>
+<td><strong>estratifique</strong></td>
+</tr>
+<tr>
+<td>A população é dispersa geograficamente?</td>
+<td><strong>conglomerados</strong></td>
+</tr>
+<tr>
+<td>Há fonte conhecida de variabilidade?</td>
+<td><strong>pareie / use blocos</strong></td>
+</tr>
+<tr>
+<td>Posso usar voluntários?</td>
+<td>só para estudos exploratórios, nunca para comparar intervenções</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+</div>
+<div class="footer"><img src="assets/ibccf-logo.svg" alt="IBCCF" class="footer-logo"><div class="footer-text">Instituto de Biofísica Carlos Chagas Filho — UFRJ<br>Material didático de Bioestatística · Pedro Torres &amp; Gilberto Weissmuller</div></div>
+</main>
+
+<script src="assets/widgets.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'loose'});</script>
+</body>
+</html>

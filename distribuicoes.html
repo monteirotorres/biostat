@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distribuições amostrais — Bioestatística IBCCF</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+<nav class="sidebar" id="sidebar">
+<a class="sidebar-brand" href="index.html">Bioestatística<span>IBCCF · UFRJ</span></a>
+<div class="nav-group">
+<div class="nav-group-title">1. Introdução</div>
+<ul>
+<li><a href="introducao.html#01-introducao-01-amostra-populacao-md"><span class="n">1.1</span>Amostra e população</a></li>
+<li><a href="introducao.html#01-introducao-02-descricao-inferencia-md"><span class="n">1.2</span>Descrição vs. inferência</a></li>
+<li><a href="introducao.html#01-introducao-03-precisao-acuracia-md"><span class="n">1.3</span>Precisão e acurácia</a></li>
+<li><a href="introducao.html#01-introducao-04-algarismos-significativos-md"><span class="n">1.4</span>Algarismos significativos</a></li>
+<li><a href="introducao.html#01-introducao-05-notacao-cientifica-md"><span class="n">1.5</span>Notação científica</a></li>
+<li><a href="introducao.html#01-introducao-06-tipos-variaveis-md"><span class="n">1.6</span>Tipos de variáveis</a></li>
+<li><a href="introducao.html#01-introducao-07-histogramas-md"><span class="n">1.7</span>Histogramas</a></li>
+<li><a href="introducao.html#01-introducao-08-curva-normal-md"><span class="n">1.8</span>Curva normal</a></li>
+<li><a href="introducao.html#01-introducao-09-tecnicas-amostragem-md"><span class="n">1.9</span>Técnicas de amostragem</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">2. Estatística Descritiva</div>
+<ul>
+<li><a href="descritiva.html#02-estatistica-descritiva-01-tendencia-central-md"><span class="n">2.1</span>Medidas de tendência central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-02-moda-md"><span class="n">2.2</span>Moda</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-03-media-aritmetica-md"><span class="n">2.3</span>Média aritmética</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-04-media-cortada-md"><span class="n">2.4</span>Média cortada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-05-media-ponderada-md"><span class="n">2.5</span>Média ponderada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-06-media-geometrica-md"><span class="n">2.6</span>Média geométrica</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-07-mediana-md"><span class="n">2.7</span>Mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-08-media-vs-mediana-md"><span class="n">2.8</span>Média vs. mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-09-teorema-limite-central-md"><span class="n">2.9</span>Teorema do limite central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-10-amplitude-md"><span class="n">2.10</span>Amplitude</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-11-desvio-medio-md"><span class="n">2.11</span>Desvio médio</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-12-variancia-md"><span class="n">2.12</span>Variância</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-13-desvio-padrao-md"><span class="n">2.13</span>Desvio padrão</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-14-desvio-interquartil-md"><span class="n">2.14</span>Desvio interquartil</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-15-coeficiente-variacao-md"><span class="n">2.15</span>Coeficiente de variação</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">3. Probabilidade</div>
+<ul>
+<li><a href="probabilidade.html#03-probabilidade-01-evento-md"><span class="n">3.1</span>Evento — definição</a></li>
+<li><a href="probabilidade.html#03-probabilidade-02-eventos-compostos-md"><span class="n">3.2</span>Eventos compostos</a></li>
+<li><a href="probabilidade.html#03-probabilidade-03-probabilidade-condicional-md"><span class="n">3.3</span>Probabilidade condicional</a></li>
+<li><a href="probabilidade.html#03-probabilidade-04-analise-combinatoria-md"><span class="n">3.4</span>Análise combinatória</a></li>
+<li><a href="probabilidade.html#03-probabilidade-05-testes-binarios-md"><span class="n">3.5</span>Testes binários</a></li>
+<li><a href="probabilidade.html#03-probabilidade-06-sensibilidade-especificidade-md"><span class="n">3.6</span>Sensibilidade e especificidade</a></li>
+<li><a href="probabilidade.html#03-probabilidade-07-matriz-confusao-md"><span class="n">3.7</span>Matriz de confusão</a></li>
+<li><a href="probabilidade.html#03-probabilidade-08-valor-preditivo-md"><span class="n">3.8</span>Valor preditivo</a></li>
+<li><a href="probabilidade.html#03-probabilidade-09-curva-roc-md"><span class="n">3.9</span>Curva ROC</a></li>
+<li><a href="probabilidade.html#03-probabilidade-10-distribuicao-binomial-md"><span class="n">3.10</span>Distribuição binomial</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">4. Distribuições amostrais</div>
+<ul>
+<li><a class="nav-link" data-target="05-distribuicoes-amostrais-01-de-onde-vem-md" href="#05-distribuicoes-amostrais-01-de-onde-vem-md"><span class="n">4.1</span>De onde vêm t, F e χ²</a></li>
+<li><a class="nav-link" data-target="05-distribuicoes-amostrais-02-qui-quadrado-md" href="#05-distribuicoes-amostrais-02-qui-quadrado-md"><span class="n">4.2</span>Distribuição qui-quadrado</a></li>
+<li><a class="nav-link" data-target="05-distribuicoes-amostrais-03-t-student-md" href="#05-distribuicoes-amostrais-03-t-student-md"><span class="n">4.3</span>Distribuição t de Student</a></li>
+<li><a class="nav-link" data-target="05-distribuicoes-amostrais-04-f-distribuicao-md" href="#05-distribuicoes-amostrais-04-f-distribuicao-md"><span class="n">4.4</span>Distribuição F</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">5. Estatística Inferencial</div>
+<ul>
+<li><a href="inferencial.html#04-estatistica-inferencial-01-logica-inferencia-md"><span class="n">5.1</span>Lógica da inferência</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-02-estimacao-md"><span class="n">5.2</span>Estimação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-03-intervalo-confianca-md"><span class="n">5.3</span>Intervalos de confiança</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-04-hipoteses-md"><span class="n">5.4</span>Hipótese nula e alternativa</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-05-significancia-md"><span class="n">5.5</span>Nível de significância</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-06-valor-p-md"><span class="n">5.6</span>Valor-p</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-07-erros-tipo-i-ii-md"><span class="n">5.7</span>Erros tipo I e tipo II</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-08-teste-z-md"><span class="n">5.8</span>Teste z</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-09-teste-t-uma-amostra-md"><span class="n">5.9</span>Teste t de uma amostra</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-10-teste-t-independente-md"><span class="n">5.10</span>Teste t para duas amostras independentes</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-11-teste-t-pareado-md"><span class="n">5.11</span>Teste t pareado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-12-anova-md"><span class="n">5.12</span>ANOVA</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-13-qui-quadrado-md"><span class="n">5.13</span>Teste do qui-quadrado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-14-correlacao-md"><span class="n">5.14</span>Correlação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-15-regressao-linear-md"><span class="n">5.15</span>Regressão linear</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-16-testes-nao-parametricos-md"><span class="n">5.16</span>Testes não paramétricos</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-17-design-experimental-md"><span class="n">5.17</span>Design experimental e potência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">6. Tabelas estatísticas</div>
+<ul>
+<li><a href="tabelas.html#06-tabelas-01-tabelas-md"><span class="n">6.1</span>Tabelas de referência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">7. Exercícios</div>
+<ul>
+<li><a href="exercicios.html#07-exercicios-01-exercicios-md"><span class="n">7.1</span>Exercícios resolvidos por tema</a></li>
+</ul></div>
+</nav>
+<main class="content"><div class="content-inner">
+<div class="page-eyebrow">4. Distribuições amostrais</div>
+<article id="05-distribuicoes-amostrais-01-de-onde-vem-md" class="topic">
+<div class="topic-num">4.1</div>
+<h1 class="topic-title">De onde vêm t, F e χ²</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/05_distribuicoes_amostrais/01_de_onde_vem.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Até agora usamos a <strong>distribuição normal</strong> o tempo todo. Mas nos testes de hipóteses aparecem outras três distribuições: <strong>qui-quadrado ($\chi^2$)</strong>, <strong>t de Student</strong> e <strong>F</strong>. De onde elas vêm?</p>
+<p>A resposta curta: <strong>todas surgem quando combinamos variáveis normais ao calcular estatísticas a partir de amostras.</strong> Elas são as "distribuições da amostragem" — descrevem como certas contas (variâncias, médias padronizadas, razões de variâncias) se comportam quando repetimos a coleta de amostras muitas vezes.</p>
+<h2>A ideia central: distribuição amostral</h2>
+<p>Imagine repetir um experimento <strong>milhares de vezes</strong>, cada vez com uma nova amostra, e calcular uma estatística (a média, a variância, um valor t...). Os valores dessa estatística formam uma distribuição — a <strong>distribuição amostral</strong> daquela estatística.</p>
+<ul>
+<li>A média amostral $\bar{x}$ tem distribuição <strong>normal</strong> (pelo TLC).</li>
+<li>A variância amostral (padronizada) tem distribuição <strong>qui-quadrado</strong>.</li>
+<li>A média padronizada com $\sigma$ desconhecido tem distribuição <strong>t</strong>.</li>
+<li>A razão de duas variâncias tem distribuição <strong>F</strong>.</li>
+</ul>
+<p>Não precisamos derivar a matemática. O importante é entender <strong>qual conta gera qual distribuição</strong> e <strong>por que</strong> elas têm a forma que têm.</p>
+<h2>Mapa das três distribuições</h2>
+<table>
+<thead>
+<tr>
+<th>Distribuição</th>
+<th>Surge de...</th>
+<th>Aparece em...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\chi^2$ (qui-quadrado)</td>
+<td>soma de quadrados de variáveis normais padrão</td>
+<td>teste qui-quadrado, variâncias</td>
+</tr>
+<tr>
+<td>t de Student</td>
+<td>normal dividida por um desvio padrão <strong>estimado</strong></td>
+<td>teste t, intervalos de confiança</td>
+</tr>
+<tr>
+<td>F</td>
+<td>razão entre duas variâncias</td>
+<td>ANOVA, comparação de variâncias</td>
+</tr>
+</tbody>
+</table>
+<h2>O conceito de graus de liberdade</h2>
+<p>As três distribuições dependem de um parâmetro chamado <strong>graus de liberdade</strong> (gl). Intuitivamente:</p>
+<blockquote>
+<p>Graus de liberdade = número de valores que podem variar livremente ao calcular uma estatística.</p>
+</blockquote>
+<p>Exemplo: se temos $n$ valores e já calculamos a média $\bar{x}$, então só $n-1$ desvios são "livres" — o último fica determinado, porque a soma dos desvios é zero. Por isso a variância amostral usa $n-1$ no denominador, e a distribuição t tem $n-1$ graus de liberdade.</p>
+<p>Quanto <strong>maiores</strong> os graus de liberdade:</p>
+<ul>
+<li>a distribuição t se aproxima da <strong>normal</strong>;</li>
+<li>a qui-quadrado e a F ficam mais <strong>simétricas</strong>.</li>
+</ul>
+<p>Isso reflete uma ideia profunda: <strong>com amostras grandes, a incerteza de estimar parâmetros desaparece</strong>, e tudo volta a se comportar como uma normal.</p>
+<h2>Por que isso importa</h2>
+<p>Quando você roda um teste t no <code>scipy.stats</code> e ele devolve um valor-p, por trás está acontecendo:</p>
+<ol>
+<li>calcula-se uma estatística (t, F ou χ²) a partir dos dados;</li>
+<li>compara-se essa estatística com a <strong>distribuição teórica</strong> correspondente (sob $H_0$);</li>
+<li>a área na cauda dá o valor-p.</li>
+</ol>
+<p>Entender de onde vêm essas distribuições tira o "mistério" dos testes: eles nada mais são do que perguntar <strong>"quão extremo é meu resultado, comparado ao que o acaso produziria?"</strong>.</p>
+<p>Nos próximos tópicos, vemos cada uma em detalhe — e, no notebook, <strong>construímos</strong> cada distribuição por simulação, amostrando de normais e vendo a forma emergir.</p>
+
+<div class="widget" data-widget="wDistAmostral" data-id="dist_4_1">
+  <div class="widget-title">Demonstração interativa — Distribuições t, χ² e F</div>
+  <div class="btn-row">
+    <button class="btn outline active" data-dist="dist_4_1" data-tipo="t">t de Student</button>
+    <button class="btn outline" data-dist="dist_4_1" data-tipo="chi2">χ² (qui-quadrado)</button>
+    <button class="btn outline" data-dist="dist_4_1" data-tipo="f">F</button>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label">Graus de liberdade</span><input type="range" min="1" max="40" step="1" value="5" id="dist_4_1-df"><span class="ctrl-val" id="dist_4_1-df-v">5</span></div>
+    <div id="dist_4_1-df2row"><div class="ctrl-row"><span class="ctrl-label">Graus de liberdade (denominador)</span><input type="range" min="1" max="40" step="1" value="10" id="dist_4_1-df2"><span class="ctrl-val" id="dist_4_1-df2-v">10</span></div></div>
+  </div>
+  <canvas id="dist_4_1"></canvas>
+  <p style="font-size:0.8rem;color:#888;margin-top:0.4rem;">Na t, a curva verde tracejada é a normal padrão — repare como a t se aproxima dela com mais graus de liberdade.</p>
+</div>
+</article>
+<article id="05-distribuicoes-amostrais-02-qui-quadrado-md" class="topic">
+<div class="topic-num">4.2</div>
+<h1 class="topic-title">Distribuição qui-quadrado</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/05_distribuicoes_amostrais/02_qui_quadrado.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A distribuição <strong>qui-quadrado</strong> é a primeira das três distribuições derivadas da normal — e a base para entender as outras.</p>
+<h2>Como ela surge</h2>
+<p>Pegue uma variável <strong>normal padrão</strong> $Z \sim \mathcal{N}(0,1)$ e eleve ao quadrado. Some $k$ dessas variáveis ao quadrado, todas independentes:</p>
+<div class="math-display">$$
+\chi^2_k = Z_1^2 + Z_2^2 + \cdots + Z_k^2
+$$</div>
+<p>O resultado segue uma distribuição <strong>qui-quadrado com $k$ graus de liberdade</strong>.</p>
+<blockquote>
+<p>Em palavras: a qui-quadrado é a distribuição de uma <strong>soma de quadrados</strong> de variáveis normais. Como são quadrados, ela só assume valores <strong>positivos</strong>.</p>
+</blockquote>
+<h2>Forma</h2>
+<table>
+<thead>
+<tr>
+<th>Graus de liberdade</th>
+<th>Forma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$k = 1$</td>
+<td>muito assimétrica, concentrada perto de zero</td>
+</tr>
+<tr>
+<td>$k = 3$</td>
+<td>assimétrica à direita</td>
+</tr>
+<tr>
+<td>$k$ grande</td>
+<td>quase simétrica, aproxima-se da normal</td>
+</tr>
+</tbody>
+</table>
+<p>A média de uma $\chi^2_k$ é exatamente $k$, e a variância é $2k$.</p>
+<h2>Por que aparece na variância amostral</h2>
+<p>Quando estimamos a variância de uma amostra normal, a quantidade</p>
+<div class="math-display">$$
+\frac{(n-1)\,s^2}{\sigma^2}
+$$</div>
+<p>segue uma distribuição $\chi^2$ com $n-1$ graus de liberdade. É por isso que a qui-quadrado é a distribuição natural para tudo que envolve <strong>variabilidade</strong> (somas de desvios ao quadrado).</p>
+<h2>Onde você vai usá-la</h2>
+<ol>
+<li><strong>Teste qui-quadrado de aderência e independência</strong> (tabelas de contingência): comparamos contagens observadas e esperadas, e a soma</li>
+</ol>
+<div class="math-display">$$
+\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
+$$</div>
+<p>segue aproximadamente uma distribuição qui-quadrado.</p>
+<ol start="2">
+<li>
+<p><strong>Intervalos de confiança para a variância</strong>.</p>
+</li>
+<li>
+<p>Como <strong>bloco de construção</strong> das distribuições t e F (próximos tópicos).</p>
+</li>
+</ol>
+<h2>Interpretação intuitiva</h2>
+<p>A qui-quadrado mede <strong>"distância acumulada ao quadrado"</strong>. Valores grandes significam que os dados observados estão <strong>longe</strong> do esperado — exatamente o que queremos detectar em um teste de aderência. Por isso o teste qui-quadrado é sempre <strong>unilateral à direita</strong>: só nos interessa o quanto a discrepância é grande.</p>
+<h2>No notebook</h2>
+<p>No notebook que acompanha esta seção, construímos a qui-quadrado <strong>do zero</strong>: sorteamos variáveis normais, elevamos ao quadrado, somamos, e vemos o histograma coincidir com a curva teórica do <code>scipy.stats.chi2</code>.</p>
+
+</article>
+<article id="05-distribuicoes-amostrais-03-t-student-md" class="topic">
+<div class="topic-num">4.3</div>
+<h1 class="topic-title">Distribuição t de Student</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/05_distribuicoes_amostrais/03_t_student.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A distribuição <strong>t</strong> é talvez a mais usada em bioestatística — está por trás do teste t e dos intervalos de confiança para a média.</p>
+<h2>O problema que ela resolve</h2>
+<p>Pelo Teorema do Limite Central, sabemos que a média amostral padronizada é normal:</p>
+<div class="math-display">$$
+Z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1)
+$$</div>
+<p>Mas há um problema prático: <strong>quase nunca conhecemos $\sigma$</strong> (o desvio padrão da população). Então o substituímos por $s$ (o desvio padrão da amostra):</p>
+<div class="math-display">$$
+t = \frac{\bar{x} - \mu}{s / \sqrt{n}}
+$$</div>
+<p>Acontece que $s$ é apenas uma <strong>estimativa</strong> de $\sigma$ — ela própria varia de amostra para amostra. Essa incerteza extra faz com que $t$ <strong>não</strong> seja normal: ele segue a <strong>distribuição t de Student</strong> com $n-1$ graus de liberdade.</p>
+<h2>Como ela surge formalmente</h2>
+<p>A distribuição t nasce da razão entre uma normal padrão e a raiz de uma qui-quadrado (dividida por seus graus de liberdade):</p>
+<div class="math-display">$$
+t_k = \frac{Z}{\sqrt{\chi^2_k / k}}
+$$</div>
+<p>Ou seja: ela combina a variabilidade da <strong>média</strong> (numerador normal) com a variabilidade da <strong>variância estimada</strong> (denominador qui-quadrado). Por isso é mais "espalhada" que a normal.</p>
+<h2>Forma: caudas pesadas</h2>
+<p>A distribuição t parece uma normal, mas com <strong>caudas mais pesadas</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Graus de liberdade</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$k = 1$</td>
+<td>caudas muito pesadas (distribuição de Cauchy)</td>
+</tr>
+<tr>
+<td>$k = 5$</td>
+<td>ainda visivelmente mais pesada que a normal</td>
+</tr>
+<tr>
+<td>$k = 30$</td>
+<td>quase idêntica à normal</td>
+</tr>
+<tr>
+<td>$k \to \infty$</td>
+<td>converge para a normal padrão</td>
+</tr>
+</tbody>
+</table>
+<p>As caudas pesadas significam que <strong>valores extremos são mais prováveis</strong> com a t do que com a normal. Isso é exatamente o que queremos: com amostras pequenas, há mais incerteza, então o teste precisa ser mais "cauteloso" (exige evidência mais forte para rejeitar $H_0$).</p>
+<h2>Consequência prática</h2>
+<p>É por isso que os valores críticos do teste t são <strong>maiores</strong> que os da normal para amostras pequenas:</p>
+<table>
+<thead>
+<tr>
+<th>Confiança</th>
+<th>$z^*$ (normal)</th>
+<th>$t^*$ ($n=5$)</th>
+<th>$t^*$ ($n=30$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>95%</td>
+<td>1,96</td>
+<td>2,78</td>
+<td>2,05</td>
+</tr>
+</tbody>
+</table>
+<p>Com $n$ pequeno, precisamos ir mais longe na cauda para "fechar" 95% — refletindo nossa maior ignorância sobre $\sigma$.</p>
+<h2>Onde você vai usá-la</h2>
+<ul>
+<li><strong>Teste t</strong> de uma amostra, duas amostras e pareado.</li>
+<li><strong>Intervalos de confiança</strong> para a média (quando $\sigma$ é desconhecido).</li>
+<li><strong>Testes de significância dos coeficientes</strong> em regressão.</li>
+</ul>
+<h2>A história curiosa</h2>
+<p>A distribuição foi publicada em 1908 por William Sealy Gosset, que trabalhava na cervejaria Guinness. A empresa proibia funcionários de publicar, então ele usou o pseudônimo <strong>"Student"</strong> — daí o nome.</p>
+<h2>No notebook</h2>
+<p>Construímos a t por simulação: a cada iteração, sorteamos uma pequena amostra normal, calculamos $t = (\bar{x}-\mu)/(s/\sqrt{n})$ e acumulamos. O histograma resultante tem caudas mais pesadas que a normal — exatamente a curva do <code>scipy.stats.t</code>.</p>
+
+</article>
+<article id="05-distribuicoes-amostrais-04-f-distribuicao-md" class="topic">
+<div class="topic-num">4.4</div>
+<h1 class="topic-title">Distribuição F</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/05_distribuicoes_amostrais/04_f_distribuicao.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>A distribuição <strong>F</strong> (em homenagem a Ronald Fisher) é a base da <strong>ANOVA</strong> e de qualquer teste que compare <strong>variâncias</strong>.</p>
+<h2>Como ela surge</h2>
+<p>A F é a <strong>razão entre duas variâncias</strong> — mais precisamente, a razão entre duas qui-quadrado, cada uma dividida por seus graus de liberdade:</p>
+<div class="math-display">$$
+F = \frac{\chi^2_{d_1} / d_1}{\chi^2_{d_2} / d_2}
+$$</div>
+<p>Como variâncias são sempre positivas, a F só assume valores <strong>positivos</strong>. Ela tem <strong>dois</strong> parâmetros de graus de liberdade: $d_1$ (numerador) e $d_2$ (denominador).</p>
+<h2>A intuição: comparar variabilidades</h2>
+<p>Pense em duas fontes de variação:</p>
+<ul>
+<li>variância <strong>entre</strong> grupos (o quanto as médias dos grupos diferem);</li>
+<li>variância <strong>dentro</strong> dos grupos (a variabilidade natural dentro de cada grupo).</li>
+</ul>
+<p>A estatística F é a razão entre as duas:</p>
+<div class="math-display">$$
+F = \frac{\text{variância entre grupos}}{\text{variância dentro dos grupos}}
+$$</div>
+<ul>
+<li>Se os grupos têm médias <strong>iguais</strong> ($H_0$), as duas variâncias estimam a mesma coisa, e $F \approx 1$.</li>
+<li>Se as médias <strong>diferem</strong>, a variância entre grupos infla, e $F$ fica <strong>grande</strong>.</li>
+</ul>
+<p>Por isso a ANOVA é um teste <strong>unilateral à direita</strong>: só valores grandes de F são evidência contra $H_0$.</p>
+<h2>Forma</h2>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Forma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$d_1$ pequeno</td>
+<td>muito assimétrica à direita</td>
+</tr>
+<tr>
+<td>$d_1, d_2$ grandes</td>
+<td>concentra-se em torno de 1</td>
+</tr>
+</tbody>
+</table>
+<p>O valor esperado de F (para $d_2 > 2$) é próximo de 1, refletindo a ideia de "duas estimativas da mesma variância".</p>
+<h2>Relações com as outras distribuições</h2>
+<p>A F amarra tudo o que vimos:</p>
+<ul>
+<li>O <strong>quadrado</strong> de uma variável t com $k$ gl é uma F com $(1, k)$ gl: $t_k^2 = F_{1,k}$.</li>
+<li>A F é uma <strong>razão de qui-quadrados</strong>.</li>
+<li>Para $d_1 = 1$, a ANOVA de dois grupos equivale ao teste t.</li>
+</ul>
+<p>Ou seja, normal → qui-quadrado → t e F formam uma <strong>família coerente</strong>, todas nascidas da amostragem de variáveis normais.</p>
+<h2>Onde você vai usá-la</h2>
+<ul>
+<li><strong>ANOVA</strong> (comparação de 3+ médias).</li>
+<li><strong>Teste F de igualdade de variâncias</strong> (usado, por exemplo, para decidir entre teste t de Student e de Welch).</li>
+<li><strong>Significância global de modelos de regressão</strong>.</li>
+</ul>
+<h2>No notebook</h2>
+<p>Construímos a F por simulação: sorteamos duas amostras normais, calculamos a razão de suas variâncias (ajustadas pelos graus de liberdade) e acumulamos. O histograma coincide com <code>scipy.stats.f</code>. Também verificamos numericamente que $t_k^2 = F_{1,k}$.</p>
+
+</article>
+</div>
+<div class="footer"><img src="assets/ibccf-logo.svg" alt="IBCCF" class="footer-logo"><div class="footer-text">Instituto de Biofísica Carlos Chagas Filho — UFRJ<br>Material didático de Bioestatística · Pedro Torres &amp; Gilberto Weissmuller</div></div>
+</main>
+
+<script src="assets/widgets.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'loose'});</script>
+</body>
+</html>

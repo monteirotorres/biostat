@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercícios — Bioestatística IBCCF</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+<nav class="sidebar" id="sidebar">
+<a class="sidebar-brand" href="index.html">Bioestatística<span>IBCCF · UFRJ</span></a>
+<div class="nav-group">
+<div class="nav-group-title">1. Introdução</div>
+<ul>
+<li><a href="introducao.html#01-introducao-01-amostra-populacao-md"><span class="n">1.1</span>Amostra e população</a></li>
+<li><a href="introducao.html#01-introducao-02-descricao-inferencia-md"><span class="n">1.2</span>Descrição vs. inferência</a></li>
+<li><a href="introducao.html#01-introducao-03-precisao-acuracia-md"><span class="n">1.3</span>Precisão e acurácia</a></li>
+<li><a href="introducao.html#01-introducao-04-algarismos-significativos-md"><span class="n">1.4</span>Algarismos significativos</a></li>
+<li><a href="introducao.html#01-introducao-05-notacao-cientifica-md"><span class="n">1.5</span>Notação científica</a></li>
+<li><a href="introducao.html#01-introducao-06-tipos-variaveis-md"><span class="n">1.6</span>Tipos de variáveis</a></li>
+<li><a href="introducao.html#01-introducao-07-histogramas-md"><span class="n">1.7</span>Histogramas</a></li>
+<li><a href="introducao.html#01-introducao-08-curva-normal-md"><span class="n">1.8</span>Curva normal</a></li>
+<li><a href="introducao.html#01-introducao-09-tecnicas-amostragem-md"><span class="n">1.9</span>Técnicas de amostragem</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">2. Estatística Descritiva</div>
+<ul>
+<li><a href="descritiva.html#02-estatistica-descritiva-01-tendencia-central-md"><span class="n">2.1</span>Medidas de tendência central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-02-moda-md"><span class="n">2.2</span>Moda</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-03-media-aritmetica-md"><span class="n">2.3</span>Média aritmética</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-04-media-cortada-md"><span class="n">2.4</span>Média cortada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-05-media-ponderada-md"><span class="n">2.5</span>Média ponderada</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-06-media-geometrica-md"><span class="n">2.6</span>Média geométrica</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-07-mediana-md"><span class="n">2.7</span>Mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-08-media-vs-mediana-md"><span class="n">2.8</span>Média vs. mediana</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-09-teorema-limite-central-md"><span class="n">2.9</span>Teorema do limite central</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-10-amplitude-md"><span class="n">2.10</span>Amplitude</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-11-desvio-medio-md"><span class="n">2.11</span>Desvio médio</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-12-variancia-md"><span class="n">2.12</span>Variância</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-13-desvio-padrao-md"><span class="n">2.13</span>Desvio padrão</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-14-desvio-interquartil-md"><span class="n">2.14</span>Desvio interquartil</a></li>
+<li><a href="descritiva.html#02-estatistica-descritiva-15-coeficiente-variacao-md"><span class="n">2.15</span>Coeficiente de variação</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">3. Probabilidade</div>
+<ul>
+<li><a href="probabilidade.html#03-probabilidade-01-evento-md"><span class="n">3.1</span>Evento — definição</a></li>
+<li><a href="probabilidade.html#03-probabilidade-02-eventos-compostos-md"><span class="n">3.2</span>Eventos compostos</a></li>
+<li><a href="probabilidade.html#03-probabilidade-03-probabilidade-condicional-md"><span class="n">3.3</span>Probabilidade condicional</a></li>
+<li><a href="probabilidade.html#03-probabilidade-04-analise-combinatoria-md"><span class="n">3.4</span>Análise combinatória</a></li>
+<li><a href="probabilidade.html#03-probabilidade-05-testes-binarios-md"><span class="n">3.5</span>Testes binários</a></li>
+<li><a href="probabilidade.html#03-probabilidade-06-sensibilidade-especificidade-md"><span class="n">3.6</span>Sensibilidade e especificidade</a></li>
+<li><a href="probabilidade.html#03-probabilidade-07-matriz-confusao-md"><span class="n">3.7</span>Matriz de confusão</a></li>
+<li><a href="probabilidade.html#03-probabilidade-08-valor-preditivo-md"><span class="n">3.8</span>Valor preditivo</a></li>
+<li><a href="probabilidade.html#03-probabilidade-09-curva-roc-md"><span class="n">3.9</span>Curva ROC</a></li>
+<li><a href="probabilidade.html#03-probabilidade-10-distribuicao-binomial-md"><span class="n">3.10</span>Distribuição binomial</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">4. Distribuições amostrais</div>
+<ul>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-01-de-onde-vem-md"><span class="n">4.1</span>De onde vêm t, F e χ²</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-02-qui-quadrado-md"><span class="n">4.2</span>Distribuição qui-quadrado</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-03-t-student-md"><span class="n">4.3</span>Distribuição t de Student</a></li>
+<li><a href="distribuicoes.html#05-distribuicoes-amostrais-04-f-distribuicao-md"><span class="n">4.4</span>Distribuição F</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">5. Estatística Inferencial</div>
+<ul>
+<li><a href="inferencial.html#04-estatistica-inferencial-01-logica-inferencia-md"><span class="n">5.1</span>Lógica da inferência</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-02-estimacao-md"><span class="n">5.2</span>Estimação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-03-intervalo-confianca-md"><span class="n">5.3</span>Intervalos de confiança</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-04-hipoteses-md"><span class="n">5.4</span>Hipótese nula e alternativa</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-05-significancia-md"><span class="n">5.5</span>Nível de significância</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-06-valor-p-md"><span class="n">5.6</span>Valor-p</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-07-erros-tipo-i-ii-md"><span class="n">5.7</span>Erros tipo I e tipo II</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-08-teste-z-md"><span class="n">5.8</span>Teste z</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-09-teste-t-uma-amostra-md"><span class="n">5.9</span>Teste t de uma amostra</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-10-teste-t-independente-md"><span class="n">5.10</span>Teste t para duas amostras independentes</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-11-teste-t-pareado-md"><span class="n">5.11</span>Teste t pareado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-12-anova-md"><span class="n">5.12</span>ANOVA</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-13-qui-quadrado-md"><span class="n">5.13</span>Teste do qui-quadrado</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-14-correlacao-md"><span class="n">5.14</span>Correlação</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-15-regressao-linear-md"><span class="n">5.15</span>Regressão linear</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-16-testes-nao-parametricos-md"><span class="n">5.16</span>Testes não paramétricos</a></li>
+<li><a href="inferencial.html#04-estatistica-inferencial-17-design-experimental-md"><span class="n">5.17</span>Design experimental e potência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">6. Tabelas estatísticas</div>
+<ul>
+<li><a href="tabelas.html#06-tabelas-01-tabelas-md"><span class="n">6.1</span>Tabelas de referência</a></li>
+</ul></div>
+<div class="nav-group">
+<div class="nav-group-title">7. Exercícios</div>
+<ul>
+<li><a class="nav-link" data-target="07-exercicios-01-exercicios-md" href="#07-exercicios-01-exercicios-md"><span class="n">7.1</span>Exercícios resolvidos por tema</a></li>
+</ul></div>
+</nav>
+<main class="content"><div class="content-inner">
+<div class="page-eyebrow">7. Exercícios</div>
+<article id="07-exercicios-01-exercicios-md" class="topic">
+<div class="topic-num">7.1</div>
+<h1 class="topic-title">Exercícios resolvidos por tema</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/01_exercicios.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Coletânea de exercícios resolvidos de bioestatística, organizados por tema, baseada na planilha de exercícios do curso (Prof. Gilberto Weissmüller).</p>
+<blockquote>
+<p><strong>Como estudar:</strong> matemática não se aprende só lendo. Tente resolver cada exercício <strong>a partir do enunciado</strong>, antes de olhar a resposta. Abra uma planilha (Google Sheets, Excel) ou o notebook que acompanha esta seção e refaça os cálculos.</p>
+</blockquote>
+<hr />
+<h2>1. Precisão, acurácia e algarismos significativos</h2>
+<h3>1.1 — Calibração de pipeta</h3>
+<p>Um certificado de conformidade de uma pipeta traz duas séries de pesagens (volume nominal 200 µL e 1000 µL):</p>
+<ul>
+<li>200 µL: 198,75 · 198,83 · 198,78 · 198,87 (mg)</li>
+<li>1000 µL: 996,41 · 996,34 · 996,48 · 996,44 (mg)</li>
+</ul>
+<p><strong>a)</strong> A <strong>exatidão</strong> está dentro da tolerância (±3,00 µL para 200; ±8,00 para 1000)?
+<strong>b)</strong> A <strong>precisão</strong> está dentro da especificação (DP &lt; 0,60 µL para 200; &lt; 1,50 para 1000)?
+<strong>c)</strong> "Para obter um erro menor, manipule quantidades maiores." Mas o DP de 1000 µL é maior que o de 200 µL. Explique.</p>
+<p><strong>Resposta:</strong> (a) As diferenças em relação ao nominal (~−0,54 e −0,29 µL) são menores que as tolerâncias → exatidão OK. (b) Os desvios padrão (~0,05 µL) são bem menores que os limites → precisão OK. (c) O que cai com quantidades maiores é o <strong>erro relativo</strong> (coeficiente de variação), não o absoluto. Em %, o desvio cai de ~0,027% para ~0,006%. A afirmação procede no sentido relativo.</p>
+<h3>1.2 — Mesma balança, "qualidades" diferentes</h3>
+<p>Uma balança de 5 casas mede 0,00103 g e 0,00003 g. Por que dizemos que a primeira medida tem "melhor qualidade"?</p>
+<p><strong>Resposta:</strong> É a mesma balança (mesmo erro absoluto, ±5 µg). O que muda é o <strong>erro relativo</strong>: ~0,49% para 0,00103 g contra ~17% para 0,00003 g. No segundo caso, a balança opera perto do seu limite.</p>
+<h3>1.3 — Algarismos significativos</h3>
+<p>Escreva com 2 algarismos significativos: 2,36 · 0,999999… · 0,395 · 0,125 · 0,00000236. Depois, reescreva valores ambíguos (1300 g; 250 mg; 395000 µg) sem ambiguidade, com unidade apropriada <strong>e</strong> notação científica.</p>
+<p><strong>Resposta:</strong> 2,4 · 1,0 · 0,40 · 0,12 (ou 0,13) · 2,4×10⁻⁶. Ambíguos: 1300 g = 1,3×10³ g = 1,3 kg; 250 mg = 2,5×10² mg = 0,25 g; 395000 µg = 3,95×10⁵ µg = 395 mg.</p>
+<h3>1.4 — Leitura de 0,00025 g</h3>
+<p>Numa balança de 5 casas lê-se 0,00025 g. (a) Quantos a.s.? (b) Se a última casa não estabiliza? (c) Em µg (250 µg)? (d) Como vibração, inclinação e correntes de ar afetam precisão e acurácia?</p>
+<p><strong>Resposta:</strong> (a) 2 a.s. (b) 1 a.s. (c) O nº de a.s. é propriedade da <strong>medida</strong>, não da unidade → continua 2. (d) Superfície inclinada → perde <strong>acurácia</strong>; vibração → perde <strong>precisão</strong>; corrente de ar → afeta ambas.</p>
+<h3>1.5 — Béqueres (precisão e exatidão)</h3>
+<p>Lote previsto para ~35 g. Amostra de 10 béqueres: 33,45 · 35,21 · 35,77 · 35,20 · 34,72 · 33,81 · 33,91 · 34,54 · 34,63 · 34,12 g. Calcule precisão e exatidão (esta em %) e avalie a variação.</p>
+<p><strong>Resposta:</strong> Média ≈ 34,54 g → exatidão (viés) ≈ −0,46 g ≈ −1,3%. DP ≈ 0,73 g (precisão). A variação é maior que a esperada para um processo bem controlado — investigar.</p>
+<hr />
+<h2>2. Probabilidade e intuição</h2>
+<h3>2.1 — Reformular a definição de "ganhar na Megasena"</h3>
+<p>Qual das reformulações é equivalente a "ganhar na Megasena"? (a) acertar os 6 números; (b) ganhar o prêmio; (c) ficar rico; (d) acertar e ter o dinheiro na conta; (e) nenhuma.</p>
+<p><strong>Resposta:</strong> (e). Toda reformulação muda sutilmente o sentido (você pode acertar e perder o bilhete; outra pessoa pode ganhar e te doar; etc.). Lição: reformular probabilidades é traiçoeiro — prefira a definição original.</p>
+<h3>2.2 — Problema do aniversário</h3>
+<p>Em uma sala com 40 pessoas, qual a probabilidade de ao menos duas fazerem aniversário no mesmo dia?</p>
+<p><strong>Resposta:</strong> ~89% (alternativa "muito grande"). Calcula-se por $1 - \frac{365!}{(365-40)!\,365^{40}}$. Resultado contraintuitivo — o famoso <em>paradoxo do aniversário</em>.</p>
+<h3>2.3 — O andar do bêbado (random walk)</h3>
+<p>Gerando passos aleatórios +1/−1 e somando recursivamente, obtém-se uma caminhada aleatória. (Veja a simulação no notebook.)</p>
+<p><strong>Resposta:</strong> A posição após $n$ passos tem média 0 e desvio padrão $\sqrt{n}$ — o bêbado se afasta da origem proporcionalmente à <strong>raiz</strong> do número de passos.</p>
+<hr />
+<h2>3. Probabilidade</h2>
+<h3>3.1 — O problema de Chevalier de Méré</h3>
+<p>O que é mais provável: ao menos um 6 em 4 lançamentos de um dado, ou ao menos um duplo-6 em 24 lançamentos de dois dados?</p>
+<p><strong>Resposta:</strong> Caso 1: $1 - (5/6)^4 = 0{,}518$. Caso 2: $1 - (35/36)^{24} = 0{,}491$. O primeiro é <strong>mais provável</strong>. O raciocínio de Méré (número médio = 2/3 em ambos) confunde <strong>valor esperado</strong> com <strong>probabilidade</strong>.</p>
+<h3>3.2 — Megasena</h3>
+<p>Probabilidade de ganhar com o jogo mínimo?</p>
+<p><strong>Resposta:</strong> $1/\binom{60}{6} = 1/50\,063\,860 \approx 2{,}0\times10^{-8}$. Pode-se pensar como combinação $C(60,6)$ ou como $\frac{6}{60}\cdot\frac{5}{59}\cdots\frac{1}{55}$.</p>
+<h3>3.3 — Cientista consciencioso</h3>
+<p>Com $\alpha = 5\%$ e confirmação independente: (a) probabilidade de uma publicação falso-positivo? (b) Se $P(\text{FP}\mid\text{FP}) = 30\%$?</p>
+<p><strong>Resposta:</strong> (a) $0{,}05 \times 0{,}05 = 0{,}0025$ (0,25%). (b) $0{,}05 \times 0{,}30 = 0{,}015$ (1,5%). Confirmar reduz falsos positivos, mas a dependência entre experimentos piora muito o número.</p>
+<hr />
+<h2>4. Probabilidade condicional</h2>
+<h3>4.1 — Rastreio de doença rara</h3>
+<p>Incidência 0,01%; sensibilidade 99%; especificidade 95%. Teste deu positivo — qual a probabilidade de ter a doença?</p>
+<p><strong>Resposta:</strong> Por Bayes: $P(D\mid+) = \frac{0{,}0001\cdot0{,}99}{0{,}0001\cdot0{,}99 + 0{,}9999\cdot0{,}05} \approx 0{,}2\%$. Apesar de baixíssimo, é 20× maior que a prevalência inicial. Doença rara → muitos falsos positivos.</p>
+<h3>4.2 — Previsão do tempo</h3>
+<p>Acerta 80% dos dias de chuva e 90% dos de bom tempo; chove em 10% dos dias. Se previu chuva, qual a probabilidade de chover?</p>
+<p><strong>Resposta:</strong> Sensibilidade 0,8; especificidade 0,9; prevalência 0,1 → $P(D\mid+) = \frac{0{,}1\cdot0{,}8}{0{,}1\cdot0{,}8 + 0{,}9\cdot0{,}1} = \frac{8}{17} \approx 47{,}1\%$.</p>
+<h3>4.3 — AVC e pressão alta</h3>
+<p>10% dos idosos terão AVC em 5 anos; 40% dos que tiveram AVC tinham PA elevada; 20% dos que não tiveram AVC tinham PA elevada aos 70. Qual a probabilidade de um idoso com PA alta sofrer AVC?</p>
+<p><strong>Resposta:</strong> Prevalência 10%, sensibilidade 40%, especificidade 80% → tabela 2×2 (por 100 pessoas): VP=4, FP=18 → $P = 4/22 \approx 18{,}2\%$.</p>
+<hr />
+<h2>5. Estatística descritiva</h2>
+<h3>5.1 — Quando usar média, mediana, DP, IQR?</h3>
+<p><strong>Resposta:</strong> Distribuição ~normal → média e DP bastam. Assimétrica → média <strong>e</strong> mediana (carregam informações diferentes: renda → mediana mostra concentração, média mostra total) + quantis/IQR. Tempo de sobrevida → mediana e quantis.</p>
+<h3>5.2 — Salários</h3>
+<p>10 mil empregados: 1000 ganham 2 SM, 3000 ganham 3 SM, 6000 ganham 4 SM. Média e mediana?</p>
+<p><strong>Resposta:</strong> Mediana = 4 SM (o valor central cai na faixa dos 4 SM). Média = $(1000\cdot2 + 3000\cdot3 + 6000\cdot4)/10000 = 3{,}5$ SM. Mediana &gt; média: assimetria à esquerda.</p>
+<h3>5.3 — Salário mediano (PNAD)</h3>
+<p>Distribuição por faixas (menos de 1 SM: 24,1%; 1–1,5: 20,6%; 1,5–3: 28,5%; …). Qual a faixa mediana?</p>
+<p><strong>Resposta:</strong> Acumulando: 24,1% + 20,6% = 44,7% (até 1,5 SM); +28,5% = 73,2% (até 3 SM). O 50% cai na faixa <strong>1,5–3,0 SM</strong>.</p>
+<hr />
+<h2>6. Distribuição binomial</h2>
+<h3>6.1 — Falsos positivos acumulados</h3>
+<p>Com $\alpha=5\%$, qual a probabilidade de ao menos um falso positivo ao repetir o teste $k$ vezes?</p>
+<p><strong>Resposta:</strong> $1 - 0{,}95^k$. Para $k=3$: 14,3%; $k=10$: 40,1%; $k=50$: 92,3%. Consequência: comparar 3+ grupos par a par com teste t infla $\alpha$ → use <strong>ANOVA</strong>.</p>
+<h3>6.2 — Pôquer</h3>
+<p>4 jogadores de igual habilidade, 10 partidas, aposta fixa. Probabilidade de <strong>não</strong> perder dinheiro?</p>
+<p><strong>Resposta:</strong> Não perder = vencer ≥ 3 das 10 (cada vitória com $p=1/4$). $P(X \ge 3) = 1 - P(X \le 2) \approx 0{,}474$.</p>
+<h3>6.3 — Mudas e fungos</h3>
+<p>Contaminação $p=0{,}06$; custo R$1,20; venda R$3,50; lote de 50. (a) lucro previsto; (b) P(nenhuma contaminação); (c) P(menos de 10 contaminadas).</p>
+<p><strong>Resposta:</strong> (a) ~50·0,94·3,50 − 50·1,20 ≈ R$104,50. (b) $0{,}94^{50} \approx 0{,}045$. (c) $P(X \le 9) \approx 0{,}9993$.</p>
+<h3>6.4 — Prova de múltipla escolha</h3>
+<p>5 opções, 1 correta. Probabilidade de passar (nota ≥ 5) só no chute, com (a) 10 questões; (b) 20 questões?</p>
+<p><strong>Resposta:</strong> (a) $P(X \ge 5)$ em Binomial(10; 0,2) $\approx 0{,}033$. (b) Binomial(20; 0,25), $P(X \ge 10) \approx 0{,}0026$. A nota mais provável em (a) é 2.</p>
+<h3>6.5 — Controle de qualidade</h3>
+<p>Máquina com 0,5% de defeito. Amostra de 10; desliga se &gt; 1 defeituosa. Probabilidade de desligar à toa?</p>
+<p><strong>Resposta:</strong> $P(X > 1) = 1 - P(0) - P(1) \approx 0{,}0011$.</p>
+<h3>6.6 — Genética mendeliana</h3>
+<p>Cruzamento 3:1 (amarelo:verde). Em 100 sementes, P(80 ou mais amarelas)?</p>
+<p><strong>Resposta:</strong> Binomial(100; 0,75), $P(X \ge 80) \approx 0{,}149$.</p>
+<hr />
+<h2>7. Distribuição normal</h2>
+<h3>7.1 — Regra 68–95–99,7</h3>
+<p>Percentuais em ±1, ±2, ±3 desvios padrão?</p>
+<p><strong>Resposta:</strong> 68,3%; 95,4%; 99,7%. Vale para <strong>qualquer</strong> μ e σ.</p>
+<h3>7.2 — Normal para variáveis só positivas</h3>
+<p>Como aplicar a normal (que vai de −∞ a +∞) a alturas?</p>
+<p><strong>Resposta:</strong> A normal é "localizada": 170 ± 15 cm praticamente não chega a valores negativos. Ela descreve bem a <strong>massa</strong> dos dados; extremos (nanismo, gigantismo) são tratados como subpopulações separadas.</p>
+<h3>7.3 — Elevador</h3>
+<p>Capacidade 500 kg; pesos N(70, 10). (a) P(7 passageiros ultrapassarem)? (b) E 6?</p>
+<p><strong>Resposta:</strong> Distribuição amostral da soma. (a) soma ~ N(490, 10√7) → $P(\text{soma}>500) \approx 0{,}353$. (b) N(420, 10√6) → $\approx 0{,}0005$.</p>
+<h3>7.4 — Pressão arterial</h3>
+<p>PA ~ N(100, 10). (a) % entre 80 e 120? (b) faixa central com 95%? (c) acima de qual valor está só 1%?</p>
+<p><strong>Resposta:</strong> (a) ±2σ ≈ 95,4%. (b) 100 ± 1,96·10 ≈ [80,4; 119,6]. (c) $100 + 2{,}33\cdot10 \approx 123{,}3$ mmHg.</p>
+<h3>7.5 — Média de 4 pessoas</h3>
+<p>Mesma PA ~ N(100,10), amostra de 4. (a) P(média entre 80 e 120)? (b) faixa com 95% das médias? (c) e se σ for desconhecido (s = 7,8)?</p>
+<p><strong>Resposta:</strong> Erro padrão = 10/√4 = 5. (a) ±4σ_média ≈ 99,99%. (b) 100 ± 1,96·5 ≈ [90,2; 109,8]. (c) usar <strong>t</strong>: 100 ± t(5%,3)·7,8/√4 = 100 ± 3,18·3,9 ≈ ±12,4.</p>
+<h3>7.6 — Garantia de lavadoras</h3>
+<p>Vida útil N(1,5; 0,3) anos. % que falha antes de 1 ano (garantia)?</p>
+<p><strong>Resposta:</strong> $z = (1-1{,}5)/0{,}3 = -1{,}67$ → $P \approx 4{,}8\%$.</p>
+<h3>7.7 — Temperatura corporal</h3>
+<p>T ~ N(36,8; 0,15). (a) De 1000 homens, quantos entre 36,8 e 37,0? (b) Faixa central com 50%?</p>
+<p><strong>Resposta:</strong> (a) $P(36{,}8<T<37{,}0) = \Phi(1{,}33)-0{,}5 \approx 0{,}409$ → ~409 indivíduos. (b) ±0,674σ → [36,70; 36,90] °C.</p>
+<hr />
+<h2>8. Distribuição amostral</h2>
+<h3>8.1 — Caixa de produtos</h3>
+<p>Produto ~ 10 g (DP 2 g), 50 por caixa; caixa vazia 500 g (DP 25 g). P(caixa cheia &gt; 1050 g)?</p>
+<p><strong>Resposta:</strong> Média da caixa cheia = 500 + 50·10 = 1000 g. Variância = 25² + 50·2² = 625 + 200 = 825 → DP ≈ 28,7 g. $z = (1050-1000)/28{,}7 \approx 1{,}74$ → $P \approx 0{,}041$.</p>
+<hr />
+<h2>9. Lógica da inferência e intervalo de confiança</h2>
+<h3>9.1 — Descritiva ou inferencial?</h3>
+<p>Professor compara proporções pró-pena de morte na <strong>própria</strong> turma. Que tipo de estatística?</p>
+<p><strong>Resposta:</strong> <strong>Descritiva</strong> — não há tentativa de generalizar além da turma estudada.</p>
+<h3>9.2 — Significância × relevância</h3>
+<p><strong>Resposta:</strong> Significância = diferença detectável pelo design (depende de n, pareamento, variabilidade). Relevância = utilidade prática. Com n grande, detecta-se diferenças mínimas e irrelevantes (ex.: 0,1 ponto de QI entre irmãos).</p>
+<h3>9.3 — Intervalo de confiança</h3>
+<p>Amostra (de população normal): 5,3,4,2,3,4,2,3,4,5. (a) IC 95%; (b) interprete.</p>
+<p><strong>Resposta:</strong> Média = 3,5; s ≈ 1,08; t(5%,9) = 2,262 → 3,5 ± 2,262·1,08/√10 ≈ [2,7; 4,3]. (b) Se repetíssemos o experimento muitas vezes, 95% dos intervalos conteriam a média populacional.</p>
+<h3>9.4 — Moeda viciada (lógica binomial)</h3>
+<p>20 lançamentos, $\alpha = 5\%$. Quais proporções levam a rejeitar "moeda honesta"?</p>
+<p><strong>Resposta:</strong> ≤ 5 caras ou ≥ 15 caras (área bilateral ≈ 4,1% &lt; 5%). Com $\alpha = 1\%$, só ≤ 4 ou ≥ 16.</p>
+<hr />
+<h2>10. Testes de dois grupos</h2>
+<h3>10.1 — Anatomia de um teste</h3>
+<p><strong>Resposta:</strong> Defina <strong>hipóteses</strong> (paramétrico? lateralidade?) e <strong>design</strong> (pareado? α?). Calcule o valor-p e compare com α: $p<\alpha$ → significativo.</p>
+<h3>10.2 — Besouros em duas florestas</h3>
+<p>Amostra 1: 8,12,15,21,25,44,44,60; Amostra 2: 2,4,5,9,12,17,19. Qual teste? Conclusão (P = 2,8%)?</p>
+<p><strong>Resposta:</strong> Contagens baixas → assimétrico → <strong>não paramétrico</strong>; sem pareamento; bilateral; α=5% → <strong>Mann–Whitney</strong>. Como $p=0{,}028<0{,}05$, há diferença significativa (mais besouros na floresta 1).</p>
+<h3>10.3 — Halotano vs. Morfina</h3>
+<p>PA média: Halotano 66,9 (DP 12,2; n=61); Morfina 73,2 (DP 14,4; n=61). (a) Diferença significativa? (b) Estime a diferença real. (c) Mortalidade 8/61 vs 10/61 difere?</p>
+<p><strong>Resposta:</strong> (a) Teste t não pareado bilateral → $p \approx 0{,}010$ → significativo. (b) IC 95% da diferença ≈ [−11; −1,5] mmHg. (c) Tabela de contingência (qui-quadrado/Fisher) → não significativo.</p>
+<h3>10.4 — Pressão arterial homens × mulheres</h3>
+<p>Dados simulados (12 por grupo) a partir do Wolfram|Alpha. Teste t indica diferença?</p>
+<p><strong>Resposta:</strong> Com n pequeno e diferença real pequena (≈3 mmHg) ante DP grande (~17–21), o teste tende a <strong>não</strong> detectar — poder baixíssimo (veja exercício de potência).</p>
+<h3>10.5 — Teste t "à mão" vs. software</h3>
+<p>A1 (n=10, m=4,5, s=3,03) vs A2 (n=10, m=7,5, s=3,03). Há diferença?</p>
+<p><strong>Resposta:</strong> $t = (4{,}5-7{,}5)/(3{,}03\cdot\sqrt{2/10}) \approx -2{,}22$, gl=18. Como $|t|=2{,}22 > t_{crit}=2{,}10$ → diferença <strong>significativa</strong>.</p>
+<h3>10.6 — Hemoglobina antes/depois (pareado)</h3>
+<p>Hb medida em 8 indivíduos antes e depois da droga. Avalie a eficácia.</p>
+<p><strong>Resposta:</strong> Como é o <strong>mesmo</strong> indivíduo medido 2×, use <strong>teste t pareado</strong> sobre as diferenças. Se $p<0{,}05$, a droga altera a Hb.</p>
+<hr />
+<h2>11. ANOVA (um fator)</h2>
+<h3>11.1 — Drogas A, B e placebo</h3>
+<p>Contagem de linfócitos em 7 ninhadas, 3 tratamentos (animais da mesma ninhada). As drogas diferem do placebo?</p>
+<p><strong>Resposta:</strong> Como os animais vêm da <strong>mesma ninhada</strong> (pareamento), use <strong>ANOVA de medidas repetidas</strong>. "Diferem do placebo" → pós-teste de <strong>Dunnett</strong> (compara com controle). Resultado: $p \approx 0{,}002$; só A difere de P.</p>
+<h3>11.2 — Concurso na UFRJ</h3>
+<p>6 candidatos, 5 avaliadores. A banca diferencia candidatos? Há empates estatísticos?</p>
+<p><strong>Resposta:</strong> Avaliadores diferem em rigor → <strong>medidas repetidas</strong>. A variabilidade <strong>entre candidatos</strong> supera a <strong>entre avaliadores</strong> → a banca consegue diferenciar. Porém candidatos próximos ficam empatados estatisticamente — o fator sorte é real.</p>
+<hr />
+<h2>12. Correlação e regressão</h2>
+<h3>12.1 — Peso × altura</h3>
+<p>Dados (altura cm, peso kg): (152,38)…(193,68). (a) r; (b) R² e interpretação; (c) reta; (d) crítica.</p>
+<p><strong>Resposta:</strong> (a) $r \approx 0{,}77$. (b) $R^2 \approx 0{,}59$ → 59% da variação do peso "explicada" pela altura. (c) $y \approx 0{,}89x - 91$. (d) Há relação plausível, mas muitos fatores afetam o peso; a reta serve mais para descrever que para prever indivíduos.</p>
+<h3>12.2 — Experimento vs. estudo de correlação</h3>
+<p><strong>Resposta:</strong> No experimento verdadeiro, manipula-se a variável independente com tudo sob controle → permite <strong>causa-efeito</strong>. No estudo de correlação, nada é controlado → revela <strong>associação</strong>, base para formular hipóteses, mas não prova causalidade.</p>
+<h3>12.3 — As 4 explicações de uma correlação</h3>
+<p>Se $r \ne 0$, quais explicações são possíveis?</p>
+<p><strong>Resposta:</strong> (i) X causa Y; (ii) Y causa X; (iii) uma terceira variável causa ambos; (iv) acaso (o valor-p mede a frequência do acaso). Veja exemplos de correlações espúrias (tylervigen.com).</p>
+<hr />
+<h2>13. Potência</h2>
+<h3>13.1 — Tamanho da amostra × precisão</h3>
+<p>Para n = 2, 3, 4, 6, 10, 20 (população N(1,1)), como variam desvio da média, DP, SEM e IC?</p>
+<p><strong>Resposta:</strong> O <strong>SEM</strong> e a largura do IC caem com $1/\sqrt{n}$; o DP estimado se aproxima de 1; o erro da média diminui. Dobrar a precisão exige <strong>quadruplicar</strong> n.</p>
+<h3>13.2 — Escolha do sexo da prole</h3>
+<p>Dois casais, ambos com 2 meninos. O tratamento funciona?</p>
+<p><strong>Resposta:</strong> Sob $H_0$ (não funciona, binomial), $P = (1/2)^4 = 0{,}0625 > 0{,}05$. Com só 4 crianças, o menor p possível já é 6,25% → <strong>poder zero</strong>, teste inconclusivo.</p>
+<h3>13.3 — Potência da PA homens × mulheres</h3>
+<p>Diferença real ≈ 3 mmHg, σ ~ 17–21. (a) Poder com n=24? (b) n para 80%? (c) Poder com toda a amostra?</p>
+<p><strong>Resposta:</strong> (a) ~6,8% (ridículo). (b) ~568 por grupo. (c) Com n nas milhares, poder ≈ 1.</p>
+<h3>13.4 — Trocando n por δ</h3>
+<p>Situação A: σ=1, n=17, δ=1 → poder 81%. Situação B: mesmo σ e poder, n=25, δ=? Maior ou menor que 1?</p>
+<p><strong>Resposta:</strong> <strong>Menor</strong> que 1 — com amostra maior, detecta-se um efeito menor mantendo o mesmo poder.</p>
+<hr />
+<h2>14. Qui-quadrado</h2>
+<h3>14.1 — Dado honesto</h3>
+<p>60 lançamentos, frequências 8,11,7,12,15,7. O dado é honesto? E se multiplicarmos tudo por 10?</p>
+<p><strong>Resposta:</strong> Esperado = 10/face. $\chi^2 = 5{,}2$, 5 gl → $p \approx 0{,}39$ → <strong>não</strong> rejeita (honesto). Com frequências ×10 (mesma tendência), $\chi^2 = 52$ → $p \approx 5\times10^{-10}$ → rejeita. Lição: o qui-quadrado depende do <strong>n absoluto</strong>, não só das proporções.</p>
+<h3>14.2 — Mendel 9:3:3:1</h3>
+<p>Observados 315/108/101/32 (total 556). O modelo 9:3:3:1 explica? E um modelo linear?</p>
+<p><strong>Resposta:</strong> Mendel: $\chi^2 \approx 0{,}47$ → $p \approx 0{,}93$ → não rejeita (ótimo ajuste). Linear: $\chi^2 \approx 62{,}6$ → $p \approx 0$ → rejeita. O modelo de Mendel descreve muito melhor.</p>
+<hr />
+<h2>15. Tabelas de contingência</h2>
+<h3>15.1 — Mortalidade Halotano × Morfina</h3>
+<p>8/61 mortes (Halotano) vs 10/61 (Morfina). As proporções diferem?</p>
+<p><strong>Resposta:</strong> Tabela 2×2 → qui-quadrado (ou Fisher). Não se rejeita $H_0$ → as taxas de fatalidade não diferem significativamente.</p>
+<h3>15.2 — Efeito colateral × medicamento</h3>
+<p>Tabela 2×2 (usou/não usou × efeito presente/ausente). Como testar associação?</p>
+<p><strong>Resposta:</strong> Qui-quadrado de independência. Se $p$ for baixo, rejeita-se a independência → há associação entre o medicamento e o efeito colateral.</p>
+<hr />
+<h2>16. Técnicas de amostragem</h2>
+<h3>16.1 — Motoristas × cobradores de ônibus</h3>
+<p>Cobradores (mais exercício) têm menos doença cardíaca que motoristas. (a) Variáveis e níveis; (b) correlação ou experimento? (c) por que controlar idade/tempo de serviço? (d) há associação? (e) outros confundidores?</p>
+<p><strong>Resposta:</strong> (a) Tratamento = exercício (muito/pouco); desfecho = doença cardíaca (sim/não). (b) <strong>Estudo de correlação</strong> — ninguém foi sorteado para a profissão. (c) Idade é confundidor (afeta o desfecho e pode diferir entre grupos). (d) Sim, há <strong>associação</strong> — mas não causa. (e) Saúde prévia, estresse do trabalho (motoristas já eram mais pesados ao serem contratados).</p>
+<h3>16.2 — Treinamento de lavagem das mãos</h3>
+<p>100 voluntários recebem treinamento e são comparados com os demais. Critique e proponha alternativa.</p>
+<p><strong>Resposta:</strong> Inválido: voluntários já são mais cuidadosos (viés de autosseleção) → resultado artificialmente positivo. Solução: <strong>sortear</strong> quem recebe o treinamento (aleatorização).</p>
+<h3>16.3 — Filhotes de rato e ninhadas</h3>
+<p>Filhotes misturados ao acaso e divididos em 4 doses. A amostragem é correta?</p>
+<p><strong>Resposta:</strong> Não. A Hb é homogênea <strong>dentro</strong> da ninhada. Misturar permite que diferenças de ninhada se confundam com o efeito da droga. Correto: pegar um filhote de <strong>cada ninhada</strong> para <strong>cada dose</strong> (amostragem em blocos/pareada).</p>
+
+</article>
+</div>
+<div class="footer"><img src="assets/ibccf-logo.svg" alt="IBCCF" class="footer-logo"><div class="footer-text">Instituto de Biofísica Carlos Chagas Filho — UFRJ<br>Material didático de Bioestatística · Pedro Torres &amp; Gilberto Weissmuller</div></div>
+</main>
+
+<script src="assets/widgets.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'loose'});</script>
+</body>
+</html>

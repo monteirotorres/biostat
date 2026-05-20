@@ -36,11 +36,11 @@ Exemplos: notas em provas muito fáceis, idade ao morrer (a maioria morre na vel
 
 ```mermaid
 flowchart TD
-    A[Faça um histograma] --> B{Simétrica?}
-    B -->|Sim| C[Use média]
-    B -->|Não| D{Outliers visíveis?}
-    D -->|Sim| E[Use mediana]
-    D -->|Não| F[Reporte ambas]
+    A["Faça um histograma"] --> B{"Simétrica?"}
+    B -->|Sim| C["Use média"]
+    B -->|Não| D{"Outliers visíveis?"}
+    D -->|Sim| E["Use mediana"]
+    D -->|Não| F["Reporte ambas"]
 ```
 
 A regra de ouro: **sempre olhe o histograma antes de escolher**.

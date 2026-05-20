@@ -2,7 +2,7 @@
 
 * [Introdução](README.md)
 
-## Parte 1 — Introdução
+## Introdução
 
 * [Amostra e população](01_introducao/01_amostra_populacao.md)
 * [Descrição vs. inferência](01_introducao/02_descricao_inferencia.md)
@@ -12,8 +12,9 @@
 * [Tipos de variáveis](01_introducao/06_tipos_variaveis.md)
 * [Histogramas](01_introducao/07_histogramas.md)
 * [Curva normal](01_introducao/08_curva_normal.md)
+* [Técnicas de amostragem](01_introducao/09_tecnicas_amostragem.md)
 
-## Parte 2 — Estatística Descritiva
+## Estatística Descritiva
 
 * [Medidas de tendência central](02_estatistica_descritiva/01_tendencia_central.md)
 * [Moda](02_estatistica_descritiva/02_moda.md)
@@ -31,7 +32,7 @@
 * [Desvio interquartil](02_estatistica_descritiva/14_desvio_interquartil.md)
 * [Coeficiente de variação](02_estatistica_descritiva/15_coeficiente_variacao.md)
 
-## Parte 3 — Probabilidade
+## Probabilidade
 
 * [Evento — definição](03_probabilidade/01_evento.md)
 * [Eventos compostos](03_probabilidade/02_eventos_compostos.md)
@@ -44,7 +45,14 @@
 * [Curva ROC](03_probabilidade/09_curva_roc.md)
 * [Distribuição binomial](03_probabilidade/10_distribuicao_binomial.md)
 
-## Parte 4 — Estatística Inferencial
+## Distribuições amostrais
+
+* [De onde vêm t, F e χ²](05_distribuicoes_amostrais/01_de_onde_vem.md)
+* [Distribuição qui-quadrado](05_distribuicoes_amostrais/02_qui_quadrado.md)
+* [Distribuição t de Student](05_distribuicoes_amostrais/03_t_student.md)
+* [Distribuição F](05_distribuicoes_amostrais/04_f_distribuicao.md)
+
+## Estatística Inferencial
 
 * [Lógica da inferência](04_estatistica_inferencial/01_logica_inferencia.md)
 * [Estimação](04_estatistica_inferencial/02_estimacao.md)
@@ -62,3 +70,12 @@
 * [Correlação](04_estatistica_inferencial/14_correlacao.md)
 * [Regressão linear](04_estatistica_inferencial/15_regressao_linear.md)
 * [Testes não paramétricos](04_estatistica_inferencial/16_testes_nao_parametricos.md)
+* [Design experimental e potência](04_estatistica_inferencial/17_design_experimental.md)
+
+## Tabelas estatísticas
+
+* [Tabelas de referência](06_tabelas/01_tabelas.md)
+
+## Exercícios
+
+* [Exercícios resolvidos por tema](07_exercicios/01_exercicios.md)

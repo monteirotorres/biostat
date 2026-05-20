@@ -10,12 +10,12 @@ Reconhecer o tipo de cada variável é o **primeiro passo** ao analisar qualquer
 
 ```mermaid
 flowchart TD
-    V[Variável] --> Q[Qualitativa<br>categórica]
-    V --> N[Quantitativa<br>numérica]
-    Q --> Q1[Nominal]
-    Q --> Q2[Ordinal]
-    N --> N1[Discreta]
-    N --> N2[Contínua]
+    V["Variável"] --> Q["Qualitativa (categórica)"]
+    V --> N["Quantitativa (numérica)"]
+    Q --> Q1["Nominal"]
+    Q --> Q2["Ordinal"]
+    N --> N1["Discreta"]
+    N --> N2["Contínua"]
 ```
 
 ## Variáveis qualitativas (categóricas)
