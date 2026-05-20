@@ -55,6 +55,14 @@ function quantile(sorted, q) {
 
 // ---------- canvas ----------
 function $(id) { return document.getElementById(id); }
+
+// cores sensíveis ao tema (lidas em cada draw)
+function _dark() { return document.documentElement.dataset.theme === 'dark'; }
+function INK() { return _dark() ? '#ece6d8' : '#1a1a1a'; }
+function MUTED() { return _dark() ? '#a59a85' : '#666'; }
+function GRID() { return _dark() ? 'rgba(255,255,255,0.16)' : 'rgba(0,0,0,0.15)'; }
+function GRIDSOFT() { return _dark() ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.08)'; }
+
 function makeResizer(canvas, aspect, draw) {
   function resize() {
     const W = Math.max(280, canvas.parentElement.clientWidth - 2);
@@ -89,13 +97,13 @@ function wCurvaNormal(id) {
       for (let i = 0; i <= 200; i++) { const x = mu - s.k * sigma + i / 200 * 2 * s.k * sigma; ctx.lineTo(toX(x), toY(pdfN((x - mu) / sigma) / sigma)); }
       ctx.lineTo(toX(mu + s.k * sigma), baseY); ctx.closePath(); ctx.fillStyle = s.c; ctx.fill();
     }
-    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(W - padR, baseY); ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(W - padR, baseY); ctx.strokeStyle = GRID(); ctx.stroke();
     ctx.beginPath();
     for (let i = 0; i <= 400; i++) { const x = xMin + i / 400 * (xMax - xMin); const y = pdfN((x - mu) / sigma) / sigma; i ? ctx.lineTo(toX(x), toY(y)) : ctx.moveTo(toX(x), toY(y)); }
     ctx.strokeStyle = '#3266ad'; ctx.lineWidth = 2; ctx.stroke();
-    ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.moveTo(toX(mu), padT); ctx.lineTo(toX(mu), baseY); ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.moveTo(toX(mu), padT); ctx.lineTo(toX(mu), baseY); ctx.strokeStyle = INK(); ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
     const fs = Math.max(10, Math.round(W * 0.018));
-    ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = '#666'; ctx.textAlign = 'center';
+    ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = MUTED(); ctx.textAlign = 'center';
     for (let v = -12; v <= 12; v += 4) ctx.fillText(v.toFixed(0), toX(v), baseY + 16);
     ctx.fillStyle = '#3266ad'; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.fillText('μ', toX(mu), padT - 6);
     $(id + '-p1').textContent = '68.3%'; $(id + '-p2').textContent = '95.4%'; $(id + '-p3').textContent = '99.7%';
@@ -136,8 +144,8 @@ function wTLC(id) {
     ctx.beginPath(); ctx.strokeStyle = '#c0392b'; ctx.lineWidth = 2;
     for (let px = 0; px <= plotW; px++) { const v = xMin + px / plotW * (xMax - xMin); const e = pdfN((v - m) / s) / s * 2000 * bw; const y = padT + plotH - e / maxC * plotH; px ? ctx.lineTo(padL + px, y) : ctx.moveTo(padL + px, y); }
     ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.stroke();
-    const fs = Math.max(10, Math.round(W * 0.018)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = '#666'; ctx.textAlign = 'center';
+    ctx.beginPath(); ctx.moveTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.strokeStyle = GRID(); ctx.stroke();
+    const fs = Math.max(10, Math.round(W * 0.018)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = MUTED(); ctx.textAlign = 'center';
     for (let v = 0; v <= 12; v += 2) ctx.fillText(v.toFixed(0), toX(v), padT + plotH + 16);
     ctx.fillStyle = '#c0392b'; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.textAlign = 'right'; ctx.fillText('Normal teórica', padL + plotW, padT + 14);
     $(id + '-mean').textContent = m.toFixed(2); $(id + '-sd').textContent = s.toFixed(2);
@@ -163,8 +171,8 @@ function wBinomial(id) {
     const probs = []; for (let k = 0; k <= n; k++) probs.push(binomPMF(k, n, p));
     const maxP = Math.max(...probs), toY = pr => padT + plotH - pr / maxP * plotH, bw = plotW / (n + 1);
     for (let k = 0; k <= n; k++) { const x = padL + k / Math.max(n, 1) * plotW - bw * 0.4, y = toY(probs[k]); ctx.fillStyle = 'rgba(50,102,173,0.6)'; ctx.fillRect(x, y, bw * 0.8, padT + plotH - y); }
-    ctx.beginPath(); ctx.moveTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.stroke();
-    const fs = Math.max(9, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = '#666'; ctx.textAlign = 'center';
+    ctx.beginPath(); ctx.moveTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.strokeStyle = GRID(); ctx.stroke();
+    const fs = Math.max(9, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = MUTED(); ctx.textAlign = 'center';
     const step = Math.max(1, Math.floor(n / 10));
     for (let k = 0; k <= n; k += step) ctx.fillText(k, padL + k / Math.max(n, 1) * plotW, padT + plotH + 16);
     $(id + '-mean').textContent = (n * p).toFixed(2); $(id + '-sd').textContent = Math.sqrt(n * p * (1 - p)).toFixed(2); $(id + '-modek').textContent = Math.floor((n + 1) * p);
@@ -234,16 +242,16 @@ function wROC(id) {
       ctx.lineTo(toX(xMax), baseY); ctx.closePath(); ctx.fillStyle = color; ctx.fill();
     }
     fill(0, 'rgba(50,102,173,0.35)'); fill(m.sep, 'rgba(192,57,43,0.35)');
-    ctx.beginPath(); ctx.moveTo(x0, baseY); ctx.lineTo(x0 + sW, baseY); ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x0, baseY); ctx.lineTo(x0 + sW, baseY); ctx.strokeStyle = GRID(); ctx.stroke();
     // linha de corte
-    ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.moveTo(toX(m.thr), y0); ctx.lineTo(toX(m.thr), baseY); ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.moveTo(toX(m.thr), y0); ctx.lineTo(toX(m.thr), baseY); ctx.strokeStyle = INK(); ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
     const fs = Math.max(9, Math.round(W * 0.014)); ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.textAlign = 'center';
     ctx.fillStyle = '#3266ad'; ctx.fillText('saudáveis', toX(0), baseY - pdfN(0) * yS - 4);
     ctx.fillStyle = '#c0392b'; ctx.fillText('doentes', toX(m.sep), baseY - pdfN(0) * yS - 4);
-    ctx.fillStyle = '#1a1a1a'; ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillText('corte', toX(m.thr), y0 - 4);
+    ctx.fillStyle = INK(); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillText('corte', toX(m.thr), y0 - 4);
     // --- direita: curva ROC ---
     const rx = half + gap, ry = 18, rW = half - 18, rH = H - 50;
-    ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.strokeRect(rx, ry, rW, rH);
+    ctx.strokeStyle = GRID(); ctx.strokeRect(rx, ry, rW, rH);
     ctx.beginPath(); ctx.setLineDash([3, 3]); ctx.moveTo(rx, ry + rH); ctx.lineTo(rx + rW, ry); ctx.strokeStyle = '#bbb'; ctx.stroke(); ctx.setLineDash([]);
     ctx.beginPath(); ctx.strokeStyle = '#3266ad'; ctx.lineWidth = 2;
     for (let i = 0; i <= 100; i++) {
@@ -256,7 +264,7 @@ function wROC(id) {
     // ponto de operação atual
     const tpr = 1 - cdfN(m.thr - m.sep), fpr = 1 - cdfN(m.thr);
     ctx.fillStyle = '#c0392b'; ctx.beginPath(); ctx.arc(rx + fpr * rW, ry + rH - tpr * rH, 4, 0, 7); ctx.fill();
-    ctx.fillStyle = '#666'; ctx.font = `${fs}px 'Courier New', monospace`; ctx.textAlign = 'center';
+    ctx.fillStyle = MUTED(); ctx.font = `${fs}px 'Courier New', monospace`; ctx.textAlign = 'center';
     ctx.fillText('curva ROC', rx + rW / 2, ry + 12);
     ctx.fillText('1 - especificidade', rx + rW / 2, ry + rH + 16);
   }
@@ -284,7 +292,7 @@ function wIC(id) {
     const zc = invCdfN(0.5 + conf / 2);
     const xMin = MU - 22, xMax = MU + 22;            // EIXO FIXO (não muda com n)
     const toX = v => padL + (v - xMin) / (xMax - xMin) * plotW;
-    ctx.beginPath(); ctx.setLineDash([4, 3]); ctx.moveTo(toX(MU), padT); ctx.lineTo(toX(MU), padT + plotH); ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.setLineDash([4, 3]); ctx.moveTo(toX(MU), padT); ctx.lineTo(toX(MU), padT + plotH); ctx.strokeStyle = INK(); ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
     let hits = 0;
     for (let i = 0; i < TRIALS; i++) {
       const s = samples[i], m = mean(s), sem = sd(s) / Math.sqrt(n), lo = m - zc * sem, hi = m + zc * sem;
@@ -294,9 +302,9 @@ function wIC(id) {
       ctx.fillStyle = cobre ? '#3266ad' : '#c0392b'; ctx.beginPath(); ctx.arc(toX(m), y, 2, 0, 7); ctx.fill();
     }
     $(id + '-cov').textContent = (hits / TRIALS * 100).toFixed(1) + '%';
-    const fs = Math.max(10, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = '#666'; ctx.textAlign = 'center';
+    const fs = Math.max(10, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = MUTED(); ctx.textAlign = 'center';
     for (let v = 85; v <= 115; v += 5) ctx.fillText(v, toX(v), padT + plotH + 16);
-    ctx.fillStyle = '#1a1a1a'; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.fillText('μ = 100', toX(MU), padT - 4);
+    ctx.fillStyle = INK(); ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.fillText('μ = 100', toX(MU), padT - 4);
   }
   $(id + '-n').addEventListener('input', () => { generate(); draw(); });
   $(id + '-conf').addEventListener('input', draw);
@@ -322,14 +330,14 @@ function wErros(id) {
     const toX = v => padL + (v - xMin) / (xMax - xMin) * plotW;
     function fill(mu, color, a, b) { ctx.beginPath(); ctx.moveTo(toX(a), baseY); for (let i = 0; i <= 300; i++) { const x = a + i / 300 * (b - a); ctx.lineTo(toX(x), baseY - pdfN(x - mu) * sY); } ctx.lineTo(toX(b), baseY); ctx.closePath(); ctx.fillStyle = color; ctx.fill(); }
     function curve(mu, color) { ctx.beginPath(); for (let i = 0; i <= 500; i++) { const x = xMin + i / 500 * (xMax - xMin); const y = pdfN(x - mu); i ? ctx.lineTo(toX(x), baseY - y * sY) : ctx.moveTo(toX(x), baseY - y * sY); } ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.stroke(); }
-    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(W - padR, baseY); ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(W - padR, baseY); ctx.strokeStyle = GRID(); ctx.stroke();
     fill(0, 'rgba(192,57,43,0.32)', zc, xMax); fill(delta, 'rgba(41,128,185,0.32)', xMin, zc);
     curve(0, '#3266ad'); curve(delta, '#c0392b');
-    ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.moveTo(toX(zc), padT); ctx.lineTo(toX(zc), baseY); ctx.strokeStyle = '#666'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.moveTo(toX(zc), padT); ctx.lineTo(toX(zc), baseY); ctx.strokeStyle = MUTED(); ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
     const fs = Math.max(10, Math.round(W * 0.018)); ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.textAlign = 'center';
     ctx.fillStyle = '#3266ad'; ctx.fillText('H₀', toX(0), baseY - pdfN(0) * sY - 6);
     ctx.fillStyle = '#c0392b'; ctx.fillText('H₁', toX(delta), baseY - pdfN(0) * sY - 6);
-    ctx.fillStyle = '#444'; ctx.font = `${fs - 1}px 'Courier New', monospace`; ctx.fillText('z* = ' + zc.toFixed(2), toX(zc), padT - 4);
+    ctx.fillStyle = MUTED(); ctx.font = `${fs - 1}px 'Courier New', monospace`; ctx.fillText('z* = ' + zc.toFixed(2), toX(zc), padT - 4);
   }
   $(id + '-alpha').addEventListener('input', draw); $(id + '-delta').addEventListener('input', draw);
   makeResizer(cvs, 0.42, draw);
@@ -349,7 +357,7 @@ function wCorrelacao(id) {
     const toX = x => pad + (x + 3) / 6 * plotW, toY = y => pad + plotH - (y + 3) / 6 * plotH;
     // y a partir dos MESMOS x,z (sem nova aleatoriedade)
     const ys = xs.map((x, i) => r * x + Math.sqrt(Math.max(0, 1 - r * r)) * zs[i]);
-    ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.beginPath(); ctx.moveTo(pad, toY(0)); ctx.lineTo(pad + plotW, toY(0)); ctx.stroke(); ctx.beginPath(); ctx.moveTo(toX(0), pad); ctx.lineTo(toX(0), pad + plotH); ctx.stroke();
+    ctx.strokeStyle = GRID(); ctx.beginPath(); ctx.moveTo(pad, toY(0)); ctx.lineTo(pad + plotW, toY(0)); ctx.stroke(); ctx.beginPath(); ctx.moveTo(toX(0), pad); ctx.lineTo(toX(0), pad + plotH); ctx.stroke();
     // resíduos (linha vertical do ponto até a reta y = r*x)
     ctx.strokeStyle = 'rgba(192,57,43,0.35)'; ctx.lineWidth = 1;
     for (let i = 0; i < xs.length; i++) { const yhat = r * xs[i]; ctx.beginPath(); ctx.moveTo(toX(xs[i]), toY(ys[i])); ctx.lineTo(toX(xs[i]), toY(yhat)); ctx.stroke(); }
@@ -358,7 +366,7 @@ function wCorrelacao(id) {
     // pontos
     ctx.fillStyle = 'rgba(50,102,173,0.7)';
     for (let i = 0; i < xs.length; i++) { ctx.beginPath(); ctx.arc(toX(xs[i]), toY(ys[i]), 3, 0, 7); ctx.fill(); }
-    const fs = Math.max(9, Math.round(W * 0.015)); ctx.fillStyle = '#888'; ctx.font = `${fs}px 'Courier New', monospace`; ctx.textAlign = 'left';
+    const fs = Math.max(9, Math.round(W * 0.015)); ctx.fillStyle = MUTED(); ctx.font = `${fs}px 'Courier New', monospace`; ctx.textAlign = 'left';
     ctx.fillText('linhas vermelhas = resíduos', pad + 4, pad + 12);
   }
   $(id + '-r').addEventListener('input', draw);
@@ -382,11 +390,11 @@ function wValorP(id) {
     function shade(a, b, c) { ctx.beginPath(); ctx.moveTo(toX(a), baseY); for (let i = 0; i <= 200; i++) { const x = a + i / 200 * (b - a); ctx.lineTo(toX(x), baseY - pdfN(x) * sY); } ctx.lineTo(toX(b), baseY); ctx.closePath(); ctx.fillStyle = c; ctx.fill(); }
     const az = Math.abs(z); shade(az, xMax, 'rgba(192,57,43,0.35)'); if (bil) shade(xMin, -az, 'rgba(192,57,43,0.35)');
     ctx.beginPath(); for (let i = 0; i <= 500; i++) { const x = xMin + i / 500 * (xMax - xMin); const y = pdfN(x); i ? ctx.lineTo(toX(x), baseY - y * sY) : ctx.moveTo(toX(x), baseY - y * sY); } ctx.strokeStyle = '#3266ad'; ctx.lineWidth = 2; ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(W - padR, baseY); ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.stroke();
-    ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.moveTo(toX(z), padT); ctx.lineTo(toX(z), baseY); ctx.strokeStyle = '#666'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
-    const fs = Math.max(10, Math.round(W * 0.018)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = '#666'; ctx.textAlign = 'center';
+    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(W - padR, baseY); ctx.strokeStyle = GRID(); ctx.stroke();
+    ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.moveTo(toX(z), padT); ctx.lineTo(toX(z), baseY); ctx.strokeStyle = MUTED(); ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
+    const fs = Math.max(10, Math.round(W * 0.018)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = MUTED(); ctx.textAlign = 'center';
     for (let v = -4; v <= 4; v++) ctx.fillText(v.toFixed(0), toX(v), baseY + 16);
-    ctx.fillStyle = '#1a1a1a'; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.fillText('z = ' + z.toFixed(2), toX(z), padT - 4);
+    ctx.fillStyle = INK(); ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.fillText('z = ' + z.toFixed(2), toX(z), padT - 4);
   }
   $(id + '-z').addEventListener('input', draw); $(id + '-bil').addEventListener('change', draw);
   makeResizer(cvs, 0.42, draw);
@@ -417,7 +425,7 @@ function wHistograma(id) {
     ctx.beginPath(); ctx.strokeStyle = lineCol; ctx.lineWidth = 2;
     for (let px = 0; px <= plotW; px++) { const v = xMin + px / plotW * (xMax - xMin); let d = dist === 'normal' ? pdfN(v) : (v >= -1 && v <= 1 ? 0.5 : 0); const e = d * N * bw, y = padT + plotH - e / maxC * plotH; px ? ctx.lineTo(padL + px, y) : ctx.moveTo(padL + px, y); }
     ctx.stroke();
-    const fs = Math.max(10, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = '#666'; ctx.textAlign = 'center';
+    const fs = Math.max(10, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = MUTED(); ctx.textAlign = 'center';
     for (let i = 0; i <= 6; i++) { const v = xMin + i / 6 * (xMax - xMin); ctx.fillText(v.toFixed(1), toX(v), padT + plotH + 16); }
     $(id + '-mean').textContent = mean(data).toFixed(3); $(id + '-sd').textContent = sd(data).toFixed(3);
     ctx.fillStyle = lineCol; ctx.textAlign = 'right'; ctx.font = `bold ${fs}px 'Courier New', monospace`;
@@ -477,12 +485,12 @@ function wTendencia(id) {
     const W = cvs.width, H = cvs.height; ctx.clearRect(0, 0, W, H);
     const padL = 30, padR = 30, padB = 40, padT = 20, plotW = W - padL - padR, baseY = H - padB;
     const xMin = 0, xMax = 25, toX = v => padL + (v - xMin) / (xMax - xMin) * plotW;
-    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(padL + plotW, baseY); ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(padL + plotW, baseY); ctx.strokeStyle = GRID(); ctx.stroke();
     // empilhar pontos
     const stack = {};
     ctx.fillStyle = 'rgba(50,102,173,0.8)';
     data.forEach(v => { stack[v] = (stack[v] || 0) + 1; const x = toX(v), y = baseY - 10 - (stack[v] - 1) * 14; ctx.beginPath(); ctx.arc(x, y, 5, 0, 7); ctx.fill(); });
-    const fs = Math.max(10, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.textAlign = 'center'; ctx.fillStyle = '#666';
+    const fs = Math.max(10, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.textAlign = 'center'; ctx.fillStyle = MUTED();
     for (let v = 0; v <= 25; v += 5) ctx.fillText(v, toX(v), baseY + 16);
     // linhas média / mediana
     function vline(v, color, label, off) { ctx.beginPath(); ctx.setLineDash([4, 3]); ctx.moveTo(toX(v), padT); ctx.lineTo(toX(v), baseY); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle = color; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.fillText(label, toX(v), padT + off); }
@@ -521,7 +529,7 @@ function wBoxplot(id) {
     for (let i = 0; i < bins; i++) { const x0 = toX(xMin + i * bw), x1 = toX(xMin + (i + 1) * bw), h = counts[i] / maxC * histH; ctx.fillRect(x0 + 0.5, histY0 + histH - h, x1 - x0 - 1, h); }
     // boxplot embaixo
     const by = H * 0.72, bh = H * 0.16;
-    ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 1.5;
+    ctx.strokeStyle = INK(); ctx.lineWidth = 1.5;
     ctx.beginPath(); ctx.moveTo(toX(wLo), by); ctx.lineTo(toX(q1), by); ctx.moveTo(toX(q3), by); ctx.lineTo(toX(wHi), by); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(toX(wLo), by - bh / 3); ctx.lineTo(toX(wLo), by + bh / 3); ctx.moveTo(toX(wHi), by - bh / 3); ctx.lineTo(toX(wHi), by + bh / 3); ctx.stroke();
     ctx.fillStyle = 'rgba(50,102,173,0.35)'; ctx.fillRect(toX(q1), by - bh / 2, toX(q3) - toX(q1), bh);
@@ -530,7 +538,7 @@ function wBoxplot(id) {
     // outliers
     ctx.fillStyle = '#c0392b';
     sorted.filter(v => v < lo || v > hi).forEach(v => { ctx.beginPath(); ctx.arc(toX(v), by, 3, 0, 7); ctx.fill(); });
-    const fs = Math.max(9, Math.round(W * 0.015)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = '#888'; ctx.textAlign = 'center';
+    const fs = Math.max(9, Math.round(W * 0.015)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = MUTED(); ctx.textAlign = 'center';
     ctx.fillText('Q1', toX(q1), by + bh); ctx.fillText('mediana', toX(md), by - bh); ctx.fillText('Q3', toX(q3), by + bh);
   }
   $(id + '-skew').addEventListener('input', () => { generate(); draw(); });
@@ -560,13 +568,13 @@ function wHipoteses(id) {
     shade(zc, xMax, 'rgba(192,57,43,0.25)'); if (bil) shade(xMin, -zc, 'rgba(192,57,43,0.25)');
     // curva H0
     ctx.beginPath(); for (let i = 0; i <= 500; i++) { const x = xMin + i / 500 * (xMax - xMin); const y = pdfN(x); i ? ctx.lineTo(toX(x), baseY - y * sY) : ctx.moveTo(toX(x), baseY - y * sY); } ctx.strokeStyle = '#3266ad'; ctx.lineWidth = 2; ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(W - padR, baseY); ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(W - padR, baseY); ctx.strokeStyle = GRID(); ctx.stroke();
     // estatística observada
     ctx.beginPath(); ctx.moveTo(toX(obs), padT - 6); ctx.lineTo(toX(obs), baseY); ctx.strokeStyle = rejeita ? '#c0392b' : '#1a7a4a'; ctx.lineWidth = 2.5; ctx.stroke();
     const fs = Math.max(10, Math.round(W * 0.018)); ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.textAlign = 'center';
     ctx.fillStyle = '#3266ad'; ctx.fillText('distribuição sob H₀', toX(0), padT + 4);
     ctx.fillStyle = rejeita ? '#c0392b' : '#1a7a4a'; ctx.fillText('obs', toX(obs), padT - 10);
-    ctx.fillStyle = '#666'; ctx.font = `${fs}px 'Courier New', monospace`;
+    ctx.fillStyle = MUTED(); ctx.font = `${fs}px 'Courier New', monospace`;
     for (let v = -4; v <= 4; v += 2) ctx.fillText(v.toFixed(0), toX(v), baseY + 16);
   }
   $(id + '-obs').addEventListener('input', draw); $(id + '-alpha').addEventListener('input', draw); $(id + '-bil').addEventListener('change', draw);
@@ -599,7 +607,7 @@ function wANOVA(id) {
     const W = cvs.width, H = cvs.height; ctx.clearRect(0, 0, W, H);
     const padL = 36, padR = 18, padT = 18, padB = 30, plotH = H - padT - padB, plotW = W - padL - padR;
     const yMin = 2, yMax = 18, toY = v => padT + plotH - (v - yMin) / (yMax - yMin) * plotH;
-    ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.strokeStyle = GRID(); ctx.stroke();
     const cols = ['#3266ad', '#c0392b', '#1a7a4a'], names = ['A', 'B', 'C'];
     groups.forEach((g, gi) => {
       const cx = padL + plotW * (gi + 0.5) / 3;
@@ -664,8 +672,8 @@ function wDistAmostral(id) {
     // normal de referência (para t)
     if (tipo === 't') { ctx.beginPath(); for (let i = 0; i <= 300; i++) { const x = xMin + i / 300 * (xMax - xMin); i ? ctx.lineTo(toX(x), toY(pdfN(x))) : ctx.moveTo(toX(x), toY(pdfN(x))); } ctx.strokeStyle = '#1a7a4a'; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]); }
     ctx.beginPath(); for (let i = 0; i <= 300; i++) { const x = xMin + i / 300 * (xMax - xMin); const y = pdf(x, df, df2); i ? ctx.lineTo(toX(x), toY(y)) : ctx.moveTo(toX(x), toY(y)); } ctx.strokeStyle = '#c0392b'; ctx.lineWidth = 2; ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(padL + plotW, baseY); ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.stroke();
-    const fs = Math.max(10, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = '#666'; ctx.textAlign = 'center';
+    ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(padL + plotW, baseY); ctx.strokeStyle = GRID(); ctx.stroke();
+    const fs = Math.max(10, Math.round(W * 0.016)); ctx.font = `${fs}px 'Courier New', monospace`; ctx.fillStyle = MUTED(); ctx.textAlign = 'center';
     for (let i = 0; i <= 6; i++) { const v = xMin + i / 6 * (xMax - xMin); ctx.fillText(v.toFixed(0), toX(v), baseY + 16); }
     if (tipo === 't') { ctx.fillStyle = '#1a7a4a'; ctx.textAlign = 'right'; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.fillText('normal', padL + plotW, padT + 12); }
   }
@@ -721,5 +729,15 @@ window.addEventListener('DOMContentLoaded', () => {
   // colapsar/expandir grupos da sidebar
   document.querySelectorAll('.nav-group-title').forEach(t => {
     t.addEventListener('click', () => t.parentElement.classList.toggle('collapsed'));
+  });
+
+  // alternar tema claro/escuro
+  document.getElementById('themeToggle')?.addEventListener('click', () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (dark) document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', 'dark');
+    try { localStorage.setItem('tema', dark ? 'light' : 'dark'); } catch (e) {}
+    // repinta os widgets (canvas) com as novas cores
+    window.dispatchEvent(new Event('resize'));
   });
 });
