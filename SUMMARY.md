@@ -78,4 +78,19 @@
 
 ## Exercícios
 
-* [Exercícios resolvidos por tema](07_exercicios/01_exercicios.md)
+* [Precisão, acurácia e algarismos significativos](07_exercicios/01_precisao_acuracia.md)
+* [Probabilidade e intuição](07_exercicios/02_probabilidade_intuicao.md)
+* [Probabilidade](07_exercicios/03_probabilidade.md)
+* [Probabilidade condicional](07_exercicios/04_probabilidade_condicional.md)
+* [Estatística descritiva](07_exercicios/05_descritiva.md)
+* [Distribuição binomial](07_exercicios/06_binomial.md)
+* [Distribuição normal](07_exercicios/07_normal.md)
+* [Distribuição amostral](07_exercicios/08_amostragem.md)
+* [Lógica da inferência e IC](07_exercicios/09_inferencia_ic.md)
+* [Testes de dois grupos](07_exercicios/10_testes_dois_grupos.md)
+* [ANOVA](07_exercicios/11_anova.md)
+* [Correlação e regressão](07_exercicios/12_correlacao_regressao.md)
+* [Potência](07_exercicios/13_potencia.md)
+* [Qui-quadrado](07_exercicios/14_qui_quadrado.md)
+* [Tabelas de contingência](07_exercicios/15_tabelas_contingencia.md)
+* [Técnicas de amostragem](07_exercicios/16_tecnicas_amostragem.md)

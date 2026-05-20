@@ -38,7 +38,7 @@ Quanto **maiores** os graus de liberdade:
 
 Isso reflete uma ideia profunda: **com amostras grandes, a incerteza de estimar parâmetros desaparece**, e tudo volta a se comportar como uma normal.
 
-## Por que isso importa
+## O que acontece dentro de um teste
 
 Quando você roda um teste t no `scipy.stats` e ele devolve um valor-p, por trás está acontecendo:
 

@@ -99,225 +99,561 @@
 <div class="nav-group">
 <div class="nav-group-title">7. Exercícios</div>
 <ul>
-<li><a class="nav-link" data-target="07-exercicios-01-exercicios-md" href="#07-exercicios-01-exercicios-md"><span class="n">7.1</span>Exercícios resolvidos por tema</a></li>
+<li><a class="nav-link" data-target="07-exercicios-01-precisao-acuracia-md" href="#07-exercicios-01-precisao-acuracia-md"><span class="n">7.1</span>Precisão, acurácia e algarismos significativos</a></li>
+<li><a class="nav-link" data-target="07-exercicios-02-probabilidade-intuicao-md" href="#07-exercicios-02-probabilidade-intuicao-md"><span class="n">7.2</span>Probabilidade e intuição</a></li>
+<li><a class="nav-link" data-target="07-exercicios-03-probabilidade-md" href="#07-exercicios-03-probabilidade-md"><span class="n">7.3</span>Probabilidade</a></li>
+<li><a class="nav-link" data-target="07-exercicios-04-probabilidade-condicional-md" href="#07-exercicios-04-probabilidade-condicional-md"><span class="n">7.4</span>Probabilidade condicional</a></li>
+<li><a class="nav-link" data-target="07-exercicios-05-descritiva-md" href="#07-exercicios-05-descritiva-md"><span class="n">7.5</span>Estatística descritiva</a></li>
+<li><a class="nav-link" data-target="07-exercicios-06-binomial-md" href="#07-exercicios-06-binomial-md"><span class="n">7.6</span>Distribuição binomial</a></li>
+<li><a class="nav-link" data-target="07-exercicios-07-normal-md" href="#07-exercicios-07-normal-md"><span class="n">7.7</span>Distribuição normal</a></li>
+<li><a class="nav-link" data-target="07-exercicios-08-amostragem-md" href="#07-exercicios-08-amostragem-md"><span class="n">7.8</span>Distribuição amostral</a></li>
+<li><a class="nav-link" data-target="07-exercicios-09-inferencia-ic-md" href="#07-exercicios-09-inferencia-ic-md"><span class="n">7.9</span>Lógica da inferência e IC</a></li>
+<li><a class="nav-link" data-target="07-exercicios-10-testes-dois-grupos-md" href="#07-exercicios-10-testes-dois-grupos-md"><span class="n">7.10</span>Testes de dois grupos</a></li>
+<li><a class="nav-link" data-target="07-exercicios-11-anova-md" href="#07-exercicios-11-anova-md"><span class="n">7.11</span>ANOVA</a></li>
+<li><a class="nav-link" data-target="07-exercicios-12-correlacao-regressao-md" href="#07-exercicios-12-correlacao-regressao-md"><span class="n">7.12</span>Correlação e regressão</a></li>
+<li><a class="nav-link" data-target="07-exercicios-13-potencia-md" href="#07-exercicios-13-potencia-md"><span class="n">7.13</span>Potência</a></li>
+<li><a class="nav-link" data-target="07-exercicios-14-qui-quadrado-md" href="#07-exercicios-14-qui-quadrado-md"><span class="n">7.14</span>Qui-quadrado</a></li>
+<li><a class="nav-link" data-target="07-exercicios-15-tabelas-contingencia-md" href="#07-exercicios-15-tabelas-contingencia-md"><span class="n">7.15</span>Tabelas de contingência</a></li>
+<li><a class="nav-link" data-target="07-exercicios-16-tecnicas-amostragem-md" href="#07-exercicios-16-tecnicas-amostragem-md"><span class="n">7.16</span>Técnicas de amostragem</a></li>
 </ul></div>
 </nav>
 <main class="content"><div class="content-inner">
 <div class="page-eyebrow">7. Exercícios</div>
-<article id="07-exercicios-01-exercicios-md" class="topic">
+<article id="07-exercicios-01-precisao-acuracia-md" class="topic">
 <div class="topic-num">7.1</div>
-<h1 class="topic-title">Exercícios resolvidos por tema</h1>
-<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/01_exercicios.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
-<p>Coletânea de exercícios resolvidos de bioestatística, organizados por tema, baseada na planilha de exercícios do curso (Prof. Gilberto Weissmüller).</p>
-<blockquote>
-<p><strong>Como estudar:</strong> matemática não se aprende só lendo. Tente resolver cada exercício <strong>a partir do enunciado</strong>, antes de olhar a resposta. Abra uma planilha (Google Sheets, Excel) ou o notebook que acompanha esta seção e refaça os cálculos.</p>
-</blockquote>
-<hr />
-<h2>1. Precisão, acurácia e algarismos significativos</h2>
-<h3>1.1 — Calibração de pipeta</h3>
-<p>Um certificado de conformidade de uma pipeta traz duas séries de pesagens (volume nominal 200 µL e 1000 µL):</p>
-<ul>
-<li>200 µL: 198,75 · 198,83 · 198,78 · 198,87 (mg)</li>
-<li>1000 µL: 996,41 · 996,34 · 996,48 · 996,44 (mg)</li>
-</ul>
-<p><strong>a)</strong> A <strong>exatidão</strong> está dentro da tolerância (±3,00 µL para 200; ±8,00 para 1000)?
-<strong>b)</strong> A <strong>precisão</strong> está dentro da especificação (DP &lt; 0,60 µL para 200; &lt; 1,50 para 1000)?
-<strong>c)</strong> "Para obter um erro menor, manipule quantidades maiores." Mas o DP de 1000 µL é maior que o de 200 µL. Explique.</p>
-<p><strong>Resposta:</strong> (a) As diferenças em relação ao nominal (~−0,54 e −0,29 µL) são menores que as tolerâncias → exatidão OK. (b) Os desvios padrão (~0,05 µL) são bem menores que os limites → precisão OK. (c) O que cai com quantidades maiores é o <strong>erro relativo</strong> (coeficiente de variação), não o absoluto. Em %, o desvio cai de ~0,027% para ~0,006%. A afirmação procede no sentido relativo.</p>
-<h3>1.2 — Mesma balança, "qualidades" diferentes</h3>
-<p>Uma balança de 5 casas mede 0,00103 g e 0,00003 g. Por que dizemos que a primeira medida tem "melhor qualidade"?</p>
-<p><strong>Resposta:</strong> É a mesma balança (mesmo erro absoluto, ±5 µg). O que muda é o <strong>erro relativo</strong>: ~0,49% para 0,00103 g contra ~17% para 0,00003 g. No segundo caso, a balança opera perto do seu limite.</p>
-<h3>1.3 — Algarismos significativos</h3>
-<p>Escreva com 2 algarismos significativos: 2,36 · 0,999999… · 0,395 · 0,125 · 0,00000236. Depois, reescreva valores ambíguos (1300 g; 250 mg; 395000 µg) sem ambiguidade, com unidade apropriada <strong>e</strong> notação científica.</p>
-<p><strong>Resposta:</strong> 2,4 · 1,0 · 0,40 · 0,12 (ou 0,13) · 2,4×10⁻⁶. Ambíguos: 1300 g = 1,3×10³ g = 1,3 kg; 250 mg = 2,5×10² mg = 0,25 g; 395000 µg = 3,95×10⁵ µg = 395 mg.</p>
-<h3>1.4 — Leitura de 0,00025 g</h3>
-<p>Numa balança de 5 casas lê-se 0,00025 g. (a) Quantos a.s.? (b) Se a última casa não estabiliza? (c) Em µg (250 µg)? (d) Como vibração, inclinação e correntes de ar afetam precisão e acurácia?</p>
-<p><strong>Resposta:</strong> (a) 2 a.s. (b) 1 a.s. (c) O nº de a.s. é propriedade da <strong>medida</strong>, não da unidade → continua 2. (d) Superfície inclinada → perde <strong>acurácia</strong>; vibração → perde <strong>precisão</strong>; corrente de ar → afeta ambas.</p>
-<h3>1.5 — Béqueres (precisão e exatidão)</h3>
-<p>Lote previsto para ~35 g. Amostra de 10 béqueres: 33,45 · 35,21 · 35,77 · 35,20 · 34,72 · 33,81 · 33,91 · 34,54 · 34,63 · 34,12 g. Calcule precisão e exatidão (esta em %) e avalie a variação.</p>
-<p><strong>Resposta:</strong> Média ≈ 34,54 g → exatidão (viés) ≈ −0,46 g ≈ −1,3%. DP ≈ 0,73 g (precisão). A variação é maior que a esperada para um processo bem controlado — investigar.</p>
-<hr />
-<h2>2. Probabilidade e intuição</h2>
-<h3>2.1 — Reformular a definição de "ganhar na Megasena"</h3>
-<p>Qual das reformulações é equivalente a "ganhar na Megasena"? (a) acertar os 6 números; (b) ganhar o prêmio; (c) ficar rico; (d) acertar e ter o dinheiro na conta; (e) nenhuma.</p>
-<p><strong>Resposta:</strong> (e). Toda reformulação muda sutilmente o sentido (você pode acertar e perder o bilhete; outra pessoa pode ganhar e te doar; etc.). Lição: reformular probabilidades é traiçoeiro — prefira a definição original.</p>
-<h3>2.2 — Problema do aniversário</h3>
-<p>Em uma sala com 40 pessoas, qual a probabilidade de ao menos duas fazerem aniversário no mesmo dia?</p>
-<p><strong>Resposta:</strong> ~89% (alternativa "muito grande"). Calcula-se por $1 - \frac{365!}{(365-40)!\,365^{40}}$. Resultado contraintuitivo — o famoso <em>paradoxo do aniversário</em>.</p>
-<h3>2.3 — O andar do bêbado (random walk)</h3>
-<p>Gerando passos aleatórios +1/−1 e somando recursivamente, obtém-se uma caminhada aleatória. (Veja a simulação no notebook.)</p>
-<p><strong>Resposta:</strong> A posição após $n$ passos tem média 0 e desvio padrão $\sqrt{n}$ — o bêbado se afasta da origem proporcionalmente à <strong>raiz</strong> do número de passos.</p>
-<hr />
-<h2>3. Probabilidade</h2>
-<h3>3.1 — O problema de Chevalier de Méré</h3>
-<p>O que é mais provável: ao menos um 6 em 4 lançamentos de um dado, ou ao menos um duplo-6 em 24 lançamentos de dois dados?</p>
-<p><strong>Resposta:</strong> Caso 1: $1 - (5/6)^4 = 0{,}518$. Caso 2: $1 - (35/36)^{24} = 0{,}491$. O primeiro é <strong>mais provável</strong>. O raciocínio de Méré (número médio = 2/3 em ambos) confunde <strong>valor esperado</strong> com <strong>probabilidade</strong>.</p>
-<h3>3.2 — Megasena</h3>
-<p>Probabilidade de ganhar com o jogo mínimo?</p>
-<p><strong>Resposta:</strong> $1/\binom{60}{6} = 1/50\,063\,860 \approx 2{,}0\times10^{-8}$. Pode-se pensar como combinação $C(60,6)$ ou como $\frac{6}{60}\cdot\frac{5}{59}\cdots\frac{1}{55}$.</p>
-<h3>3.3 — Cientista consciencioso</h3>
-<p>Com $\alpha = 5\%$ e confirmação independente: (a) probabilidade de uma publicação falso-positivo? (b) Se $P(\text{FP}\mid\text{FP}) = 30\%$?</p>
-<p><strong>Resposta:</strong> (a) $0{,}05 \times 0{,}05 = 0{,}0025$ (0,25%). (b) $0{,}05 \times 0{,}30 = 0{,}015$ (1,5%). Confirmar reduz falsos positivos, mas a dependência entre experimentos piora muito o número.</p>
-<hr />
-<h2>4. Probabilidade condicional</h2>
-<h3>4.1 — Rastreio de doença rara</h3>
-<p>Incidência 0,01%; sensibilidade 99%; especificidade 95%. Teste deu positivo — qual a probabilidade de ter a doença?</p>
-<p><strong>Resposta:</strong> Por Bayes: $P(D\mid+) = \frac{0{,}0001\cdot0{,}99}{0{,}0001\cdot0{,}99 + 0{,}9999\cdot0{,}05} \approx 0{,}2\%$. Apesar de baixíssimo, é 20× maior que a prevalência inicial. Doença rara → muitos falsos positivos.</p>
-<h3>4.2 — Previsão do tempo</h3>
-<p>Acerta 80% dos dias de chuva e 90% dos de bom tempo; chove em 10% dos dias. Se previu chuva, qual a probabilidade de chover?</p>
-<p><strong>Resposta:</strong> Sensibilidade 0,8; especificidade 0,9; prevalência 0,1 → $P(D\mid+) = \frac{0{,}1\cdot0{,}8}{0{,}1\cdot0{,}8 + 0{,}9\cdot0{,}1} = \frac{8}{17} \approx 47{,}1\%$.</p>
-<h3>4.3 — AVC e pressão alta</h3>
-<p>10% dos idosos terão AVC em 5 anos; 40% dos que tiveram AVC tinham PA elevada; 20% dos que não tiveram AVC tinham PA elevada aos 70. Qual a probabilidade de um idoso com PA alta sofrer AVC?</p>
-<p><strong>Resposta:</strong> Prevalência 10%, sensibilidade 40%, especificidade 80% → tabela 2×2 (por 100 pessoas): VP=4, FP=18 → $P = 4/22 \approx 18{,}2\%$.</p>
-<hr />
-<h2>5. Estatística descritiva</h2>
-<h3>5.1 — Quando usar média, mediana, DP, IQR?</h3>
-<p><strong>Resposta:</strong> Distribuição ~normal → média e DP bastam. Assimétrica → média <strong>e</strong> mediana (carregam informações diferentes: renda → mediana mostra concentração, média mostra total) + quantis/IQR. Tempo de sobrevida → mediana e quantis.</p>
-<h3>5.2 — Salários</h3>
-<p>10 mil empregados: 1000 ganham 2 SM, 3000 ganham 3 SM, 6000 ganham 4 SM. Média e mediana?</p>
-<p><strong>Resposta:</strong> Mediana = 4 SM (o valor central cai na faixa dos 4 SM). Média = $(1000\cdot2 + 3000\cdot3 + 6000\cdot4)/10000 = 3{,}5$ SM. Mediana &gt; média: assimetria à esquerda.</p>
-<h3>5.3 — Salário mediano (PNAD)</h3>
-<p>Distribuição por faixas (menos de 1 SM: 24,1%; 1–1,5: 20,6%; 1,5–3: 28,5%; …). Qual a faixa mediana?</p>
-<p><strong>Resposta:</strong> Acumulando: 24,1% + 20,6% = 44,7% (até 1,5 SM); +28,5% = 73,2% (até 3 SM). O 50% cai na faixa <strong>1,5–3,0 SM</strong>.</p>
-<hr />
-<h2>6. Distribuição binomial</h2>
-<h3>6.1 — Falsos positivos acumulados</h3>
-<p>Com $\alpha=5\%$, qual a probabilidade de ao menos um falso positivo ao repetir o teste $k$ vezes?</p>
-<p><strong>Resposta:</strong> $1 - 0{,}95^k$. Para $k=3$: 14,3%; $k=10$: 40,1%; $k=50$: 92,3%. Consequência: comparar 3+ grupos par a par com teste t infla $\alpha$ → use <strong>ANOVA</strong>.</p>
-<h3>6.2 — Pôquer</h3>
-<p>4 jogadores de igual habilidade, 10 partidas, aposta fixa. Probabilidade de <strong>não</strong> perder dinheiro?</p>
-<p><strong>Resposta:</strong> Não perder = vencer ≥ 3 das 10 (cada vitória com $p=1/4$). $P(X \ge 3) = 1 - P(X \le 2) \approx 0{,}474$.</p>
-<h3>6.3 — Mudas e fungos</h3>
-<p>Contaminação $p=0{,}06$; custo R$1,20; venda R$3,50; lote de 50. (a) lucro previsto; (b) P(nenhuma contaminação); (c) P(menos de 10 contaminadas).</p>
-<p><strong>Resposta:</strong> (a) ~50·0,94·3,50 − 50·1,20 ≈ R$104,50. (b) $0{,}94^{50} \approx 0{,}045$. (c) $P(X \le 9) \approx 0{,}9993$.</p>
-<h3>6.4 — Prova de múltipla escolha</h3>
-<p>5 opções, 1 correta. Probabilidade de passar (nota ≥ 5) só no chute, com (a) 10 questões; (b) 20 questões?</p>
-<p><strong>Resposta:</strong> (a) $P(X \ge 5)$ em Binomial(10; 0,2) $\approx 0{,}033$. (b) Binomial(20; 0,25), $P(X \ge 10) \approx 0{,}0026$. A nota mais provável em (a) é 2.</p>
-<h3>6.5 — Controle de qualidade</h3>
-<p>Máquina com 0,5% de defeito. Amostra de 10; desliga se &gt; 1 defeituosa. Probabilidade de desligar à toa?</p>
-<p><strong>Resposta:</strong> $P(X > 1) = 1 - P(0) - P(1) \approx 0{,}0011$.</p>
-<h3>6.6 — Genética mendeliana</h3>
-<p>Cruzamento 3:1 (amarelo:verde). Em 100 sementes, P(80 ou mais amarelas)?</p>
-<p><strong>Resposta:</strong> Binomial(100; 0,75), $P(X \ge 80) \approx 0{,}149$.</p>
-<hr />
-<h2>7. Distribuição normal</h2>
-<h3>7.1 — Regra 68–95–99,7</h3>
-<p>Percentuais em ±1, ±2, ±3 desvios padrão?</p>
-<p><strong>Resposta:</strong> 68,3%; 95,4%; 99,7%. Vale para <strong>qualquer</strong> μ e σ.</p>
-<h3>7.2 — Normal para variáveis só positivas</h3>
-<p>Como aplicar a normal (que vai de −∞ a +∞) a alturas?</p>
-<p><strong>Resposta:</strong> A normal é "localizada": 170 ± 15 cm praticamente não chega a valores negativos. Ela descreve bem a <strong>massa</strong> dos dados; extremos (nanismo, gigantismo) são tratados como subpopulações separadas.</p>
-<h3>7.3 — Elevador</h3>
-<p>Capacidade 500 kg; pesos N(70, 10). (a) P(7 passageiros ultrapassarem)? (b) E 6?</p>
-<p><strong>Resposta:</strong> Distribuição amostral da soma. (a) soma ~ N(490, 10√7) → $P(\text{soma}>500) \approx 0{,}353$. (b) N(420, 10√6) → $\approx 0{,}0005$.</p>
-<h3>7.4 — Pressão arterial</h3>
-<p>PA ~ N(100, 10). (a) % entre 80 e 120? (b) faixa central com 95%? (c) acima de qual valor está só 1%?</p>
-<p><strong>Resposta:</strong> (a) ±2σ ≈ 95,4%. (b) 100 ± 1,96·10 ≈ [80,4; 119,6]. (c) $100 + 2{,}33\cdot10 \approx 123{,}3$ mmHg.</p>
-<h3>7.5 — Média de 4 pessoas</h3>
-<p>Mesma PA ~ N(100,10), amostra de 4. (a) P(média entre 80 e 120)? (b) faixa com 95% das médias? (c) e se σ for desconhecido (s = 7,8)?</p>
-<p><strong>Resposta:</strong> Erro padrão = 10/√4 = 5. (a) ±4σ_média ≈ 99,99%. (b) 100 ± 1,96·5 ≈ [90,2; 109,8]. (c) usar <strong>t</strong>: 100 ± t(5%,3)·7,8/√4 = 100 ± 3,18·3,9 ≈ ±12,4.</p>
-<h3>7.6 — Garantia de lavadoras</h3>
-<p>Vida útil N(1,5; 0,3) anos. % que falha antes de 1 ano (garantia)?</p>
-<p><strong>Resposta:</strong> $z = (1-1{,}5)/0{,}3 = -1{,}67$ → $P \approx 4{,}8\%$.</p>
-<h3>7.7 — Temperatura corporal</h3>
-<p>T ~ N(36,8; 0,15). (a) De 1000 homens, quantos entre 36,8 e 37,0? (b) Faixa central com 50%?</p>
-<p><strong>Resposta:</strong> (a) $P(36{,}8<T<37{,}0) = \Phi(1{,}33)-0{,}5 \approx 0{,}409$ → ~409 indivíduos. (b) ±0,674σ → [36,70; 36,90] °C.</p>
-<hr />
-<h2>8. Distribuição amostral</h2>
-<h3>8.1 — Caixa de produtos</h3>
-<p>Produto ~ 10 g (DP 2 g), 50 por caixa; caixa vazia 500 g (DP 25 g). P(caixa cheia &gt; 1050 g)?</p>
-<p><strong>Resposta:</strong> Média da caixa cheia = 500 + 50·10 = 1000 g. Variância = 25² + 50·2² = 625 + 200 = 825 → DP ≈ 28,7 g. $z = (1050-1000)/28{,}7 \approx 1{,}74$ → $P \approx 0{,}041$.</p>
-<hr />
-<h2>9. Lógica da inferência e intervalo de confiança</h2>
-<h3>9.1 — Descritiva ou inferencial?</h3>
-<p>Professor compara proporções pró-pena de morte na <strong>própria</strong> turma. Que tipo de estatística?</p>
-<p><strong>Resposta:</strong> <strong>Descritiva</strong> — não há tentativa de generalizar além da turma estudada.</p>
-<h3>9.2 — Significância × relevância</h3>
-<p><strong>Resposta:</strong> Significância = diferença detectável pelo design (depende de n, pareamento, variabilidade). Relevância = utilidade prática. Com n grande, detecta-se diferenças mínimas e irrelevantes (ex.: 0,1 ponto de QI entre irmãos).</p>
-<h3>9.3 — Intervalo de confiança</h3>
-<p>Amostra (de população normal): 5,3,4,2,3,4,2,3,4,5. (a) IC 95%; (b) interprete.</p>
-<p><strong>Resposta:</strong> Média = 3,5; s ≈ 1,08; t(5%,9) = 2,262 → 3,5 ± 2,262·1,08/√10 ≈ [2,7; 4,3]. (b) Se repetíssemos o experimento muitas vezes, 95% dos intervalos conteriam a média populacional.</p>
-<h3>9.4 — Moeda viciada (lógica binomial)</h3>
-<p>20 lançamentos, $\alpha = 5\%$. Quais proporções levam a rejeitar "moeda honesta"?</p>
-<p><strong>Resposta:</strong> ≤ 5 caras ou ≥ 15 caras (área bilateral ≈ 4,1% &lt; 5%). Com $\alpha = 1\%$, só ≤ 4 ou ≥ 16.</p>
-<hr />
-<h2>10. Testes de dois grupos</h2>
-<h3>10.1 — Anatomia de um teste</h3>
-<p><strong>Resposta:</strong> Defina <strong>hipóteses</strong> (paramétrico? lateralidade?) e <strong>design</strong> (pareado? α?). Calcule o valor-p e compare com α: $p<\alpha$ → significativo.</p>
-<h3>10.2 — Besouros em duas florestas</h3>
-<p>Amostra 1: 8,12,15,21,25,44,44,60; Amostra 2: 2,4,5,9,12,17,19. Qual teste? Conclusão (P = 2,8%)?</p>
-<p><strong>Resposta:</strong> Contagens baixas → assimétrico → <strong>não paramétrico</strong>; sem pareamento; bilateral; α=5% → <strong>Mann–Whitney</strong>. Como $p=0{,}028<0{,}05$, há diferença significativa (mais besouros na floresta 1).</p>
-<h3>10.3 — Halotano vs. Morfina</h3>
-<p>PA média: Halotano 66,9 (DP 12,2; n=61); Morfina 73,2 (DP 14,4; n=61). (a) Diferença significativa? (b) Estime a diferença real. (c) Mortalidade 8/61 vs 10/61 difere?</p>
-<p><strong>Resposta:</strong> (a) Teste t não pareado bilateral → $p \approx 0{,}010$ → significativo. (b) IC 95% da diferença ≈ [−11; −1,5] mmHg. (c) Tabela de contingência (qui-quadrado/Fisher) → não significativo.</p>
-<h3>10.4 — Pressão arterial homens × mulheres</h3>
-<p>Dados simulados (12 por grupo) a partir do Wolfram|Alpha. Teste t indica diferença?</p>
-<p><strong>Resposta:</strong> Com n pequeno e diferença real pequena (≈3 mmHg) ante DP grande (~17–21), o teste tende a <strong>não</strong> detectar — poder baixíssimo (veja exercício de potência).</p>
-<h3>10.5 — Teste t "à mão" vs. software</h3>
-<p>A1 (n=10, m=4,5, s=3,03) vs A2 (n=10, m=7,5, s=3,03). Há diferença?</p>
-<p><strong>Resposta:</strong> $t = (4{,}5-7{,}5)/(3{,}03\cdot\sqrt{2/10}) \approx -2{,}22$, gl=18. Como $|t|=2{,}22 > t_{crit}=2{,}10$ → diferença <strong>significativa</strong>.</p>
-<h3>10.6 — Hemoglobina antes/depois (pareado)</h3>
-<p>Hb medida em 8 indivíduos antes e depois da droga. Avalie a eficácia.</p>
-<p><strong>Resposta:</strong> Como é o <strong>mesmo</strong> indivíduo medido 2×, use <strong>teste t pareado</strong> sobre as diferenças. Se $p<0{,}05$, a droga altera a Hb.</p>
-<hr />
-<h2>11. ANOVA (um fator)</h2>
-<h3>11.1 — Drogas A, B e placebo</h3>
-<p>Contagem de linfócitos em 7 ninhadas, 3 tratamentos (animais da mesma ninhada). As drogas diferem do placebo?</p>
-<p><strong>Resposta:</strong> Como os animais vêm da <strong>mesma ninhada</strong> (pareamento), use <strong>ANOVA de medidas repetidas</strong>. "Diferem do placebo" → pós-teste de <strong>Dunnett</strong> (compara com controle). Resultado: $p \approx 0{,}002$; só A difere de P.</p>
-<h3>11.2 — Concurso na UFRJ</h3>
-<p>6 candidatos, 5 avaliadores. A banca diferencia candidatos? Há empates estatísticos?</p>
-<p><strong>Resposta:</strong> Avaliadores diferem em rigor → <strong>medidas repetidas</strong>. A variabilidade <strong>entre candidatos</strong> supera a <strong>entre avaliadores</strong> → a banca consegue diferenciar. Porém candidatos próximos ficam empatados estatisticamente — o fator sorte é real.</p>
-<hr />
-<h2>12. Correlação e regressão</h2>
-<h3>12.1 — Peso × altura</h3>
-<p>Dados (altura cm, peso kg): (152,38)…(193,68). (a) r; (b) R² e interpretação; (c) reta; (d) crítica.</p>
-<p><strong>Resposta:</strong> (a) $r \approx 0{,}77$. (b) $R^2 \approx 0{,}59$ → 59% da variação do peso "explicada" pela altura. (c) $y \approx 0{,}89x - 91$. (d) Há relação plausível, mas muitos fatores afetam o peso; a reta serve mais para descrever que para prever indivíduos.</p>
-<h3>12.2 — Experimento vs. estudo de correlação</h3>
-<p><strong>Resposta:</strong> No experimento verdadeiro, manipula-se a variável independente com tudo sob controle → permite <strong>causa-efeito</strong>. No estudo de correlação, nada é controlado → revela <strong>associação</strong>, base para formular hipóteses, mas não prova causalidade.</p>
-<h3>12.3 — As 4 explicações de uma correlação</h3>
-<p>Se $r \ne 0$, quais explicações são possíveis?</p>
-<p><strong>Resposta:</strong> (i) X causa Y; (ii) Y causa X; (iii) uma terceira variável causa ambos; (iv) acaso (o valor-p mede a frequência do acaso). Veja exemplos de correlações espúrias (tylervigen.com).</p>
-<hr />
-<h2>13. Potência</h2>
-<h3>13.1 — Tamanho da amostra × precisão</h3>
-<p>Para n = 2, 3, 4, 6, 10, 20 (população N(1,1)), como variam desvio da média, DP, SEM e IC?</p>
-<p><strong>Resposta:</strong> O <strong>SEM</strong> e a largura do IC caem com $1/\sqrt{n}$; o DP estimado se aproxima de 1; o erro da média diminui. Dobrar a precisão exige <strong>quadruplicar</strong> n.</p>
-<h3>13.2 — Escolha do sexo da prole</h3>
-<p>Dois casais, ambos com 2 meninos. O tratamento funciona?</p>
-<p><strong>Resposta:</strong> Sob $H_0$ (não funciona, binomial), $P = (1/2)^4 = 0{,}0625 > 0{,}05$. Com só 4 crianças, o menor p possível já é 6,25% → <strong>poder zero</strong>, teste inconclusivo.</p>
-<h3>13.3 — Potência da PA homens × mulheres</h3>
-<p>Diferença real ≈ 3 mmHg, σ ~ 17–21. (a) Poder com n=24? (b) n para 80%? (c) Poder com toda a amostra?</p>
-<p><strong>Resposta:</strong> (a) ~6,8% (ridículo). (b) ~568 por grupo. (c) Com n nas milhares, poder ≈ 1.</p>
-<h3>13.4 — Trocando n por δ</h3>
-<p>Situação A: σ=1, n=17, δ=1 → poder 81%. Situação B: mesmo σ e poder, n=25, δ=? Maior ou menor que 1?</p>
-<p><strong>Resposta:</strong> <strong>Menor</strong> que 1 — com amostra maior, detecta-se um efeito menor mantendo o mesmo poder.</p>
-<hr />
-<h2>14. Qui-quadrado</h2>
-<h3>14.1 — Dado honesto</h3>
-<p>60 lançamentos, frequências 8,11,7,12,15,7. O dado é honesto? E se multiplicarmos tudo por 10?</p>
-<p><strong>Resposta:</strong> Esperado = 10/face. $\chi^2 = 5{,}2$, 5 gl → $p \approx 0{,}39$ → <strong>não</strong> rejeita (honesto). Com frequências ×10 (mesma tendência), $\chi^2 = 52$ → $p \approx 5\times10^{-10}$ → rejeita. Lição: o qui-quadrado depende do <strong>n absoluto</strong>, não só das proporções.</p>
-<h3>14.2 — Mendel 9:3:3:1</h3>
-<p>Observados 315/108/101/32 (total 556). O modelo 9:3:3:1 explica? E um modelo linear?</p>
-<p><strong>Resposta:</strong> Mendel: $\chi^2 \approx 0{,}47$ → $p \approx 0{,}93$ → não rejeita (ótimo ajuste). Linear: $\chi^2 \approx 62{,}6$ → $p \approx 0$ → rejeita. O modelo de Mendel descreve muito melhor.</p>
-<hr />
-<h2>15. Tabelas de contingência</h2>
-<h3>15.1 — Mortalidade Halotano × Morfina</h3>
-<p>8/61 mortes (Halotano) vs 10/61 (Morfina). As proporções diferem?</p>
-<p><strong>Resposta:</strong> Tabela 2×2 → qui-quadrado (ou Fisher). Não se rejeita $H_0$ → as taxas de fatalidade não diferem significativamente.</p>
-<h3>15.2 — Efeito colateral × medicamento</h3>
-<p>Tabela 2×2 (usou/não usou × efeito presente/ausente). Como testar associação?</p>
-<p><strong>Resposta:</strong> Qui-quadrado de independência. Se $p$ for baixo, rejeita-se a independência → há associação entre o medicamento e o efeito colateral.</p>
-<hr />
-<h2>16. Técnicas de amostragem</h2>
-<h3>16.1 — Motoristas × cobradores de ônibus</h3>
-<p>Cobradores (mais exercício) têm menos doença cardíaca que motoristas. (a) Variáveis e níveis; (b) correlação ou experimento? (c) por que controlar idade/tempo de serviço? (d) há associação? (e) outros confundidores?</p>
-<p><strong>Resposta:</strong> (a) Tratamento = exercício (muito/pouco); desfecho = doença cardíaca (sim/não). (b) <strong>Estudo de correlação</strong> — ninguém foi sorteado para a profissão. (c) Idade é confundidor (afeta o desfecho e pode diferir entre grupos). (d) Sim, há <strong>associação</strong> — mas não causa. (e) Saúde prévia, estresse do trabalho (motoristas já eram mais pesados ao serem contratados).</p>
-<h3>16.2 — Treinamento de lavagem das mãos</h3>
-<p>100 voluntários recebem treinamento e são comparados com os demais. Critique e proponha alternativa.</p>
-<p><strong>Resposta:</strong> Inválido: voluntários já são mais cuidadosos (viés de autosseleção) → resultado artificialmente positivo. Solução: <strong>sortear</strong> quem recebe o treinamento (aleatorização).</p>
-<h3>16.3 — Filhotes de rato e ninhadas</h3>
-<p>Filhotes misturados ao acaso e divididos em 4 doses. A amostragem é correta?</p>
-<p><strong>Resposta:</strong> Não. A Hb é homogênea <strong>dentro</strong> da ninhada. Misturar permite que diferenças de ninhada se confundam com o efeito da droga. Correto: pegar um filhote de <strong>cada ninhada</strong> para <strong>cada dose</strong> (amostragem em blocos/pareada).</p>
+<h1 class="topic-title">Precisão, acurácia e algarismos significativos</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/01_precisao_acuracia.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre medidas, erros e a representação correta de números. Tente resolver a partir do enunciado antes de abrir a resposta.</p>
+<h2>Exercício 1 — Calibração de pipeta</h2>
+<p>Um certificado de conformidade de uma pipeta traz duas séries de pesagens de água. Para o volume nominal de 200 µL foram registrados 198,75 · 198,83 · 198,78 · 198,87 (mg); para 1000 µL, 996,41 · 996,34 · 996,48 · 996,44 (mg).</p>
+<p>a) A exatidão está dentro da tolerância (±3,00 µL para 200 µL e ±8,00 µL para 1000 µL)?</p>
+<p>b) A precisão está dentro da especificação (desvio padrão &lt; 0,60 µL para 200 µL e &lt; 1,50 µL para 1000 µL)?</p>
+<p>c) Costuma-se dizer que "para obter um erro menor, manipule quantidades maiores". No entanto, o desvio padrão de 1000 µL é maior que o de 200 µL. Como conciliar as duas afirmações?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A exatidão mede o quanto a média das pesagens se afasta do valor nominal. A média de 200 µL fica em torno de 198,8 mg, o que corresponde a um desvio de aproximadamente −0,5 µL após a conversão; para 1000 µL o desvio é de cerca de −0,3 µL. Os dois valores estão bem dentro das tolerâncias, então a exatidão está aprovada.</p>
+<p>A precisão mede a dispersão das pesagens em torno da própria média. Os desvios padrão ficam em torno de 0,05 µL nas duas séries, muito abaixo dos limites de 0,60 e 1,50 µL. A precisão também está aprovada.</p>
+<p>A aparente contradição da letra (c) se desfaz quando separamos erro absoluto de erro relativo. Quando manipulamos volumes maiores, o erro absoluto realmente tende a crescer (0,05 µL contra um valor um pouco maior), mas o que interessa na prática é o erro relativo, ou seja, o erro dividido pelo valor medido. Em termos percentuais, a dispersão cai de cerca de 0,027% (para 200 µL) para cerca de 0,006% (para 1000 µL). A frase está correta no sentido relativo: medir quantidades maiores reduz o peso proporcional do erro.</p>
+</details>
+<h2>Exercício 2 — A mesma balança, "qualidades" diferentes</h2>
+<p>Uma balança analítica de cinco casas decimais é usada para medir 0,00103 g e, em outra ocasião, 0,00003 g. Por que dizemos que a primeira medida tem "qualidade" melhor, se a balança é a mesma?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A balança tem sempre o mesmo erro absoluto, da ordem de cinco microgramas, porque essa é a sua resolução. O que muda entre as duas medidas é o quanto esse erro representa em relação ao valor medido.</p>
+<p>Para 0,00103 g, cinco microgramas correspondem a cerca de 0,5% do valor. Para 0,00003 g, os mesmos cinco microgramas correspondem a cerca de 17%. A segunda medida está sendo feita perto do limite de operação da balança, e por isso carrega muito mais incerteza relativa. A "qualidade" de uma medida é justamente o seu erro relativo, e não a balança em si.</p>
+</details>
+<h2>Exercício 3 — Escrevendo com dois algarismos significativos</h2>
+<p>Escreva com apenas dois algarismos significativos: 2,36 · 0,999999… · 0,395 · 0,125 · 0,00000236. Em seguida, reescreva os valores ambíguos 1300 g, 250 mg e 395000 µg de duas formas que eliminem a ambiguidade: escolhendo uma unidade apropriada e usando notação científica.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Arredondando para dois algarismos significativos: 2,36 vira 2,4; o número próximo de 1 vira 1,0; 0,395 vira 0,40; 0,125 vira 0,12 (regra do dígito par) ou 0,13 conforme a convenção do software; e 0,00000236 vira 2,4×10⁻⁶.</p>
+<p>Um número como 1300 g é ambíguo porque não dá para saber se os zeros são significativos. Escrevendo 1,3×10³ g ou 1,3 kg, fica claro que há dois algarismos significativos. Da mesma forma, 250 mg com dois algarismos vira 2,5×10² mg ou 0,25 g, e 395000 µg com três algarismos vira 3,95×10⁵ µg ou 395 mg. A notação científica e a troca de unidade resolvem a ambiguidade porque deixam explícito quais dígitos foram realmente medidos.</p>
+</details>
+<h2>Exercício 4 — Leitura de 0,00025 g</h2>
+<p>Uma balança de cinco casas decimais mostra 0,00025 g.</p>
+<p>a) Quantos algarismos significativos tem essa leitura?</p>
+<p>b) Se a balança estiver mal instalada e a última casa não estabilizar, quantos algarismos significativos restam?</p>
+<p>c) O mesmo valor escrito em microgramas é 250 µg. O número de algarismos significativos muda?</p>
+<p>d) Como vibração, inclinação da superfície e correntes de ar afetam precisão e acurácia?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A leitura 0,00025 g tem dois algarismos significativos, porque os zeros à esquerda apenas posicionam a vírgula e não contam. Se a última casa não estabiliza, sobra apenas um algarismo confiável.</p>
+<p>Trocar a unidade para microgramas não altera nada: o número de algarismos significativos é uma propriedade da medida, não da unidade escolhida. Tanto 0,00025 g quanto 250 µg representam a mesma informação, com os mesmos dois algarismos significativos.</p>
+<p>Quanto às condições de instalação, uma superfície inclinada introduz um erro sistemático e faz a balança perder acurácia, porque todas as leituras ficam deslocadas na mesma direção. Vibrações fazem o valor oscilar de forma aleatória e prejudicam a precisão. Correntes de ar podem causar tanto deslocamentos sistemáticos quanto oscilações, afetando as duas propriedades ao mesmo tempo.</p>
+</details>
+<h2>Exercício 5 — Béqueres</h2>
+<p>Um lote de béqueres foi planejado para pesar em torno de 35 g. Uma amostra de dez unidades pesou 33,45 · 35,21 · 35,77 · 35,20 · 34,72 · 33,81 · 33,91 · 34,54 · 34,63 · 34,12 g. Calcule a precisão e a exatidão (esta em porcentagem) e avalie se há variação relevante em relação ao previsto.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A média da amostra fica em torno de 34,5 g. A exatidão é a diferença entre essa média e o valor previsto de 35 g, ou seja, cerca de −0,5 g, o que equivale a aproximadamente −1,3% em termos relativos. Existe, portanto, um pequeno viés: os béqueres tendem a pesar um pouco menos que o planejado.</p>
+<p>A precisão é o desvio padrão da amostra, em torno de 0,73 g. Essa dispersão é considerável diante do desvio do alvo, o que sugere que o processo de fabricação tem variabilidade própria que merece investigação, e não apenas um deslocamento constante.</p>
+</details>
+
+</article>
+<article id="07-exercicios-02-probabilidade-intuicao-md" class="topic">
+<div class="topic-num">7.2</div>
+<h1 class="topic-title">Probabilidade e intuição</h1>
+<p>Exercícios que exploram como a intuição costuma falhar diante de probabilidades.</p>
+<h2>Exercício 1 — Reformular "ganhar na Megasena"</h2>
+<p>Qual das reformulações abaixo é realmente equivalente à definição de "ganhar na Megasena"? (a) acertar os seis números sorteados; (b) ganhar o prêmio da Megasena; (c) ficar rico com a Megasena; (d) acertar os seis números e ter o prêmio depositado na conta; (e) nenhuma das anteriores.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A resposta é (e). Cada tentativa de reformular muda sutilmente o significado. Acertar os seis números não basta se você perde o bilhete. Ganhar o prêmio pode acontecer com outra pessoa que depois te doa o valor, e ninguém diria que foi você quem ganhou. Ficar rico também funciona se o cônjuge ganha. E ter o dinheiro na conta exclui quem acertou mas morreu antes do depósito.</p>
+<p>A lição vale para toda a teoria de probabilidade: definir um evento com precisão é difícil, e refrasear quase sempre introduz erros. Quando o enunciado já traz uma definição, o mais seguro é trabalhar com ela, em vez de substituí-la por uma versão "equivalente".</p>
+</details>
+<h2>Exercício 2 — Problema do aniversário</h2>
+<p>Numa sala com quarenta pessoas reunidas ao acaso, qual a probabilidade de pelo menos duas fazerem aniversário no mesmo dia? Estime entre muito pequena, pequena, em torno de 50%, grande ou muito grande.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A probabilidade é muito grande, em torno de 89%. O resultado surpreende porque a intuição compara cada pessoa com uma data fixa, quando na verdade comparamos todos os pares possíveis de pessoas.</p>
+<p>O caminho mais simples é calcular a probabilidade do evento contrário, que é todas as datas serem diferentes. Para a segunda pessoa há 364 dias livres em 365, para a terceira 363, e assim por diante. Multiplicando essas frações e subtraindo de 1, chega-se a cerca de 0,89. Com apenas 23 pessoas a probabilidade já passa de 50%.</p>
+</details>
+<h2>Exercício 3 — O andar do bêbado</h2>
+<p>Geramos passos aleatórios de +1 ou −1 e os somamos um após o outro, formando uma caminhada aleatória. Depois de muitos passos, o que se pode dizer sobre a posição final? (Há uma simulação no notebook.)</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Em média, a posição final é zero, porque os passos para frente e para trás se cancelam na média de muitas repetições. Isso não significa, porém, que o bêbado fique parado: a dispersão da posição cresce com o número de passos.</p>
+<p>O ponto interessante é que essa dispersão cresce com a raiz quadrada do número de passos, e não de forma proporcional. Após cem passos, o afastamento típico é da ordem de dez unidades, não cem. Essa relação com a raiz quadrada é a mesma que aparece no erro padrão da média e é uma das assinaturas da soma de variáveis aleatórias independentes.</p>
+</details>
+
+</article>
+<article id="07-exercicios-03-probabilidade-md" class="topic">
+<div class="topic-num">7.3</div>
+<h1 class="topic-title">Probabilidade</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/03_probabilidade.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios clássicos de cálculo de probabilidades.</p>
+<h2>Exercício 1 — O problema de Chevalier de Méré</h2>
+<p>O que é mais provável: obter ao menos um seis em quatro lançamentos de um dado, ou obter ao menos um par de seis em vinte e quatro lançamentos de dois dados? O cavalheiro Chevalier de Méré argumentava que as duas situações eram equivalentes, porque o número médio de ocorrências seria 2/3 em ambos os casos.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>As duas probabilidades não são iguais, e o raciocínio de Méré confunde número esperado com probabilidade.</p>
+<p>No primeiro caso, a probabilidade de não sair nenhum seis em quatro lançamentos é (5/6) elevado a 4. A probabilidade de sair ao menos um seis é o complemento, aproximadamente 0,518. No segundo caso, a probabilidade de não sair nenhum par de seis em vinte e quatro lançamentos é (35/36) elevado a 24, e o complemento é aproximadamente 0,491.</p>
+<p>Ou seja, o primeiro evento é um pouco mais provável que não acontecer, enquanto o segundo é um pouco menos. A coincidência do valor 2/3 que Méré calculou corresponde ao número médio de ocorrências, uma quantidade diferente da probabilidade de pelo menos uma ocorrência. Esse problema histórico foi um dos que motivaram o desenvolvimento formal da teoria da probabilidade.</p>
+</details>
+<h2>Exercício 2 — Megasena</h2>
+<p>Qual a probabilidade de ganhar na Megasena com o jogo mínimo de seis números marcados entre sessenta?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>O número total de resultados possíveis é a combinação de sessenta números tomados seis a seis, que vale 50.063.860. Como só um desses resultados é o vencedor, a probabilidade é 1 dividido por esse total, aproximadamente 2×10⁻⁸, ou seja, cerca de 0,000002%.</p>
+<p>Há um segundo modo de chegar ao mesmo resultado, encadeando eventos. Você tem seis chances de acertar uma das seis posições numa cartela de sessenta, depois cinco chances entre os cinquenta e nove números restantes, e assim por diante até a última. Multiplicando essas frações chega-se exatamente ao mesmo valor, o que mostra que a contagem por combinação e o raciocínio sequencial são equivalentes.</p>
+</details>
+<h2>Exercício 3 — O cientista consciencioso</h2>
+<p>Um pesquisador só publica um resultado depois de confirmá-lo ao menos uma vez, usando nível de significância de 5%.</p>
+<p>a) Qual a probabilidade de uma publicação ser um falso positivo se a repetição for totalmente independente?</p>
+<p>b) Como a independência completa é irreal (mesmos reagentes, mesmo protocolo, mesmo experimentador), suponha que a probabilidade de um segundo falso positivo dado o primeiro seja 30%. Qual a probabilidade de publicar um falso positivo nesse caso?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Se os dois experimentos fossem independentes, a probabilidade de ambos darem falso positivo seria o produto 0,05 × 0,05 = 0,0025, ou seja, 0,25%. Exigir uma confirmação reduz bastante a chance de publicar algo espúrio.</p>
+<p>Na prática, porém, os experimentos compartilham reagentes, equipamentos e métodos, então um erro tende a se repetir. Com a probabilidade condicional de 30% para o segundo falso positivo, a chance de publicar um falso positivo passa a ser 0,05 × 0,30 = 0,015, ou 1,5%. A dependência entre as repetições enfraquece a proteção que a confirmação deveria oferecer, e por isso replicações verdadeiramente independentes, em outro laboratório, são tão valorizadas.</p>
+</details>
+
+</article>
+<article id="07-exercicios-04-probabilidade-condicional-md" class="topic">
+<div class="topic-num">7.4</div>
+<h1 class="topic-title">Probabilidade condicional</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/04_probabilidade_condicional.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre o teorema de Bayes e a interpretação de testes diagnósticos.</p>
+<h2>Exercício 1 — Rastreio de doença rara</h2>
+<p>Pretende-se rastrear uma população para uma doença cuja incidência é de 0,01%. O teste detecta a doença em 99% dos doentes e identifica corretamente a ausência da doença em 95% dos saudáveis. Uma pessoa testou positivo. Qual a probabilidade de ela realmente ter a doença?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A pergunta inverte a direção do teste: conhecemos a probabilidade de positivo dado doente, mas queremos a probabilidade de doente dado positivo. O teorema de Bayes faz essa inversão.</p>
+<p>No numerador entra a fração de pessoas que são doentes e testam positivo, igual a 0,0001 × 0,99. No denominador entra a probabilidade total de testar positivo, somando os verdadeiros positivos com os falsos positivos: 0,0001 × 0,99 + 0,9999 × 0,05. O resultado é aproximadamente 0,002, ou seja, cerca de 0,2%.</p>
+<p>Apesar de o teste parecer muito bom, a doença é tão rara que a grande maioria dos positivos vem de pessoas saudáveis. Ainda assim, o teste foi útil: a probabilidade saltou de 0,01% para 0,2%, um fator de vinte. Esse é o motivo de rastreios em massa de doenças raras gerarem tantos falsos positivos.</p>
+</details>
+<h2>Exercício 2 — Previsão do tempo</h2>
+<p>Um meteorologista acerta 80% dos dias em que chove e 90% dos dias de bom tempo. Chove em 10% dos dias. Se a previsão for de chuva, qual a probabilidade de realmente chover?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>O problema é idêntico ao do teste diagnóstico, tratando a chuva como a "doença" e a previsão como o resultado do teste. A sensibilidade é 0,8, a especificidade é 0,9 e a prevalência é 0,1.</p>
+<p>Aplicando Bayes, o numerador é 0,1 × 0,8 e o denominador soma verdadeiros positivos e falsos positivos, 0,1 × 0,8 + 0,9 × 0,1. O resultado é 8/17, aproximadamente 47%.</p>
+<p>Uma forma intuitiva de ver isso é montar uma tabela com mil dias. Cem chovem e novecentos não. Dos cem dias de chuva, oitenta são previstos corretamente. Dos novecentos de bom tempo, noventa recebem previsão errada de chuva. No total há 170 previsões de chuva, das quais oitenta acertam, e 80/170 dá os mesmos 47%.</p>
+</details>
+<h2>Exercício 3 — AVC e pressão alta</h2>
+<p>Sabe-se que 10% dos idosos sofrerão um AVC nos próximos cinco anos. Entre os que tiveram AVC, 40% apresentavam pressão arterial elevada. Entre os que não tiveram AVC, 20% tinham pressão elevada aos 70 anos. Qual a probabilidade de um idoso com pressão alta vir a sofrer um AVC?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Identificando o AVC como a "doença" e a pressão elevada como o "teste", a prevalência é 10%, a sensibilidade é 40% e a especificidade é 80%, já que 20% dos que não tiveram AVC tinham um indicador falso.</p>
+<p>Montando uma tabela com cem idosos, dez terão AVC e noventa não. Dos dez com AVC, quatro têm pressão elevada. Dos noventa sem AVC, dezoito têm pressão elevada. Entre todos os que têm pressão alta, portanto, há 22 pessoas, das quais quatro sofrerão AVC. A probabilidade procurada é 4/22, aproximadamente 18%.</p>
+<p>A mesma lógica serve para estimar o efeito de qualquer fator de risco, como fumo e câncer, e pode ser estendida para combinar mais de um fator.</p>
+</details>
+
+</article>
+<article id="07-exercicios-05-descritiva-md" class="topic">
+<div class="topic-num">7.5</div>
+<h1 class="topic-title">Estatística descritiva</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/05_descritiva.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre média, mediana e a escolha das medidas adequadas.</p>
+<h2>Exercício 1 — Quando usar cada medida</h2>
+<p>Diante de um conjunto grande de dados, quando convém apresentar média, mediana, desvio padrão e desvio interquartil?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Não existe uma regra única, porque a melhor escolha depende da forma da distribuição e da pergunta de interesse.</p>
+<p>Quando os dados são aproximadamente simétricos, próximos de uma distribuição normal, a média e o desvio padrão bastam, já que a média coincide com a mediana e o desvio padrão é a medida natural de variabilidade nesse caso.</p>
+<p>Quando a distribuição é assimétrica, a média e a mediana passam a carregar informações diferentes e complementares. No caso da renda, por exemplo, a mediana descreve o rendimento típico e revela a concentração, enquanto a média reflete o total de recursos disponíveis. Para descrever a variabilidade nesses casos, os quantis ou o desvio interquartil são mais informativos que o desvio padrão. Já para tempo de sobrevivência a média costuma não fazer sentido, e o par mediana com quantis é o mais adequado.</p>
+</details>
+<h2>Exercício 2 — Salários</h2>
+<p>Numa empresa de dez mil empregados, mil ganham 2 salários mínimos, três mil ganham 3 e os seis mil restantes ganham 4. Calcule a média e a mediana.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Para a mediana, basta ordenar os trabalhadores por salário e localizar o ponto central. Os mil primeiros ganham 2, os três mil seguintes ganham 3 e a partir daí todos ganham 4. O valor central, na posição cinco mil, já está na faixa dos que ganham 4 salários mínimos, então a mediana é 4.</p>
+<p>Para a média, somamos o que cada grupo recebe e dividimos pelo total: (1000×2 + 3000×3 + 6000×4) dividido por 10000, o que dá 3,5 salários mínimos. A média ficou abaixo da mediana porque o grupo menor, de salários baixos, puxa a média para baixo. É um exemplo concreto de como as duas medidas contam histórias diferentes.</p>
+</details>
+<h2>Exercício 3 — Salário mediano por faixas</h2>
+<p>A distribuição de pessoas ocupadas por faixa de renda no Brasil (PNAD) foi: menos de 1 salário mínimo, 24,1%; de 1 a 1,5, 20,6%; de 1,5 a 3, 28,5%; de 3 a 5, 11,7%; de 5 a 10, 8,5%; e 10 ou mais, 6,6%. Em que faixa está o salário mediano?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A mediana está na faixa que contém a posição correspondente a 50% acumulados. Somando as frequências de baixo para cima, chegamos a 24,1% na primeira faixa e a 44,7% ao incluir a segunda. Ao acrescentar a terceira faixa, de 1,5 a 3 salários, o acumulado passa para 73,2%, ultrapassando os 50%.</p>
+<p>Portanto, o salário mediano cai na faixa de 1,5 a 3 salários mínimos. Note que metade dos trabalhadores ganhava, à época, menos do que essa faixa, um retrato bem diferente do que uma média sozinha sugeriria.</p>
+</details>
+
+</article>
+<article id="07-exercicios-06-binomial-md" class="topic">
+<div class="topic-num">7.6</div>
+<h1 class="topic-title">Distribuição binomial</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/06_binomial.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre contagem de sucessos em ensaios independentes.</p>
+<h2>Exercício 1 — Falsos positivos acumulados</h2>
+<p>Testando dois grupos controle entre si com nível de confiança de 95%, há 5% de chance de obter um falso positivo. Qual a probabilidade de pelo menos um falso positivo se repetirmos o experimento várias vezes?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A maneira mais simples de responder a perguntas do tipo "pelo menos um" é calcular a probabilidade do evento contrário, que é nenhum falso positivo, e subtrair de 1. Se cada teste tem 95% de chance de não dar falso positivo, então a probabilidade de nenhum em k repetições é 0,95 elevado a k.</p>
+<p>Para três repetições, a chance de ao menos um falso positivo é 1 − 0,95³, cerca de 14%. Para dez repetições sobe para 40%, e para cinquenta passa de 92%. Esse crescimento explica dois problemas reais: comparar três ou mais grupos par a par com testes t infla o nível de significância efetivo, o que motivou a criação da ANOVA, e testar centenas de substâncias produz inevitavelmente muitos falsos positivos, que precisam de análises posteriores para serem filtrados.</p>
+</details>
+<h2>Exercício 2 — Pôquer</h2>
+<p>Você joga pôquer com três amigos de habilidade parecida, aposta de valor fixo e obrigatória, sem empates. Qual a probabilidade de não perder dinheiro em dez partidas?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Com quatro jogadores de igual habilidade, a probabilidade de vencer cada partida é 1/4. Em dez partidas, o número de vitórias segue uma distribuição binomial com n igual a 10 e p igual a 1/4.</p>
+<p>Não perder dinheiro significa terminar com saldo maior ou igual a zero, o que exige vencer ao menos três das dez partidas. A probabilidade é 1 menos a probabilidade de vencer zero, uma ou duas vezes, o que dá aproximadamente 0,474. Em outras palavras, há pouco menos de 50% de chance de sair no zero a zero ou no lucro ao fim de dez rodadas.</p>
+</details>
+<h2>Exercício 3 — Mudas e fungos</h2>
+<p>Cada muda pode ser atacada por fungo com probabilidade 0,06, sendo descartada nesse caso. O custo de produção é R$ 1,20 por muda e a venda é R$ 3,50. Considere lotes de cinquenta mudas.</p>
+<p>a) Qual o lucro previsto por lote? b) Qual a probabilidade de um lote não ter nenhuma contaminação? c) Qual a probabilidade de menos de dez mudas contaminadas?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Para o lucro previsto, espera-se que 94% das cinquenta mudas sobrevivam, ou seja, cerca de 47 mudas vendidas a R$ 3,50, gerando uma receita em torno de R$ 164. Descontando o custo de produção das cinquenta mudas, 50 × 1,20 = R$ 60, o lucro previsto fica em torno de R$ 104 por lote.</p>
+<p>A probabilidade de nenhuma contaminação é a de todas as cinquenta sobreviverem, 0,94 elevado a 50, aproximadamente 0,045. A probabilidade de menos de dez contaminadas é a soma das probabilidades de zero a nove contaminações numa binomial com n igual a 50 e p igual a 0,06, que dá aproximadamente 0,999. Como o número esperado de contaminadas é apenas três, ter dez ou mais é bastante raro.</p>
+</details>
+<h2>Exercício 4 — Prova de múltipla escolha</h2>
+<p>Numa prova com cinco alternativas por questão e apenas uma correta, qual a probabilidade de ser aprovado (nota maior ou igual a 5) apenas no chute, com a) dez questões; b) vinte questões?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Cada acerto no chute tem probabilidade 1/5. Com dez questões, o número de acertos segue uma binomial com p igual a 0,2, e a aprovação exige cinco ou mais acertos. A probabilidade é cerca de 0,033, ou seja, pouco mais de 3%.</p>
+<p>Com vinte questões, a nota mínima sobe para dez acertos numa binomial com p igual a 0,25, e a probabilidade despenca para cerca de 0,0026. Provas mais longas reduzem drasticamente a chance de aprovação pela sorte, porque a distribuição se concentra cada vez mais em torno do número esperado de acertos, que é baixo. Para dez questões, aliás, a nota mais provável obtida no chute é 2.</p>
+</details>
+<h2>Exercício 5 — Controle de qualidade</h2>
+<p>Uma máquina produz peças com 0,5% de defeito. Retira-se uma amostra de dez peças e a máquina é desligada para revisão se houver mais de uma defeituosa. Qual a probabilidade de desligá-la mesmo estando dentro do padrão?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A pergunta é a probabilidade de encontrar duas ou mais peças defeituosas numa amostra de dez, quando a taxa real é 0,5%. Isso é 1 menos a probabilidade de zero defeituosas menos a probabilidade de exatamente uma, numa binomial com n igual a 10 e p igual a 0,005.</p>
+<p>O resultado é aproximadamente 0,0011, ou seja, pouco mais de um décimo de por cento. Esse valor é o risco de um alarme falso da política de manutenção: parar a máquina à toa por causa da variação amostral, mesmo quando a produção está dentro da especificação.</p>
+</details>
+<h2>Exercício 6 — Genética mendeliana</h2>
+<p>No cruzamento de plantas heterozigotas, espera-se a proporção 3:1 entre os fenótipos amarelo e verde. Coletando cem sementes, qual a probabilidade de encontrar oitenta ou mais amarelas?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A proporção esperada de amarelas é 3/4, então o número de sementes amarelas em cem segue uma binomial com p igual a 0,75. O número esperado é setenta e cinco, e queremos a probabilidade de obter oitenta ou mais.</p>
+<p>Somando as probabilidades de oitenta até cem, chega-se a aproximadamente 0,149, ou cerca de 15%. Embora oitenta esteja acima do valor esperado, ainda é um desvio plausível pela variação amostral, e por isso a probabilidade não é desprezível.</p>
+</details>
+
+</article>
+<article id="07-exercicios-07-normal-md" class="topic">
+<div class="topic-num">7.7</div>
+<h1 class="topic-title">Distribuição normal</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/07_normal.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre a curva normal e o cálculo de áreas e percentis.</p>
+<h2>Exercício 1 — A regra 68-95-99,7</h2>
+<p>Que percentual da população está compreendido em torno da média a uma distância de um, dois e três desvios padrão?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Em qualquer distribuição normal, independentemente da média e do desvio padrão, cerca de 68,3% dos valores ficam entre a média menos um desvio e a média mais um desvio. Ampliando para dois desvios, a cobertura sobe para 95,4%, e para três desvios chega a 99,7%.</p>
+<p>Esses números mostram que a normal é uma distribuição concentrada: embora se estenda em teoria de menos infinito a mais infinito, quase toda a massa está próxima da média. É essa propriedade que justifica falar em "a faixa típica" de uma medida biológica.</p>
+</details>
+<h2>Exercício 2 — Variáveis só positivas</h2>
+<p>A distribuição normal se estende a valores negativos. Como podemos usá-la para variáveis que só podem ser positivas, como a altura das pessoas?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A primeira parte da resposta vem da regra anterior: como a distribuição é concentrada, uma altura média de 170 cm com desvio de 15 cm praticamente nunca chega a valores negativos, pois isso exigiria afastamentos de mais de onze desvios padrão.</p>
+<p>A segunda parte, mais importante, é que a normal é um modelo da massa principal dos dados, não dos extremos. Quem estuda nanismo ou gigantismo não usa a normal da população inteira; define uma subpopulação e a estuda separadamente. A normal descreve bem o comportamento típico, e os casos raros são tratados como objetos de estudo próprios.</p>
+</details>
+<h2>Exercício 3 — Capacidade do elevador</h2>
+<p>Um elevador suporta 500 kg. Os pesos dos usuários seguem uma normal de média 70 kg e desvio 10 kg. Qual a probabilidade de sete passageiros ultrapassarem o limite? E seis?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Aqui entra a distribuição da soma dos pesos. A soma de sete pesos independentes tem média 7 × 70 = 490 kg e desvio padrão 10 vezes a raiz de sete, cerca de 26,5 kg. A probabilidade de a soma passar de 500 kg corresponde a um afastamento de cerca de 0,38 desvios acima da média, o que dá aproximadamente 0,35.</p>
+<p>Para seis passageiros, a soma tem média 420 kg e desvio 10 vezes a raiz de seis, cerca de 24,5 kg. Agora 500 kg está bem acima da média, a mais de três desvios, e a probabilidade cai para cerca de 0,0005. Reduzir de sete para seis passageiros torna o estouro do limite praticamente improvável.</p>
+</details>
+<h2>Exercício 4 — Pressão arterial da população</h2>
+<p>A pressão arterial segue uma normal de média 100 mmHg e desvio 10 mmHg.</p>
+<p>a) Que percentual da população tem pressão entre 80 e 120? b) Qual faixa em torno da média contém 95% das pessoas? c) Apenas 1% da população tem pressão acima de qual valor?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A faixa de 80 a 120 corresponde a dois desvios para cada lado, então pela regra 95,4% da população está nela.</p>
+<p>Para conter exatamente 95%, usamos o valor crítico de 1,96 desvios, o que dá a média mais ou menos 19,6 mmHg, ou seja, de cerca de 80,4 a 119,6 mmHg.</p>
+<p>Para o ponto acima do qual está apenas 1% da população, procuramos o percentil 99, que fica a cerca de 2,33 desvios acima da média. Isso dá aproximadamente 123,3 mmHg.</p>
+</details>
+<h2>Exercício 5 — Média de quatro pessoas</h2>
+<p>Com a mesma população de pressão (média 100, desvio 10), escolhemos quatro pessoas e calculamos a média.</p>
+<p>a) Qual a probabilidade de a média estar entre 80 e 120? b) Que faixa contém 95% das médias? c) E se não soubermos o desvio da população, tendo apenas o desvio amostral de 7,8?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Agora trabalhamos com a distribuição da média amostral, cujo desvio é o desvio populacional dividido pela raiz de quatro, ou seja, 5 mmHg. A faixa de 80 a 120 corresponde a quatro desvios da média para cada lado, então a média quase certamente cai nela, com probabilidade próxima de 99,99%.</p>
+<p>Para 95% das médias, usamos 1,96 desvios da média amostral, o que dá a média mais ou menos 9,8 mmHg, de cerca de 90,2 a 109,8 mmHg. Repare como essa faixa é bem mais estreita que a da população individual, porque médias variam menos que observações isoladas.</p>
+<p>Quando o desvio populacional é desconhecido e usamos o desvio amostral de 7,8, precisamos da distribuição t com três graus de liberdade, cujo valor crítico é cerca de 3,18, maior que 1,96. A faixa fica em torno de 100 mais ou menos 12,4 mmHg, mais larga, refletindo a incerteza extra de estimar o desvio a partir de poucos dados.</p>
+</details>
+<h2>Exercício 6 — Garantia de lavadoras</h2>
+<p>A vida útil de uma lavadora segue uma normal de média 1,5 anos e desvio 0,3 anos. Que percentual falhará antes de completar um ano de garantia?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Um ano está a 0,5 anos abaixo da média, o que corresponde a cerca de 1,67 desvios padrão. A área da normal abaixo desse ponto é aproximadamente 0,048, ou seja, cerca de 4,8% das lavadoras falharão dentro da garantia.</p>
+<p>Cálculos como esse são feitos rotineiramente pela indústria para dimensionar custos de garantia e definir prazos.</p>
+</details>
+<h2>Exercício 7 — Temperatura corporal</h2>
+<p>A temperatura de homens saudáveis segue uma normal de média 36,8 graus e desvio 0,15 graus.</p>
+<p>a) Entre mil indivíduos, quantos se espera na faixa de 36,8 a 37,0? b) Em que intervalo simétrico em torno da média estão 50% dos indivíduos?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A faixa de 36,8 a 37,0 vai da média até cerca de 1,33 desvios acima dela. A área entre a média e esse ponto é aproximadamente 0,409, então de mil indivíduos espera-se em torno de 409 nessa faixa.</p>
+<p>Para conter 50% em torno da média, dividimos os 50% em 25% de cada lado, o que corresponde a cerca de 0,674 desvios para cada direção. Isso dá um intervalo de aproximadamente 36,7 a 36,9 graus.</p>
+</details>
+
+</article>
+<article id="07-exercicios-08-amostragem-md" class="topic">
+<div class="topic-num">7.8</div>
+<h1 class="topic-title">Distribuição amostral</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/08_amostragem.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre somas e médias de variáveis aleatórias.</p>
+<h2>Exercício 1 — Caixa de produtos</h2>
+<p>Um produto pesa em média 10 g, com desvio de 2 g, e é embalado em caixas de cinquenta unidades. As caixas vazias pesam em média 500 g, com desvio de 25 g. Supondo independência e distribuições normais, qual a probabilidade de uma caixa cheia pesar mais de 1050 g?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>O peso da caixa cheia é a soma do peso da caixa vazia com os pesos dos cinquenta produtos. A média da soma é 500 + 50 × 10 = 1000 g.</p>
+<p>A variância da soma é a soma das variâncias, porque as variáveis são independentes. A variância da caixa vazia é 25² = 625, e a dos cinquenta produtos é 50 × 2² = 200, totalizando 825. O desvio padrão da soma é a raiz desse valor, cerca de 28,7 g.</p>
+<p>Pesar mais de 1050 g corresponde a um afastamento de cerca de 1,74 desvios acima da média, o que dá uma probabilidade de aproximadamente 0,041. Note que somamos as variâncias e não os desvios padrão; é por isso que o desvio da caixa cheia, 28,7 g, é bem menor que a soma ingênua dos desvios.</p>
+</details>
+
+</article>
+<article id="07-exercicios-09-inferencia-ic-md" class="topic">
+<div class="topic-num">7.9</div>
+<h1 class="topic-title">Lógica da inferência e IC</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/09_inferencia_ic.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre o raciocínio inferencial, significância e estimação por intervalo.</p>
+<h2>Exercício 1 — Descritiva ou inferencial?</h2>
+<p>Um professor pergunta à própria turma a opinião sobre a pena de morte e compara as proporções entre homens e mulheres, concluindo que os homens da turma têm maior aceitação. Esse é um exemplo de estatística descritiva ou inferencial?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>É estatística descritiva. O professor apenas resumiu os dados da própria turma, sem nenhuma tentativa de generalizar o resultado para um grupo maior. A conclusão vale exclusivamente para aquele conjunto de alunos. Seria inferencial se ele usasse a turma como amostra para tirar conclusões sobre estudantes em geral, e aí precisaria lidar com a incerteza da generalização.</p>
+</details>
+<h2>Exercício 2 — Significância e relevância</h2>
+<p>Qual a diferença entre uma diferença significativa e uma diferença relevante?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Uma diferença significativa é aquela grande o suficiente para ser detectada pelo desenho do experimento, o que depende do tamanho da amostra, do pareamento e da variabilidade. Com um experimento muito potente, é possível detectar diferenças minúsculas.</p>
+<p>Uma diferença relevante é aquela grande o suficiente para ter utilidade prática. As duas coisas não andam necessariamente juntas. Existe, por exemplo, um estudo com milhares de crianças que detectou uma diferença significativa de QI entre primogênitos e filhos seguintes, com o primeiro ligeiramente acima. A diferença é real e significativa, mas tão pequena diante da variabilidade natural que não tem qualquer utilidade prática para os pais. O mesmo raciocínio vale para um antitérmico que reduz a febre em 0,1 grau: pode ser detectável, mas é clinicamente inútil. Por isso um resultado deve sempre ser acompanhado da discussão sobre o tamanho do efeito.</p>
+</details>
+<h2>Exercício 3 — Intervalo de confiança</h2>
+<p>A partir da amostra 5, 3, 4, 2, 3, 4, 2, 3, 4, 5, extraída de uma população normal, encontre o intervalo de confiança de 95% para a média e interprete-o.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A média da amostra é 3,5 e o desvio padrão amostral é cerca de 1,08. Como o desvio populacional é desconhecido e a amostra é pequena, usamos a distribuição t com nove graus de liberdade, cujo valor crítico para 95% é 2,262.</p>
+<p>A margem de erro é o valor crítico vezes o erro padrão, ou seja, 2,262 × 1,08 dividido pela raiz de dez, cerca de 0,77. O intervalo fica de aproximadamente 2,7 a 4,3.</p>
+<p>A interpretação correta é que, se repetíssemos o experimento muitas vezes e construíssemos um intervalo a cada vez, cerca de 95% desses intervalos conteriam a verdadeira média da população. Não se deve dizer que há 95% de probabilidade de a média estar neste intervalo específico, pois a média é um número fixo; quem varia de amostra para amostra é o intervalo.</p>
+</details>
+<h2>Exercício 4 — Moeda viciada pela lógica binomial</h2>
+<p>Para testar se uma moeda é viciada, jogamos vinte vezes e contamos as caras. Usando a distribuição binomial e a lógica inferencial, quais proporções levam a concluir que a moeda é viciada, com 95% de confiança?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Sob a hipótese de moeda honesta, o número de caras em vinte lançamentos segue uma binomial com p igual a 0,5, simétrica em torno de dez. Para um teste bilateral com 5% de significância, somamos as probabilidades das caudas até atingir no máximo esse valor.</p>
+<p>As caudas formadas por cinco caras ou menos, de um lado, e quinze caras ou mais, do outro, somam cerca de 4,1%, abaixo dos 5%. Então esses são os resultados que levam a rejeitar a hipótese de moeda honesta. Se exigíssemos 99% de confiança, os valores cinco e quinze deixariam de ser suficientes, e só resultados ainda mais extremos levariam à rejeição. Esse mesmo problema reaparece, de outra forma, no teste do qui-quadrado.</p>
+</details>
+
+</article>
+<article id="07-exercicios-10-testes-dois-grupos-md" class="topic">
+<div class="topic-num">7.10</div>
+<h1 class="topic-title">Testes de dois grupos</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/10_testes_dois_grupos.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre teste t e alternativas não paramétricas.</p>
+<h2>Exercício 1 — Anatomia de um teste</h2>
+<p>Descreva os elementos que definem um teste estatístico entre dois grupos.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Um teste se define pela combinação das hipóteses com o desenho do experimento. Nas hipóteses, decidimos se o teste é paramétrico, o que supõe que a variável seja aproximadamente normal, ou não paramétrico, quando essa suposição não se sustenta. Decidimos também a lateralidade: se há razão prévia para esperar a diferença em uma direção específica, o teste é unilateral; caso contrário, é bilateral.</p>
+<p>No desenho, verificamos se os dados são pareados, ou seja, se há uma correspondência natural entre os elementos dos dois grupos, e escolhemos o nível de significância de acordo com a necessidade prática. Com tudo isso definido, calculamos o valor-p e o comparamos com o nível de significância: se for menor, a diferença é significativa; se for maior, não há evidência suficiente de diferença.</p>
+</details>
+<h2>Exercício 2 — Besouros em duas florestas</h2>
+<p>Comparam-se contagens de besouros em armadilhas de duas florestas. Amostra 1: 8, 12, 15, 21, 25, 44, 44, 60. Amostra 2: 2, 4, 5, 9, 12, 17, 19. Qual teste usar e como interpretar um valor-p de 2,8%?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Contagens baixas quase sempre produzem distribuições assimétricas, o que afasta o teste paramétrico. Não havia conhecimento prévio sobre qual floresta teria mais besouros, então o teste é bilateral, e não há nenhum pareamento entre as armadilhas. A escolha recai sobre o teste de Mann-Whitney, não paramétrico, bilateral e não pareado.</p>
+<p>Com o valor-p de 2,8%, abaixo dos 5% usuais, concluímos que a diferença é significativa: a floresta da Amostra 1 tem mais besouros. A interpretação do valor-p num teste não paramétrico tem uma sutileza. Se colocarmos todos os valores numa única fila ordenada, os da Amostra 2 se concentram à esquerda e os da Amostra 1 à direita. O teste mede o grau dessa separação por postos, e o valor-p é a probabilidade de observar uma separação tão grande ou maior apenas por acaso, sob a hipótese nula. Aqui falamos em medianas, não em médias.</p>
+</details>
+<h2>Exercício 3 — Halotano contra Morfina</h2>
+<p>Comparam-se dois anestésicos quanto à pressão arterial média no início da cirurgia. Halotano: média 66,9, desvio 12,2, n igual a 61. Morfina: média 73,2, desvio 14,4, n igual a 61.</p>
+<p>a) As diferenças são consistentes com a hipótese de mesmo efeito? b) Se houver diferença, estime-a. c) A mortalidade, 8 de 61 contra 10 de 61, difere?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Com amostras grandes de uma variável contínua, sem pareamento e sem direção prévia, o teste indicado é o t não pareado e bilateral. O valor-p resultante é cerca de 0,010, então a diferença na pressão é significativa.</p>
+<p>A verdadeira diferença é estimada pelo intervalo de confiança da diferença entre as médias, aproximadamente de −11 a −1,5 mmHg. Note que, embora significativa, a diferença pode ser pequena demais para ser clinicamente relevante na extremidade inferior do intervalo.</p>
+<p>A comparação de mortalidade envolve proporções, não médias, e por isso usa uma tabela de contingência com o teste do qui-quadrado. As proporções 13,1% e 16,4% não diferem significativamente, ou seja, não há evidência de que um anestésico cause mais fatalidades que o outro.</p>
+</details>
+<h2>Exercício 4 — Pressão de homens e mulheres</h2>
+<p>A partir de dados simulados de pressão sistólica de homens e mulheres, com cerca de doze valores por grupo, um teste t indica diferença significativa?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A diferença real entre as médias é de apenas cerca de 3 mmHg, enquanto os desvios padrão são grandes, da ordem de 17 a 21 mmHg. Com apenas doze valores por grupo, o teste tem poder muito baixo para detectar um efeito tão pequeno diante de tanta variabilidade.</p>
+<p>O resultado provável é não rejeitar a hipótese nula, não porque a diferença não exista, mas porque a amostra é pequena demais. Esse exercício prepara o terreno para a discussão de potência: a ausência de significância não prova ausência de efeito.</p>
+</details>
+<h2>Exercício 5 — Teste t pela tabela e pelo software</h2>
+<p>Compare as amostras A1, com dez valores de média 4,5 e desvio 3,03, e A2, com dez valores de média 7,5 e mesmo desvio.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A estatística t é a diferença das médias dividida pelo erro padrão da diferença. Com desvios iguais e dez valores em cada grupo, o erro padrão é o desvio vezes a raiz de 2/10, e o t resultante é cerca de −2,22, com dezoito graus de liberdade.</p>
+<p>O valor crítico da tabela t para 5% bilateral com dezoito graus de liberdade é cerca de 2,10. Como o módulo de t, 2,22, ultrapassa esse valor, a diferença é significativa. Chegar ao mesmo resultado pela tabela e pelo software ajuda a entender o que o programa calcula por baixo dos panos.</p>
+</details>
+<h2>Exercício 6 — Hemoglobina antes e depois</h2>
+<p>Mede-se a hemoglobina de oito indivíduos antes e depois de uma droga, e quer-se avaliar sua eficácia. Que teste usar?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Como cada indivíduo é medido duas vezes, antes e depois, os dados são naturalmente pareados. O teste indicado é o t pareado, aplicado às diferenças individuais entre depois e antes.</p>
+<p>Pareando, eliminamos a variabilidade entre indivíduos e ganhamos poder para detectar a mudança causada pela droga. Se a média das diferenças for grande o bastante em relação à sua dispersão, o valor-p fica abaixo do nível de significância e concluímos que a droga altera a hemoglobina. Caso as diferenças não pareçam normais e a amostra seja pequena, a alternativa é o teste de Wilcoxon pareado.</p>
+</details>
+
+</article>
+<article id="07-exercicios-11-anova-md" class="topic">
+<div class="topic-num">7.11</div>
+<h1 class="topic-title">ANOVA</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/11_anova.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre comparação de três ou mais grupos.</p>
+<h2>Exercício 1 — Drogas A, B e placebo</h2>
+<p>Avalia-se a contagem de linfócitos sob duas drogas e um placebo, usando sete ninhadas de camundongos, com animais da mesma ninhada distribuídos entre os três tratamentos. Os pesquisadores querem saber se as drogas diferem do placebo. Que análise usar?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>O fato de os animais virem da mesma ninhada cria um pareamento natural, porque irmãos respondem de forma mais parecida entre si. Isso indica uma ANOVA de medidas repetidas, que controla a variabilidade entre ninhadas, em vez da ANOVA comum.</p>
+<p>A pergunta "as drogas diferem do placebo" pede comparações de cada tratamento contra um grupo de referência, e não de todos contra todos. O pós-teste apropriado é o de Dunnett, que compara cada grupo com o controle. Na prática, o teste global retorna um valor-p de cerca de 0,002, e o pós-teste de Dunnett encontra diferença significativa apenas entre a droga A e o placebo.</p>
+</details>
+<h2>Exercício 2 — Concurso na UFRJ</h2>
+<p>Seis candidatos foram avaliados por cinco membros de uma banca. Pergunta-se se a banca consegue de fato diferenciar os candidatos e se há empates estatísticos que tornariam a classificação um sorteio.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Os avaliadores diferem em rigor, então cada candidato é avaliado pelos mesmos cinco juízes, o que configura um delineamento de medidas repetidas. A pergunta sobre diferenciar candidatos se traduz em comparar a variabilidade entre candidatos com a variabilidade entre avaliadores.</p>
+<p>A variabilidade entre os candidatos supera a variabilidade entre os avaliadores, o que indica que a banca de fato consegue distinguir os candidatos. Ao mesmo tempo, candidatos com médias muito próximas ficam estatisticamente empatados, e nesses casos diferentes bancas poderiam produzir classificações distintas. O fator sorte, portanto, tem um papel real quando as notas são próximas, embora o processo como um todo tenha poder de resolução adequado para separar candidatos de níveis distintos.</p>
+</details>
+
+</article>
+<article id="07-exercicios-12-correlacao-regressao-md" class="topic">
+<div class="topic-num">7.12</div>
+<h1 class="topic-title">Correlação e regressão</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/12_correlacao_regressao.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre associação entre variáveis e ajuste de retas.</p>
+<h2>Exercício 1 — Peso e altura</h2>
+<p>A partir de uma pequena tabela de altura e peso, com pares como (152, 38) até (193, 68), calcule o coeficiente de correlação, o R², a reta de melhor ajuste e critique o uso da regressão.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>O coeficiente de correlação de Pearson fica em torno de 0,77, uma associação positiva forte: pessoas mais altas tendem a pesar mais. O R² é o quadrado desse valor, cerca de 0,59, o que significa que aproximadamente 59% da variação do peso pode ser atribuída à variação da altura no modelo linear.</p>
+<p>A reta de melhor ajuste tem inclinação próxima de 0,89 e intercepto em torno de −91, ou seja, o peso previsto aumenta cerca de 0,89 kg para cada centímetro de altura. O intercepto negativo é apenas uma extrapolação matemática, sem sentido biológico.</p>
+<p>A crítica é que, embora seja plausível que mais altura cause mais peso, muitos outros fatores influenciam o peso, e os 41% de variação não explicada são grandes. A reta serve bem para descrever a tendência geral, mas não para prever o peso de um indivíduo com confiança.</p>
+</details>
+<h2>Exercício 2 — Experimento contra estudo de correlação</h2>
+<p>Qual a diferença entre um experimento verdadeiro e um estudo de correlação?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Num experimento verdadeiro, o pesquisador manipula a variável independente e mantém todas as demais sob controle. Com esse controle, é possível afirmar que a manipulação de uma variável causa a alteração da outra, estabelecendo uma relação de causa e efeito.</p>
+<p>Num estudo de correlação, nada é controlado. Coletam-se os valores de duas ou mais variáveis numa mesma amostra e observa-se como elas variam juntas. Estudos de correlação são úteis para revelar associações e gerar hipóteses, mas não provam causalidade, porque sempre pode haver uma terceira variável por trás da associação. Depois de levantar uma hipótese a partir de uma correlação, o passo seguinte é planejar um experimento verdadeiro para testá-la.</p>
+</details>
+<h2>Exercício 3 — As quatro explicações de uma correlação</h2>
+<p>Se o coeficiente de correlação entre duas variáveis é diferente de zero, quais explicações são possíveis?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Existem quatro possibilidades. A primeira é que mudanças em X causem mudanças em Y. A segunda é o inverso, que mudanças em Y causem mudanças em X. A terceira é que uma ou mais variáveis externas alterem X e Y ao mesmo tempo, criando uma associação sem relação direta entre elas. A quarta é que X e Y não tenham qualquer ligação e a correlação observada tenha surgido por acaso, situação cuja frequência é justamente medida pelo valor-p.</p>
+<p>A consequência prática é que uma correlação, por mais forte que seja, nunca prova causalidade sozinha. Coleções de correlações absurdas mas estatisticamente fortes, como consumo de certos produtos contra eventos sem nenhuma relação, ilustram bem o ponto.</p>
+</details>
+
+</article>
+<article id="07-exercicios-13-potencia-md" class="topic">
+<div class="topic-num">7.13</div>
+<h1 class="topic-title">Potência</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/13_potencia.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre poder estatístico e tamanho de amostra.</p>
+<h2>Exercício 1 — Tamanho da amostra e precisão</h2>
+<p>Tomando amostras de tamanhos 2, 3, 4, 6, 10 e 20 de uma população normal, como variam o desvio da média, o desvio padrão estimado, o erro padrão da média e o intervalo de confiança?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>À medida que a amostra cresce, o desvio padrão estimado se aproxima cada vez mais do valor verdadeiro da população, com flutuações menores. O erro padrão da média, que é o desvio padrão dividido pela raiz do tamanho da amostra, diminui de forma contínua, e a largura do intervalo de confiança o acompanha.</p>
+<p>O ponto central é que a precisão melhora com a raiz do tamanho da amostra, não de forma proporcional. Para reduzir o erro padrão pela metade, é preciso quadruplicar o número de observações. Isso explica por que os ganhos de precisão ficam cada vez mais caros à medida que a amostra aumenta.</p>
+</details>
+<h2>Exercício 2 — Escolha do sexo da prole</h2>
+<p>Dois casais submetidos a um tratamento para escolher o sexo do bebê tiveram, cada um, dois meninos. O tratamento funciona?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Sob a hipótese nula de que o tratamento não funciona, vale a distribuição binomial com probabilidade 1/2 para cada nascimento. A probabilidade de quatro meninos seguidos é (1/2) elevado a 4, igual a 0,0625, pouco acima dos 5% usuais.</p>
+<p>Como esse menor valor possível de p já ultrapassa o nível de significância, o teste não tem como rejeitar a hipótese nula, mesmo no resultado mais extremo. Com apenas quatro crianças, a potência do teste é praticamente zero: o problema não é o tratamento, mas o tamanho ridículo da amostra. O teste é inconclusivo, e não uma demonstração de que o tratamento funcione.</p>
+</details>
+<h2>Exercício 3 — Potência da comparação de pressão</h2>
+<p>A diferença real de pressão entre homens e mulheres é cerca de 3 mmHg, com desvios da ordem de 17 a 21 mmHg. a) Qual a potência de um teste com 24 dados? b) Quantos dados seriam necessários para 80% de potência? c) E com toda a amostra disponível?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Com apenas 24 dados, a potência fica em torno de 7%, um valor irrisório. Isso significa que, mesmo existindo a diferença, o teste quase nunca a detectaria.</p>
+<p>Para atingir 80% de potência, seriam necessários cerca de 568 indivíduos por grupo, dada a combinação de efeito pequeno e variabilidade grande. Usando as amostras completas, com milhares de pessoas, a potência se aproxima de 1, e a diferença é detectada com facilidade. O exemplo deixa claro que detectar efeitos pequenos exige amostras grandes.</p>
+</details>
+<h2>Exercício 4 — Trocando tamanho de amostra por tamanho de efeito</h2>
+<p>Numa situação com desvios iguais a 1 e amostras de 17 por grupo, uma diferença de 1 produz potência de 81%. Mantendo os mesmos desvios e a mesma potência, mas com 25 por grupo, a diferença detectável será maior ou menor que 1?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Será menor que 1. Aumentar a amostra dá mais poder ao teste, e esse poder extra pode ser convertido na capacidade de detectar diferenças menores mantendo a mesma potência. Com 25 por grupo em vez de 17, conseguimos enxergar um efeito mais sutil. Existe sempre esse balanço entre tamanho de amostra, tamanho de efeito, variabilidade e potência: fixados três deles, o quarto fica determinado.</p>
+</details>
+
+</article>
+<article id="07-exercicios-14-qui-quadrado-md" class="topic">
+<div class="topic-num">7.14</div>
+<h1 class="topic-title">Qui-quadrado</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/14_qui_quadrado.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre aderência a um modelo e comparação de frequências.</p>
+<h2>Exercício 1 — Dado honesto</h2>
+<p>Um dado lançado sessenta vezes apresentou as frequências 8, 11, 7, 12, 15 e 7. O dado é honesto? E se multiplicarmos todas as frequências por dez, mantendo a mesma tendência?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Para um dado honesto, a frequência esperada de cada face em sessenta lançamentos é dez. O qui-quadrado soma, para cada face, o quadrado da diferença entre observado e esperado dividido pelo esperado. O resultado é cerca de 5,2, com cinco graus de liberdade, o que corresponde a um valor-p de aproximadamente 0,39. Não há evidência para rejeitar a hipótese de dado honesto.</p>
+<p>Multiplicando todas as frequências por dez, as proporções não mudam, mas o número absoluto de lançamentos vira seiscentos, com esperado de cem por face. Agora o qui-quadrado vira 52, dez vezes maior, com valor-p da ordem de 10⁻¹⁰. A conclusão se inverte: o dado é considerado viciado. A lição é que o teste depende do número absoluto de observações, não apenas das proporções; com mais dados, desvios da mesma magnitude relativa tornam-se estatisticamente convincentes.</p>
+</details>
+<h2>Exercício 2 — Mendel 9:3:3:1</h2>
+<p>Mendel observou os fenótipos 315, 108, 101 e 32, num total de 556 sementes. O modelo 9:3:3:1 explica os dados? E um modelo linear alternativo, com valores 264, 181, 97 e 14, explicaria igualmente bem?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Para o modelo de Mendel, os valores esperados a partir da proporção 9:3:3:1 sobre 556 são aproximadamente 312,75, 104,25, 104,25 e 34,75. Somando os quatro termos do qui-quadrado, chega-se a cerca de 0,47, com três graus de liberdade, o que dá um valor-p em torno de 0,93. Esse valor altíssimo indica um ajuste excelente: não há motivo para rejeitar a proporção mendeliana.</p>
+<p>Para o modelo linear, com os valores esperados 264, 181, 97 e 14, o qui-quadrado salta para cerca de 62,6, com valor-p essencialmente zero. O modelo linear é rejeitado com folga. Embora os dois conjuntos de valores esperados pareçam próximos num gráfico, o teste mostra que o modelo de Mendel descreve os dados de forma incomparavelmente melhor.</p>
+</details>
+
+</article>
+<article id="07-exercicios-15-tabelas-contingencia-md" class="topic">
+<div class="topic-num">7.15</div>
+<h1 class="topic-title">Tabelas de contingência</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/15_tabelas_contingencia.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Exercícios sobre associação entre variáveis categóricas.</p>
+<h2>Exercício 1 — Mortalidade entre anestésicos</h2>
+<p>Comparam-se as mortes em dois grupos: 8 de 61 pacientes anestesiados com Halotano e 10 de 61 com Morfina. As proporções diferem significativamente?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Os dados formam uma tabela dois por dois, com mortos e sobreviventes em cada anestésico. A análise apropriada é o teste do qui-quadrado de independência, ou o teste exato de Fisher quando alguma contagem é pequena.</p>
+<p>As proporções de 13,1% e 16,4% são próximas e, com apenas sessenta e um pacientes por grupo, a diferença observada está bem dentro do que o acaso produziria. Não se rejeita a hipótese nula, ou seja, não há evidência de que os dois anestésicos resultem em taxas de fatalidade diferentes.</p>
+</details>
+<h2>Exercício 2 — Medicamento e efeito colateral</h2>
+<p>Como testar se há associação entre usar um medicamento e apresentar um efeito colateral, a partir de uma tabela com presença ou ausência do efeito nos grupos que usaram e não usaram?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A tabela cruza duas variáveis categóricas, uso do medicamento e ocorrência do efeito, formando quatro caselas. O teste do qui-quadrado de independência compara as contagens observadas com as que seriam esperadas caso as duas variáveis fossem independentes.</p>
+<p>Se o valor-p resultante for suficientemente baixo, rejeita-se a hipótese de independência e conclui-se que existe associação entre o medicamento e o efeito colateral. Vale lembrar que associação não é o mesmo que causa, e que convém acompanhar o resultado de uma medida de tamanho de efeito, como a razão de chances, para avaliar a força da associação.</p>
+</details>
+
+</article>
+<article id="07-exercicios-16-tecnicas-amostragem-md" class="topic">
+<div class="topic-num">7.16</div>
+<h1 class="topic-title">Técnicas de amostragem</h1>
+<p>Exercícios sobre desenho de estudos, variáveis de confusão e pareamento.</p>
+<h2>Exercício 1 — Motoristas e cobradores de ônibus</h2>
+<p>Um estudo de 1961 comparou a incidência de doença cardíaca entre motoristas e cobradores de ônibus de Londres. Os cobradores, que andavam o dia todo, tiveram menos doença que os motoristas, sentados.</p>
+<p>a) Quais são as variáveis e seus níveis? b) É um estudo de correlação ou um experimento controlado? c) Por que os pesquisadores se preocuparam com idade e tempo de serviço? d) Há associação entre as variáveis? e) Que outras variáveis de confusão poderiam explicar o resultado?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A variável de tratamento é a quantidade de exercício, com dois níveis, muito e pouco, correspondentes a cobradores e motoristas. A variável de desfecho é a ocorrência de doença cardíaca, com os níveis sim e não.</p>
+<p>É um estudo de correlação, não um experimento controlado, porque ninguém foi sorteado para uma profissão; as pessoas escolheram livremente seus empregos. Esse é um caso típico em que um experimento verdadeiro seria inviável.</p>
+<p>A preocupação com idade e tempo de serviço se deve às variáveis de confusão. Uma variável de confusão precisa afetar o desfecho por si só e, ao mesmo tempo, estar distribuída de forma diferente entre os grupos. A idade satisfaz os dois critérios, pois aumenta o risco cardíaco e poderia diferir entre motoristas e cobradores. Igualar a idade dos grupos neutraliza essa explicação alternativa.</p>
+<p>Há, sim, associação entre exercício e doença cardíaca, já que o grupo de mais exercício teve menos doença. Mas associação não prova causa. Outras confusões possíveis são o estado de saúde prévio, pois pessoas que se sentem menos aptas podem escolher ser motoristas, e o estresse do trabalho. De fato, observou-se depois que os motoristas já eram mais pesados no momento da contratação.</p>
+</details>
+<h2>Exercício 2 — Treinamento de lavagem das mãos</h2>
+<p>Um hospital quer testar um programa de lavagem das mãos. Cem funcionários voluntários recebem o treinamento e são comparados com os demais. Critique e proponha uma alternativa.</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>O estudo é inválido porque os participantes são voluntários. Justamente as pessoas mais preocupadas com higiene tendem a se voluntariar, e elas já adotam boas práticas. O resultado ficaria artificialmente positivo, e não se saberia se a melhora veio do treinamento ou do perfil de quem se inscreveu.</p>
+<p>A correção é introduzir o acaso na formação dos grupos: sortear quem recebe o treinamento, de modo que a própria escolha dos participantes não influencie o resultado. A aleatorização distribui de forma equilibrada tanto as características conhecidas quanto as desconhecidas, e é o que torna a comparação confiável.</p>
+</details>
+<h2>Exercício 3 — Filhotes de rato e ninhadas</h2>
+<p>Filhotes de cinco ninhadas foram misturados ao acaso e divididos em quatro amostras, cada uma recebendo uma dose diferente de uma droga, para avaliar o efeito sobre a hemoglobina. A técnica de amostragem é correta?</p>
+<details>
+<summary>Mostrar resposta</summary>
+<p>A técnica tem um defeito grave. A concentração de hemoglobina é mais parecida entre filhotes da mesma ninhada do que entre ninhadas diferentes. Ao misturar os filhotes ao acaso, a variação natural entre ninhadas pode se confundir com o efeito da droga. Se, por acaso, os filhotes de uma dose vierem de uma ninhada com tendência a menos hemoglobina, poderíamos concluir erroneamente que a droga reduziu o valor.</p>
+<p>A correção é parear: pegar um filhote de cada ninhada para cada dose, de modo que todas as ninhadas estejam representadas em todas as doses. Assim a variação entre ninhadas é controlada e o que sobra reflete o efeito da droga. Esse é um exemplo de amostragem em blocos, que leva a uma análise pareada e mais potente.</p>
+</details>
 
 </article>
 </div>

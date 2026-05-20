@@ -2,7 +2,7 @@
 
 São os dígitos de uma medida que carregam **informação real** — refletem a precisão do instrumento usado.
 
-## Por que importa?
+## A ideia
 
 Escrever "a massa é 4,2371928 g" quando a balança só mede até décimos de grama é **mentir** sobre a precisão. Os dígitos sobrando não vieram da medida — são lixo.
 

@@ -52,7 +52,7 @@ Isso leva aos dois tipos de erro:
 
 Veremos esses conceitos em detalhes mais à frente.
 
-## Por que isso importa?
+## O papel da inferência
 
 Sem inferência estatística, qualquer um pode olhar para qualquer diferença na amostra e gritar "achei algo!". A estatística estabelece **critérios consensuais** para considerar uma diferença confiável. É um filtro contra o acaso e contra o viés do pesquisador.
 

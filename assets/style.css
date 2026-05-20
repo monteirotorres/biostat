@@ -160,6 +160,34 @@ a { color: var(--ink); }
 .topic hr { border: 0; border-top: 1px solid var(--line); margin: 1.5rem 0; }
 .topic a { color: #1f5fa6; }
 
+/* ---------- Respostas ocultas (exercícios) ---------- */
+.topic details {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid #1f5fa6;
+  border-radius: 0 6px 6px 0;
+  margin: 0.75rem 0 1.75rem;
+  padding: 0 1.1rem;
+}
+.topic details[open] { padding-bottom: 0.5rem; }
+.topic details > summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1f5fa6;
+  padding: 0.7rem 0;
+  user-select: none;
+}
+.topic details > summary::-webkit-details-marker { display: none; }
+.topic details > summary::before { content: "▸ "; }
+.topic details[open] > summary::before { content: "▾ "; }
+.topic details > summary:hover { color: #16335c; }
+.topic details > *:not(summary):first-of-type { margin-top: 0.2rem; }
+.topic details p:last-child { margin-bottom: 0.6rem; }
+
 .math-display { margin: 1.1rem 0; text-align: center; overflow-x: auto; }
 .katex-display { margin: 1.1rem 0 !important; overflow-x: auto; overflow-y: hidden; }
 .katex { font-size: 1.06em; }

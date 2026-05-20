@@ -101,7 +101,7 @@ Onde $d = \dfrac{\mu_1 - \mu_2}{\sigma}$ é o **tamanho de efeito** padronizado 
 | 0,5 | Médio |
 | 0,8 | Grande |
 
-## Por que isso importa
+## Consequências de um estudo subdimensionado
 
 Um estudo **subdimensionado** (com poder baixo) é eticamente questionável:
 

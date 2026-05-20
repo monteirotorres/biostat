@@ -35,11 +35,8 @@ Inclui:
 | Conclusões? | Apenas sobre os dados coletados | Vão além dos dados coletados |
 | Há incerteza? | Pouca (depende só da medição) | Sim, sempre |
 
-## Por que isso importa?
+## Cuidados ao distinguir os dois
 
-Confundir os dois leva a erros sérios:
-
-- Afirmar que "no Brasil, as pessoas pesam X kg" tendo medido apenas 50 voluntários é fazer inferência sem o aparato estatístico necessário.
-- Reportar apenas a média sem nenhum dado de dispersão é dar uma visão incompleta da amostra.
+Confundir descrição com inferência leva a erros sérios. Afirmar que "no Brasil, as pessoas pesam X kg" tendo medido apenas 50 voluntários é fazer inferência sem o aparato estatístico necessário. Da mesma forma, reportar apenas a média sem nenhum dado de dispersão dá uma visão incompleta da amostra.
 
 A regra de ouro: **descreva os dados** antes de inferir qualquer coisa.

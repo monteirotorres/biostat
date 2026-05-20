@@ -328,7 +328,7 @@ def md_to_html(text):
     blocks, inline = [], []
     text = re.sub(r"\$\$([\s\S]+?)\$\$", lambda m: blocks.append(m.group(0)) or f"@@MB{len(blocks)-1}@@", text)
     text = re.sub(r"(?<!\\)\$([^\n$]+?)(?<!\\)\$", lambda m: inline.append(m.group(0)) or f"@@MI{len(inline)-1}@@", text)
-    html = markdown.markdown(text, extensions=["tables", "fenced_code", "sane_lists"])
+    html = markdown.markdown(text, extensions=["tables", "fenced_code", "sane_lists", "md_in_html"])
     html = re.sub(r'<pre><code class="language-mermaid">([\s\S]+?)</code></pre>',
                   lambda m: f'<div class="mermaid-container"><pre class="mermaid">{m.group(1)}</pre></div>', html)
     for i, b in enumerate(blocks):
