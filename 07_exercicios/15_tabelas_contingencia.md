@@ -9,9 +9,13 @@ Comparam-se as mortes em dois grupos: 8 de 61 pacientes anestesiados com Halotan
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Os dados formam uma tabela dois por dois, com mortos e sobreviventes em cada anestésico. A análise apropriada é o teste do qui-quadrado de independência, ou o teste exato de Fisher quando alguma contagem é pequena.
+Os dados formam uma tabela dois por dois, com mortos e sobreviventes em cada anestésico. As proporções são
 
-As proporções de 13,1% e 16,4% são próximas e, com apenas sessenta e um pacientes por grupo, a diferença observada está bem dentro do que o acaso produziria. Não se rejeita a hipótese nula, ou seja, não há evidência de que os dois anestésicos resultem em taxas de fatalidade diferentes.
+$$
+\frac{8}{61} \approx 13{,}1\% \qquad \frac{10}{61} \approx 16{,}4\%
+$$
+
+A análise apropriada é o teste do qui-quadrado de independência, ou o teste exato de Fisher quando alguma contagem é pequena. Comparando as contagens observadas com as esperadas sob independência, obtém-se um qui-quadrado em torno de 0,28, com um grau de liberdade, e valor-p de cerca de 0,60. Com apenas sessenta e um pacientes por grupo, a diferença observada está bem dentro do que o acaso produziria. Não se rejeita a hipótese nula: não há evidência de que os dois anestésicos resultem em taxas de fatalidade diferentes.
 
 </details>
 

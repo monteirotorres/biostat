@@ -33,9 +33,11 @@ A partir da amostra 5, 3, 4, 2, 3, 4, 2, 3, 4, 5, extraída de uma população n
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A média da amostra é 3,5 e o desvio padrão amostral é cerca de 1,08. Como o desvio populacional é desconhecido e a amostra é pequena, usamos a distribuição t com nove graus de liberdade, cujo valor crítico para 95% é 2,262.
+A média da amostra é 3,5 e o desvio padrão amostral é cerca de 1,08. Como o desvio populacional é desconhecido e a amostra é pequena, usamos a distribuição t com nove graus de liberdade, cujo valor crítico para 95% é 2,262. O intervalo é a média mais ou menos o valor crítico vezes o erro padrão:
 
-A margem de erro é o valor crítico vezes o erro padrão, ou seja, 2,262 × 1,08 dividido pela raiz de dez, cerca de 0,77. O intervalo fica de aproximadamente 2,7 a 4,3.
+$$
+\bar{x} \pm t^{*}\,\frac{s}{\sqrt{n}} = 3{,}5 \pm 2{,}262 \times \frac{1{,}08}{\sqrt{10}} = 3{,}5 \pm 0{,}77 \;\Rightarrow\; [2{,}7;\; 4{,}3]
+$$
 
 A interpretação correta é que, se repetíssemos o experimento muitas vezes e construíssemos um intervalo a cada vez, cerca de 95% desses intervalos conteriam a verdadeira média da população. Não se deve dizer que há 95% de probabilidade de a média estar neste intervalo específico, pois a média é um número fixo; quem varia de amostra para amostra é o intervalo.
 
@@ -50,6 +52,12 @@ Para testar se uma moeda é viciada, jogamos vinte vezes e contamos as caras. Us
 
 Sob a hipótese de moeda honesta, o número de caras em vinte lançamentos segue uma binomial com p igual a 0,5, simétrica em torno de dez. Para um teste bilateral com 5% de significância, somamos as probabilidades das caudas até atingir no máximo esse valor.
 
-As caudas formadas por cinco caras ou menos, de um lado, e quinze caras ou mais, do outro, somam cerca de 4,1%, abaixo dos 5%. Então esses são os resultados que levam a rejeitar a hipótese de moeda honesta. Se exigíssemos 99% de confiança, os valores cinco e quinze deixariam de ser suficientes, e só resultados ainda mais extremos levariam à rejeição. Esse mesmo problema reaparece, de outra forma, no teste do qui-quadrado.
+As caudas formadas por cinco caras ou menos, de um lado, e quinze caras ou mais, do outro, somam
+
+$$
+P(X \le 5) + P(X \ge 15) \approx 0{,}021 + 0{,}021 = 0{,}041
+$$
+
+abaixo dos 5%. Então esses são os resultados que levam a rejeitar a hipótese de moeda honesta. Se exigíssemos 99% de confiança, os valores cinco e quinze deixariam de ser suficientes, e só resultados ainda mais extremos levariam à rejeição. Esse mesmo problema reaparece, de outra forma, no teste do qui-quadrado.
 
 </details>

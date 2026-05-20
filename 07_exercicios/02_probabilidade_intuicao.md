@@ -24,7 +24,17 @@ Numa sala com quarenta pessoas reunidas ao acaso, qual a probabilidade de pelo m
 
 A probabilidade é muito grande, em torno de 89%. O resultado surpreende porque a intuição compara cada pessoa com uma data fixa, quando na verdade comparamos todos os pares possíveis de pessoas.
 
-O caminho mais simples é calcular a probabilidade do evento contrário, que é todas as datas serem diferentes. Para a segunda pessoa há 364 dias livres em 365, para a terceira 363, e assim por diante. Multiplicando essas frações e subtraindo de 1, chega-se a cerca de 0,89. Com apenas 23 pessoas a probabilidade já passa de 50%.
+O caminho mais simples é calcular a probabilidade do evento contrário, que é todas as datas serem diferentes:
+
+$$
+P(\text{todas diferentes}) = \frac{365}{365}\cdot\frac{364}{365}\cdot\frac{363}{365}\cdots\frac{326}{365} = \frac{365!}{(365-40)!\;365^{40}} \approx 0{,}109
+$$
+
+$$
+P(\text{ao menos duas iguais}) = 1 - 0{,}109 \approx 0{,}891
+$$
+
+Com apenas 23 pessoas a probabilidade já passa de 50%.
 
 </details>
 
@@ -37,6 +47,12 @@ Geramos passos aleatórios de +1 ou −1 e os somamos um após o outro, formando
 
 Em média, a posição final é zero, porque os passos para frente e para trás se cancelam na média de muitas repetições. Isso não significa, porém, que o bêbado fique parado: a dispersão da posição cresce com o número de passos.
 
-O ponto interessante é que essa dispersão cresce com a raiz quadrada do número de passos, e não de forma proporcional. Após cem passos, o afastamento típico é da ordem de dez unidades, não cem. Essa relação com a raiz quadrada é a mesma que aparece no erro padrão da média e é uma das assinaturas da soma de variáveis aleatórias independentes.
+Cada passo $X_i$ vale $+1$ ou $-1$ com variância 1. Como os passos são independentes, as variâncias se somam, e o desvio padrão da posição após $n$ passos é
+
+$$
+\text{DP}(S_n) = \sqrt{\operatorname{Var}(X_1) + \cdots + \operatorname{Var}(X_n)} = \sqrt{n}
+$$
+
+Após cem passos, o afastamento típico é $\sqrt{100} = 10$ unidades, não cem. Essa relação com a raiz quadrada é a mesma que aparece no erro padrão da média.
 
 </details>

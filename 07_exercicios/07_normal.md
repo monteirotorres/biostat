@@ -35,9 +35,23 @@ Um elevador suporta 500 kg. Os pesos dos usuários seguem uma normal de média 7
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Aqui entra a distribuição da soma dos pesos. A soma de sete pesos independentes tem média 7 × 70 = 490 kg e desvio padrão 10 vezes a raiz de sete, cerca de 26,5 kg. A probabilidade de a soma passar de 500 kg corresponde a um afastamento de cerca de 0,38 desvios acima da média, o que dá aproximadamente 0,35.
+Aqui entra a distribuição da soma dos pesos. Para sete passageiros independentes:
 
-Para seis passageiros, a soma tem média 420 kg e desvio 10 vezes a raiz de seis, cerca de 24,5 kg. Agora 500 kg está bem acima da média, a mais de três desvios, e a probabilidade cai para cerca de 0,0005. Reduzir de sete para seis passageiros torna o estouro do limite praticamente improvável.
+$$
+\mu = 7 \times 70 = 490 \text{ kg} \qquad \sigma = 10\sqrt{7} \approx 26{,}5 \text{ kg}
+$$
+
+$$
+z = \frac{500 - 490}{26{,}5} \approx 0{,}38 \quad\Rightarrow\quad P(\text{soma} > 500) = 1 - \Phi(0{,}38) \approx 0{,}35
+$$
+
+Para seis passageiros, $\mu = 420$ e $\sigma = 10\sqrt{6} \approx 24{,}5$:
+
+$$
+z = \frac{500 - 420}{24{,}5} \approx 3{,}27 \quad\Rightarrow\quad P \approx 0{,}0005
+$$
+
+Reduzir de sete para seis passageiros torna o estouro do limite praticamente improvável.
 
 </details>
 
@@ -50,11 +64,19 @@ a) Que percentual da população tem pressão entre 80 e 120? b) Qual faixa em t
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A faixa de 80 a 120 corresponde a dois desvios para cada lado, então pela regra 95,4% da população está nela.
+A faixa de 80 a 120 corresponde a $z = (120-100)/10 = 2$ para cada lado, então pela regra 95,4% da população está nela.
 
-Para conter exatamente 95%, usamos o valor crítico de 1,96 desvios, o que dá a média mais ou menos 19,6 mmHg, ou seja, de cerca de 80,4 a 119,6 mmHg.
+Para conter exatamente 95%, usamos o valor crítico de 1,96 desvios:
 
-Para o ponto acima do qual está apenas 1% da população, procuramos o percentil 99, que fica a cerca de 2,33 desvios acima da média. Isso dá aproximadamente 123,3 mmHg.
+$$
+100 \pm 1{,}96 \times 10 = 100 \pm 19{,}6 \;\Rightarrow\; [80{,}4;\; 119{,}6] \text{ mmHg}
+$$
+
+Para o ponto acima do qual está apenas 1% da população, usamos o percentil 99 ($z = 2{,}33$):
+
+$$
+100 + 2{,}33 \times 10 \approx 123{,}3 \text{ mmHg}
+$$
 
 </details>
 
@@ -67,11 +89,27 @@ a) Qual a probabilidade de a média estar entre 80 e 120? b) Que faixa contém 9
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Agora trabalhamos com a distribuição da média amostral, cujo desvio é o desvio populacional dividido pela raiz de quatro, ou seja, 5 mmHg. A faixa de 80 a 120 corresponde a quatro desvios da média para cada lado, então a média quase certamente cai nela, com probabilidade próxima de 99,99%.
+Agora trabalhamos com a distribuição da média amostral, cujo desvio (erro padrão) é
 
-Para 95% das médias, usamos 1,96 desvios da média amostral, o que dá a média mais ou menos 9,8 mmHg, de cerca de 90,2 a 109,8 mmHg. Repare como essa faixa é bem mais estreita que a da população individual, porque médias variam menos que observações isoladas.
+$$
+\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{10}{\sqrt{4}} = 5 \text{ mmHg}
+$$
 
-Quando o desvio populacional é desconhecido e usamos o desvio amostral de 7,8, precisamos da distribuição t com três graus de liberdade, cujo valor crítico é cerca de 3,18, maior que 1,96. A faixa fica em torno de 100 mais ou menos 12,4 mmHg, mais larga, refletindo a incerteza extra de estimar o desvio a partir de poucos dados.
+A faixa de 80 a 120 corresponde a $z = (120-100)/5 = 4$ desvios para cada lado, então a média quase certamente cai nela (probabilidade próxima de 99,99%).
+
+Para 95% das médias, usamos 1,96 erros padrão:
+
+$$
+100 \pm 1{,}96 \times 5 = 100 \pm 9{,}8 \;\Rightarrow\; [90{,}2;\; 109{,}8] \text{ mmHg}
+$$
+
+Essa faixa é bem mais estreita que a da população individual, porque médias variam menos que observações isoladas. Quando o desvio populacional é desconhecido e usamos $s = 7{,}8$, recorremos à distribuição t com três graus de liberdade ($t^* = 3{,}18$):
+
+$$
+100 \pm 3{,}18 \times \frac{7{,}8}{\sqrt{4}} = 100 \pm 12{,}4 \text{ mmHg}
+$$
+
+A faixa fica mais larga, refletindo a incerteza extra de estimar o desvio a partir de poucos dados.
 
 </details>
 
@@ -82,9 +120,13 @@ A vida útil de uma lavadora segue uma normal de média 1,5 anos e desvio 0,3 an
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Um ano está a 0,5 anos abaixo da média, o que corresponde a cerca de 1,67 desvios padrão. A área da normal abaixo desse ponto é aproximadamente 0,048, ou seja, cerca de 4,8% das lavadoras falharão dentro da garantia.
+Um ano está abaixo da média:
 
-Cálculos como esse são feitos rotineiramente pela indústria para dimensionar custos de garantia e definir prazos.
+$$
+z = \frac{1 - 1{,}5}{0{,}3} \approx -1{,}67 \quad\Rightarrow\quad P(T < 1) = \Phi(-1{,}67) \approx 0{,}048
+$$
+
+Cerca de 4,8% das lavadoras falharão dentro da garantia. Cálculos como esse são feitos rotineiramente pela indústria para dimensionar custos de garantia e definir prazos.
 
 </details>
 
@@ -97,8 +139,17 @@ a) Entre mil indivíduos, quantos se espera na faixa de 36,8 a 37,0? b) Em que i
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A faixa de 36,8 a 37,0 vai da média até cerca de 1,33 desvios acima dela. A área entre a média e esse ponto é aproximadamente 0,409, então de mil indivíduos espera-se em torno de 409 nessa faixa.
+A faixa de 36,8 a 37,0 vai da média até $z = (37{,}0 - 36{,}8)/0{,}15 \approx 1{,}33$ acima dela:
 
-Para conter 50% em torno da média, dividimos os 50% em 25% de cada lado, o que corresponde a cerca de 0,674 desvios para cada direção. Isso dá um intervalo de aproximadamente 36,7 a 36,9 graus.
+$$
+P(36{,}8 < T < 37{,}0) = \Phi(1{,}33) - 0{,}5 \approx 0{,}409 \;\Rightarrow\; 1000 \times 0{,}409 \approx 409 \text{ indivíduos}
+$$
+
+Para conter 50% em torno da média, dividimos em 25% de cada lado ($z = 0{,}674$):
+
+$$
+36{,}8 \pm 0{,}674 \times 0{,}15 \;\Rightarrow\; [36{,}70;\; 36{,}90] \text{ graus}
+$$
 
 </details>
+

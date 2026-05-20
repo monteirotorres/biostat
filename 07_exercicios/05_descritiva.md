@@ -24,9 +24,15 @@ Numa empresa de dez mil empregados, mil ganham 2 salários mínimos, três mil g
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Para a mediana, basta ordenar os trabalhadores por salário e localizar o ponto central. Os mil primeiros ganham 2, os três mil seguintes ganham 3 e a partir daí todos ganham 4. O valor central, na posição cinco mil, já está na faixa dos que ganham 4 salários mínimos, então a mediana é 4.
+Para a mediana, basta ordenar os trabalhadores por salário e localizar o ponto central. Os mil primeiros ganham 2, os três mil seguintes ganham 3 e a partir daí todos ganham 4. O valor central, na posição cinco mil, já está na faixa dos que ganham 4 salários, então a mediana é 4.
 
-Para a média, somamos o que cada grupo recebe e dividimos pelo total: (1000×2 + 3000×3 + 6000×4) dividido por 10000, o que dá 3,5 salários mínimos. A média ficou abaixo da mediana porque o grupo menor, de salários baixos, puxa a média para baixo. É um exemplo concreto de como as duas medidas contam histórias diferentes.
+Para a média, somamos o que cada grupo recebe e dividimos pelo total:
+
+$$
+\bar{x} = \frac{1000 \times 2 + 3000 \times 3 + 6000 \times 4}{10000} = \frac{35000}{10000} = 3{,}5 \text{ SM}
+$$
+
+A média ficou abaixo da mediana porque o grupo de salários baixos a puxa para baixo. É um exemplo concreto de como as duas medidas contam histórias diferentes.
 
 </details>
 
@@ -37,8 +43,12 @@ A distribuição de pessoas ocupadas por faixa de renda no Brasil (PNAD) foi: me
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A mediana está na faixa que contém a posição correspondente a 50% acumulados. Somando as frequências de baixo para cima, chegamos a 24,1% na primeira faixa e a 44,7% ao incluir a segunda. Ao acrescentar a terceira faixa, de 1,5 a 3 salários, o acumulado passa para 73,2%, ultrapassando os 50%.
+A mediana está na faixa que contém a posição de 50% acumulados. Somando as frequências de baixo para cima:
 
-Portanto, o salário mediano cai na faixa de 1,5 a 3 salários mínimos. Note que metade dos trabalhadores ganhava, à época, menos do que essa faixa, um retrato bem diferente do que uma média sozinha sugeriria.
+$$
+24{,}1\% \;\to\; 24{,}1 + 20{,}6 = 44{,}7\% \;\to\; 44{,}7 + 28{,}5 = 73{,}2\%
+$$
+
+O acumulado cruza os 50% justamente ao incluir a terceira faixa. Portanto, o salário mediano cai na faixa de 1,5 a 3 salários mínimos. Note que metade dos trabalhadores ganhava, à época, menos do que essa faixa, um retrato bem diferente do que uma média sozinha sugeriria.
 
 </details>

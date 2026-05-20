@@ -131,23 +131,48 @@
 <p>c) Costuma-se dizer que "para obter um erro menor, manipule quantidades maiores". No entanto, o desvio padrão de 1000 µL é maior que o de 200 µL. Como conciliar as duas afirmações?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A exatidão mede o quanto a média das pesagens se afasta do valor nominal. A média de 200 µL fica em torno de 198,8 mg, o que corresponde a um desvio de aproximadamente −0,5 µL após a conversão; para 1000 µL o desvio é de cerca de −0,3 µL. Os dois valores estão bem dentro das tolerâncias, então a exatidão está aprovada.</p>
-<p>A precisão mede a dispersão das pesagens em torno da própria média. Os desvios padrão ficam em torno de 0,05 µL nas duas séries, muito abaixo dos limites de 0,60 e 1,50 µL. A precisão também está aprovada.</p>
-<p>A aparente contradição da letra (c) se desfaz quando separamos erro absoluto de erro relativo. Quando manipulamos volumes maiores, o erro absoluto realmente tende a crescer (0,05 µL contra um valor um pouco maior), mas o que interessa na prática é o erro relativo, ou seja, o erro dividido pelo valor medido. Em termos percentuais, a dispersão cai de cerca de 0,027% (para 200 µL) para cerca de 0,006% (para 1000 µL). A frase está correta no sentido relativo: medir quantidades maiores reduz o peso proporcional do erro.</p>
+<p>A exatidão é a diferença entre a média das pesagens e o valor nominal. Para a série de 200 µL,</p>
+<div class="math-display">$$
+\bar{x}_{200} = \frac{198{,}75 + 198{,}83 + 198{,}78 + 198{,}87}{4} = 198{,}808 \text{ mg}
+$$</div>
+<p>Após a conversão de massa para volume (que usa o fator Z, próximo de 1), isso corresponde a um desvio de cerca de $-0{,}5$ µL em relação a 200 µL. Para a série de 1000 µL a média é $996{,}418$ mg, um desvio de cerca de $-0{,}3$ µL. Ambos estão muito abaixo das tolerâncias de ±3,00 e ±8,00 µL, então a exatidão está aprovada.</p>
+<p>A precisão é o desvio padrão de cada série. Tomando a série de 200 µL,</p>
+<div class="math-display">$$
+s_{200} = \sqrt{\frac{\sum (x_i - \bar{x})^2}{n-1}} \approx 0{,}053 \text{ µL}
+$$</div>
+<p>e o desvio da série de 1000 µL é cerca de $0{,}059$ µL. Os dois ficam muito abaixo dos limites de 0,60 e 1,50 µL, então a precisão também está aprovada.</p>
+<p>A aparente contradição da letra (c) se desfaz separando erro absoluto de erro relativo. O erro relativo é o desvio padrão dividido pelo valor medido:</p>
+<div class="math-display">$$
+\text{CV}_{200} = \frac{0{,}053}{200} \approx 0{,}027\% \qquad \text{CV}_{1000} = \frac{0{,}059}{1000} \approx 0{,}006\%
+$$</div>
+<p>Embora o desvio absoluto seja um pouco maior em 1000 µL, o erro relativo cai bastante. A frase está certa no sentido relativo: medir quantidades maiores reduz o peso proporcional do erro.</p>
 </details>
 <h2>Exercício 2 — A mesma balança, "qualidades" diferentes</h2>
 <p>Uma balança analítica de cinco casas decimais é usada para medir 0,00103 g e, em outra ocasião, 0,00003 g. Por que dizemos que a primeira medida tem "qualidade" melhor, se a balança é a mesma?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A balança tem sempre o mesmo erro absoluto, da ordem de cinco microgramas, porque essa é a sua resolução. O que muda entre as duas medidas é o quanto esse erro representa em relação ao valor medido.</p>
-<p>Para 0,00103 g, cinco microgramas correspondem a cerca de 0,5% do valor. Para 0,00003 g, os mesmos cinco microgramas correspondem a cerca de 17%. A segunda medida está sendo feita perto do limite de operação da balança, e por isso carrega muito mais incerteza relativa. A "qualidade" de uma medida é justamente o seu erro relativo, e não a balança em si.</p>
+<p>A balança tem sempre o mesmo erro absoluto, cerca de cinco microgramas, que é a sua resolução. O que muda é o quanto esse erro representa em relação ao valor medido:</p>
+<div class="math-display">$$
+\text{CV}_1 = \frac{5 \times 10^{-6}}{1{,}03 \times 10^{-3}} \approx 0{,}49\% \qquad \text{CV}_2 = \frac{5 \times 10^{-6}}{3 \times 10^{-5}} \approx 17\%
+$$</div>
+<p>A segunda medida está sendo feita perto do limite de operação da balança, e por isso carrega muito mais incerteza relativa. A "qualidade" de uma medida é o seu erro relativo, não a balança em si.</p>
 </details>
 <h2>Exercício 3 — Escrevendo com dois algarismos significativos</h2>
 <p>Escreva com apenas dois algarismos significativos: 2,36 · 0,999999… · 0,395 · 0,125 · 0,00000236. Em seguida, reescreva os valores ambíguos 1300 g, 250 mg e 395000 µg de duas formas que eliminem a ambiguidade: escolhendo uma unidade apropriada e usando notação científica.</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Arredondando para dois algarismos significativos: 2,36 vira 2,4; o número próximo de 1 vira 1,0; 0,395 vira 0,40; 0,125 vira 0,12 (regra do dígito par) ou 0,13 conforme a convenção do software; e 0,00000236 vira 2,4×10⁻⁶.</p>
-<p>Um número como 1300 g é ambíguo porque não dá para saber se os zeros são significativos. Escrevendo 1,3×10³ g ou 1,3 kg, fica claro que há dois algarismos significativos. Da mesma forma, 250 mg com dois algarismos vira 2,5×10² mg ou 0,25 g, e 395000 µg com três algarismos vira 3,95×10⁵ µg ou 395 mg. A notação científica e a troca de unidade resolvem a ambiguidade porque deixam explícito quais dígitos foram realmente medidos.</p>
+<p>Arredondando para dois algarismos significativos: 2,36 vira 2,4; o número próximo de 1 vira 1,0; 0,395 vira 0,40; 0,125 vira 0,12 (regra do dígito par) ou 0,13 conforme a convenção do software; e 0,00000236 vira $2{,}4 \times 10^{-6}$.</p>
+<p>Um número como 1300 g é ambíguo porque não dá para saber se os zeros são significativos. As duas formas padrão de resolver são:</p>
+<div class="math-display">$$
+1300 \text{ g} = 1{,}3 \times 10^{3} \text{ g} = 1{,}3 \text{ kg}
+$$</div>
+<div class="math-display">$$
+250 \text{ mg} = 2{,}5 \times 10^{2} \text{ mg} = 0{,}25 \text{ g}
+$$</div>
+<div class="math-display">$$
+395000 \text{ µg} = 3{,}95 \times 10^{5} \text{ µg} = 395 \text{ mg}
+$$</div>
+<p>A notação científica e a troca de unidade deixam explícito quais dígitos foram realmente medidos.</p>
 </details>
 <h2>Exercício 4 — Leitura de 0,00025 g</h2>
 <p>Uma balança de cinco casas decimais mostra 0,00025 g.</p>
@@ -158,15 +183,26 @@
 <details>
 <summary>Mostrar resposta</summary>
 <p>A leitura 0,00025 g tem dois algarismos significativos, porque os zeros à esquerda apenas posicionam a vírgula e não contam. Se a última casa não estabiliza, sobra apenas um algarismo confiável.</p>
-<p>Trocar a unidade para microgramas não altera nada: o número de algarismos significativos é uma propriedade da medida, não da unidade escolhida. Tanto 0,00025 g quanto 250 µg representam a mesma informação, com os mesmos dois algarismos significativos.</p>
-<p>Quanto às condições de instalação, uma superfície inclinada introduz um erro sistemático e faz a balança perder acurácia, porque todas as leituras ficam deslocadas na mesma direção. Vibrações fazem o valor oscilar de forma aleatória e prejudicam a precisão. Correntes de ar podem causar tanto deslocamentos sistemáticos quanto oscilações, afetando as duas propriedades ao mesmo tempo.</p>
+<p>Trocar a unidade para microgramas não altera nada: o número de algarismos significativos é uma propriedade da medida, não da unidade. Tanto $0{,}00025$ g quanto $250$ µg representam a mesma informação, com os mesmos dois algarismos.</p>
+<p>Quanto às condições, uma superfície inclinada introduz um erro sistemático e faz a balança perder acurácia, porque todas as leituras ficam deslocadas na mesma direção. Vibrações fazem o valor oscilar de forma aleatória e prejudicam a precisão. Correntes de ar podem causar tanto deslocamentos sistemáticos quanto oscilações, afetando as duas propriedades.</p>
 </details>
 <h2>Exercício 5 — Béqueres</h2>
 <p>Um lote de béqueres foi planejado para pesar em torno de 35 g. Uma amostra de dez unidades pesou 33,45 · 35,21 · 35,77 · 35,20 · 34,72 · 33,81 · 33,91 · 34,54 · 34,63 · 34,12 g. Calcule a precisão e a exatidão (esta em porcentagem) e avalie se há variação relevante em relação ao previsto.</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A média da amostra fica em torno de 34,5 g. A exatidão é a diferença entre essa média e o valor previsto de 35 g, ou seja, cerca de −0,5 g, o que equivale a aproximadamente −1,3% em termos relativos. Existe, portanto, um pequeno viés: os béqueres tendem a pesar um pouco menos que o planejado.</p>
-<p>A precisão é o desvio padrão da amostra, em torno de 0,73 g. Essa dispersão é considerável diante do desvio do alvo, o que sugere que o processo de fabricação tem variabilidade própria que merece investigação, e não apenas um deslocamento constante.</p>
+<p>A média da amostra é</p>
+<div class="math-display">$$
+\bar{x} = \frac{33{,}45 + 35{,}21 + \cdots + 34{,}12}{10} = 34{,}536 \text{ g}
+$$</div>
+<p>A exatidão é a diferença em relação ao valor previsto:</p>
+<div class="math-display">$$
+\text{viés} = 34{,}536 - 35 = -0{,}464 \text{ g} \quad\Rightarrow\quad \frac{-0{,}464}{35} \approx -1{,}3\%
+$$</div>
+<p>A precisão é o desvio padrão amostral,</p>
+<div class="math-display">$$
+s = \sqrt{\frac{\sum (x_i - \bar{x})^2}{n-1}} \approx 0{,}73 \text{ g}
+$$</div>
+<p>Existe um pequeno viés (os béqueres pesam um pouco menos que o previsto) e uma dispersão considerável de 0,73 g, que sugere variabilidade própria do processo de fabricação e merece investigação.</p>
 </details>
 
 </article>
@@ -186,14 +222,25 @@
 <details>
 <summary>Mostrar resposta</summary>
 <p>A probabilidade é muito grande, em torno de 89%. O resultado surpreende porque a intuição compara cada pessoa com uma data fixa, quando na verdade comparamos todos os pares possíveis de pessoas.</p>
-<p>O caminho mais simples é calcular a probabilidade do evento contrário, que é todas as datas serem diferentes. Para a segunda pessoa há 364 dias livres em 365, para a terceira 363, e assim por diante. Multiplicando essas frações e subtraindo de 1, chega-se a cerca de 0,89. Com apenas 23 pessoas a probabilidade já passa de 50%.</p>
+<p>O caminho mais simples é calcular a probabilidade do evento contrário, que é todas as datas serem diferentes:</p>
+<div class="math-display">$$
+P(\text{todas diferentes}) = \frac{365}{365}\cdot\frac{364}{365}\cdot\frac{363}{365}\cdots\frac{326}{365} = \frac{365!}{(365-40)!\;365^{40}} \approx 0{,}109
+$$</div>
+<div class="math-display">$$
+P(\text{ao menos duas iguais}) = 1 - 0{,}109 \approx 0{,}891
+$$</div>
+<p>Com apenas 23 pessoas a probabilidade já passa de 50%.</p>
 </details>
 <h2>Exercício 3 — O andar do bêbado</h2>
 <p>Geramos passos aleatórios de +1 ou −1 e os somamos um após o outro, formando uma caminhada aleatória. Depois de muitos passos, o que se pode dizer sobre a posição final? (Há uma simulação no notebook.)</p>
 <details>
 <summary>Mostrar resposta</summary>
 <p>Em média, a posição final é zero, porque os passos para frente e para trás se cancelam na média de muitas repetições. Isso não significa, porém, que o bêbado fique parado: a dispersão da posição cresce com o número de passos.</p>
-<p>O ponto interessante é que essa dispersão cresce com a raiz quadrada do número de passos, e não de forma proporcional. Após cem passos, o afastamento típico é da ordem de dez unidades, não cem. Essa relação com a raiz quadrada é a mesma que aparece no erro padrão da média e é uma das assinaturas da soma de variáveis aleatórias independentes.</p>
+<p>Cada passo $X_i$ vale $+1$ ou $-1$ com variância 1. Como os passos são independentes, as variâncias se somam, e o desvio padrão da posição após $n$ passos é</p>
+<div class="math-display">$$
+\text{DP}(S_n) = \sqrt{\operatorname{Var}(X_1) + \cdots + \operatorname{Var}(X_n)} = \sqrt{n}
+$$</div>
+<p>Após cem passos, o afastamento típico é $\sqrt{100} = 10$ unidades, não cem. Essa relação com a raiz quadrada é a mesma que aparece no erro padrão da média.</p>
 </details>
 
 </article>
@@ -206,16 +253,32 @@
 <p>O que é mais provável: obter ao menos um seis em quatro lançamentos de um dado, ou obter ao menos um par de seis em vinte e quatro lançamentos de dois dados? O cavalheiro Chevalier de Méré argumentava que as duas situações eram equivalentes, porque o número médio de ocorrências seria 2/3 em ambos os casos.</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>As duas probabilidades não são iguais, e o raciocínio de Méré confunde número esperado com probabilidade.</p>
-<p>No primeiro caso, a probabilidade de não sair nenhum seis em quatro lançamentos é (5/6) elevado a 4. A probabilidade de sair ao menos um seis é o complemento, aproximadamente 0,518. No segundo caso, a probabilidade de não sair nenhum par de seis em vinte e quatro lançamentos é (35/36) elevado a 24, e o complemento é aproximadamente 0,491.</p>
-<p>Ou seja, o primeiro evento é um pouco mais provável que não acontecer, enquanto o segundo é um pouco menos. A coincidência do valor 2/3 que Méré calculou corresponde ao número médio de ocorrências, uma quantidade diferente da probabilidade de pelo menos uma ocorrência. Esse problema histórico foi um dos que motivaram o desenvolvimento formal da teoria da probabilidade.</p>
+<p>As duas probabilidades não são iguais, e o raciocínio de Méré confunde número esperado com probabilidade. Em ambos os casos calculamos a probabilidade do evento contrário e subtraímos de 1.</p>
+<div class="math-display">$$
+P(\text{ao menos um 6 em 4}) = 1 - \left(\frac{5}{6}\right)^{4} = 1 - 0{,}482 = 0{,}518
+$$</div>
+<div class="math-display">$$
+P(\text{ao menos um duplo-6 em 24}) = 1 - \left(\frac{35}{36}\right)^{24} = 1 - 0{,}509 = 0{,}491
+$$</div>
+<p>O primeiro evento é um pouco mais provável que não acontecer; o segundo, um pouco menos. A coincidência do valor 2/3 que Méré calculou corresponde ao número médio de ocorrências ($4 \times \tfrac16 = 24 \times \tfrac{1}{36} = \tfrac23$), uma quantidade diferente da probabilidade de pelo menos uma ocorrência. Esse problema histórico foi um dos que motivaram o desenvolvimento formal da teoria da probabilidade.</p>
 </details>
 <h2>Exercício 2 — Megasena</h2>
 <p>Qual a probabilidade de ganhar na Megasena com o jogo mínimo de seis números marcados entre sessenta?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>O número total de resultados possíveis é a combinação de sessenta números tomados seis a seis, que vale 50.063.860. Como só um desses resultados é o vencedor, a probabilidade é 1 dividido por esse total, aproximadamente 2×10⁻⁸, ou seja, cerca de 0,000002%.</p>
-<p>Há um segundo modo de chegar ao mesmo resultado, encadeando eventos. Você tem seis chances de acertar uma das seis posições numa cartela de sessenta, depois cinco chances entre os cinquenta e nove números restantes, e assim por diante até a última. Multiplicando essas frações chega-se exatamente ao mesmo valor, o que mostra que a contagem por combinação e o raciocínio sequencial são equivalentes.</p>
+<p>O número total de resultados possíveis é a combinação de sessenta números tomados seis a seis:</p>
+<div class="math-display">$$
+\binom{60}{6} = \frac{60!}{6!\,(60-6)!} = 50\,063\,860
+$$</div>
+<p>Como só um desses resultados é o vencedor,</p>
+<div class="math-display">$$
+P = \frac{1}{50\,063\,860} \approx 2{,}0 \times 10^{-8} \approx 0{,}000002\%
+$$</div>
+<p>Há um segundo modo de chegar ao mesmo resultado, encadeando eventos:</p>
+<div class="math-display">$$
+P = \frac{6}{60}\cdot\frac{5}{59}\cdot\frac{4}{58}\cdot\frac{3}{57}\cdot\frac{2}{56}\cdot\frac{1}{55}
+$$</div>
+<p>que dá exatamente o mesmo valor, mostrando que a contagem por combinação e o raciocínio sequencial são equivalentes.</p>
 </details>
 <h2>Exercício 3 — O cientista consciencioso</h2>
 <p>Um pesquisador só publica um resultado depois de confirmá-lo ao menos uma vez, usando nível de significância de 5%.</p>
@@ -223,8 +286,15 @@
 <p>b) Como a independência completa é irreal (mesmos reagentes, mesmo protocolo, mesmo experimentador), suponha que a probabilidade de um segundo falso positivo dado o primeiro seja 30%. Qual a probabilidade de publicar um falso positivo nesse caso?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Se os dois experimentos fossem independentes, a probabilidade de ambos darem falso positivo seria o produto 0,05 × 0,05 = 0,0025, ou seja, 0,25%. Exigir uma confirmação reduz bastante a chance de publicar algo espúrio.</p>
-<p>Na prática, porém, os experimentos compartilham reagentes, equipamentos e métodos, então um erro tende a se repetir. Com a probabilidade condicional de 30% para o segundo falso positivo, a chance de publicar um falso positivo passa a ser 0,05 × 0,30 = 0,015, ou 1,5%. A dependência entre as repetições enfraquece a proteção que a confirmação deveria oferecer, e por isso replicações verdadeiramente independentes, em outro laboratório, são tão valorizadas.</p>
+<p>Se os dois experimentos fossem independentes, a probabilidade de ambos darem falso positivo seria o produto das probabilidades:</p>
+<div class="math-display">$$
+P(\text{FP e FP}) = 0{,}05 \times 0{,}05 = 0{,}0025 = 0{,}25\%
+$$</div>
+<p>Na prática, porém, os experimentos compartilham reagentes, equipamentos e métodos, então um erro tende a se repetir. Usando a regra da multiplicação com a probabilidade condicional de 30% para o segundo falso positivo,</p>
+<div class="math-display">$$
+P(\text{FP e FP}) = P(\text{FP}) \cdot P(\text{FP} \mid \text{FP}) = 0{,}05 \times 0{,}30 = 0{,}015 = 1{,}5\%
+$$</div>
+<p>A dependência entre as repetições enfraquece a proteção que a confirmação deveria oferecer, e por isso replicações verdadeiramente independentes, em outro laboratório, são tão valorizadas.</p>
 </details>
 
 </article>
@@ -237,24 +307,42 @@
 <p>Pretende-se rastrear uma população para uma doença cuja incidência é de 0,01%. O teste detecta a doença em 99% dos doentes e identifica corretamente a ausência da doença em 95% dos saudáveis. Uma pessoa testou positivo. Qual a probabilidade de ela realmente ter a doença?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A pergunta inverte a direção do teste: conhecemos a probabilidade de positivo dado doente, mas queremos a probabilidade de doente dado positivo. O teorema de Bayes faz essa inversão.</p>
-<p>No numerador entra a fração de pessoas que são doentes e testam positivo, igual a 0,0001 × 0,99. No denominador entra a probabilidade total de testar positivo, somando os verdadeiros positivos com os falsos positivos: 0,0001 × 0,99 + 0,9999 × 0,05. O resultado é aproximadamente 0,002, ou seja, cerca de 0,2%.</p>
+<p>A pergunta inverte a direção do teste: conhecemos a probabilidade de positivo dado doente, mas queremos a probabilidade de doente dado positivo. O teorema de Bayes faz essa inversão:</p>
+<div class="math-display">$$
+P(D \mid +) = \frac{P(+ \mid D)\,P(D)}{P(+ \mid D)\,P(D) + P(+ \mid S)\,P(S)}
+$$</div>
+<p>Substituindo a prevalência $P(D) = 0{,}0001$, a sensibilidade $P(+\mid D) = 0{,}99$ e o falso positivo $P(+\mid S) = 1 - 0{,}95 = 0{,}05$:</p>
+<div class="math-display">$$
+P(D \mid +) = \frac{0{,}0001 \times 0{,}99}{0{,}0001 \times 0{,}99 + 0{,}9999 \times 0{,}05} \approx 0{,}00198 \approx 0{,}2\%
+$$</div>
 <p>Apesar de o teste parecer muito bom, a doença é tão rara que a grande maioria dos positivos vem de pessoas saudáveis. Ainda assim, o teste foi útil: a probabilidade saltou de 0,01% para 0,2%, um fator de vinte. Esse é o motivo de rastreios em massa de doenças raras gerarem tantos falsos positivos.</p>
 </details>
 <h2>Exercício 2 — Previsão do tempo</h2>
 <p>Um meteorologista acerta 80% dos dias em que chove e 90% dos dias de bom tempo. Chove em 10% dos dias. Se a previsão for de chuva, qual a probabilidade de realmente chover?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>O problema é idêntico ao do teste diagnóstico, tratando a chuva como a "doença" e a previsão como o resultado do teste. A sensibilidade é 0,8, a especificidade é 0,9 e a prevalência é 0,1.</p>
-<p>Aplicando Bayes, o numerador é 0,1 × 0,8 e o denominador soma verdadeiros positivos e falsos positivos, 0,1 × 0,8 + 0,9 × 0,1. O resultado é 8/17, aproximadamente 47%.</p>
-<p>Uma forma intuitiva de ver isso é montar uma tabela com mil dias. Cem chovem e novecentos não. Dos cem dias de chuva, oitenta são previstos corretamente. Dos novecentos de bom tempo, noventa recebem previsão errada de chuva. No total há 170 previsões de chuva, das quais oitenta acertam, e 80/170 dá os mesmos 47%.</p>
+<p>O problema é idêntico ao do teste diagnóstico, tratando a chuva como a "doença" e a previsão como o resultado do teste. A sensibilidade é 0,8, a especificidade é 0,9 e a prevalência é 0,1. Por Bayes:</p>
+<div class="math-display">$$
+P(\text{chuva} \mid +) = \frac{0{,}1 \times 0{,}8}{0{,}1 \times 0{,}8 + 0{,}9 \times 0{,}1} = \frac{0{,}08}{0{,}17} = \frac{8}{17} \approx 0{,}471
+$$</div>
+<p>Uma forma intuitiva de chegar ao mesmo resultado é montar uma tabela com mil dias. Cem chovem e novecentos não. Dos cem dias de chuva, $100 \times 0{,}8 = 80$ são previstos corretamente. Dos novecentos de bom tempo, $900 \times 0{,}1 = 90$ recebem previsão errada de chuva. No total há $80 + 90 = 170$ previsões de chuva, das quais 80 acertam: $80/170 \approx 47\%$.</p>
 </details>
 <h2>Exercício 3 — AVC e pressão alta</h2>
 <p>Sabe-se que 10% dos idosos sofrerão um AVC nos próximos cinco anos. Entre os que tiveram AVC, 40% apresentavam pressão arterial elevada. Entre os que não tiveram AVC, 20% tinham pressão elevada aos 70 anos. Qual a probabilidade de um idoso com pressão alta vir a sofrer um AVC?</p>
 <details>
 <summary>Mostrar resposta</summary>
 <p>Identificando o AVC como a "doença" e a pressão elevada como o "teste", a prevalência é 10%, a sensibilidade é 40% e a especificidade é 80%, já que 20% dos que não tiveram AVC tinham um indicador falso.</p>
-<p>Montando uma tabela com cem idosos, dez terão AVC e noventa não. Dos dez com AVC, quatro têm pressão elevada. Dos noventa sem AVC, dezoito têm pressão elevada. Entre todos os que têm pressão alta, portanto, há 22 pessoas, das quais quatro sofrerão AVC. A probabilidade procurada é 4/22, aproximadamente 18%.</p>
+<p>Montando uma tabela com cem idosos:</p>
+<div class="math-display">$$
+\text{com AVC e PA alta} = 100 \times 0{,}10 \times 0{,}40 = 4
+$$</div>
+<div class="math-display">$$
+\text{sem AVC e PA alta} = 100 \times 0{,}90 \times 0{,}20 = 18
+$$</div>
+<p>Entre todos os que têm pressão alta há $4 + 18 = 22$ pessoas, das quais 4 sofrerão AVC:</p>
+<div class="math-display">$$
+P(\text{AVC} \mid \text{PA alta}) = \frac{4}{22} \approx 0{,}182
+$$</div>
 <p>A mesma lógica serve para estimar o efeito de qualquer fator de risco, como fumo e câncer, e pode ser estendida para combinar mais de um fator.</p>
 </details>
 
@@ -276,15 +364,22 @@
 <p>Numa empresa de dez mil empregados, mil ganham 2 salários mínimos, três mil ganham 3 e os seis mil restantes ganham 4. Calcule a média e a mediana.</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Para a mediana, basta ordenar os trabalhadores por salário e localizar o ponto central. Os mil primeiros ganham 2, os três mil seguintes ganham 3 e a partir daí todos ganham 4. O valor central, na posição cinco mil, já está na faixa dos que ganham 4 salários mínimos, então a mediana é 4.</p>
-<p>Para a média, somamos o que cada grupo recebe e dividimos pelo total: (1000×2 + 3000×3 + 6000×4) dividido por 10000, o que dá 3,5 salários mínimos. A média ficou abaixo da mediana porque o grupo menor, de salários baixos, puxa a média para baixo. É um exemplo concreto de como as duas medidas contam histórias diferentes.</p>
+<p>Para a mediana, basta ordenar os trabalhadores por salário e localizar o ponto central. Os mil primeiros ganham 2, os três mil seguintes ganham 3 e a partir daí todos ganham 4. O valor central, na posição cinco mil, já está na faixa dos que ganham 4 salários, então a mediana é 4.</p>
+<p>Para a média, somamos o que cada grupo recebe e dividimos pelo total:</p>
+<div class="math-display">$$
+\bar{x} = \frac{1000 \times 2 + 3000 \times 3 + 6000 \times 4}{10000} = \frac{35000}{10000} = 3{,}5 \text{ SM}
+$$</div>
+<p>A média ficou abaixo da mediana porque o grupo de salários baixos a puxa para baixo. É um exemplo concreto de como as duas medidas contam histórias diferentes.</p>
 </details>
 <h2>Exercício 3 — Salário mediano por faixas</h2>
 <p>A distribuição de pessoas ocupadas por faixa de renda no Brasil (PNAD) foi: menos de 1 salário mínimo, 24,1%; de 1 a 1,5, 20,6%; de 1,5 a 3, 28,5%; de 3 a 5, 11,7%; de 5 a 10, 8,5%; e 10 ou mais, 6,6%. Em que faixa está o salário mediano?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A mediana está na faixa que contém a posição correspondente a 50% acumulados. Somando as frequências de baixo para cima, chegamos a 24,1% na primeira faixa e a 44,7% ao incluir a segunda. Ao acrescentar a terceira faixa, de 1,5 a 3 salários, o acumulado passa para 73,2%, ultrapassando os 50%.</p>
-<p>Portanto, o salário mediano cai na faixa de 1,5 a 3 salários mínimos. Note que metade dos trabalhadores ganhava, à época, menos do que essa faixa, um retrato bem diferente do que uma média sozinha sugeriria.</p>
+<p>A mediana está na faixa que contém a posição de 50% acumulados. Somando as frequências de baixo para cima:</p>
+<div class="math-display">$$
+24{,}1\% \;\to\; 24{,}1 + 20{,}6 = 44{,}7\% \;\to\; 44{,}7 + 28{,}5 = 73{,}2\%
+$$</div>
+<p>O acumulado cruza os 50% justamente ao incluir a terceira faixa. Portanto, o salário mediano cai na faixa de 1,5 a 3 salários mínimos. Note que metade dos trabalhadores ganhava, à época, menos do que essa faixa, um retrato bem diferente do que uma média sozinha sugeriria.</p>
 </details>
 
 </article>
@@ -297,44 +392,77 @@
 <p>Testando dois grupos controle entre si com nível de confiança de 95%, há 5% de chance de obter um falso positivo. Qual a probabilidade de pelo menos um falso positivo se repetirmos o experimento várias vezes?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A maneira mais simples de responder a perguntas do tipo "pelo menos um" é calcular a probabilidade do evento contrário, que é nenhum falso positivo, e subtrair de 1. Se cada teste tem 95% de chance de não dar falso positivo, então a probabilidade de nenhum em k repetições é 0,95 elevado a k.</p>
-<p>Para três repetições, a chance de ao menos um falso positivo é 1 − 0,95³, cerca de 14%. Para dez repetições sobe para 40%, e para cinquenta passa de 92%. Esse crescimento explica dois problemas reais: comparar três ou mais grupos par a par com testes t infla o nível de significância efetivo, o que motivou a criação da ANOVA, e testar centenas de substâncias produz inevitavelmente muitos falsos positivos, que precisam de análises posteriores para serem filtrados.</p>
+<p>A maneira mais simples de responder a perguntas do tipo "pelo menos um" é calcular a probabilidade do evento contrário, nenhum falso positivo, e subtrair de 1:</p>
+<div class="math-display">$$
+P(\text{ao menos um FP}) = 1 - (0{,}95)^{k}
+$$</div>
+<div class="math-display">$$
+k=3:\; 1 - 0{,}95^{3} = 0{,}143 \qquad k=10:\; 0{,}401 \qquad k=50:\; 0{,}923
+$$</div>
+<p>Esse crescimento explica dois problemas reais: comparar três ou mais grupos par a par com testes t infla o nível de significância efetivo, o que motivou a criação da ANOVA, e testar centenas de substâncias produz inevitavelmente muitos falsos positivos, que precisam de análises posteriores para serem filtrados.</p>
 </details>
 <h2>Exercício 2 — Pôquer</h2>
 <p>Você joga pôquer com três amigos de habilidade parecida, aposta de valor fixo e obrigatória, sem empates. Qual a probabilidade de não perder dinheiro em dez partidas?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Com quatro jogadores de igual habilidade, a probabilidade de vencer cada partida é 1/4. Em dez partidas, o número de vitórias segue uma distribuição binomial com n igual a 10 e p igual a 1/4.</p>
-<p>Não perder dinheiro significa terminar com saldo maior ou igual a zero, o que exige vencer ao menos três das dez partidas. A probabilidade é 1 menos a probabilidade de vencer zero, uma ou duas vezes, o que dá aproximadamente 0,474. Em outras palavras, há pouco menos de 50% de chance de sair no zero a zero ou no lucro ao fim de dez rodadas.</p>
+<p>Com quatro jogadores de igual habilidade, a probabilidade de vencer cada partida é $p = 1/4$. Em dez partidas, o número de vitórias segue uma binomial com $n = 10$. Não perder dinheiro exige vencer ao menos três das dez partidas, usando a fórmula binomial $P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}$:</p>
+<div class="math-display">$$
+P(X \ge 3) = 1 - \big[P(0) + P(1) + P(2)\big] = 1 - (0{,}0563 + 0{,}1877 + 0{,}2816) \approx 0{,}474
+$$</div>
+<p>Há pouco menos de 50% de chance de sair no zero a zero ou no lucro ao fim de dez rodadas.</p>
 </details>
 <h2>Exercício 3 — Mudas e fungos</h2>
 <p>Cada muda pode ser atacada por fungo com probabilidade 0,06, sendo descartada nesse caso. O custo de produção é R$ 1,20 por muda e a venda é R$ 3,50. Considere lotes de cinquenta mudas.</p>
 <p>a) Qual o lucro previsto por lote? b) Qual a probabilidade de um lote não ter nenhuma contaminação? c) Qual a probabilidade de menos de dez mudas contaminadas?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Para o lucro previsto, espera-se que 94% das cinquenta mudas sobrevivam, ou seja, cerca de 47 mudas vendidas a R$ 3,50, gerando uma receita em torno de R$ 164. Descontando o custo de produção das cinquenta mudas, 50 × 1,20 = R$ 60, o lucro previsto fica em torno de R$ 104 por lote.</p>
-<p>A probabilidade de nenhuma contaminação é a de todas as cinquenta sobreviverem, 0,94 elevado a 50, aproximadamente 0,045. A probabilidade de menos de dez contaminadas é a soma das probabilidades de zero a nove contaminações numa binomial com n igual a 50 e p igual a 0,06, que dá aproximadamente 0,999. Como o número esperado de contaminadas é apenas três, ter dez ou mais é bastante raro.</p>
+<p>Para o lucro previsto, espera-se que 94% das cinquenta mudas sobrevivam:</p>
+<div class="math-display">$$
+\text{lucro} = (50 \times 0{,}94 \times 3{,}50) - (50 \times 1{,}20) = 164{,}5 - 60 = 104{,}5 \text{ reais}
+$$</div>
+<p>A probabilidade de nenhuma contaminação é a de todas as cinquenta sobreviverem:</p>
+<div class="math-display">$$
+P(0) = (0{,}94)^{50} \approx 0{,}045
+$$</div>
+<p>A probabilidade de menos de dez contaminadas é a soma de zero a nove numa binomial com $n=50$ e $p=0{,}06$:</p>
+<div class="math-display">$$
+P(X \le 9) = \sum_{k=0}^{9}\binom{50}{k}(0{,}06)^k(0{,}94)^{50-k} \approx 0{,}999
+$$</div>
+<p>Como o número esperado de contaminadas é $np = 50 \times 0{,}06 = 3$, ter dez ou mais é bastante raro.</p>
 </details>
 <h2>Exercício 4 — Prova de múltipla escolha</h2>
 <p>Numa prova com cinco alternativas por questão e apenas uma correta, qual a probabilidade de ser aprovado (nota maior ou igual a 5) apenas no chute, com a) dez questões; b) vinte questões?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Cada acerto no chute tem probabilidade 1/5. Com dez questões, o número de acertos segue uma binomial com p igual a 0,2, e a aprovação exige cinco ou mais acertos. A probabilidade é cerca de 0,033, ou seja, pouco mais de 3%.</p>
-<p>Com vinte questões, a nota mínima sobe para dez acertos numa binomial com p igual a 0,25, e a probabilidade despenca para cerca de 0,0026. Provas mais longas reduzem drasticamente a chance de aprovação pela sorte, porque a distribuição se concentra cada vez mais em torno do número esperado de acertos, que é baixo. Para dez questões, aliás, a nota mais provável obtida no chute é 2.</p>
+<p>Cada acerto no chute tem probabilidade 1/5. Com dez questões ($p = 0{,}2$), a aprovação exige cinco ou mais acertos:</p>
+<div class="math-display">$$
+P(X \ge 5) = 1 - P(X \le 4) \approx 0{,}033
+$$</div>
+<p>Com vinte questões a nota mínima sobe para dez acertos ($p = 0{,}25$):</p>
+<div class="math-display">$$
+P(X \ge 10) = 1 - P(X \le 9) \approx 0{,}0026
+$$</div>
+<p>Provas mais longas reduzem drasticamente a chance de aprovação pela sorte, porque a distribuição se concentra em torno do número esperado de acertos, que é baixo ($np = 2$ no primeiro caso). A nota mais provável no chute, para dez questões, é 2.</p>
 </details>
 <h2>Exercício 5 — Controle de qualidade</h2>
 <p>Uma máquina produz peças com 0,5% de defeito. Retira-se uma amostra de dez peças e a máquina é desligada para revisão se houver mais de uma defeituosa. Qual a probabilidade de desligá-la mesmo estando dentro do padrão?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A pergunta é a probabilidade de encontrar duas ou mais peças defeituosas numa amostra de dez, quando a taxa real é 0,5%. Isso é 1 menos a probabilidade de zero defeituosas menos a probabilidade de exatamente uma, numa binomial com n igual a 10 e p igual a 0,005.</p>
-<p>O resultado é aproximadamente 0,0011, ou seja, pouco mais de um décimo de por cento. Esse valor é o risco de um alarme falso da política de manutenção: parar a máquina à toa por causa da variação amostral, mesmo quando a produção está dentro da especificação.</p>
+<p>A pergunta é a probabilidade de duas ou mais peças defeituosas numa amostra de dez, com taxa real $p = 0{,}005$:</p>
+<div class="math-display">$$
+P(X \ge 2) = 1 - P(0) - P(1) = 1 - (0{,}995)^{10} - 10(0{,}005)(0{,}995)^{9} \approx 0{,}0011
+$$</div>
+<p>Esse valor, pouco mais de um décimo de por cento, é o risco de um alarme falso da política de manutenção: parar a máquina à toa por causa da variação amostral, mesmo dentro da especificação.</p>
 </details>
 <h2>Exercício 6 — Genética mendeliana</h2>
 <p>No cruzamento de plantas heterozigotas, espera-se a proporção 3:1 entre os fenótipos amarelo e verde. Coletando cem sementes, qual a probabilidade de encontrar oitenta ou mais amarelas?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A proporção esperada de amarelas é 3/4, então o número de sementes amarelas em cem segue uma binomial com p igual a 0,75. O número esperado é setenta e cinco, e queremos a probabilidade de obter oitenta ou mais.</p>
-<p>Somando as probabilidades de oitenta até cem, chega-se a aproximadamente 0,149, ou cerca de 15%. Embora oitenta esteja acima do valor esperado, ainda é um desvio plausível pela variação amostral, e por isso a probabilidade não é desprezível.</p>
+<p>A proporção esperada de amarelas é 3/4, então o número de amarelas em cem segue uma binomial com $p = 0{,}75$. O número esperado é $np = 75$, com desvio $\sqrt{np(1-p)} = \sqrt{100 \cdot 0{,}75 \cdot 0{,}25} \approx 4{,}33$. Queremos oitenta ou mais:</p>
+<div class="math-display">$$
+P(X \ge 80) = \sum_{k=80}^{100}\binom{100}{k}(0{,}75)^k(0{,}25)^{100-k} \approx 0{,}149
+$$</div>
+<p>Oitenta está a pouco mais de um desvio acima do esperado, um afastamento plausível, e por isso a probabilidade não é desprezível.</p>
 </details>
 
 </article>
@@ -361,41 +489,77 @@
 <p>Um elevador suporta 500 kg. Os pesos dos usuários seguem uma normal de média 70 kg e desvio 10 kg. Qual a probabilidade de sete passageiros ultrapassarem o limite? E seis?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Aqui entra a distribuição da soma dos pesos. A soma de sete pesos independentes tem média 7 × 70 = 490 kg e desvio padrão 10 vezes a raiz de sete, cerca de 26,5 kg. A probabilidade de a soma passar de 500 kg corresponde a um afastamento de cerca de 0,38 desvios acima da média, o que dá aproximadamente 0,35.</p>
-<p>Para seis passageiros, a soma tem média 420 kg e desvio 10 vezes a raiz de seis, cerca de 24,5 kg. Agora 500 kg está bem acima da média, a mais de três desvios, e a probabilidade cai para cerca de 0,0005. Reduzir de sete para seis passageiros torna o estouro do limite praticamente improvável.</p>
+<p>Aqui entra a distribuição da soma dos pesos. Para sete passageiros independentes:</p>
+<div class="math-display">$$
+\mu = 7 \times 70 = 490 \text{ kg} \qquad \sigma = 10\sqrt{7} \approx 26{,}5 \text{ kg}
+$$</div>
+<div class="math-display">$$
+z = \frac{500 - 490}{26{,}5} \approx 0{,}38 \quad\Rightarrow\quad P(\text{soma} > 500) = 1 - \Phi(0{,}38) \approx 0{,}35
+$$</div>
+<p>Para seis passageiros, $\mu = 420$ e $\sigma = 10\sqrt{6} \approx 24{,}5$:</p>
+<div class="math-display">$$
+z = \frac{500 - 420}{24{,}5} \approx 3{,}27 \quad\Rightarrow\quad P \approx 0{,}0005
+$$</div>
+<p>Reduzir de sete para seis passageiros torna o estouro do limite praticamente improvável.</p>
 </details>
 <h2>Exercício 4 — Pressão arterial da população</h2>
 <p>A pressão arterial segue uma normal de média 100 mmHg e desvio 10 mmHg.</p>
 <p>a) Que percentual da população tem pressão entre 80 e 120? b) Qual faixa em torno da média contém 95% das pessoas? c) Apenas 1% da população tem pressão acima de qual valor?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A faixa de 80 a 120 corresponde a dois desvios para cada lado, então pela regra 95,4% da população está nela.</p>
-<p>Para conter exatamente 95%, usamos o valor crítico de 1,96 desvios, o que dá a média mais ou menos 19,6 mmHg, ou seja, de cerca de 80,4 a 119,6 mmHg.</p>
-<p>Para o ponto acima do qual está apenas 1% da população, procuramos o percentil 99, que fica a cerca de 2,33 desvios acima da média. Isso dá aproximadamente 123,3 mmHg.</p>
+<p>A faixa de 80 a 120 corresponde a $z = (120-100)/10 = 2$ para cada lado, então pela regra 95,4% da população está nela.</p>
+<p>Para conter exatamente 95%, usamos o valor crítico de 1,96 desvios:</p>
+<div class="math-display">$$
+100 \pm 1{,}96 \times 10 = 100 \pm 19{,}6 \;\Rightarrow\; [80{,}4;\; 119{,}6] \text{ mmHg}
+$$</div>
+<p>Para o ponto acima do qual está apenas 1% da população, usamos o percentil 99 ($z = 2{,}33$):</p>
+<div class="math-display">$$
+100 + 2{,}33 \times 10 \approx 123{,}3 \text{ mmHg}
+$$</div>
 </details>
 <h2>Exercício 5 — Média de quatro pessoas</h2>
 <p>Com a mesma população de pressão (média 100, desvio 10), escolhemos quatro pessoas e calculamos a média.</p>
 <p>a) Qual a probabilidade de a média estar entre 80 e 120? b) Que faixa contém 95% das médias? c) E se não soubermos o desvio da população, tendo apenas o desvio amostral de 7,8?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Agora trabalhamos com a distribuição da média amostral, cujo desvio é o desvio populacional dividido pela raiz de quatro, ou seja, 5 mmHg. A faixa de 80 a 120 corresponde a quatro desvios da média para cada lado, então a média quase certamente cai nela, com probabilidade próxima de 99,99%.</p>
-<p>Para 95% das médias, usamos 1,96 desvios da média amostral, o que dá a média mais ou menos 9,8 mmHg, de cerca de 90,2 a 109,8 mmHg. Repare como essa faixa é bem mais estreita que a da população individual, porque médias variam menos que observações isoladas.</p>
-<p>Quando o desvio populacional é desconhecido e usamos o desvio amostral de 7,8, precisamos da distribuição t com três graus de liberdade, cujo valor crítico é cerca de 3,18, maior que 1,96. A faixa fica em torno de 100 mais ou menos 12,4 mmHg, mais larga, refletindo a incerteza extra de estimar o desvio a partir de poucos dados.</p>
+<p>Agora trabalhamos com a distribuição da média amostral, cujo desvio (erro padrão) é</p>
+<div class="math-display">$$
+\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{10}{\sqrt{4}} = 5 \text{ mmHg}
+$$</div>
+<p>A faixa de 80 a 120 corresponde a $z = (120-100)/5 = 4$ desvios para cada lado, então a média quase certamente cai nela (probabilidade próxima de 99,99%).</p>
+<p>Para 95% das médias, usamos 1,96 erros padrão:</p>
+<div class="math-display">$$
+100 \pm 1{,}96 \times 5 = 100 \pm 9{,}8 \;\Rightarrow\; [90{,}2;\; 109{,}8] \text{ mmHg}
+$$</div>
+<p>Essa faixa é bem mais estreita que a da população individual, porque médias variam menos que observações isoladas. Quando o desvio populacional é desconhecido e usamos $s = 7{,}8$, recorremos à distribuição t com três graus de liberdade ($t^* = 3{,}18$):</p>
+<div class="math-display">$$
+100 \pm 3{,}18 \times \frac{7{,}8}{\sqrt{4}} = 100 \pm 12{,}4 \text{ mmHg}
+$$</div>
+<p>A faixa fica mais larga, refletindo a incerteza extra de estimar o desvio a partir de poucos dados.</p>
 </details>
 <h2>Exercício 6 — Garantia de lavadoras</h2>
 <p>A vida útil de uma lavadora segue uma normal de média 1,5 anos e desvio 0,3 anos. Que percentual falhará antes de completar um ano de garantia?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Um ano está a 0,5 anos abaixo da média, o que corresponde a cerca de 1,67 desvios padrão. A área da normal abaixo desse ponto é aproximadamente 0,048, ou seja, cerca de 4,8% das lavadoras falharão dentro da garantia.</p>
-<p>Cálculos como esse são feitos rotineiramente pela indústria para dimensionar custos de garantia e definir prazos.</p>
+<p>Um ano está abaixo da média:</p>
+<div class="math-display">$$
+z = \frac{1 - 1{,}5}{0{,}3} \approx -1{,}67 \quad\Rightarrow\quad P(T < 1) = \Phi(-1{,}67) \approx 0{,}048
+$$</div>
+<p>Cerca de 4,8% das lavadoras falharão dentro da garantia. Cálculos como esse são feitos rotineiramente pela indústria para dimensionar custos de garantia e definir prazos.</p>
 </details>
 <h2>Exercício 7 — Temperatura corporal</h2>
 <p>A temperatura de homens saudáveis segue uma normal de média 36,8 graus e desvio 0,15 graus.</p>
 <p>a) Entre mil indivíduos, quantos se espera na faixa de 36,8 a 37,0? b) Em que intervalo simétrico em torno da média estão 50% dos indivíduos?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A faixa de 36,8 a 37,0 vai da média até cerca de 1,33 desvios acima dela. A área entre a média e esse ponto é aproximadamente 0,409, então de mil indivíduos espera-se em torno de 409 nessa faixa.</p>
-<p>Para conter 50% em torno da média, dividimos os 50% em 25% de cada lado, o que corresponde a cerca de 0,674 desvios para cada direção. Isso dá um intervalo de aproximadamente 36,7 a 36,9 graus.</p>
+<p>A faixa de 36,8 a 37,0 vai da média até $z = (37{,}0 - 36{,}8)/0{,}15 \approx 1{,}33$ acima dela:</p>
+<div class="math-display">$$
+P(36{,}8 < T < 37{,}0) = \Phi(1{,}33) - 0{,}5 \approx 0{,}409 \;\Rightarrow\; 1000 \times 0{,}409 \approx 409 \text{ indivíduos}
+$$</div>
+<p>Para conter 50% em torno da média, dividimos em 25% de cada lado ($z = 0{,}674$):</p>
+<div class="math-display">$$
+36{,}8 \pm 0{,}674 \times 0{,}15 \;\Rightarrow\; [36{,}70;\; 36{,}90] \text{ graus}
+$$</div>
 </details>
 
 </article>
@@ -408,9 +572,19 @@
 <p>Um produto pesa em média 10 g, com desvio de 2 g, e é embalado em caixas de cinquenta unidades. As caixas vazias pesam em média 500 g, com desvio de 25 g. Supondo independência e distribuições normais, qual a probabilidade de uma caixa cheia pesar mais de 1050 g?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>O peso da caixa cheia é a soma do peso da caixa vazia com os pesos dos cinquenta produtos. A média da soma é 500 + 50 × 10 = 1000 g.</p>
-<p>A variância da soma é a soma das variâncias, porque as variáveis são independentes. A variância da caixa vazia é 25² = 625, e a dos cinquenta produtos é 50 × 2² = 200, totalizando 825. O desvio padrão da soma é a raiz desse valor, cerca de 28,7 g.</p>
-<p>Pesar mais de 1050 g corresponde a um afastamento de cerca de 1,74 desvios acima da média, o que dá uma probabilidade de aproximadamente 0,041. Note que somamos as variâncias e não os desvios padrão; é por isso que o desvio da caixa cheia, 28,7 g, é bem menor que a soma ingênua dos desvios.</p>
+<p>O peso da caixa cheia é a soma do peso da caixa vazia com os pesos dos cinquenta produtos. A média da soma é</p>
+<div class="math-display">$$
+\mu = 500 + 50 \times 10 = 1000 \text{ g}
+$$</div>
+<p>A variância da soma é a soma das variâncias, porque as variáveis são independentes:</p>
+<div class="math-display">$$
+\sigma^2 = 25^2 + 50 \times 2^2 = 625 + 200 = 825 \quad\Rightarrow\quad \sigma = \sqrt{825} \approx 28{,}7 \text{ g}
+$$</div>
+<p>Pesar mais de 1050 g corresponde a</p>
+<div class="math-display">$$
+z = \frac{1050 - 1000}{28{,}7} \approx 1{,}74 \quad\Rightarrow\quad P(\text{peso} > 1050) = 1 - \Phi(1{,}74) \approx 0{,}041
+$$</div>
+<p>Note que somamos as variâncias, e não os desvios padrão; por isso o desvio da caixa cheia, 28,7 g, é bem menor que a soma ingênua dos desvios.</p>
 </details>
 
 </article>
@@ -436,8 +610,10 @@
 <p>A partir da amostra 5, 3, 4, 2, 3, 4, 2, 3, 4, 5, extraída de uma população normal, encontre o intervalo de confiança de 95% para a média e interprete-o.</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A média da amostra é 3,5 e o desvio padrão amostral é cerca de 1,08. Como o desvio populacional é desconhecido e a amostra é pequena, usamos a distribuição t com nove graus de liberdade, cujo valor crítico para 95% é 2,262.</p>
-<p>A margem de erro é o valor crítico vezes o erro padrão, ou seja, 2,262 × 1,08 dividido pela raiz de dez, cerca de 0,77. O intervalo fica de aproximadamente 2,7 a 4,3.</p>
+<p>A média da amostra é 3,5 e o desvio padrão amostral é cerca de 1,08. Como o desvio populacional é desconhecido e a amostra é pequena, usamos a distribuição t com nove graus de liberdade, cujo valor crítico para 95% é 2,262. O intervalo é a média mais ou menos o valor crítico vezes o erro padrão:</p>
+<div class="math-display">$$
+\bar{x} \pm t^{*}\,\frac{s}{\sqrt{n}} = 3{,}5 \pm 2{,}262 \times \frac{1{,}08}{\sqrt{10}} = 3{,}5 \pm 0{,}77 \;\Rightarrow\; [2{,}7;\; 4{,}3]
+$$</div>
 <p>A interpretação correta é que, se repetíssemos o experimento muitas vezes e construíssemos um intervalo a cada vez, cerca de 95% desses intervalos conteriam a verdadeira média da população. Não se deve dizer que há 95% de probabilidade de a média estar neste intervalo específico, pois a média é um número fixo; quem varia de amostra para amostra é o intervalo.</p>
 </details>
 <h2>Exercício 4 — Moeda viciada pela lógica binomial</h2>
@@ -445,7 +621,11 @@
 <details>
 <summary>Mostrar resposta</summary>
 <p>Sob a hipótese de moeda honesta, o número de caras em vinte lançamentos segue uma binomial com p igual a 0,5, simétrica em torno de dez. Para um teste bilateral com 5% de significância, somamos as probabilidades das caudas até atingir no máximo esse valor.</p>
-<p>As caudas formadas por cinco caras ou menos, de um lado, e quinze caras ou mais, do outro, somam cerca de 4,1%, abaixo dos 5%. Então esses são os resultados que levam a rejeitar a hipótese de moeda honesta. Se exigíssemos 99% de confiança, os valores cinco e quinze deixariam de ser suficientes, e só resultados ainda mais extremos levariam à rejeição. Esse mesmo problema reaparece, de outra forma, no teste do qui-quadrado.</p>
+<p>As caudas formadas por cinco caras ou menos, de um lado, e quinze caras ou mais, do outro, somam</p>
+<div class="math-display">$$
+P(X \le 5) + P(X \ge 15) \approx 0{,}021 + 0{,}021 = 0{,}041
+$$</div>
+<p>abaixo dos 5%. Então esses são os resultados que levam a rejeitar a hipótese de moeda honesta. Se exigíssemos 99% de confiança, os valores cinco e quinze deixariam de ser suficientes, e só resultados ainda mais extremos levariam à rejeição. Esse mesmo problema reaparece, de outra forma, no teste do qui-quadrado.</p>
 </details>
 
 </article>
@@ -473,8 +653,11 @@
 <p>a) As diferenças são consistentes com a hipótese de mesmo efeito? b) Se houver diferença, estime-a. c) A mortalidade, 8 de 61 contra 10 de 61, difere?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Com amostras grandes de uma variável contínua, sem pareamento e sem direção prévia, o teste indicado é o t não pareado e bilateral. O valor-p resultante é cerca de 0,010, então a diferença na pressão é significativa.</p>
-<p>A verdadeira diferença é estimada pelo intervalo de confiança da diferença entre as médias, aproximadamente de −11 a −1,5 mmHg. Note que, embora significativa, a diferença pode ser pequena demais para ser clinicamente relevante na extremidade inferior do intervalo.</p>
+<p>Com amostras grandes de uma variável contínua, sem pareamento e sem direção prévia, o teste indicado é o t não pareado e bilateral. A estatística combina a diferença das médias com o erro padrão da diferença:</p>
+<div class="math-display">$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}} = \frac{66{,}9 - 73{,}2}{\sqrt{\dfrac{12{,}2^2}{61} + \dfrac{14{,}4^2}{61}}} \approx -2{,}61
+$$</div>
+<p>Com cerca de 117 graus de liberdade, isso dá um valor-p de aproximadamente 0,010, então a diferença na pressão é significativa. A verdadeira diferença é estimada pelo intervalo de confiança da diferença entre as médias, aproximadamente de −11 a −1,5 mmHg. Embora significativa, a diferença pode ser pequena demais para ser clinicamente relevante na extremidade inferior do intervalo.</p>
 <p>A comparação de mortalidade envolve proporções, não médias, e por isso usa uma tabela de contingência com o teste do qui-quadrado. As proporções 13,1% e 16,4% não diferem significativamente, ou seja, não há evidência de que um anestésico cause mais fatalidades que o outro.</p>
 </details>
 <h2>Exercício 4 — Pressão de homens e mulheres</h2>
@@ -488,8 +671,11 @@
 <p>Compare as amostras A1, com dez valores de média 4,5 e desvio 3,03, e A2, com dez valores de média 7,5 e mesmo desvio.</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>A estatística t é a diferença das médias dividida pelo erro padrão da diferença. Com desvios iguais e dez valores em cada grupo, o erro padrão é o desvio vezes a raiz de 2/10, e o t resultante é cerca de −2,22, com dezoito graus de liberdade.</p>
-<p>O valor crítico da tabela t para 5% bilateral com dezoito graus de liberdade é cerca de 2,10. Como o módulo de t, 2,22, ultrapassa esse valor, a diferença é significativa. Chegar ao mesmo resultado pela tabela e pelo software ajuda a entender o que o programa calcula por baixo dos panos.</p>
+<p>A estatística t é a diferença das médias dividida pelo erro padrão da diferença. Com desvios iguais ($s = 3{,}03$) e dez valores em cada grupo:</p>
+<div class="math-display">$$
+t = \frac{4{,}5 - 7{,}5}{3{,}03\sqrt{\frac{1}{10} + \frac{1}{10}}} = \frac{-3}{3{,}03 \times 0{,}447} \approx -2{,}22 \qquad \text{gl} = 18
+$$</div>
+<p>O valor crítico da tabela t para 5% bilateral com dezoito graus de liberdade é 2,10. Como $|{-2{,}22}| > 2{,}10$, a diferença é significativa. Chegar ao mesmo resultado pela tabela e pelo software ajuda a entender o que o programa calcula por baixo dos panos.</p>
 </details>
 <h2>Exercício 6 — Hemoglobina antes e depois</h2>
 <p>Mede-se a hemoglobina de oito indivíduos antes e depois de uma droga, e quer-se avaliar sua eficácia. Que teste usar?</p>
@@ -530,8 +716,15 @@
 <p>A partir de uma pequena tabela de altura e peso, com pares como (152, 38) até (193, 68), calcule o coeficiente de correlação, o R², a reta de melhor ajuste e critique o uso da regressão.</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>O coeficiente de correlação de Pearson fica em torno de 0,77, uma associação positiva forte: pessoas mais altas tendem a pesar mais. O R² é o quadrado desse valor, cerca de 0,59, o que significa que aproximadamente 59% da variação do peso pode ser atribuída à variação da altura no modelo linear.</p>
-<p>A reta de melhor ajuste tem inclinação próxima de 0,89 e intercepto em torno de −91, ou seja, o peso previsto aumenta cerca de 0,89 kg para cada centímetro de altura. O intercepto negativo é apenas uma extrapolação matemática, sem sentido biológico.</p>
+<p>O coeficiente de correlação de Pearson fica em torno de 0,77, uma associação positiva forte: pessoas mais altas tendem a pesar mais. O R² é o quadrado desse valor:</p>
+<div class="math-display">$$
+R^2 = (0{,}767)^2 \approx 0{,}59
+$$</div>
+<p>ou seja, aproximadamente 59% da variação do peso pode ser atribuída à variação da altura no modelo linear. A reta de melhor ajuste, obtida por mínimos quadrados, é</p>
+<div class="math-display">$$
+\hat{y} = 0{,}89\,x - 91
+$$</div>
+<p>o peso previsto aumenta cerca de 0,89 kg para cada centímetro de altura. O intercepto negativo é apenas uma extrapolação matemática, sem sentido biológico.</p>
 <p>A crítica é que, embora seja plausível que mais altura cause mais peso, muitos outros fatores influenciam o peso, e os 41% de variação não explicada são grandes. A reta serve bem para descrever a tendência geral, mas não para prever o peso de um indivíduo com confiança.</p>
 </details>
 <h2>Exercício 2 — Experimento contra estudo de correlação</h2>
@@ -559,15 +752,21 @@
 <p>Tomando amostras de tamanhos 2, 3, 4, 6, 10 e 20 de uma população normal, como variam o desvio da média, o desvio padrão estimado, o erro padrão da média e o intervalo de confiança?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>À medida que a amostra cresce, o desvio padrão estimado se aproxima cada vez mais do valor verdadeiro da população, com flutuações menores. O erro padrão da média, que é o desvio padrão dividido pela raiz do tamanho da amostra, diminui de forma contínua, e a largura do intervalo de confiança o acompanha.</p>
-<p>O ponto central é que a precisão melhora com a raiz do tamanho da amostra, não de forma proporcional. Para reduzir o erro padrão pela metade, é preciso quadruplicar o número de observações. Isso explica por que os ganhos de precisão ficam cada vez mais caros à medida que a amostra aumenta.</p>
+<p>À medida que a amostra cresce, o desvio padrão estimado se aproxima do valor da população, com flutuações menores. O erro padrão da média segue</p>
+<div class="math-display">$$
+\text{EP} = \frac{\sigma}{\sqrt{n}}
+$$</div>
+<p>Com $\sigma = 1$, o erro padrão vale 0,71 para $n=2$, 0,50 para $n=4$, 0,32 para $n=10$ e 0,22 para $n=20$. A precisão melhora com a raiz do tamanho da amostra, não de forma proporcional: para reduzir o erro padrão pela metade é preciso quadruplicar $n$. Isso explica por que os ganhos de precisão ficam cada vez mais caros à medida que a amostra aumenta.</p>
 </details>
 <h2>Exercício 2 — Escolha do sexo da prole</h2>
 <p>Dois casais submetidos a um tratamento para escolher o sexo do bebê tiveram, cada um, dois meninos. O tratamento funciona?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Sob a hipótese nula de que o tratamento não funciona, vale a distribuição binomial com probabilidade 1/2 para cada nascimento. A probabilidade de quatro meninos seguidos é (1/2) elevado a 4, igual a 0,0625, pouco acima dos 5% usuais.</p>
-<p>Como esse menor valor possível de p já ultrapassa o nível de significância, o teste não tem como rejeitar a hipótese nula, mesmo no resultado mais extremo. Com apenas quatro crianças, a potência do teste é praticamente zero: o problema não é o tratamento, mas o tamanho ridículo da amostra. O teste é inconclusivo, e não uma demonstração de que o tratamento funcione.</p>
+<p>Sob a hipótese nula de que o tratamento não funciona, vale a distribuição binomial com probabilidade 1/2 para cada nascimento. A probabilidade de quatro meninos seguidos é</p>
+<div class="math-display">$$
+P = \left(\frac{1}{2}\right)^{4} = 0{,}0625
+$$</div>
+<p>pouco acima dos 5% usuais. Como esse menor valor possível de p já ultrapassa o nível de significância, o teste não tem como rejeitar a hipótese nula, mesmo no resultado mais extremo. Com apenas quatro crianças, a potência do teste é praticamente zero: o problema não é o tratamento, mas o tamanho ridículo da amostra. O teste é inconclusivo, e não uma demonstração de que o tratamento funcione.</p>
 </details>
 <h2>Exercício 3 — Potência da comparação de pressão</h2>
 <p>A diferença real de pressão entre homens e mulheres é cerca de 3 mmHg, com desvios da ordem de 17 a 21 mmHg. a) Qual a potência de um teste com 24 dados? b) Quantos dados seriam necessários para 80% de potência? c) E com toda a amostra disponível?</p>
@@ -593,14 +792,26 @@
 <p>Um dado lançado sessenta vezes apresentou as frequências 8, 11, 7, 12, 15 e 7. O dado é honesto? E se multiplicarmos todas as frequências por dez, mantendo a mesma tendência?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Para um dado honesto, a frequência esperada de cada face em sessenta lançamentos é dez. O qui-quadrado soma, para cada face, o quadrado da diferença entre observado e esperado dividido pelo esperado. O resultado é cerca de 5,2, com cinco graus de liberdade, o que corresponde a um valor-p de aproximadamente 0,39. Não há evidência para rejeitar a hipótese de dado honesto.</p>
-<p>Multiplicando todas as frequências por dez, as proporções não mudam, mas o número absoluto de lançamentos vira seiscentos, com esperado de cem por face. Agora o qui-quadrado vira 52, dez vezes maior, com valor-p da ordem de 10⁻¹⁰. A conclusão se inverte: o dado é considerado viciado. A lição é que o teste depende do número absoluto de observações, não apenas das proporções; com mais dados, desvios da mesma magnitude relativa tornam-se estatisticamente convincentes.</p>
+<p>Para um dado honesto, a frequência esperada de cada face em sessenta lançamentos é $E = 60/6 = 10$. O qui-quadrado soma, para cada face, o quadrado da diferença entre observado e esperado dividido pelo esperado:</p>
+<div class="math-display">$$
+\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i} = \frac{(8-10)^2 + (11-10)^2 + \cdots + (7-10)^2}{10} = 5{,}2
+$$</div>
+<p>Com cinco graus de liberdade, isso corresponde a um valor-p de aproximadamente 0,39. Não há evidência para rejeitar a hipótese de dado honesto.</p>
+<p>Multiplicando todas as frequências por dez, as proporções não mudam, mas o esperado vira cem por face e cada termo fica dez vezes maior:</p>
+<div class="math-display">$$
+\chi^2 = \frac{(80-100)^2 + \cdots + (70-100)^2}{100} = 52
+$$</div>
+<p>com valor-p da ordem de $10^{-10}$. A conclusão se inverte: o dado é considerado viciado. O teste depende do número absoluto de observações, não apenas das proporções; com mais dados, desvios da mesma magnitude relativa tornam-se estatisticamente convincentes.</p>
 </details>
 <h2>Exercício 2 — Mendel 9:3:3:1</h2>
 <p>Mendel observou os fenótipos 315, 108, 101 e 32, num total de 556 sementes. O modelo 9:3:3:1 explica os dados? E um modelo linear alternativo, com valores 264, 181, 97 e 14, explicaria igualmente bem?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Para o modelo de Mendel, os valores esperados a partir da proporção 9:3:3:1 sobre 556 são aproximadamente 312,75, 104,25, 104,25 e 34,75. Somando os quatro termos do qui-quadrado, chega-se a cerca de 0,47, com três graus de liberdade, o que dá um valor-p em torno de 0,93. Esse valor altíssimo indica um ajuste excelente: não há motivo para rejeitar a proporção mendeliana.</p>
+<p>Para o modelo de Mendel, os valores esperados a partir da proporção 9:3:3:1 sobre 556 são $556 \times \tfrac{9}{16} = 312{,}75$, depois 104,25, 104,25 e 34,75. Somando os quatro termos:</p>
+<div class="math-display">$$
+\chi^2 = \frac{(315 - 312{,}75)^2}{312{,}75} + \cdots + \frac{(32 - 34{,}75)^2}{34{,}75} \approx 0{,}47
+$$</div>
+<p>Com três graus de liberdade, o valor-p fica em torno de 0,93. Esse valor altíssimo indica um ajuste excelente: não há motivo para rejeitar a proporção mendeliana.</p>
 <p>Para o modelo linear, com os valores esperados 264, 181, 97 e 14, o qui-quadrado salta para cerca de 62,6, com valor-p essencialmente zero. O modelo linear é rejeitado com folga. Embora os dois conjuntos de valores esperados pareçam próximos num gráfico, o teste mostra que o modelo de Mendel descreve os dados de forma incomparavelmente melhor.</p>
 </details>
 
@@ -614,8 +825,11 @@
 <p>Comparam-se as mortes em dois grupos: 8 de 61 pacientes anestesiados com Halotano e 10 de 61 com Morfina. As proporções diferem significativamente?</p>
 <details>
 <summary>Mostrar resposta</summary>
-<p>Os dados formam uma tabela dois por dois, com mortos e sobreviventes em cada anestésico. A análise apropriada é o teste do qui-quadrado de independência, ou o teste exato de Fisher quando alguma contagem é pequena.</p>
-<p>As proporções de 13,1% e 16,4% são próximas e, com apenas sessenta e um pacientes por grupo, a diferença observada está bem dentro do que o acaso produziria. Não se rejeita a hipótese nula, ou seja, não há evidência de que os dois anestésicos resultem em taxas de fatalidade diferentes.</p>
+<p>Os dados formam uma tabela dois por dois, com mortos e sobreviventes em cada anestésico. As proporções são</p>
+<div class="math-display">$$
+\frac{8}{61} \approx 13{,}1\% \qquad \frac{10}{61} \approx 16{,}4\%
+$$</div>
+<p>A análise apropriada é o teste do qui-quadrado de independência, ou o teste exato de Fisher quando alguma contagem é pequena. Comparando as contagens observadas com as esperadas sob independência, obtém-se um qui-quadrado em torno de 0,28, com um grau de liberdade, e valor-p de cerca de 0,60. Com apenas sessenta e um pacientes por grupo, a diferença observada está bem dentro do que o acaso produziria. Não se rejeita a hipótese nula: não há evidência de que os dois anestésicos resultem em taxas de fatalidade diferentes.</p>
 </details>
 <h2>Exercício 2 — Medicamento e efeito colateral</h2>
 <p>Como testar se há associação entre usar um medicamento e apresentar um efeito colateral, a partir de uma tabela com presença ou ausência do efeito nos grupos que usaram e não usaram?</p>

@@ -9,9 +9,17 @@ Pretende-se rastrear uma população para uma doença cuja incidência é de 0,0
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A pergunta inverte a direção do teste: conhecemos a probabilidade de positivo dado doente, mas queremos a probabilidade de doente dado positivo. O teorema de Bayes faz essa inversão.
+A pergunta inverte a direção do teste: conhecemos a probabilidade de positivo dado doente, mas queremos a probabilidade de doente dado positivo. O teorema de Bayes faz essa inversão:
 
-No numerador entra a fração de pessoas que são doentes e testam positivo, igual a 0,0001 × 0,99. No denominador entra a probabilidade total de testar positivo, somando os verdadeiros positivos com os falsos positivos: 0,0001 × 0,99 + 0,9999 × 0,05. O resultado é aproximadamente 0,002, ou seja, cerca de 0,2%.
+$$
+P(D \mid +) = \frac{P(+ \mid D)\,P(D)}{P(+ \mid D)\,P(D) + P(+ \mid S)\,P(S)}
+$$
+
+Substituindo a prevalência $P(D) = 0{,}0001$, a sensibilidade $P(+\mid D) = 0{,}99$ e o falso positivo $P(+\mid S) = 1 - 0{,}95 = 0{,}05$:
+
+$$
+P(D \mid +) = \frac{0{,}0001 \times 0{,}99}{0{,}0001 \times 0{,}99 + 0{,}9999 \times 0{,}05} \approx 0{,}00198 \approx 0{,}2\%
+$$
 
 Apesar de o teste parecer muito bom, a doença é tão rara que a grande maioria dos positivos vem de pessoas saudáveis. Ainda assim, o teste foi útil: a probabilidade saltou de 0,01% para 0,2%, um fator de vinte. Esse é o motivo de rastreios em massa de doenças raras gerarem tantos falsos positivos.
 
@@ -24,11 +32,13 @@ Um meteorologista acerta 80% dos dias em que chove e 90% dos dias de bom tempo. 
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-O problema é idêntico ao do teste diagnóstico, tratando a chuva como a "doença" e a previsão como o resultado do teste. A sensibilidade é 0,8, a especificidade é 0,9 e a prevalência é 0,1.
+O problema é idêntico ao do teste diagnóstico, tratando a chuva como a "doença" e a previsão como o resultado do teste. A sensibilidade é 0,8, a especificidade é 0,9 e a prevalência é 0,1. Por Bayes:
 
-Aplicando Bayes, o numerador é 0,1 × 0,8 e o denominador soma verdadeiros positivos e falsos positivos, 0,1 × 0,8 + 0,9 × 0,1. O resultado é 8/17, aproximadamente 47%.
+$$
+P(\text{chuva} \mid +) = \frac{0{,}1 \times 0{,}8}{0{,}1 \times 0{,}8 + 0{,}9 \times 0{,}1} = \frac{0{,}08}{0{,}17} = \frac{8}{17} \approx 0{,}471
+$$
 
-Uma forma intuitiva de ver isso é montar uma tabela com mil dias. Cem chovem e novecentos não. Dos cem dias de chuva, oitenta são previstos corretamente. Dos novecentos de bom tempo, noventa recebem previsão errada de chuva. No total há 170 previsões de chuva, das quais oitenta acertam, e 80/170 dá os mesmos 47%.
+Uma forma intuitiva de chegar ao mesmo resultado é montar uma tabela com mil dias. Cem chovem e novecentos não. Dos cem dias de chuva, $100 \times 0{,}8 = 80$ são previstos corretamente. Dos novecentos de bom tempo, $900 \times 0{,}1 = 90$ recebem previsão errada de chuva. No total há $80 + 90 = 170$ previsões de chuva, das quais 80 acertam: $80/170 \approx 47\%$.
 
 </details>
 
@@ -41,7 +51,21 @@ Sabe-se que 10% dos idosos sofrerão um AVC nos próximos cinco anos. Entre os q
 
 Identificando o AVC como a "doença" e a pressão elevada como o "teste", a prevalência é 10%, a sensibilidade é 40% e a especificidade é 80%, já que 20% dos que não tiveram AVC tinham um indicador falso.
 
-Montando uma tabela com cem idosos, dez terão AVC e noventa não. Dos dez com AVC, quatro têm pressão elevada. Dos noventa sem AVC, dezoito têm pressão elevada. Entre todos os que têm pressão alta, portanto, há 22 pessoas, das quais quatro sofrerão AVC. A probabilidade procurada é 4/22, aproximadamente 18%.
+Montando uma tabela com cem idosos:
+
+$$
+\text{com AVC e PA alta} = 100 \times 0{,}10 \times 0{,}40 = 4
+$$
+
+$$
+\text{sem AVC e PA alta} = 100 \times 0{,}90 \times 0{,}20 = 18
+$$
+
+Entre todos os que têm pressão alta há $4 + 18 = 22$ pessoas, das quais 4 sofrerão AVC:
+
+$$
+P(\text{AVC} \mid \text{PA alta}) = \frac{4}{22} \approx 0{,}182
+$$
 
 A mesma lógica serve para estimar o efeito de qualquer fator de risco, como fumo e câncer, e pode ser estendida para combinar mais de um fator.
 

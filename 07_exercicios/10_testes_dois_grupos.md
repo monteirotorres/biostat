@@ -37,9 +37,13 @@ a) As diferenças são consistentes com a hipótese de mesmo efeito? b) Se houve
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Com amostras grandes de uma variável contínua, sem pareamento e sem direção prévia, o teste indicado é o t não pareado e bilateral. O valor-p resultante é cerca de 0,010, então a diferença na pressão é significativa.
+Com amostras grandes de uma variável contínua, sem pareamento e sem direção prévia, o teste indicado é o t não pareado e bilateral. A estatística combina a diferença das médias com o erro padrão da diferença:
 
-A verdadeira diferença é estimada pelo intervalo de confiança da diferença entre as médias, aproximadamente de −11 a −1,5 mmHg. Note que, embora significativa, a diferença pode ser pequena demais para ser clinicamente relevante na extremidade inferior do intervalo.
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}} = \frac{66{,}9 - 73{,}2}{\sqrt{\dfrac{12{,}2^2}{61} + \dfrac{14{,}4^2}{61}}} \approx -2{,}61
+$$
+
+Com cerca de 117 graus de liberdade, isso dá um valor-p de aproximadamente 0,010, então a diferença na pressão é significativa. A verdadeira diferença é estimada pelo intervalo de confiança da diferença entre as médias, aproximadamente de −11 a −1,5 mmHg. Embora significativa, a diferença pode ser pequena demais para ser clinicamente relevante na extremidade inferior do intervalo.
 
 A comparação de mortalidade envolve proporções, não médias, e por isso usa uma tabela de contingência com o teste do qui-quadrado. As proporções 13,1% e 16,4% não diferem significativamente, ou seja, não há evidência de que um anestésico cause mais fatalidades que o outro.
 
@@ -65,9 +69,13 @@ Compare as amostras A1, com dez valores de média 4,5 e desvio 3,03, e A2, com d
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A estatística t é a diferença das médias dividida pelo erro padrão da diferença. Com desvios iguais e dez valores em cada grupo, o erro padrão é o desvio vezes a raiz de 2/10, e o t resultante é cerca de −2,22, com dezoito graus de liberdade.
+A estatística t é a diferença das médias dividida pelo erro padrão da diferença. Com desvios iguais ($s = 3{,}03$) e dez valores em cada grupo:
 
-O valor crítico da tabela t para 5% bilateral com dezoito graus de liberdade é cerca de 2,10. Como o módulo de t, 2,22, ultrapassa esse valor, a diferença é significativa. Chegar ao mesmo resultado pela tabela e pelo software ajuda a entender o que o programa calcula por baixo dos panos.
+$$
+t = \frac{4{,}5 - 7{,}5}{3{,}03\sqrt{\frac{1}{10} + \frac{1}{10}}} = \frac{-3}{3{,}03 \times 0{,}447} \approx -2{,}22 \qquad \text{gl} = 18
+$$
+
+O valor crítico da tabela t para 5% bilateral com dezoito graus de liberdade é 2,10. Como $|{-2{,}22}| > 2{,}10$, a diferença é significativa. Chegar ao mesmo resultado pela tabela e pelo software ajuda a entender o que o programa calcula por baixo dos panos.
 
 </details>
 

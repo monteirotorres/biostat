@@ -9,9 +9,13 @@ Tomando amostras de tamanhos 2, 3, 4, 6, 10 e 20 de uma população normal, como
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-À medida que a amostra cresce, o desvio padrão estimado se aproxima cada vez mais do valor verdadeiro da população, com flutuações menores. O erro padrão da média, que é o desvio padrão dividido pela raiz do tamanho da amostra, diminui de forma contínua, e a largura do intervalo de confiança o acompanha.
+À medida que a amostra cresce, o desvio padrão estimado se aproxima do valor da população, com flutuações menores. O erro padrão da média segue
 
-O ponto central é que a precisão melhora com a raiz do tamanho da amostra, não de forma proporcional. Para reduzir o erro padrão pela metade, é preciso quadruplicar o número de observações. Isso explica por que os ganhos de precisão ficam cada vez mais caros à medida que a amostra aumenta.
+$$
+\text{EP} = \frac{\sigma}{\sqrt{n}}
+$$
+
+Com $\sigma = 1$, o erro padrão vale 0,71 para $n=2$, 0,50 para $n=4$, 0,32 para $n=10$ e 0,22 para $n=20$. A precisão melhora com a raiz do tamanho da amostra, não de forma proporcional: para reduzir o erro padrão pela metade é preciso quadruplicar $n$. Isso explica por que os ganhos de precisão ficam cada vez mais caros à medida que a amostra aumenta.
 
 </details>
 
@@ -22,9 +26,13 @@ Dois casais submetidos a um tratamento para escolher o sexo do bebê tiveram, ca
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Sob a hipótese nula de que o tratamento não funciona, vale a distribuição binomial com probabilidade 1/2 para cada nascimento. A probabilidade de quatro meninos seguidos é (1/2) elevado a 4, igual a 0,0625, pouco acima dos 5% usuais.
+Sob a hipótese nula de que o tratamento não funciona, vale a distribuição binomial com probabilidade 1/2 para cada nascimento. A probabilidade de quatro meninos seguidos é
 
-Como esse menor valor possível de p já ultrapassa o nível de significância, o teste não tem como rejeitar a hipótese nula, mesmo no resultado mais extremo. Com apenas quatro crianças, a potência do teste é praticamente zero: o problema não é o tratamento, mas o tamanho ridículo da amostra. O teste é inconclusivo, e não uma demonstração de que o tratamento funcione.
+$$
+P = \left(\frac{1}{2}\right)^{4} = 0{,}0625
+$$
+
+pouco acima dos 5% usuais. Como esse menor valor possível de p já ultrapassa o nível de significância, o teste não tem como rejeitar a hipótese nula, mesmo no resultado mais extremo. Com apenas quatro crianças, a potência do teste é praticamente zero: o problema não é o tratamento, mas o tamanho ridículo da amostra. O teste é inconclusivo, e não uma demonstração de que o tratamento funcione.
 
 </details>
 

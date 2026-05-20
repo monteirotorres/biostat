@@ -9,10 +9,24 @@ Um produto pesa em média 10 g, com desvio de 2 g, e é embalado em caixas de ci
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-O peso da caixa cheia é a soma do peso da caixa vazia com os pesos dos cinquenta produtos. A média da soma é 500 + 50 × 10 = 1000 g.
+O peso da caixa cheia é a soma do peso da caixa vazia com os pesos dos cinquenta produtos. A média da soma é
 
-A variância da soma é a soma das variâncias, porque as variáveis são independentes. A variância da caixa vazia é 25² = 625, e a dos cinquenta produtos é 50 × 2² = 200, totalizando 825. O desvio padrão da soma é a raiz desse valor, cerca de 28,7 g.
+$$
+\mu = 500 + 50 \times 10 = 1000 \text{ g}
+$$
 
-Pesar mais de 1050 g corresponde a um afastamento de cerca de 1,74 desvios acima da média, o que dá uma probabilidade de aproximadamente 0,041. Note que somamos as variâncias e não os desvios padrão; é por isso que o desvio da caixa cheia, 28,7 g, é bem menor que a soma ingênua dos desvios.
+A variância da soma é a soma das variâncias, porque as variáveis são independentes:
+
+$$
+\sigma^2 = 25^2 + 50 \times 2^2 = 625 + 200 = 825 \quad\Rightarrow\quad \sigma = \sqrt{825} \approx 28{,}7 \text{ g}
+$$
+
+Pesar mais de 1050 g corresponde a
+
+$$
+z = \frac{1050 - 1000}{28{,}7} \approx 1{,}74 \quad\Rightarrow\quad P(\text{peso} > 1050) = 1 - \Phi(1{,}74) \approx 0{,}041
+$$
+
+Note que somamos as variâncias, e não os desvios padrão; por isso o desvio da caixa cheia, 28,7 g, é bem menor que a soma ingênua dos desvios.
 
 </details>

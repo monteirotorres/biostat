@@ -9,9 +9,17 @@ Testando dois grupos controle entre si com nível de confiança de 95%, há 5% d
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A maneira mais simples de responder a perguntas do tipo "pelo menos um" é calcular a probabilidade do evento contrário, que é nenhum falso positivo, e subtrair de 1. Se cada teste tem 95% de chance de não dar falso positivo, então a probabilidade de nenhum em k repetições é 0,95 elevado a k.
+A maneira mais simples de responder a perguntas do tipo "pelo menos um" é calcular a probabilidade do evento contrário, nenhum falso positivo, e subtrair de 1:
 
-Para três repetições, a chance de ao menos um falso positivo é 1 − 0,95³, cerca de 14%. Para dez repetições sobe para 40%, e para cinquenta passa de 92%. Esse crescimento explica dois problemas reais: comparar três ou mais grupos par a par com testes t infla o nível de significância efetivo, o que motivou a criação da ANOVA, e testar centenas de substâncias produz inevitavelmente muitos falsos positivos, que precisam de análises posteriores para serem filtrados.
+$$
+P(\text{ao menos um FP}) = 1 - (0{,}95)^{k}
+$$
+
+$$
+k=3:\; 1 - 0{,}95^{3} = 0{,}143 \qquad k=10:\; 0{,}401 \qquad k=50:\; 0{,}923
+$$
+
+Esse crescimento explica dois problemas reais: comparar três ou mais grupos par a par com testes t infla o nível de significância efetivo, o que motivou a criação da ANOVA, e testar centenas de substâncias produz inevitavelmente muitos falsos positivos, que precisam de análises posteriores para serem filtrados.
 
 </details>
 
@@ -22,9 +30,13 @@ Você joga pôquer com três amigos de habilidade parecida, aposta de valor fixo
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Com quatro jogadores de igual habilidade, a probabilidade de vencer cada partida é 1/4. Em dez partidas, o número de vitórias segue uma distribuição binomial com n igual a 10 e p igual a 1/4.
+Com quatro jogadores de igual habilidade, a probabilidade de vencer cada partida é $p = 1/4$. Em dez partidas, o número de vitórias segue uma binomial com $n = 10$. Não perder dinheiro exige vencer ao menos três das dez partidas, usando a fórmula binomial $P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}$:
 
-Não perder dinheiro significa terminar com saldo maior ou igual a zero, o que exige vencer ao menos três das dez partidas. A probabilidade é 1 menos a probabilidade de vencer zero, uma ou duas vezes, o que dá aproximadamente 0,474. Em outras palavras, há pouco menos de 50% de chance de sair no zero a zero ou no lucro ao fim de dez rodadas.
+$$
+P(X \ge 3) = 1 - \big[P(0) + P(1) + P(2)\big] = 1 - (0{,}0563 + 0{,}1877 + 0{,}2816) \approx 0{,}474
+$$
+
+Há pouco menos de 50% de chance de sair no zero a zero ou no lucro ao fim de dez rodadas.
 
 </details>
 
@@ -37,9 +49,25 @@ a) Qual o lucro previsto por lote? b) Qual a probabilidade de um lote não ter n
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Para o lucro previsto, espera-se que 94% das cinquenta mudas sobrevivam, ou seja, cerca de 47 mudas vendidas a R$ 3,50, gerando uma receita em torno de R$ 164. Descontando o custo de produção das cinquenta mudas, 50 × 1,20 = R$ 60, o lucro previsto fica em torno de R$ 104 por lote.
+Para o lucro previsto, espera-se que 94% das cinquenta mudas sobrevivam:
 
-A probabilidade de nenhuma contaminação é a de todas as cinquenta sobreviverem, 0,94 elevado a 50, aproximadamente 0,045. A probabilidade de menos de dez contaminadas é a soma das probabilidades de zero a nove contaminações numa binomial com n igual a 50 e p igual a 0,06, que dá aproximadamente 0,999. Como o número esperado de contaminadas é apenas três, ter dez ou mais é bastante raro.
+$$
+\text{lucro} = (50 \times 0{,}94 \times 3{,}50) - (50 \times 1{,}20) = 164{,}5 - 60 = 104{,}5 \text{ reais}
+$$
+
+A probabilidade de nenhuma contaminação é a de todas as cinquenta sobreviverem:
+
+$$
+P(0) = (0{,}94)^{50} \approx 0{,}045
+$$
+
+A probabilidade de menos de dez contaminadas é a soma de zero a nove numa binomial com $n=50$ e $p=0{,}06$:
+
+$$
+P(X \le 9) = \sum_{k=0}^{9}\binom{50}{k}(0{,}06)^k(0{,}94)^{50-k} \approx 0{,}999
+$$
+
+Como o número esperado de contaminadas é $np = 50 \times 0{,}06 = 3$, ter dez ou mais é bastante raro.
 
 </details>
 
@@ -50,9 +78,19 @@ Numa prova com cinco alternativas por questão e apenas uma correta, qual a prob
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Cada acerto no chute tem probabilidade 1/5. Com dez questões, o número de acertos segue uma binomial com p igual a 0,2, e a aprovação exige cinco ou mais acertos. A probabilidade é cerca de 0,033, ou seja, pouco mais de 3%.
+Cada acerto no chute tem probabilidade 1/5. Com dez questões ($p = 0{,}2$), a aprovação exige cinco ou mais acertos:
 
-Com vinte questões, a nota mínima sobe para dez acertos numa binomial com p igual a 0,25, e a probabilidade despenca para cerca de 0,0026. Provas mais longas reduzem drasticamente a chance de aprovação pela sorte, porque a distribuição se concentra cada vez mais em torno do número esperado de acertos, que é baixo. Para dez questões, aliás, a nota mais provável obtida no chute é 2.
+$$
+P(X \ge 5) = 1 - P(X \le 4) \approx 0{,}033
+$$
+
+Com vinte questões a nota mínima sobe para dez acertos ($p = 0{,}25$):
+
+$$
+P(X \ge 10) = 1 - P(X \le 9) \approx 0{,}0026
+$$
+
+Provas mais longas reduzem drasticamente a chance de aprovação pela sorte, porque a distribuição se concentra em torno do número esperado de acertos, que é baixo ($np = 2$ no primeiro caso). A nota mais provável no chute, para dez questões, é 2.
 
 </details>
 
@@ -63,9 +101,13 @@ Uma máquina produz peças com 0,5% de defeito. Retira-se uma amostra de dez pe�
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A pergunta é a probabilidade de encontrar duas ou mais peças defeituosas numa amostra de dez, quando a taxa real é 0,5%. Isso é 1 menos a probabilidade de zero defeituosas menos a probabilidade de exatamente uma, numa binomial com n igual a 10 e p igual a 0,005.
+A pergunta é a probabilidade de duas ou mais peças defeituosas numa amostra de dez, com taxa real $p = 0{,}005$:
 
-O resultado é aproximadamente 0,0011, ou seja, pouco mais de um décimo de por cento. Esse valor é o risco de um alarme falso da política de manutenção: parar a máquina à toa por causa da variação amostral, mesmo quando a produção está dentro da especificação.
+$$
+P(X \ge 2) = 1 - P(0) - P(1) = 1 - (0{,}995)^{10} - 10(0{,}005)(0{,}995)^{9} \approx 0{,}0011
+$$
+
+Esse valor, pouco mais de um décimo de por cento, é o risco de um alarme falso da política de manutenção: parar a máquina à toa por causa da variação amostral, mesmo dentro da especificação.
 
 </details>
 
@@ -76,8 +118,12 @@ No cruzamento de plantas heterozigotas, espera-se a proporção 3:1 entre os fen
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-A proporção esperada de amarelas é 3/4, então o número de sementes amarelas em cem segue uma binomial com p igual a 0,75. O número esperado é setenta e cinco, e queremos a probabilidade de obter oitenta ou mais.
+A proporção esperada de amarelas é 3/4, então o número de amarelas em cem segue uma binomial com $p = 0{,}75$. O número esperado é $np = 75$, com desvio $\sqrt{np(1-p)} = \sqrt{100 \cdot 0{,}75 \cdot 0{,}25} \approx 4{,}33$. Queremos oitenta ou mais:
 
-Somando as probabilidades de oitenta até cem, chega-se a aproximadamente 0,149, ou cerca de 15%. Embora oitenta esteja acima do valor esperado, ainda é um desvio plausível pela variação amostral, e por isso a probabilidade não é desprezível.
+$$
+P(X \ge 80) = \sum_{k=80}^{100}\binom{100}{k}(0{,}75)^k(0{,}25)^{100-k} \approx 0{,}149
+$$
+
+Oitenta está a pouco mais de um desvio acima do esperado, um afastamento plausível, e por isso a probabilidade não é desprezível.
 
 </details>

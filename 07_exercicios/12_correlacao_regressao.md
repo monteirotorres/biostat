@@ -9,9 +9,19 @@ A partir de uma pequena tabela de altura e peso, com pares como (152, 38) até (
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-O coeficiente de correlação de Pearson fica em torno de 0,77, uma associação positiva forte: pessoas mais altas tendem a pesar mais. O R² é o quadrado desse valor, cerca de 0,59, o que significa que aproximadamente 59% da variação do peso pode ser atribuída à variação da altura no modelo linear.
+O coeficiente de correlação de Pearson fica em torno de 0,77, uma associação positiva forte: pessoas mais altas tendem a pesar mais. O R² é o quadrado desse valor:
 
-A reta de melhor ajuste tem inclinação próxima de 0,89 e intercepto em torno de −91, ou seja, o peso previsto aumenta cerca de 0,89 kg para cada centímetro de altura. O intercepto negativo é apenas uma extrapolação matemática, sem sentido biológico.
+$$
+R^2 = (0{,}767)^2 \approx 0{,}59
+$$
+
+ou seja, aproximadamente 59% da variação do peso pode ser atribuída à variação da altura no modelo linear. A reta de melhor ajuste, obtida por mínimos quadrados, é
+
+$$
+\hat{y} = 0{,}89\,x - 91
+$$
+
+o peso previsto aumenta cerca de 0,89 kg para cada centímetro de altura. O intercepto negativo é apenas uma extrapolação matemática, sem sentido biológico.
 
 A crítica é que, embora seja plausível que mais altura cause mais peso, muitos outros fatores influenciam o peso, e os 41% de variação não explicada são grandes. A reta serve bem para descrever a tendência geral, mas não para prever o peso de um indivíduo com confiança.
 

@@ -9,11 +9,17 @@ O que é mais provável: obter ao menos um seis em quatro lançamentos de um dad
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-As duas probabilidades não são iguais, e o raciocínio de Méré confunde número esperado com probabilidade.
+As duas probabilidades não são iguais, e o raciocínio de Méré confunde número esperado com probabilidade. Em ambos os casos calculamos a probabilidade do evento contrário e subtraímos de 1.
 
-No primeiro caso, a probabilidade de não sair nenhum seis em quatro lançamentos é (5/6) elevado a 4. A probabilidade de sair ao menos um seis é o complemento, aproximadamente 0,518. No segundo caso, a probabilidade de não sair nenhum par de seis em vinte e quatro lançamentos é (35/36) elevado a 24, e o complemento é aproximadamente 0,491.
+$$
+P(\text{ao menos um 6 em 4}) = 1 - \left(\frac{5}{6}\right)^{4} = 1 - 0{,}482 = 0{,}518
+$$
 
-Ou seja, o primeiro evento é um pouco mais provável que não acontecer, enquanto o segundo é um pouco menos. A coincidência do valor 2/3 que Méré calculou corresponde ao número médio de ocorrências, uma quantidade diferente da probabilidade de pelo menos uma ocorrência. Esse problema histórico foi um dos que motivaram o desenvolvimento formal da teoria da probabilidade.
+$$
+P(\text{ao menos um duplo-6 em 24}) = 1 - \left(\frac{35}{36}\right)^{24} = 1 - 0{,}509 = 0{,}491
+$$
+
+O primeiro evento é um pouco mais provável que não acontecer; o segundo, um pouco menos. A coincidência do valor 2/3 que Méré calculou corresponde ao número médio de ocorrências ($4 \times \tfrac16 = 24 \times \tfrac{1}{36} = \tfrac23$), uma quantidade diferente da probabilidade de pelo menos uma ocorrência. Esse problema histórico foi um dos que motivaram o desenvolvimento formal da teoria da probabilidade.
 
 </details>
 
@@ -24,9 +30,25 @@ Qual a probabilidade de ganhar na Megasena com o jogo mínimo de seis números m
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-O número total de resultados possíveis é a combinação de sessenta números tomados seis a seis, que vale 50.063.860. Como só um desses resultados é o vencedor, a probabilidade é 1 dividido por esse total, aproximadamente 2×10⁻⁸, ou seja, cerca de 0,000002%.
+O número total de resultados possíveis é a combinação de sessenta números tomados seis a seis:
 
-Há um segundo modo de chegar ao mesmo resultado, encadeando eventos. Você tem seis chances de acertar uma das seis posições numa cartela de sessenta, depois cinco chances entre os cinquenta e nove números restantes, e assim por diante até a última. Multiplicando essas frações chega-se exatamente ao mesmo valor, o que mostra que a contagem por combinação e o raciocínio sequencial são equivalentes.
+$$
+\binom{60}{6} = \frac{60!}{6!\,(60-6)!} = 50\,063\,860
+$$
+
+Como só um desses resultados é o vencedor,
+
+$$
+P = \frac{1}{50\,063\,860} \approx 2{,}0 \times 10^{-8} \approx 0{,}000002\%
+$$
+
+Há um segundo modo de chegar ao mesmo resultado, encadeando eventos:
+
+$$
+P = \frac{6}{60}\cdot\frac{5}{59}\cdot\frac{4}{58}\cdot\frac{3}{57}\cdot\frac{2}{56}\cdot\frac{1}{55}
+$$
+
+que dá exatamente o mesmo valor, mostrando que a contagem por combinação e o raciocínio sequencial são equivalentes.
 
 </details>
 
@@ -41,8 +63,18 @@ b) Como a independência completa é irreal (mesmos reagentes, mesmo protocolo, 
 <details markdown="1">
 <summary>Mostrar resposta</summary>
 
-Se os dois experimentos fossem independentes, a probabilidade de ambos darem falso positivo seria o produto 0,05 × 0,05 = 0,0025, ou seja, 0,25%. Exigir uma confirmação reduz bastante a chance de publicar algo espúrio.
+Se os dois experimentos fossem independentes, a probabilidade de ambos darem falso positivo seria o produto das probabilidades:
 
-Na prática, porém, os experimentos compartilham reagentes, equipamentos e métodos, então um erro tende a se repetir. Com a probabilidade condicional de 30% para o segundo falso positivo, a chance de publicar um falso positivo passa a ser 0,05 × 0,30 = 0,015, ou 1,5%. A dependência entre as repetições enfraquece a proteção que a confirmação deveria oferecer, e por isso replicações verdadeiramente independentes, em outro laboratório, são tão valorizadas.
+$$
+P(\text{FP e FP}) = 0{,}05 \times 0{,}05 = 0{,}0025 = 0{,}25\%
+$$
+
+Na prática, porém, os experimentos compartilham reagentes, equipamentos e métodos, então um erro tende a se repetir. Usando a regra da multiplicação com a probabilidade condicional de 30% para o segundo falso positivo,
+
+$$
+P(\text{FP e FP}) = P(\text{FP}) \cdot P(\text{FP} \mid \text{FP}) = 0{,}05 \times 0{,}30 = 0{,}015 = 1{,}5\%
+$$
+
+A dependência entre as repetições enfraquece a proteção que a confirmação deveria oferecer, e por isso replicações verdadeiramente independentes, em outro laboratório, são tão valorizadas.
 
 </details>
