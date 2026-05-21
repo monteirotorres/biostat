@@ -36,6 +36,7 @@ WIDGETS = {
     "04_estatistica_inferencial/07_erros_tipo_i_ii.md": ("err", "wErros"),
     "04_estatistica_inferencial/12_anova.md": ("anova", "wANOVA"),
     "04_estatistica_inferencial/14_correlacao.md": ("corr", "wCorrelacao"),
+    "04_estatistica_inferencial/17_design_experimental.md": ("pot", "wPotenciaCalc"),
 }
 
 # nome de arquivo da página por seção
@@ -303,6 +304,36 @@ def _widget_body(wid, fn):
   <div class="stat-grid" style="margin-top:0.6rem;">
     {_card(wid,'F','F','entre / dentro')}{_card(wid,'p','valor-p','distribuição F')}{_card(wid,'sig','Resultado','α = 0,05')}
   </div>
+</div>"""
+    if fn == "wPotenciaCalc":
+        return f"""
+<div class="widget">
+  <div class="widget-title">Calculadora interativa — Potência de testes</div>
+  <p style="font-size:0.85rem;color:#666;margin-bottom:0.6rem;">Escolha o teste e ajuste o tamanho de efeito, o tamanho da amostra e o α. A curva mostra o poder em função de n; o ponto vermelho é a configuração atual.</p>
+  <div class="btn-row">
+    <button class="btn outline active" data-pot="{wid}" data-teste="t">Teste t (2 grupos)</button>
+    <button class="btn outline" data-pot="{wid}" data-teste="anova">ANOVA</button>
+    <button class="btn outline" data-pot="{wid}" data-teste="chi2">Qui-quadrado</button>
+    <button class="btn outline" data-pot="{wid}" data-teste="prop">Proporções</button>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label" id="{wid}-ef-lbl">tamanho de efeito</span>
+      <input type="range" min="0.05" max="1.5" step="0.05" value="0.5" id="{wid}-ef"><span class="ctrl-val" id="{wid}-ef-v">0.50</span></div>
+    <div class="ctrl-row"><span class="ctrl-label" id="{wid}-n-lbl">n por grupo</span>
+      <input type="range" min="2" max="200" step="1" value="30" id="{wid}-n"><span class="ctrl-val" id="{wid}-n-v">30</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Nível de significância (α)</span>
+      <input type="range" min="0.01" max="0.20" step="0.01" value="0.05" id="{wid}-alpha"><span class="ctrl-val" id="{wid}-alpha-v">0.05</span></div>
+    <div class="ctrl-row" id="{wid}-k-row"><span class="ctrl-label">Número de grupos (k)</span>
+      <input type="range" min="3" max="8" step="1" value="3" id="{wid}-k"><span class="ctrl-val" id="{wid}-k-v">3</span></div>
+    <div class="ctrl-row" id="{wid}-df-row"><span class="ctrl-label">Graus de liberdade</span>
+      <input type="range" min="1" max="10" step="1" value="1" id="{wid}-df"><span class="ctrl-val" id="{wid}-df-v">1</span></div>
+  </div>
+  <canvas id="{wid}"></canvas>
+  <div class="stat-grid" style="margin-top:0.6rem;">
+    {_card(wid,'pw','Poder (1 − β)','na configuração atual','#1a7a4a')}
+    {_card(wid,'n80','n para 80%','tamanho de amostra necessário')}
+  </div>
+  <p style="font-size:0.78rem;color:#888;margin-top:0.4rem;">Efeitos (Cohen): pequeno/médio/grande ≈ d 0,2/0,5/0,8 · f 0,1/0,25/0,4 · w 0,1/0,3/0,5. Valores aproximados (ANOVA via χ² não-central).</p>
 </div>"""
     if fn == "wDistAmostral":
         return f"""

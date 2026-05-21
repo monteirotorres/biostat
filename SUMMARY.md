@@ -71,6 +71,7 @@
 * [Regressão linear](04_estatistica_inferencial/15_regressao_linear.md)
 * [Testes não paramétricos](04_estatistica_inferencial/16_testes_nao_parametricos.md)
 * [Design experimental e potência](04_estatistica_inferencial/17_design_experimental.md)
+* [Como escolher o teste](04_estatistica_inferencial/18_escolha_do_teste.md)
 
 ## Tabelas estatísticas
 

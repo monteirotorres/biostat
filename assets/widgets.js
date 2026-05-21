@@ -52,6 +52,35 @@ function quantile(sorted, q) {
   const pos = (sorted.length - 1) * q, b = Math.floor(pos), r = pos - b;
   return sorted[b + 1] !== undefined ? sorted[b] + r * (sorted[b + 1] - sorted[b]) : sorted[b];
 }
+// gama incompleta regularizada P(a,x) (Numerical Recipes)
+function gammap(a, x) {
+  if (x <= 0 || a <= 0) return 0;
+  if (x < a + 1) {
+    let ap = a, sum = 1 / a, del = sum;
+    for (let i = 0; i < 300; i++) { ap++; del *= x / ap; sum += del; if (Math.abs(del) < Math.abs(sum) * 1e-13) break; }
+    return sum * Math.exp(-x + a * Math.log(x) - lgamma(a));
+  }
+  let b = x + 1 - a, c = 1e30, d = 1 / b, h = d;
+  for (let i = 1; i <= 300; i++) {
+    const an = -i * (i - a); b += 2; d = an * d + b; if (Math.abs(d) < 1e-30) d = 1e-30;
+    c = b + an / c; if (Math.abs(c) < 1e-30) c = 1e-30; d = 1 / d; const del = d * c; h *= del;
+    if (Math.abs(del - 1) < 1e-13) break;
+  }
+  return 1 - Math.exp(-x + a * Math.log(x) - lgamma(a)) * h;
+}
+function chi2cdf(x, v) { return gammap(v / 2, x / 2); }
+function chi2sf(x, v) { return 1 - chi2cdf(x, v); }
+function chi2inv(pp, v) { let lo = 0, hi = 1000, mid; for (let i = 0; i < 80; i++) { mid = (lo + hi) / 2; chi2cdf(mid, v) < pp ? lo = mid : hi = mid; } return mid; }
+// qui-quadrado não-central: P(X > x) com gl v e parâmetro de não-centralidade lam
+function ncChi2sf(x, v, lam) {
+  const half = lam / 2; let s = 0, logw = -half;
+  for (let j = 0; j < 300; j++) {
+    s += Math.exp(logw) * chi2sf(x, v + 2 * j);
+    if (j > half && Math.exp(logw) < 1e-9) break;
+    logw += Math.log(half) - Math.log(j + 1);
+  }
+  return s;
+}
 
 // ---------- canvas ----------
 function $(id) { return document.getElementById(id); }
@@ -588,44 +617,6 @@ function wANOVA(id) {
   const cvs = $(id), ctx = cvs.getContext('2d');
   let seed = 321, raw = [];
   function generate() { const rng = makeRng(seed); raw = []; for (let g = 0; g < 3; g++) { const arr = []; for (let i = 0; i < 12; i++) arr.push(rngNormal(rng)); raw.push(arr); } }
-  function draw() {
-    const sep = +$(id + '-sep').value, spread = +$(id + '-spread').value;
-    $(id + '-sep-v').textContent = sep.toFixed(1); $(id + '-spread-v').textContent = spread.toFixed(1);
-    const centros = [10 - sep, 10, 10 + sep];
-    const groups = raw.map((arr, g) => arr.map(z => centros[g] + z * spread));
-    // ANOVA F
-    const all = groups.flat(), grand = mean(all), k = 3, N = all.length;
-    let ssb = 0, ssw = 0;
-    groups.forEach(g => { const m = mean(g); ssb += g.length * (m - grand) ** 2; g.forEach(v => ssw += (v - m) ** 2); });
-    const msb = ssb / (k - 1), msw = ssw / (N - k), F = msb / msw;
-    $(id + '-F').textContent = F.toFixed(2);
-    // p-valor via aproximação: usar dist F? simplificado com cdf chi-like — usamos relação aproximada
-    const p = fSf(F, k - 1, N - k);
-    $(id + '-p').textContent = p < 0.0001 ? '< 0.0001' : p.toFixed(4);
-    $(id + '-sig').textContent = p < 0.05 ? 'Significativo' : 'Não signif.';
-    $(id + '-sig').style.color = p < 0.05 ? '#c0392b' : '#1a7a4a';
-    const W = cvs.width, H = cvs.height; ctx.clearRect(0, 0, W, H);
-    const padL = 36, padR = 18, padT = 18, padB = 30, plotH = H - padT - padB, plotW = W - padL - padR;
-    const yMin = 2, yMax = 18, toY = v => padT + plotH - (v - yMin) / (yMax - yMin) * plotH;
-    ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.strokeStyle = GRID(); ctx.stroke();
-    const cols = ['#3266ad', '#c0392b', '#1a7a4a'], names = ['A', 'B', 'C'];
-    groups.forEach((g, gi) => {
-      const cx = padL + plotW * (gi + 0.5) / 3;
-      ctx.fillStyle = cols[gi].replace(')', ',0.6)').replace('#', 'rgba(') ;
-      // jitter determinístico
-      g.forEach((v, i) => { const jx = cx + ((i % 5) - 2) * 7; ctx.fillStyle = hexA(cols[gi], 0.6); ctx.beginPath(); ctx.arc(jx, toY(v), 3, 0, 7); ctx.fill(); });
-      const m = mean(g); ctx.strokeStyle = cols[gi]; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(cx - 30, toY(m)); ctx.lineTo(cx + 30, toY(m)); ctx.stroke();
-      const fs = Math.max(10, Math.round(W * 0.018)); ctx.fillStyle = cols[gi]; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.textAlign = 'center'; ctx.fillText(names[gi], cx, padT + plotH + 16);
-    });
-  }
-  function hexA(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`; }
-  // sobrevivência da F por integração numérica simples
-  function fSf(F, d1, d2) {
-    if (F <= 0) return 1;
-    // usa relação com a Beta incompleta via integração da pdf (aprox.)
-    const x = d1 * F / (d1 * F + d2);
-    return 1 - ibeta(x, d1 / 2, d2 / 2);
-  }
   function ibeta(x, a, b) {
     if (x <= 0) return 0; if (x >= 1) return 1;
     const lbeta = lgamma(a) + lgamma(b) - lgamma(a + b);
@@ -643,9 +634,71 @@ function wANOVA(id) {
     }
     return front * (f - 1);
   }
+  function fSf(F, d1, d2) { if (F <= 0) return 1; return 1 - ibeta(d1 * F / (d1 * F + d2), d1 / 2, d2 / 2); }
+  function fPdf(x, d1, d2) { if (x <= 0) return 0; const a = d1 / 2, b = d2 / 2; const lb = lgamma(a) + lgamma(b) - lgamma(a + b); return Math.exp(a * Math.log(d1 / d2) + (a - 1) * Math.log(x) - (a + b) * Math.log(1 + d1 / d2 * x) - lb); }
+  function fInv(pp, d1, d2) { let lo = 0, hi = 200, mid; for (let i = 0; i < 60; i++) { mid = (lo + hi) / 2; fSf(mid, d1, d2) > pp ? lo = mid : hi = mid; } return mid; }
+  function hexA(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`; }
+  function draw() {
+    const sep = +$(id + '-sep').value, spread = +$(id + '-spread').value;
+    $(id + '-sep-v').textContent = sep.toFixed(1); $(id + '-spread-v').textContent = spread.toFixed(1);
+    const centros = [10 - sep, 10, 10 + sep];
+    const groups = raw.map((arr, g) => arr.map(z => centros[g] + z * spread));
+    const all = groups.flat(), grand = mean(all), k = 3, N = all.length, d1 = k - 1, d2 = N - k;
+    let ssb = 0, ssw = 0;
+    groups.forEach(g => { const m = mean(g); ssb += g.length * (m - grand) ** 2; g.forEach(v => ssw += (v - m) ** 2); });
+    const F = (ssb / d1) / (ssw / d2), p = fSf(F, d1, d2);
+    $(id + '-F').textContent = F.toFixed(2);
+    $(id + '-p').textContent = p < 0.0001 ? '< 0.0001' : p.toFixed(4);
+    $(id + '-sig').textContent = p < 0.05 ? 'Significativo' : 'Não signif.';
+    $(id + '-sig').style.color = p < 0.05 ? '#c0392b' : '#1a7a4a';
+
+    const W = cvs.width, H = cvs.height; ctx.clearRect(0, 0, W, H);
+    const gap = 26, leftW = (W - gap) * 0.52, rightW = (W - gap) * 0.48, rx0 = leftW + gap;
+
+    // ----- painel esquerdo: dotplots -----
+    const padL = 30, padT = 18, padB = 30, plotH = H - padT - padB, plotW = leftW - padL - 8;
+    const yMin = 2, yMax = 18, toY = v => padT + plotH - (v - yMin) / (yMax - yMin) * plotH;
+    ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.strokeStyle = GRID(); ctx.stroke();
+    const cols = ['#3266ad', '#c0392b', '#1a7a4a'], names = ['A', 'B', 'C'];
+    const fs = Math.max(9, Math.round(W * 0.014));
+    groups.forEach((g, gi) => {
+      const cx = padL + plotW * (gi + 0.5) / 3;
+      g.forEach((v, i) => { const jx = cx + ((i % 5) - 2) * 6; ctx.fillStyle = hexA(cols[gi], 0.6); ctx.beginPath(); ctx.arc(jx, toY(v), 3, 0, 7); ctx.fill(); });
+      const m = mean(g); ctx.strokeStyle = cols[gi]; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(cx - 26, toY(m)); ctx.lineTo(cx + 26, toY(m)); ctx.stroke();
+      ctx.fillStyle = cols[gi]; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.textAlign = 'center'; ctx.fillText(names[gi], cx, padT + plotH + 16);
+    });
+    ctx.fillStyle = MUTED(); ctx.font = `${fs}px 'Courier New', monospace`; ctx.textAlign = 'center';
+    ctx.fillText('os 3 grupos', padL + plotW / 2, padT - 4);
+
+    // ----- painel direito: distribuição F -----
+    const rPadT = 18, rPadB = 30, rPlotH = H - rPadT - rPadB, rPlotW = rightW - 12, baseY = rPadT + rPlotH;
+    const xMax = Math.max(6, F * 1.2);
+    const toRX = x => rx0 + x / xMax * rPlotW;
+    let maxY = 0; for (let i = 1; i <= 200; i++) { maxY = Math.max(maxY, fPdf(i / 200 * xMax, d1, d2)); }
+    const toRY = y => baseY - y / maxY * rPlotH * 0.9;
+    // área-p (cauda à direita de F)
+    ctx.beginPath(); ctx.moveTo(toRX(F), baseY);
+    for (let i = 0; i <= 120; i++) { const x = F + i / 120 * (xMax - F); ctx.lineTo(toRX(x), toRY(fPdf(x, d1, d2))); }
+    ctx.lineTo(toRX(xMax), baseY); ctx.closePath(); ctx.fillStyle = 'rgba(192,57,43,0.30)'; ctx.fill();
+    // curva F
+    ctx.beginPath();
+    for (let i = 1; i <= 300; i++) { const x = i / 300 * xMax; const y = fPdf(x, d1, d2); i === 1 ? ctx.moveTo(toRX(x), toRY(y)) : ctx.lineTo(toRX(x), toRY(y)); }
+    ctx.strokeStyle = '#3266ad'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(rx0, baseY); ctx.lineTo(rx0 + rPlotW, baseY); ctx.strokeStyle = GRID(); ctx.stroke();
+    // F crítico (5%) tracejado
+    const fc = fInv(0.05, d1, d2);
+    if (fc < xMax) { ctx.beginPath(); ctx.setLineDash([4, 3]); ctx.moveTo(toRX(fc), rPadT); ctx.lineTo(toRX(fc), baseY); ctx.strokeStyle = MUTED(); ctx.lineWidth = 1.2; ctx.stroke(); ctx.setLineDash([]); }
+    // F observado
+    ctx.beginPath(); ctx.moveTo(toRX(F), rPadT); ctx.lineTo(toRX(F), baseY); ctx.strokeStyle = '#c0392b'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = '#c0392b'; ctx.font = `bold ${fs}px 'Courier New', monospace`; ctx.textAlign = 'center';
+    ctx.fillText('F = ' + F.toFixed(2), toRX(F), rPadT - 4 < 12 ? 26 : rPadT + 8);
+    ctx.fillStyle = MUTED(); ctx.font = `${fs}px 'Courier New', monospace`;
+    ctx.fillText('distribuição F sob H₀', rx0 + rPlotW / 2, baseY + 16);
+    if (fc < xMax) { ctx.fillText('F* (5%)', toRX(fc), baseY + 16); }
+  }
   $(id + '-sep').addEventListener('input', draw); $(id + '-spread').addEventListener('input', draw);
   $(id + '-redraw').addEventListener('click', () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; generate(); draw(); });
-  generate(); makeResizer(cvs, 0.5, draw);
+  generate(); makeResizer(cvs, 0.42, draw);
 }
 
 // ============================================================
@@ -684,6 +737,84 @@ function wDistAmostral(id) {
   $(id + '-df').addEventListener('input', draw); $(id + '-df2').addEventListener('input', draw);
   $(id + '-df2row').style.display = 'none';
   makeResizer(cvs, 0.45, draw);
+}
+
+// ============================================================
+// Calculadora de potência (t, ANOVA, χ², proporções)
+// ============================================================
+function wPotenciaCalc(id) {
+  const cvs = $(id), ctx = cvs.getContext('2d');
+  let teste = 't';
+  // potência analítica para cada teste, dado n POR GRUPO
+  function poder(n) {
+    const alpha = +$(id + '-alpha').value, ef = +$(id + '-ef').value;
+    if (teste === 't') {                       // 2 amostras, d de Cohen
+      const ncp = ef * Math.sqrt(n / 2), zc = invCdfN(1 - alpha / 2);
+      return cdfN(ncp - zc) + cdfN(-ncp - zc);
+    }
+    if (teste === 'prop') {                     // 2 proporções, h de Cohen
+      const ncp = ef * Math.sqrt(n / 2), zc = invCdfN(1 - alpha / 2);
+      return cdfN(ncp - zc) + cdfN(-ncp - zc);
+    }
+    if (teste === 'anova') {                     // k grupos, f de Cohen
+      const k = +$(id + '-k').value, N = n * k, df = k - 1, lam = ef * ef * N;
+      return ncChi2sf(chi2inv(1 - alpha, df), df, lam);
+    }
+    if (teste === 'chi2') {                       // qui-quadrado, w de Cohen, n = N total
+      const df = +$(id + '-df').value, lam = ef * ef * n;
+      return ncChi2sf(chi2inv(1 - alpha, df), df, lam);
+    }
+    return 0;
+  }
+  function nLabel() { return teste === 'chi2' ? 'N total' : 'n por grupo'; }
+  function efLabel() {
+    return teste === 't' ? "tamanho de efeito (d de Cohen)" :
+      teste === 'anova' ? "tamanho de efeito (f de Cohen)" :
+      teste === 'chi2' ? "tamanho de efeito (w de Cohen)" :
+      "tamanho de efeito (h de Cohen)";
+  }
+  function draw() {
+    const n = +$(id + '-n').value, alpha = +$(id + '-alpha').value, ef = +$(id + '-ef').value;
+    $(id + '-n-lbl').textContent = nLabel();
+    $(id + '-ef-lbl').textContent = efLabel();
+    $(id + '-n-v').textContent = n; $(id + '-alpha-v').textContent = alpha.toFixed(2); $(id + '-ef-v').textContent = ef.toFixed(2);
+    $(id + '-k-v').textContent = $(id + '-k').value; $(id + '-df-v').textContent = $(id + '-df').value;
+    $(id + '-k-row').style.display = teste === 'anova' ? '' : 'none';
+    $(id + '-df-row').style.display = teste === 'chi2' ? '' : 'none';
+    const pw = poder(n);
+    $(id + '-pw').textContent = (pw * 100).toFixed(1) + '%';
+    // n necessário para 80%
+    let n80 = null;
+    for (let nn = 2; nn <= 2000; nn++) { if (poder(nn) >= 0.8) { n80 = nn; break; } }
+    $(id + '-n80').textContent = n80 ? n80 : '> 2000';
+
+    const W = cvs.width, H = cvs.height; ctx.clearRect(0, 0, W, H);
+    const padL = 44, padR = 16, padT = 18, padB = 34, plotW = W - padL - padR, plotH = H - padT - padB;
+    const nMax = 200, toX = v => padL + v / nMax * plotW, toY = pp => padT + plotH - pp * plotH;
+    // grade y
+    ctx.strokeStyle = GRIDSOFT(); ctx.fillStyle = MUTED(); ctx.font = "11px 'Courier New', monospace"; ctx.textAlign = 'right';
+    for (let g = 0; g <= 1.0001; g += 0.25) { const y = toY(g); ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL + plotW, y); ctx.stroke(); ctx.fillText((g * 100).toFixed(0) + '%', padL - 6, y + 4); }
+    // linha 80%
+    ctx.beginPath(); ctx.setLineDash([4, 3]); ctx.moveTo(padL, toY(0.8)); ctx.lineTo(padL + plotW, toY(0.8)); ctx.strokeStyle = '#1a7a4a'; ctx.lineWidth = 1.3; ctx.stroke(); ctx.setLineDash([]);
+    // curva poder vs n
+    ctx.beginPath(); ctx.strokeStyle = '#3266ad'; ctx.lineWidth = 2.2;
+    for (let nn = 2; nn <= nMax; nn++) { const pp = poder(nn); nn === 2 ? ctx.moveTo(toX(nn), toY(pp)) : ctx.lineTo(toX(nn), toY(pp)); }
+    ctx.stroke();
+    // ponto atual
+    if (n <= nMax) { ctx.fillStyle = '#c0392b'; ctx.beginPath(); ctx.arc(toX(n), toY(pw), 4, 0, 7); ctx.fill();
+      ctx.beginPath(); ctx.setLineDash([3, 3]); ctx.moveTo(toX(n), padT); ctx.lineTo(toX(n), padT + plotH); ctx.strokeStyle = 'rgba(192,57,43,0.5)'; ctx.lineWidth = 1; ctx.stroke(); ctx.setLineDash([]); }
+    // eixos x
+    ctx.strokeStyle = GRID(); ctx.beginPath(); ctx.moveTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.stroke();
+    ctx.fillStyle = MUTED(); ctx.textAlign = 'center'; ctx.font = "11px 'Courier New', monospace";
+    for (let v = 0; v <= nMax; v += 50) ctx.fillText(v, toX(v), padT + plotH + 16);
+    ctx.fillText(nLabel(), padL + plotW / 2, padT + plotH + 30);
+    ctx.fillStyle = '#1a7a4a'; ctx.textAlign = 'left'; ctx.fillText('poder 80%', padL + 6, toY(0.8) - 5);
+  }
+  document.querySelectorAll('[data-pot="' + id + '"]').forEach(b => b.addEventListener('click', () => {
+    teste = b.dataset.teste; document.querySelectorAll('[data-pot="' + id + '"]').forEach(x => x.classList.toggle('active', x === b)); draw();
+  }));
+  ['n', 'alpha', 'ef', 'k', 'df'].forEach(key => $(id + '-' + key).addEventListener('input', draw));
+  makeResizer(cvs, 0.5, draw);
 }
 
 // ============================================================

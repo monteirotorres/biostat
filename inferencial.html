@@ -92,6 +92,7 @@
 <li><a class="nav-link" data-target="04-estatistica-inferencial-15-regressao-linear-md" href="#04-estatistica-inferencial-15-regressao-linear-md"><span class="n">5.15</span>Regressão linear</a></li>
 <li><a class="nav-link" data-target="04-estatistica-inferencial-16-testes-nao-parametricos-md" href="#04-estatistica-inferencial-16-testes-nao-parametricos-md"><span class="n">5.16</span>Testes não paramétricos</a></li>
 <li><a class="nav-link" data-target="04-estatistica-inferencial-17-design-experimental-md" href="#04-estatistica-inferencial-17-design-experimental-md"><span class="n">5.17</span>Design experimental e potência</a></li>
+<li><a class="nav-link" data-target="04-estatistica-inferencial-18-escolha-do-teste-md" href="#04-estatistica-inferencial-18-escolha-do-teste-md"><span class="n">5.18</span>Como escolher o teste</a></li>
 </ul></div>
 <div class="nav-group">
 <div class="nav-group-title">6. Tabelas estatísticas</div>
@@ -2423,6 +2424,118 @@ $$</div>
 <p>Por isso, o cálculo amostral deve ser feito <strong>antes</strong> do estudo e reportado.</p>
 <h2>No notebook</h2>
 <p>Simulamos o poder: para um dado efeito e $n$, rodamos milhares de experimentos e contamos em quantos rejeitamos $H_0$. A fração observada é o poder — e bate com o valor teórico.</p>
+
+<div class="widget" data-widget="wPotenciaCalc" data-id="pot_5_17">
+  <div class="widget-title">Calculadora interativa — Potência de testes</div>
+  <p style="font-size:0.85rem;color:#666;margin-bottom:0.6rem;">Escolha o teste e ajuste o tamanho de efeito, o tamanho da amostra e o α. A curva mostra o poder em função de n; o ponto vermelho é a configuração atual.</p>
+  <div class="btn-row">
+    <button class="btn outline active" data-pot="pot_5_17" data-teste="t">Teste t (2 grupos)</button>
+    <button class="btn outline" data-pot="pot_5_17" data-teste="anova">ANOVA</button>
+    <button class="btn outline" data-pot="pot_5_17" data-teste="chi2">Qui-quadrado</button>
+    <button class="btn outline" data-pot="pot_5_17" data-teste="prop">Proporções</button>
+  </div>
+  <div class="controls">
+    <div class="ctrl-row"><span class="ctrl-label" id="pot_5_17-ef-lbl">tamanho de efeito</span>
+      <input type="range" min="0.05" max="1.5" step="0.05" value="0.5" id="pot_5_17-ef"><span class="ctrl-val" id="pot_5_17-ef-v">0.50</span></div>
+    <div class="ctrl-row"><span class="ctrl-label" id="pot_5_17-n-lbl">n por grupo</span>
+      <input type="range" min="2" max="200" step="1" value="30" id="pot_5_17-n"><span class="ctrl-val" id="pot_5_17-n-v">30</span></div>
+    <div class="ctrl-row"><span class="ctrl-label">Nível de significância (α)</span>
+      <input type="range" min="0.01" max="0.20" step="0.01" value="0.05" id="pot_5_17-alpha"><span class="ctrl-val" id="pot_5_17-alpha-v">0.05</span></div>
+    <div class="ctrl-row" id="pot_5_17-k-row"><span class="ctrl-label">Número de grupos (k)</span>
+      <input type="range" min="3" max="8" step="1" value="3" id="pot_5_17-k"><span class="ctrl-val" id="pot_5_17-k-v">3</span></div>
+    <div class="ctrl-row" id="pot_5_17-df-row"><span class="ctrl-label">Graus de liberdade</span>
+      <input type="range" min="1" max="10" step="1" value="1" id="pot_5_17-df"><span class="ctrl-val" id="pot_5_17-df-v">1</span></div>
+  </div>
+  <canvas id="pot_5_17"></canvas>
+  <div class="stat-grid" style="margin-top:0.6rem;">
+    <div class="stat-card"><div class="slabel">Poder (1 − β)</div><div class="sval" id="pot_5_17-pw" style="color:#1a7a4a;">—</div><div class="sdesc">na configuração atual</div></div>
+    <div class="stat-card"><div class="slabel">n para 80%</div><div class="sval" id="pot_5_17-n80">—</div><div class="sdesc">tamanho de amostra necessário</div></div>
+  </div>
+  <p style="font-size:0.78rem;color:#888;margin-top:0.4rem;">Efeitos (Cohen): pequeno/médio/grande ≈ d 0,2/0,5/0,8 · f 0,1/0,25/0,4 · w 0,1/0,3/0,5. Valores aproximados (ANOVA via χ² não-central).</p>
+</div>
+</article>
+<article id="04-estatistica-inferencial-18-escolha-do-teste-md" class="topic">
+<div class="topic-num">5.18</div>
+<h1 class="topic-title">Como escolher o teste</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/04_estatistica_inferencial/18_escolha_do_teste.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Escolher o teste estatístico certo é, na maior parte das vezes, uma questão de responder a três perguntas sobre o seu problema, antes de qualquer conta.</p>
+<p>A primeira pergunta é <strong>o que se quer responder</strong>: comparar grupos ou médias, medir a associação entre duas variáveis quantitativas, ou analisar variáveis categóricas. A segunda é <strong>como os dados foram coletados</strong>: quantos grupos existem e se eles são independentes ou pareados (o mesmo indivíduo medido mais de uma vez, ou pares casados). A terceira é <strong>se a suposição de normalidade se sustenta</strong>, o que decide entre um teste paramétrico e sua versão não-paramétrica.</p>
+<p>O fluxograma abaixo resume essas decisões.</p>
+<p><img alt="Fluxograma de escolha de testes estatísticos" src="assets/fluxograma_testes.png" /></p>
+<h2>Comparar grupos ou médias</h2>
+<p>Aqui a variável de interesse é quantitativa, e a escolha depende do número de grupos e do pareamento. Quando a variável é aproximadamente normal (ou a amostra é grande o bastante para o teorema do limite central agir), usa-se o teste <strong>paramétrico</strong>; caso contrário, sua alternativa <strong>não-paramétrica</strong>, que trabalha com postos.</p>
+<table>
+<thead>
+<tr>
+<th>Estrutura dos dados</th>
+<th>Paramétrico</th>
+<th>Não-paramétrico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 grupo vs. um valor de referência</td>
+<td>Teste t de uma amostra</td>
+<td>Wilcoxon do sinal</td>
+</tr>
+<tr>
+<td>2 grupos independentes</td>
+<td>Teste t (Welch)</td>
+<td>Mann–Whitney</td>
+</tr>
+<tr>
+<td>2 grupos pareados</td>
+<td>Teste t pareado</td>
+<td>Wilcoxon pareado</td>
+</tr>
+<tr>
+<td>3 ou mais grupos independentes</td>
+<td>ANOVA one-way</td>
+<td>Kruskal–Wallis</td>
+</tr>
+<tr>
+<td>3 ou mais grupos pareados</td>
+<td>ANOVA de medidas repetidas</td>
+<td>Friedman</td>
+</tr>
+</tbody>
+</table>
+<p>Vale lembrar que os testes paramétricos são mais <strong>potentes</strong> quando a normalidade vale, mas os não-paramétricos são mais <strong>robustos</strong> quando ela falha ou quando os dados são ordinais.</p>
+<h2>Associação entre duas variáveis quantitativas</h2>
+<p>Se a relação é razoavelmente <strong>linear</strong> e os dados são aproximadamente normais, usa-se a correlação de <strong>Pearson</strong> e, quando se quer prever uma variável a partir da outra, a <strong>regressão linear</strong>. Se a relação é monotônica mas não linear, ou se os dados são ordinais ou têm outliers, prefere-se a correlação de <strong>Spearman</strong>, calculada sobre os postos.</p>
+<h2>Variáveis categóricas</h2>
+<p>Para testar associação entre duas variáveis categóricas, monta-se uma tabela de contingência e aplica-se o <strong>qui-quadrado</strong>, desde que as frequências esperadas sejam suficientes (em geral ≥ 5 por casela). Quando a amostra é pequena, usa-se o <strong>teste exato de Fisher</strong>. Para dados <strong>pareados</strong> em tabela 2×2 (por exemplo, o mesmo indivíduo antes e depois), o teste apropriado é o de <strong>McNemar</strong>.</p>
+<h2>Qual pós-teste escolher</h2>
+<p>Quando uma ANOVA dá significativa, sabemos que <strong>alguma</strong> média difere, mas não qual. Os pós-testes (comparações múltiplas) respondem a isso controlando o erro tipo I acumulado. A escolha depende de <strong>quais comparações</strong> interessam.</p>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Pós-teste recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comparar todos os grupos entre si</td>
+<td>Tukey HSD</td>
+</tr>
+<tr>
+<td>Comparar cada grupo com um único controle</td>
+<td>Dunnett</td>
+</tr>
+<tr>
+<td>Poucas comparações planejadas de antemão</td>
+<td>Bonferroni ou Šidák</td>
+</tr>
+<tr>
+<td>Combinações lineares de médias (contrastes)</td>
+<td>Scheffé</td>
+</tr>
+</tbody>
+</table>
+<p>Para as alternativas não-paramétricas, após um Kruskal–Wallis significativo usa-se o <strong>teste de Dunn</strong> (com correção de Bonferroni), e após um Friedman, comparações pareadas de Wilcoxon corrigidas.</p>
+<h2>Antes de rodar qualquer teste</h2>
+<p>Nenhum fluxograma substitui olhar os dados. Faça um gráfico (histograma, boxplot, dispersão) antes de decidir, verifique as suposições do teste escolhido (normalidade, independência, variâncias) e, sempre que possível, reporte o <strong>tamanho de efeito</strong> e o <strong>intervalo de confiança</strong> junto com o valor-p — eles dizem o quanto o efeito importa, não apenas se ele é detectável.</p>
 
 </article>
 </div>

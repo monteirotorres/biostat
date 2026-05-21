@@ -253,3 +253,40 @@ save("07_exercicios/01_exercicios.ipynb", [
 ])
 
 print("\nConcluído.")
+
+
+# ---------- 04 escolha do teste (apêndice) ----------
+save("04_estatistica_inferencial/18_escolha_do_teste.ipynb", [
+    md("# Como escolher o teste\n\nUm guia prático: cada situação e a função correspondente em `scipy.stats`."),
+    code(SETUP),
+    md("## Comparar grupos"),
+    code("import numpy as np\n"
+        "rng = np.random.default_rng(0)\n"
+        "a = rng.normal(10, 2, 20); b = rng.normal(11, 2, 20); c = rng.normal(12, 2, 20)\n"
+        "# 1 amostra vs referência\n"
+        "print('t 1 amostra:', stats.ttest_1samp(a, 10))\n"
+        "# 2 grupos independentes (Welch)\n"
+        "print('t Welch:', stats.ttest_ind(a, b, equal_var=False))\n"
+        "# 2 grupos pareados\n"
+        "print('t pareado:', stats.ttest_rel(a, b))\n"
+        "# 3+ grupos\n"
+        "print('ANOVA:', stats.f_oneway(a, b, c))"),
+    md("## Versões não-paramétricas"),
+    code("print('Wilcoxon sinal:', stats.wilcoxon(a - 10))\n"
+        "print('Mann-Whitney:', stats.mannwhitneyu(a, b))\n"
+        "print('Wilcoxon pareado:', stats.wilcoxon(a, b))\n"
+        "print('Kruskal-Wallis:', stats.kruskal(a, b, c))"),
+    md("## Associação entre quantitativas"),
+    code("x = rng.normal(0, 1, 40); y = 0.6*x + rng.normal(0, 1, 40)\n"
+        "print('Pearson:', stats.pearsonr(x, y))\n"
+        "print('Spearman:', stats.spearmanr(x, y))\n"
+        "print('regressão:', stats.linregress(x, y))"),
+    md("## Variáveis categóricas"),
+    code("tab = np.array([[30, 10], [12, 28]])\n"
+        "print('qui-quadrado:', stats.chi2_contingency(tab)[:2])\n"
+        "print('Fisher:', stats.fisher_exact(tab))"),
+    md("## Pós-testes da ANOVA\n\n"
+       "Para Tukey HSD use `scipy.stats.tukey_hsd`; para Dunnett, `scipy.stats.dunnett`."),
+    code("print('Tukey HSD:')\nprint(stats.tukey_hsd(a, b, c))\n"
+        "print('Dunnett (b, c vs controle a):')\nprint(stats.dunnett(b, c, control=a))"),
+])
