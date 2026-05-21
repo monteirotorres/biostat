@@ -63,6 +63,15 @@ save("07_exercicios/05_descritiva.ipynb", [
     code("faixas = pd.DataFrame({'faixa':['<1','1-1.5','1.5-3','3-5','5-10','10+'],\n"
          "                       'pct':[24.1,20.6,28.5,11.7,8.5,6.6]})\n"
          "faixas['acum'] = faixas['pct'].cumsum()\nfaixas"),
+    md("## Exercício 4 — Tempo de sono de mamíferos"),
+    code("sono = pd.Series([19.9,18.1,18.0,18.0,17.0,16.0,15.8,15.8,14.9,14.6,14.5,14.4,\n"
+         "                  14.3,14.0,13.5,13.1,12.6,12.1,12.1,12.1,11.8,11.4,10.8,10.8,\n"
+         "                  10.6,10.4,10.3,10.3,10.1,9.9,9.7,9.4,8.0,7.8,7.0,6.2,5.5,5.3,\n"
+         "                  3.9,3.9,3.8,3.1,2.9,2.0,1.9])\n"
+         "print('n:', sono.size)\n"
+         "print('média:', round(sono.mean(),2), '| mediana:', sono.median())\n"
+         "print('Q1:', sono.quantile(.25), '| Q3:', sono.quantile(.75),\n"
+         "      '| IQR:', round(stats.iqr(sono),2))"),
 ])
 
 save("07_exercicios/06_binomial.ipynb", [

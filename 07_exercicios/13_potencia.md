@@ -20,7 +20,15 @@ $$
 \text{EP} = \frac{\sigma}{\sqrt{n}}
 $$
 
-Com $\sigma = 1$, o erro padrão vale 0,71 para $n=2$, 0,50 para $n=4$, 0,32 para $n=10$ e 0,22 para $n=20$. A precisão melhora com a raiz do tamanho da amostra, não de forma proporcional: para reduzir o erro padrão pela metade é preciso quadruplicar $n$. Isso explica por que os ganhos de precisão ficam cada vez mais caros à medida que a amostra aumenta.
+Completando a tabela com o erro padrão (s/√n) e a largura do intervalo de confiança (usando o valor crítico t para cada n):
+
+| n | 2 | 3 | 4 | 6 | 10 | 20 |
+| --- | --- | --- | --- | --- | --- | --- |
+| erro padrão (SEM) | 0,897 | 0,691 | 0,558 | 0,428 | 0,327 | 0,230 |
+| t (5%; n−1) | 12,71 | 4,30 | 3,18 | 2,57 | 2,26 | 2,09 |
+| meia-largura do IC 95% | 11,40 | 2,97 | 1,77 | 1,10 | 0,74 | 0,48 |
+
+A precisão melhora com a raiz do tamanho da amostra, não de forma proporcional: para reduzir o erro padrão pela metade é preciso quadruplicar $n$. Repare como o IC despenca de n = 2 para n = 3 (o valor t cai de 12,71 para 4,30) e depois melhora cada vez mais devagar — os ganhos de precisão ficam progressivamente mais caros.
 
 </details>
 
@@ -43,7 +51,9 @@ pouco acima dos 5% usuais. Como esse menor valor possível de p já ultrapassa o
 
 ## Exercício 3 — Potência da comparação de pressão
 
-A diferença real de pressão entre homens e mulheres é cerca de 3 mmHg, com desvios da ordem de 17 a 21 mmHg. a) Qual a potência de um teste com 24 dados? b) Quantos dados seriam necessários para 80% de potência? c) E com toda a amostra disponível?
+Os dados populacionais de pressão sistólica (estudo NHANES, exercício 4 de "Testes de dois grupos") são: homens com µ ≈ 122 mmHg, σ ≈ 17, n = 3241; mulheres com µ ≈ 119 mmHg, σ ≈ 21, n = 3427. A diferença real entre as médias é, portanto, cerca de 3 mmHg.
+
+a) Qual a potência de um teste com os 24 dados simulados (12 por grupo)? b) Quantos dados seriam necessários para 80% de potência? c) E usando toda a amostra do estudo?
 
 <details markdown="1">
 <summary>Mostrar resposta</summary>

@@ -4,7 +4,16 @@ Exercícios sobre medidas, erros e a representação correta de números. Tente 
 
 ## Exercício 1 — Calibração de pipeta
 
-Um certificado de conformidade de uma pipeta traz duas séries de pesagens de água. Para o volume nominal de 200 µL foram registrados 198,75 · 198,83 · 198,78 · 198,87 (mg); para 1000 µL, 996,41 · 996,34 · 996,48 · 996,44 (mg).
+Um certificado de conformidade de uma pipeta Gilson traz duas séries de pesagens de água e as condições da medida. As pesagens usam uma balança bem calibrada, de precisão superior à esperada para a pipeta. A conversão de massa (mg) para volume (µL) leva em conta a temperatura e a pressão do ar, através do **fator Z**.
+
+| Temperatura | Pressão | Umidade | Fator Z |
+| --- | --- | --- | --- |
+| 22,0 °C | 1017,0 hPa | 69,0% | 1,0033 µL/mg |
+
+| Volume nominal | Pesagens (mg) |
+| --- | --- |
+| 200 µL | 198,75 · 198,83 · 198,78 · 198,87 |
+| 1000 µL | 996,41 · 996,34 · 996,48 · 996,44 |
 
 a) A exatidão está dentro da tolerância (±3,00 µL para 200 µL e ±8,00 µL para 1000 µL)?
 

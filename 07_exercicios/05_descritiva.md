@@ -52,3 +52,38 @@ $$
 O acumulado cruza os 50% justamente ao incluir a terceira faixa. Portanto, o salário mediano cai na faixa de 1,5 a 3 salários mínimos. Note que metade dos trabalhadores ganhava, à época, menos do que essa faixa, um retrato bem diferente do que uma média sozinha sugeriria.
 
 </details>
+
+## Exercício 4 — Tempo de sono de mamíferos
+
+A tabela traz o tempo médio total de sono (horas/dia) de 45 espécies. Calcule a mediana, os quartis e o desvio interquartil, e comente a forma da distribuição.
+
+| Espécie | h/dia | Espécie | h/dia | Espécie | h/dia |
+| --- | --- | --- | --- | --- | --- |
+| Morcego-marrom | 19,9 | Onça | 10,8 | Porco | 7,8 |
+| Tatu-gigante | 18,1 | Pato | 10,8 | Guppy (peixe) | 7,0 |
+| Gambá | 18,0 | Cão | 10,6 | Foca-cinzenta | 6,2 |
+| Píton | 18,0 | Golfinho | 10,4 | Humano (idoso) | 5,5 |
+| Macaco-da-noite | 17,0 | Toupeira | 10,3 | Cabra | 5,3 |
+| Humano (bebê) | 16,0 | Babuíno | 10,3 | Vaca | 3,9 |
+| Tigre | 15,8 | Ouriço | 10,1 | Elefante-asiático | 3,9 |
+| Tupaia | 15,8 | Macaco-de-cheiro | 9,9 | Ovelha | 3,8 |
+| Esquilo | 14,9 | Chimpanzé | 9,7 | Burro | 3,1 |
+| Sapo | 14,6 | Porquinho-da-índia | 9,4 | Cavalo | 2,9 |
+| Furão | 14,5 | Humano (adulto) | 8,0 | Elefante-africano | 2,0 |
+| Preguiça | 14,4 | Hamster | 14,3 | Girafa | 1,9 |
+| Ornitorrinco | 14,0 | Leão | 13,5 | Gerbil | 13,1 |
+| Rato | 12,6 | Gato | 12,1 | Guepardo | 12,1 |
+| Camundongo | 12,1 | Macaco-rhesus | 11,8 | Coelho | 11,4 |
+
+<details markdown="1">
+<summary>Mostrar resposta</summary>
+
+Ordenando os 45 valores, a mediana é o 23º valor, igual a **10,8 h/dia**. Os quartis são Q1 = 7,8 e Q3 = 14,4, então o desvio interquartil é
+
+$$
+\mathrm{IQR} = Q_3 - Q_1 = 14{,}4 - 7{,}8 = 6{,}6 \text{ h}
+$$
+
+A média (≈ 10,8 h) praticamente coincide com a mediana, e os valores vão de 1,9 h (girafa) a 19,9 h (morcego), espalhados de forma quase simétrica — não há outliers fortes. Como a variável é contínua e razoavelmente simétrica, média e desvio padrão descrevem bem o conjunto; o boxplot, baseado no IQR, é uma alternativa robusta para visualizar a dispersão entre as espécies.
+
+</details>

@@ -127,7 +127,43 @@
 <div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/07_exercicios/01_precisao_acuracia.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
 <p>Exercícios sobre medidas, erros e a representação correta de números. Tente resolver a partir do enunciado antes de abrir a resposta.</p>
 <h2>Exercício 1 — Calibração de pipeta</h2>
-<p>Um certificado de conformidade de uma pipeta traz duas séries de pesagens de água. Para o volume nominal de 200 µL foram registrados 198,75 · 198,83 · 198,78 · 198,87 (mg); para 1000 µL, 996,41 · 996,34 · 996,48 · 996,44 (mg).</p>
+<p>Um certificado de conformidade de uma pipeta Gilson traz duas séries de pesagens de água e as condições da medida. As pesagens usam uma balança bem calibrada, de precisão superior à esperada para a pipeta. A conversão de massa (mg) para volume (µL) leva em conta a temperatura e a pressão do ar, através do <strong>fator Z</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Temperatura</th>
+<th>Pressão</th>
+<th>Umidade</th>
+<th>Fator Z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22,0 °C</td>
+<td>1017,0 hPa</td>
+<td>69,0%</td>
+<td>1,0033 µL/mg</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Volume nominal</th>
+<th>Pesagens (mg)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 µL</td>
+<td>198,75 · 198,83 · 198,78 · 198,87</td>
+</tr>
+<tr>
+<td>1000 µL</td>
+<td>996,41 · 996,34 · 996,48 · 996,44</td>
+</tr>
+</tbody>
+</table>
 <p>a) A exatidão está dentro da tolerância (±3,00 µL para 200 µL e ±8,00 µL para 1000 µL)?</p>
 <p>b) A precisão está dentro da especificação (desvio padrão &lt; 0,60 µL para 200 µL e &lt; 1,50 µL para 1000 µL)?</p>
 <p>c) Costuma-se dizer que "para obter um erro menor, manipule quantidades maiores". No entanto, o desvio padrão de 1000 µL é maior que o de 200 µL. Como conciliar as duas afirmações?</p>
@@ -382,6 +418,150 @@ $$</div>
 24{,}1\% \;\to\; 24{,}1 + 20{,}6 = 44{,}7\% \;\to\; 44{,}7 + 28{,}5 = 73{,}2\%
 $$</div>
 <p>O acumulado cruza os 50% justamente ao incluir a terceira faixa. Portanto, o salário mediano cai na faixa de 1,5 a 3 salários mínimos. Note que metade dos trabalhadores ganhava, à época, menos do que essa faixa, um retrato bem diferente do que uma média sozinha sugeriria.</p>
+</details>
+<h2>Exercício 4 — Tempo de sono de mamíferos</h2>
+<p>A tabela traz o tempo médio total de sono (horas/dia) de 45 espécies. Calcule a mediana, os quartis e o desvio interquartil, e comente a forma da distribuição.</p>
+<table>
+<thead>
+<tr>
+<th>Espécie</th>
+<th>h/dia</th>
+<th>Espécie</th>
+<th>h/dia</th>
+<th>Espécie</th>
+<th>h/dia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Morcego-marrom</td>
+<td>19,9</td>
+<td>Onça</td>
+<td>10,8</td>
+<td>Porco</td>
+<td>7,8</td>
+</tr>
+<tr>
+<td>Tatu-gigante</td>
+<td>18,1</td>
+<td>Pato</td>
+<td>10,8</td>
+<td>Guppy (peixe)</td>
+<td>7,0</td>
+</tr>
+<tr>
+<td>Gambá</td>
+<td>18,0</td>
+<td>Cão</td>
+<td>10,6</td>
+<td>Foca-cinzenta</td>
+<td>6,2</td>
+</tr>
+<tr>
+<td>Píton</td>
+<td>18,0</td>
+<td>Golfinho</td>
+<td>10,4</td>
+<td>Humano (idoso)</td>
+<td>5,5</td>
+</tr>
+<tr>
+<td>Macaco-da-noite</td>
+<td>17,0</td>
+<td>Toupeira</td>
+<td>10,3</td>
+<td>Cabra</td>
+<td>5,3</td>
+</tr>
+<tr>
+<td>Humano (bebê)</td>
+<td>16,0</td>
+<td>Babuíno</td>
+<td>10,3</td>
+<td>Vaca</td>
+<td>3,9</td>
+</tr>
+<tr>
+<td>Tigre</td>
+<td>15,8</td>
+<td>Ouriço</td>
+<td>10,1</td>
+<td>Elefante-asiático</td>
+<td>3,9</td>
+</tr>
+<tr>
+<td>Tupaia</td>
+<td>15,8</td>
+<td>Macaco-de-cheiro</td>
+<td>9,9</td>
+<td>Ovelha</td>
+<td>3,8</td>
+</tr>
+<tr>
+<td>Esquilo</td>
+<td>14,9</td>
+<td>Chimpanzé</td>
+<td>9,7</td>
+<td>Burro</td>
+<td>3,1</td>
+</tr>
+<tr>
+<td>Sapo</td>
+<td>14,6</td>
+<td>Porquinho-da-índia</td>
+<td>9,4</td>
+<td>Cavalo</td>
+<td>2,9</td>
+</tr>
+<tr>
+<td>Furão</td>
+<td>14,5</td>
+<td>Humano (adulto)</td>
+<td>8,0</td>
+<td>Elefante-africano</td>
+<td>2,0</td>
+</tr>
+<tr>
+<td>Preguiça</td>
+<td>14,4</td>
+<td>Hamster</td>
+<td>14,3</td>
+<td>Girafa</td>
+<td>1,9</td>
+</tr>
+<tr>
+<td>Ornitorrinco</td>
+<td>14,0</td>
+<td>Leão</td>
+<td>13,5</td>
+<td>Gerbil</td>
+<td>13,1</td>
+</tr>
+<tr>
+<td>Rato</td>
+<td>12,6</td>
+<td>Gato</td>
+<td>12,1</td>
+<td>Guepardo</td>
+<td>12,1</td>
+</tr>
+<tr>
+<td>Camundongo</td>
+<td>12,1</td>
+<td>Macaco-rhesus</td>
+<td>11,8</td>
+<td>Coelho</td>
+<td>11,4</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Mostrar resposta</summary>
+<p>Ordenando os 45 valores, a mediana é o 23º valor, igual a <strong>10,8 h/dia</strong>. Os quartis são Q1 = 7,8 e Q3 = 14,4, então o desvio interquartil é</p>
+<div class="math-display">$$
+\mathrm{IQR} = Q_3 - Q_1 = 14{,}4 - 7{,}8 = 6{,}6 \text{ h}
+$$</div>
+<p>A média (≈ 10,8 h) praticamente coincide com a mediana, e os valores vão de 1,9 h (girafa) a 19,9 h (morcego), espalhados de forma quase simétrica — não há outliers fortes. Como a variável é contínua e razoavelmente simétrica, média e desvio padrão descrevem bem o conjunto; o boxplot, baseado no IQR, é uma alternativa robusta para visualizar a dispersão entre as espécies.</p>
 </details>
 
 </article>
@@ -663,7 +843,34 @@ $$</div>
 <p>A comparação de mortalidade envolve proporções, não médias, e por isso usa uma tabela de contingência com o teste do qui-quadrado. As proporções 13,1% e 16,4% não diferem significativamente, ou seja, não há evidência de que um anestésico cause mais fatalidades que o outro.</p>
 </details>
 <h2>Exercício 4 — Pressão de homens e mulheres</h2>
-<p>A partir de dados simulados de pressão sistólica (mmHg) de homens e mulheres, gerados conforme as estatísticas do Wolfram|Alpha (homens em torno de 122, mulheres em torno de 119, desvios da ordem de 17 a 21), um teste t indica diferença significativa?</p>
+<p>Procurando dados de pressão sistólica de homens e mulheres no Wolfram|Alpha (estudo NHANES 2006, ponderado para a demografia dos EUA), encontram-se as distribuições populacionais abaixo. A tabela traz 12 valores por sexo, gerados aleatoriamente de acordo com essas distribuições. Use um teste t para verificar se há diferença significativa entre os dois conjuntos.</p>
+<table>
+<thead>
+<tr>
+<th>Sexo</th>
+<th>Intervalo ±1σ</th>
+<th>Média (µ)</th>
+<th>σ</th>
+<th>n (estudo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Masculino</td>
+<td>105 a 139 mmHg</td>
+<td>≈ 122</td>
+<td>≈ 17</td>
+<td>3241</td>
+</tr>
+<tr>
+<td>Feminino</td>
+<td>98 a 140 mmHg</td>
+<td>≈ 119</td>
+<td>≈ 21</td>
+<td>3427</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -1052,7 +1259,50 @@ $$</div>
 <div class="math-display">$$
 \text{EP} = \frac{\sigma}{\sqrt{n}}
 $$</div>
-<p>Com $\sigma = 1$, o erro padrão vale 0,71 para $n=2$, 0,50 para $n=4$, 0,32 para $n=10$ e 0,22 para $n=20$. A precisão melhora com a raiz do tamanho da amostra, não de forma proporcional: para reduzir o erro padrão pela metade é preciso quadruplicar $n$. Isso explica por que os ganhos de precisão ficam cada vez mais caros à medida que a amostra aumenta.</p>
+<p>Completando a tabela com o erro padrão (s/√n) e a largura do intervalo de confiança (usando o valor crítico t para cada n):</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>6</th>
+<th>10</th>
+<th>20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>erro padrão (SEM)</td>
+<td>0,897</td>
+<td>0,691</td>
+<td>0,558</td>
+<td>0,428</td>
+<td>0,327</td>
+<td>0,230</td>
+</tr>
+<tr>
+<td>t (5%; n−1)</td>
+<td>12,71</td>
+<td>4,30</td>
+<td>3,18</td>
+<td>2,57</td>
+<td>2,26</td>
+<td>2,09</td>
+</tr>
+<tr>
+<td>meia-largura do IC 95%</td>
+<td>11,40</td>
+<td>2,97</td>
+<td>1,77</td>
+<td>1,10</td>
+<td>0,74</td>
+<td>0,48</td>
+</tr>
+</tbody>
+</table>
+<p>A precisão melhora com a raiz do tamanho da amostra, não de forma proporcional: para reduzir o erro padrão pela metade é preciso quadruplicar $n$. Repare como o IC despenca de n = 2 para n = 3 (o valor t cai de 12,71 para 4,30) e depois melhora cada vez mais devagar — os ganhos de precisão ficam progressivamente mais caros.</p>
 </details>
 <h2>Exercício 2 — Escolha do sexo da prole</h2>
 <p>Dois casais submetidos a um tratamento para escolher o sexo do bebê tiveram, cada um, dois meninos. O tratamento funciona?</p>
@@ -1065,7 +1315,8 @@ $$</div>
 <p>pouco acima dos 5% usuais. Como esse menor valor possível de p já ultrapassa o nível de significância, o teste não tem como rejeitar a hipótese nula, mesmo no resultado mais extremo. Com apenas quatro crianças, a potência do teste é praticamente zero: o problema não é o tratamento, mas o tamanho ridículo da amostra. O teste é inconclusivo, e não uma demonstração de que o tratamento funcione.</p>
 </details>
 <h2>Exercício 3 — Potência da comparação de pressão</h2>
-<p>A diferença real de pressão entre homens e mulheres é cerca de 3 mmHg, com desvios da ordem de 17 a 21 mmHg. a) Qual a potência de um teste com 24 dados? b) Quantos dados seriam necessários para 80% de potência? c) E com toda a amostra disponível?</p>
+<p>Os dados populacionais de pressão sistólica (estudo NHANES, exercício 4 de "Testes de dois grupos") são: homens com µ ≈ 122 mmHg, σ ≈ 17, n = 3241; mulheres com µ ≈ 119 mmHg, σ ≈ 21, n = 3427. A diferença real entre as médias é, portanto, cerca de 3 mmHg.</p>
+<p>a) Qual a potência de um teste com os 24 dados simulados (12 por grupo)? b) Quantos dados seriam necessários para 80% de potência? c) E usando toda a amostra do estudo?</p>
 <details>
 <summary>Mostrar resposta</summary>
 <p>Com apenas 24 dados, a potência fica em torno de 7%, um valor irrisório. Isso significa que, mesmo existindo a diferença, o teste quase nunca a detectaria.</p>

@@ -51,7 +51,12 @@ A comparação de mortalidade envolve proporções, não médias, e por isso usa
 
 ## Exercício 4 — Pressão de homens e mulheres
 
-A partir de dados simulados de pressão sistólica (mmHg) de homens e mulheres, gerados conforme as estatísticas do Wolfram\|Alpha (homens em torno de 122, mulheres em torno de 119, desvios da ordem de 17 a 21), um teste t indica diferença significativa?
+Procurando dados de pressão sistólica de homens e mulheres no Wolfram\|Alpha (estudo NHANES 2006, ponderado para a demografia dos EUA), encontram-se as distribuições populacionais abaixo. A tabela traz 12 valores por sexo, gerados aleatoriamente de acordo com essas distribuições. Use um teste t para verificar se há diferença significativa entre os dois conjuntos.
+
+| Sexo | Intervalo ±1σ | Média (µ) | σ | n (estudo) |
+| --- | --- | --- | --- | --- |
+| Masculino | 105 a 139 mmHg | ≈ 122 | ≈ 17 | 3241 |
+| Feminino | 98 a 140 mmHg | ≈ 119 | ≈ 21 | 3427 |
 
 | Homens | Mulheres |
 | --- | --- |
