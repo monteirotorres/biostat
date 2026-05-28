@@ -444,6 +444,32 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
+     Unidade experimental e pseudorreplicação
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Unidade Experimental</span>
+    <h2>Unidade experimental e pseudorreplicação</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li><strong>Unidade experimental</strong> = a menor unidade independente que recebe o tratamento</li>
+      <li>Cada rato recebe seu tratamento individualmente → unidade = rato</li>
+      <li>Uma gaiola/placa inteira recebe um único tratamento → unidade = gaiola/placa, não cada animal/célula</li>
+      <li>Medidas <strong>dentro</strong> da mesma unidade não são independentes — tendem a se parecer entre si</li>
+      <li><strong>Pseudorreplicação</strong>: tratar medidas dependentes como se fossem amostras independentes</li>
+      <li class="sub">3 placas tratadas × 20 campos por placa <strong>não</strong> são $n = 60$ — são $n = 3$</li>
+      <li>O $n$ estatístico é o número de <strong>unidades experimentais independentes</strong>, não de medidas</li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      qPCR com triplicata técnica em 5 animais por grupo: $n = 5$ (não 15). A triplicata controla erro de pipetagem; ela não substitui sujeitos biológicos independentes.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
      ⑦  Pareamento (figura)
 ══════════════════════════════════════════════════════════ -->
 <section>
@@ -456,6 +482,61 @@
     <img src="assets/slides/desenho/pareamento.png" alt="Pareamento">
   </div>
   <p class="icap">Sem pareamento, a variabilidade entre indivíduos domina o sinal. Pareando, cada diferença individual é removida.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     Tipos de controle e grupo de comparação
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Controles</span>
+    <h2>Tipos de controle e grupo de comparação</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb" style="padding-top:0">
+    <table class="tbl">
+      <thead><tr>
+        <th style="width:22%">Tipo</th>
+        <th style="width:36%">O que é</th>
+        <th>Por que importa</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><strong>Controle negativo</strong></td><td>Sem tratamento ou apenas veículo</td><td>Estabelece a linha de base do desfecho</td></tr>
+        <tr><td><strong>Controle positivo</strong></td><td>Tratamento conhecido por produzir efeito</td><td>Mostra que o ensaio é capaz de detectar o efeito</td></tr>
+        <tr><td><strong>Placebo</strong></td><td>"Tratamento" sem princípio ativo</td><td>Controla o efeito de simplesmente receber tratamento</td></tr>
+        <tr><td><strong>Sham control</strong></td><td>Procedimento físico simulado (cirurgia, injeção, anestesia)</td><td>Isola o efeito da intervenção do efeito do procedimento</td></tr>
+      </tbody>
+    </table>
+    <div class="ex" style="margin-top:14px">
+      <span class="ex-lbl">Exemplo</span>
+      Cirurgia experimental sem sham: se um grupo opera e o outro não passa por nada, qualquer diferença pode ser anestesia, estresse cirúrgico ou inflamação inespecífica — não a intervenção em si.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     Cegamento (blinding)
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Cegamento</span>
+    <h2>Cegamento: controlar o viés do observador</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li><strong>Cegamento do avaliador</strong>: quem mede o desfecho não sabe a qual grupo cada amostra pertence</li>
+      <li><strong>Cegamento do participante</strong>: paciente não sabe se recebeu fármaco ou placebo (clínica)</li>
+      <li><strong>Duplo-cego</strong>: nem participante nem avaliador conhecem a alocação — padrão-ouro dos ECRs</li>
+      <li>Indispensável sempre que há subjetividade na medida:</li>
+      <li class="sub">contagem celular · análise histológica · escore comportamental · classificação de imagens</li>
+      <li>Mesmo pesquisadores honestos são influenciados por expectativas — cegamento não é desconfiança, é metodologia</li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      Lâminas histológicas codificadas por números aleatórios; a chave fica com terceiros até o fim da análise. Só então os grupos são revelados — adeus ajuste inconsciente do escore.
+    </div>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -498,6 +579,32 @@
     <img src="assets/slides/desenho/interacao.png" alt="Plots de interação">
   </div>
   <p class="icap">Linhas paralelas → sem interação &nbsp;·&nbsp; Linhas não paralelas → o efeito de um fator depende do nível do outro</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     Medidas repetidas
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Desenhos Especiais</span>
+    <h2>Medidas repetidas: o tempo dentro do indivíduo</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>O mesmo indivíduo é medido em <strong>vários tempos</strong> (ou condições) ao longo do estudo</li>
+      <li>Cada sujeito é seu próprio controle → reduz drasticamente a variabilidade entre indivíduos</li>
+      <li>Medidas do mesmo sujeito <strong>não são independentes</strong>; ignorar isso infla o erro tipo I</li>
+      <li>Análises apropriadas:</li>
+      <li class="sub">ANOVA de medidas repetidas (suposição de esfericidade — teste de Mauchly)</li>
+      <li class="sub">Modelos lineares mistos (mais flexíveis, lidam com dados faltantes e tempos irregulares)</li>
+      <li class="sub">Área sob a curva (AUC) — resume cada sujeito num único número</li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      Teste de tolerância à glicose: glicemia medida em 0, 30, 60, 90 e 120 min após carga oral. Cinco medidas por animal — não cinco grupos independentes.
+    </div>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
