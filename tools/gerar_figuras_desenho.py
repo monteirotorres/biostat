@@ -18,13 +18,15 @@ BLUE = "#3266ad"; RED = "#c0392b"; GREEN = "#1a7a4a"; MUTED = "#6b6457"
 BLUEF = "#dce7f4"; REDF = "#f6dedb"; GREENF = "#dcefe4"; GREYF = "#ece4d3"
 
 plt.rcParams.update({
-    "font.family": "serif", "font.size": 13,
-    "axes.edgecolor": "#b9ad95", "axes.linewidth": 0.9,
-    "axes.titlesize": 14, "figure.facecolor": PAPER, "axes.facecolor": PAPER,
+    "font.family": "serif", "font.size": 18,
+    "axes.edgecolor": "#b9ad95", "axes.linewidth": 1.1,
+    "axes.titlesize": 20, "figure.facecolor": PAPER, "axes.facecolor": PAPER,
     "savefig.facecolor": PAPER, "axes.grid": True,
     "grid.color": "#e2d9c4", "grid.linewidth": 0.7,
     "xtick.color": MUTED, "ytick.color": MUTED,
     "axes.labelcolor": INK, "text.color": INK,
+    "legend.fontsize": 17, "axes.labelsize": 18,
+    "xtick.labelsize": 16, "ytick.labelsize": 16,
 })
 
 
@@ -46,7 +48,7 @@ def fig_poder_curvas():
         power = stats.norm.cdf(ncp - zc) + stats.norm.cdf(-ncp - zc)
         ax.plot(ns, power, color=cor, lw=2.4, label=f"d = {d}")
     ax.axhline(0.8, color=MUTED, ls="--", lw=1.2)
-    ax.text(195, 0.81, "poder 80%", color=MUTED, ha="right", fontsize=10)
+    ax.text(195, 0.81, "poder 80%", color=MUTED, ha="right", fontsize=14)
     ax.set_xlabel("n por grupo")
     ax.set_ylabel("poder (1 − β)")
     ax.set_ylim(0, 1.02)
@@ -65,9 +67,9 @@ def fig_quadrantes():
                      boxstyle="round,pad=0.2,rounding_size=0.25",
                      facecolor=fc, edgecolor=ec, lw=1.4))
         ax.text(cx, cy + h/2 - 0.5, top, ha="center", va="top",
-                fontsize=11, weight="bold", color=ec)
+                fontsize=15, weight="bold", color=ec)
         ax.text(cx, cy - 0.2, body, ha="center", va="center",
-                fontsize=10, color=INK, wrap=True)
+                fontsize=13, color=INK, wrap=True)
 
     quad(3, 7, 4, 3, "Quadrante fácil", "efeito grande,\nbaixa variabilidade\n→ amostra modesta", GREENF, GREEN)
     quad(7, 7, 4, 3, "Anômalo", "efeito grande,\nalta variabilidade\n→ algo estranho", GREYF, MUTED)
@@ -75,9 +77,9 @@ def fig_quadrantes():
     quad(7, 2.8, 4, 3, "Luta quotidiana", "efeito pequeno,\nalta variabilidade\n→ raramente conclusivo", REDF, RED)
 
     ax.text(0.2, 5, "← efeito grande     |     efeito pequeno →", rotation=90,
-            ha="center", va="center", fontsize=10, color=MUTED)
+            ha="center", va="center", fontsize=13, color=MUTED)
     ax.text(5, 0.1, "← baixa variabilidade     |     alta variabilidade →",
-            ha="center", va="center", fontsize=10, color=MUTED)
+            ha="center", va="center", fontsize=13, color=MUTED)
     save(fig, "quadrantes.png")
 
 
@@ -99,7 +101,7 @@ def fig_pareamento():
     axA.set_ylabel("medida")
     axA.text(1.5, max(depois.max(), antes.max()) + 1,
              "a variabilidade entre indivíduos\nesconde o efeito",
-             ha="center", fontsize=10, color=MUTED, style="italic")
+             ha="center", fontsize=14, color=MUTED, style="italic")
     # painel B: pareado — olha as diferenças individuais
     axB = axes[1]
     for i in range(n):
@@ -109,7 +111,7 @@ def fig_pareamento():
     axB.set_ylabel("medida")
     axB.text(0.5, axB.get_ylim()[1] * 0.9,
              "as diferenças individuais\nrevelam o efeito",
-             ha="center", fontsize=10, color=GREEN, style="italic")
+             ha="center", fontsize=14, color=GREEN, style="italic")
     save(fig, "pareamento.png")
 
 
@@ -128,9 +130,9 @@ def fig_pilares():
         ax.add_patch(FancyBboxPatch((cx - 1.3, 0.4), 2.6, 3.0,
                      boxstyle="round,pad=0.2,rounding_size=0.3",
                      facecolor=PAPER, edgecolor=cor, lw=1.6))
-        ax.text(cx, 2.9, titulo, ha="center", va="center", fontsize=13,
+        ax.text(cx, 2.9, titulo, ha="center", va="center", fontsize=17,
                 weight="bold", color=cor)
-        ax.text(cx, 1.6, corpo, ha="center", va="center", fontsize=10.5,
+        ax.text(cx, 1.6, corpo, ha="center", va="center", fontsize=14,
                 color=INK)
     save(fig, "pilares.png")
 
@@ -149,7 +151,7 @@ def fig_calc_preview():
     i80 = int(np.argmax(power >= 0.8))
     ax.plot(ns[i80], power[i80], "o", color=RED, ms=10)
     ax.annotate(f"n ≈ {ns[i80]} para poder = 80%", xy=(ns[i80], power[i80]),
-                xytext=(ns[i80] + 25, 0.55), fontsize=11, color=RED,
+                xytext=(ns[i80] + 25, 0.55), fontsize=15, color=RED,
                 arrowprops=dict(arrowstyle="->", color=RED))
     ax.set_xlabel("n por grupo"); ax.set_ylabel("poder")
     ax.set_ylim(0, 1.02)

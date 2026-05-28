@@ -239,19 +239,19 @@ def two_col_table(eyebrow, title, headers, rows, col1_w=4.5):
     _set(tb.text_frame.paragraphs[0], title, 28, INK, bold=True)
     _rect(s, Inches(0.72), Inches(1.7), Inches(1.1), Inches(0.05), BLUE)
 
-    c1w = Inches(col1_w)
-    c2w = Inches(13.333 - col1_w - 1.4)
-    lm  = Inches(0.7)
-    row_h = Inches(0.56)
+    c1w   = Inches(col1_w)
+    c2w   = Inches(13.333 - col1_w - 1.4)
+    lm    = Inches(0.7)
+    row_h = Inches(0.64)
     y     = Inches(1.95)
 
     # cabeçalho
     for ci, (hdr, cw) in enumerate(zip(headers, [c1w, c2w])):
         xl = lm + (c1w if ci else 0)
         _rect(s, xl, y, cw, row_h, BLUE)
-        ht = _box(s, xl + Inches(0.12), y + Inches(0.09),
-                  cw - Inches(0.2), row_h - Inches(0.12))
-        _set(ht.text_frame.paragraphs[0], hdr, 14, PAPER, bold=True)
+        ht = _box(s, xl + Inches(0.12), y + Inches(0.1),
+                  cw - Inches(0.2), row_h - Inches(0.14))
+        _set(ht.text_frame.paragraphs[0], hdr, 17, PAPER, bold=True)
     y += row_h
 
     for ri, row in enumerate(rows):
@@ -259,9 +259,9 @@ def two_col_table(eyebrow, title, headers, rows, col1_w=4.5):
         for ci, (cell, cw) in enumerate(zip(row, [c1w, c2w])):
             xl = lm + (c1w if ci else 0)
             _rect(s, xl, y, cw, row_h, fc)
-            ct = _box(s, xl + Inches(0.12), y + Inches(0.07),
-                      cw - Inches(0.2), row_h - Inches(0.08))
-            _set(ct.text_frame.paragraphs[0], cell, 13, INK)
+            ct = _box(s, xl + Inches(0.12), y + Inches(0.09),
+                      cw - Inches(0.2), row_h - Inches(0.1))
+            _set(ct.text_frame.paragraphs[0], cell, 16, INK)
         y += row_h
 
     _footer(s)
@@ -310,56 +310,144 @@ def four_boxes(eyebrow, title, items):
     _footer(prs.slides[-1])
 
 
-# ── tabela colorida de escolha de teste ───────────────────────────────────
-def test_table(eyebrow, title, headers, col_widths_in, rows,
-               row_h_in=0.58, fs=15, hdr_color=None):
-    """Tabela colorida em 3 colunas para guia de escolha de teste.
-
-    rows: lista de dicts {'fill': RGBColor, 'accent': RGBColor, 'cells': [c1, c2, c3]}
-    A última coluna recebe a cor 'accent' como fundo (destaque do teste).
-    """
-    if hdr_color is None: hdr_color = INK
+# ── tabela ÚNICA e completa de escolha de testes (dois painéis lado a lado) ──
+def comprehensive_test_table():
+    """Uma só tabela em dois painéis horizontais cobrindo todos os testes."""
     s  = prs.slides.add_slide(BLANK); _bg(s)
-    eb = _box(s, Inches(0.7), Inches(0.42), Inches(11), Inches(0.4))
-    _set(eb.text_frame.paragraphs[0], eyebrow.upper(), 12, MUTED, font=MONO)
-    tb = _box(s, Inches(0.7), Inches(0.78), Inches(12), Inches(1.0))
-    _set(tb.text_frame.paragraphs[0], title, 28, INK, bold=True)
-    _rect(s, Inches(0.72), Inches(1.7), Inches(1.1), Inches(0.05), BLUE)
+    eb = _box(s, Inches(0.65), Inches(0.30), Inches(12), Inches(0.35))
+    _set(eb.text_frame.paragraphs[0], "COMO ESCOLHER O TESTE", 12, MUTED, font=MONO)
+    tb = _box(s, Inches(0.65), Inches(0.60), Inches(12), Inches(0.80))
+    _set(tb.text_frame.paragraphs[0],
+         "Guia completo de escolha do teste estatístico", 26, INK, bold=True)
+    _rect(s, Inches(0.67), Inches(1.40), Inches(1.1), Inches(0.05), BLUE)
 
-    lm    = Inches(0.7)
-    y     = Inches(1.95)
-    row_h = Inches(row_h_in)
-    cols  = [Inches(w) for w in col_widths_in]
+    DATA_FS   = 15      # fonte nas células de dados
+    HDR_FS    = 15      # fonte nos cabeçalhos de coluna
+    SEC_FS    = 14      # fonte nos cabeçalhos de seção
+    ROW_H     = Inches(0.385)   # altura de cada linha de dado
+    SEC_H     = Inches(0.405)   # altura da linha de seção
+    COL_HDR_H = Inches(0.42)    # altura do cabeçalho de coluna
+    PAD       = Inches(0.11)    # padding horizontal interno
 
-    # cabeçalho
-    x = lm
-    for i, (h, cw) in enumerate(zip(headers, cols)):
-        _rect(s, x, y, cw, row_h, hdr_color)
-        ht = _box(s, x + Inches(0.12), y + Inches(0.08),
-                  cw - Inches(0.2), row_h - Inches(0.12))
-        ht.text_frame.paragraphs[0].alignment = (
-            PP_ALIGN.CENTER if i == len(headers) - 1 else PP_ALIGN.LEFT)
-        _set(ht.text_frame.paragraphs[0], h, fs + 1, PAPER, bold=True)
-        x += cw
-    y += row_h
+    # ── painel esquerdo: Diferenças ───────────────────────────────────────
+    # colunas: Desfecho (3.0 in) | N (0.82 in) | Teste (2.88 in)  → total 6.70
+    LX     = Inches(0.65)
+    L_COLS = [Inches(3.0), Inches(0.82), Inches(2.88)]
+    L_TOT  = sum(L_COLS)
 
-    # linhas
-    for r in rows:
-        x = lm
-        fill   = r.get('fill', PAPER)
-        accent = r.get('accent', INK)
-        for i, (cell, cw) in enumerate(zip(r['cells'], cols)):
-            last       = (i == len(r['cells']) - 1)
-            cell_fill  = accent if last else fill
-            cell_text  = PAPER  if last else INK
-            _rect(s, x, y, cw, row_h, cell_fill)
-            ct = _box(s, x + Inches(0.12), y + Inches(0.08),
-                      cw - Inches(0.2), row_h - Inches(0.14))
+    # ── painel direito: Correlação + Predição ─────────────────────────────
+    # colunas: Desfecho / situação (2.80 in) | Teste (3.18 in)  → total 5.98
+    GAP    = Inches(0.30)
+    RX     = LX + L_TOT + GAP
+    R_COLS = [Inches(2.80), Inches(3.18)]
+    R_TOT  = sum(R_COLS)
+
+    Y0 = Inches(1.53)   # topo dos painéis
+
+    def _hdr_row(x, y, cols, texts, bg):
+        cx = x
+        for i, (t, cw) in enumerate(zip(texts, cols)):
+            _rect(s, cx, y, cw, COL_HDR_H, bg)
+            ht = _box(s, cx + PAD, y + Inches(0.06),
+                      cw - 2*PAD, COL_HDR_H - Inches(0.08))
+            ht.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+            _set(ht.text_frame.paragraphs[0], t, HDR_FS, PAPER, bold=True)
+            cx += cw
+        return y + COL_HDR_H
+
+    def _sec_row(x, y, total_w, text, bg, tc=PAPER):
+        _rect(s, x, y, total_w, SEC_H, bg)
+        ht = _box(s, x + PAD, y + Inches(0.06),
+                  total_w - 2*PAD, SEC_H - Inches(0.08))
+        _set(ht.text_frame.paragraphs[0], text, SEC_FS, tc, bold=True)
+        return y + SEC_H
+
+    def _data_row(x, y, cols, cells, fills, text_colors, bold_last=True):
+        cx = x
+        for i, (cell, cw, fc, tc) in enumerate(zip(cells, cols, fills, text_colors)):
+            _rect(s, cx, y, cw, ROW_H, fc)
+            ct = _box(s, cx + PAD, y + Inches(0.05),
+                      cw - 2*PAD, ROW_H - Inches(0.06))
             ct.text_frame.paragraphs[0].alignment = (
-                PP_ALIGN.CENTER if last else PP_ALIGN.LEFT)
-            _set(ct.text_frame.paragraphs[0], cell, fs, cell_text, bold=last)
-            x += cw
-        y += row_h
+                PP_ALIGN.CENTER if i == len(cells) - 1 else PP_ALIGN.LEFT)
+            _set(ct.text_frame.paragraphs[0], cell, DATA_FS, tc,
+                 bold=(bold_last and i == len(cells) - 1))
+            cx += cw
+        return y + ROW_H
+
+    # ── PAINEL ESQUERDO ────────────────────────────────────────────────────
+    y = _hdr_row(LX, Y0, L_COLS,
+                 ["Tipo de desfecho", "N", "Teste"], INK)
+
+    # seção independentes
+    y = _sec_row(LX, y, L_TOT, "  Grupos independentes (não pareados)", TC_NORM_K)
+    ind_rows = [
+        ("Contínua — Normal",              "2",  "Teste t (Student / Welch)",
+         TC_NORM, TC_NORM, TC_NORM_K,   INK, INK, PAPER),
+        ("Contínua — Normal",              ">2", "ANOVA one-way",
+         TC_NORM, TC_NORM, TC_NORM_K,   INK, INK, PAPER),
+        ("Contínua não-Normal / Ordinal",  "2",  "Mann–Whitney U",
+         TC_NONP, TC_NONP, TC_NONP_K,   INK, INK, PAPER),
+        ("Contínua não-Normal / Ordinal",  ">2", "Kruskal–Wallis H",
+         TC_NONP, TC_NONP, TC_NONP_K,   INK, INK, PAPER),
+        ("Nominal (categorias)",           "2+", "Qui-quadrado · Fisher exato",
+         TC_NOM,  TC_NOM,  TC_NOM_K,    INK, INK, PAPER),
+        ("Sobrevida (tempo até evento)",   "—",  "Log-Rank · Kaplan–Meier",
+         TC_SURV, TC_SURV, TC_SURV_K,   INK, INK, PAPER),
+    ]
+    for d, n, t, f0, f1, f2, c0, c1, c2 in ind_rows:
+        y = _data_row(LX, y, L_COLS, [d, n, t], [f0, f1, f2], [c0, c1, c2])
+
+    # seção pareados
+    y = _sec_row(LX, y, L_TOT, "  Grupos pareados (mesmo indivíduo / blocos)", TC_CORR_K)
+    par_rows = [
+        ("Contínua — Normal",              "2",  "Teste t pareado",
+         TC_NORM, TC_NORM, TC_NORM_K,   INK, INK, PAPER),
+        ("Contínua — Normal",              ">2", "ANOVA medidas repetidas",
+         TC_NORM, TC_NORM, TC_NORM_K,   INK, INK, PAPER),
+        ("Contínua não-Normal / Ordinal",  "2",  "Wilcoxon dos postos",
+         TC_NONP, TC_NONP, TC_NONP_K,   INK, INK, PAPER),
+        ("Contínua não-Normal / Ordinal",  ">2", "Friedman",
+         TC_NONP, TC_NONP, TC_NONP_K,   INK, INK, PAPER),
+        ("Nominal (categorias)",           "2",  "McNemar",
+         TC_NOM,  TC_NOM,  TC_NOM_K,    INK, INK, PAPER),
+    ]
+    for d, n, t, f0, f1, f2, c0, c1, c2 in par_rows:
+        y = _data_row(LX, y, L_COLS, [d, n, t], [f0, f1, f2], [c0, c1, c2])
+
+    # ── PAINEL DIREITO ─────────────────────────────────────────────────────
+    y = _hdr_row(RX, Y0, R_COLS, ["Situação / desfecho", "Teste / modelo"], INK)
+
+    # seção correlação
+    y = _sec_row(RX, y, R_TOT, "  Correlação bivariada", TC_CORR_K)
+    corr_rows = [
+        ("Normal e linear",              "Pearson  (r)",
+         TC_CORR, TC_CORR_K,  INK, PAPER),
+        ("Não-Normal / Ordinal / monotônica", "Spearman (ρ)  ·  Kendall (τ)",
+         TC_CORR, TC_CORR_K,  INK, PAPER),
+    ]
+    for d, t, f0, f1, c0, c1 in corr_rows:
+        y = _data_row(RX, y, R_COLS, [d, t], [f0, f1], [c0, c1])
+
+    # seção predição / regressão
+    y = _sec_row(RX, y, R_TOT, "  Predição multivariável", TC_PRED_K,
+                 tc=RGBColor(0xFF, 0xFF, 0xFF))
+    pred_rows = [
+        ("Desfecho contínuo",              "Regressão linear",
+         TC_PRED, TC_PRED_K,  INK, PAPER),
+        ("Desfecho ordinal",               "Regressão logística ordinal",
+         TC_PRED, TC_PRED_K,  INK, PAPER),
+        ("Desfecho nominal — 2 níveis",    "Regressão logística binária",
+         TC_PRED, TC_PRED_K,  INK, PAPER),
+        ("Desfecho nominal — >2 níveis",   "Regressão logística multinomial",
+         TC_PRED, TC_PRED_K,  INK, PAPER),
+        ("Sobrevida (tempo até evento)",   "Regressão de Cox",
+         TC_SURV, TC_SURV_K,  INK, PAPER),
+        ("Contagem / taxa",                "Regressão de Poisson",
+         TC_PRED, TC_PRED_K,  INK, PAPER),
+    ]
+    for d, t, f0, f1, c0, c1 in pred_rows:
+        y = _data_row(RX, y, R_COLS, [d, t], [f0, f1], [c0, c1])
 
     _footer(s)
 
@@ -411,11 +499,11 @@ def five_questions_slide(eyebrow, title):
         # cabeçalho da pergunta
         ht = _box(s, Inches(1.85), y + Inches(0.08),
                   Inches(10.9), Inches(0.45))
-        _set(ht.text_frame.paragraphs[0], head, 18, col, bold=True)
+        _set(ht.text_frame.paragraphs[0], head, 20, col, bold=True)
         # corpo da pergunta
-        bt = _box(s, Inches(1.85), y + Inches(0.48),
-                  Inches(10.9), Inches(0.42))
-        _set(bt.text_frame.paragraphs[0], body, 13, MUTED, italic=True)
+        bt = _box(s, Inches(1.85), y + Inches(0.50),
+                  Inches(10.9), Inches(0.40))
+        _set(bt.text_frame.paragraphs[0], body, 15, MUTED, italic=True)
 
     _footer(s)
 
@@ -686,78 +774,8 @@ five_questions_slide(
     "Cinco perguntas que decidem o teste estatístico",
 )
 
-# 21 — Diferenças entre grupos independentes
-test_table(
-    eyebrow="diferença · grupos independentes",
-    title="Comparar grupos independentes",
-    headers=["Tipo do desfecho", "Nº de grupos", "Teste recomendado"],
-    col_widths_in=[5.0, 2.4, 4.53],
-    rows=[
-        {'fill': TC_NORM, 'accent': TC_NORM_K,
-         'cells': ["Contínua — Normal", "2 grupos",  "Teste t (Student / Welch)"]},
-        {'fill': TC_NORM, 'accent': TC_NORM_K,
-         'cells': ["Contínua — Normal", ">2 grupos", "ANOVA one-way"]},
-        {'fill': TC_NONP, 'accent': TC_NONP_K,
-         'cells': ["Contínua não-Normal / Ordinal", "2 grupos",  "Mann–Whitney U"]},
-        {'fill': TC_NONP, 'accent': TC_NONP_K,
-         'cells': ["Contínua não-Normal / Ordinal", ">2 grupos", "Kruskal–Wallis H"]},
-        {'fill': TC_NOM, 'accent': TC_NOM_K,
-         'cells': ["Nominal (categorias)", "2 grupos",  "Qui-quadrado · Fisher exato"]},
-        {'fill': TC_NOM, 'accent': TC_NOM_K,
-         'cells': ["Nominal (categorias)", ">2 grupos", "Qui-quadrado"]},
-        {'fill': TC_SURV, 'accent': TC_SURV_K,
-         'cells': ["Tempo até evento (sobrevida)", "—", "Log-Rank · Kaplan–Meier"]},
-    ],
-    row_h_in=0.58, fs=15,
-)
-
-# 22 — Diferenças entre grupos pareados
-test_table(
-    eyebrow="diferença · grupos pareados",
-    title="Comparar grupos pareados (mesmo indivíduo / blocos)",
-    headers=["Tipo do desfecho", "Nº de medidas", "Teste recomendado"],
-    col_widths_in=[5.0, 2.4, 4.53],
-    rows=[
-        {'fill': TC_NORM, 'accent': TC_NORM_K,
-         'cells': ["Contínua — Normal", "2 medidas",  "Teste t pareado"]},
-        {'fill': TC_NORM, 'accent': TC_NORM_K,
-         'cells': ["Contínua — Normal", ">2 medidas", "ANOVA de medidas repetidas"]},
-        {'fill': TC_NONP, 'accent': TC_NONP_K,
-         'cells': ["Contínua não-Normal / Ordinal", "2 medidas",  "Wilcoxon dos postos sinalizados"]},
-        {'fill': TC_NONP, 'accent': TC_NONP_K,
-         'cells': ["Contínua não-Normal / Ordinal", ">2 medidas", "Friedman"]},
-        {'fill': TC_NOM, 'accent': TC_NOM_K,
-         'cells': ["Nominal (categorias)", "2 medidas",  "McNemar"]},
-    ],
-    row_h_in=0.7, fs=16,
-)
-
-# 23 — Correlação e modelos de predição
-test_table(
-    eyebrow="correlação e predição multivariável",
-    title="Associação entre variáveis e modelos de predição",
-    headers=["Tipo de análise", "Característica do desfecho", "Teste / modelo"],
-    col_widths_in=[3.6, 4.4, 3.93],
-    rows=[
-        {'fill': TC_CORR, 'accent': TC_CORR_K,
-         'cells': ["Correlação bivariada", "Contínua, Normal e linear",         "Pearson  (r)"]},
-        {'fill': TC_CORR, 'accent': TC_CORR_K,
-         'cells': ["Correlação bivariada", "Não-Normal / Ordinal / monotônica", "Spearman (ρ) · Kendall (τ)"]},
-        {'fill': TC_PRED, 'accent': TC_PRED_K,
-         'cells': ["Predição multivariável", "Desfecho contínuo",             "Regressão linear"]},
-        {'fill': TC_PRED, 'accent': TC_PRED_K,
-         'cells': ["Predição multivariável", "Desfecho ordinal",              "Regressão logística ordinal"]},
-        {'fill': TC_PRED, 'accent': TC_PRED_K,
-         'cells': ["Predição multivariável", "Desfecho nominal (2 níveis)",   "Regressão logística binária"]},
-        {'fill': TC_PRED, 'accent': TC_PRED_K,
-         'cells': ["Predição multivariável", "Desfecho nominal (>2 níveis)",  "Regressão logística multinomial"]},
-        {'fill': TC_SURV, 'accent': TC_SURV_K,
-         'cells': ["Predição multivariável", "Tempo até evento (sobrevida)",  "Regressão de Cox"]},
-        {'fill': TC_PRED, 'accent': TC_PRED_K,
-         'cells': ["Predição multivariável", "Contagem / taxa",               "Regressão de Poisson"]},
-    ],
-    row_h_in=0.5, fs=14,
-)
+# 21 — tabela completa (painel único, dois lados)
+comprehensive_test_table()
 
 # 24 — Pós-testes e boas práticas
 content(
