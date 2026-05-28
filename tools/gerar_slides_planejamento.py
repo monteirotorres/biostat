@@ -54,6 +54,9 @@ TC_CORR_K = RGBColor(0xC0, 0x39, 0x2B)
 SERIF = "Georgia"
 MONO  = "Consolas"
 
+# multiplicador global de fontes nos slides
+SCALE = 1.15
+
 prs = Presentation()
 prs.slide_width  = Inches(13.333)
 prs.slide_height = Inches(7.5)
@@ -91,7 +94,7 @@ def _box(slide, l, t, w, h):
 def _set(p, text, size, color=INK, bold=False, font=SERIF, italic=False):
     p.text = text
     for r in p.runs:
-        r.font.size = Pt(size)
+        r.font.size = Pt(int(round(size * SCALE)))
         r.font.color.rgb = color
         r.font.bold  = bold
         r.font.name  = font
@@ -206,21 +209,21 @@ def content(eyebrow, title, bullets=None, formula=None,
     top = Inches(2.05)
 
     if image and bullets:
-        _bullets(s, bullets, Inches(0.7), top, Inches(5.5), Inches(4.6))
-        _img_fit(s, image, Inches(6.5), top, Inches(6.3), Inches(4.4))
+        _bullets(s, bullets, Inches(0.55), Inches(1.95), Inches(5.6), Inches(5.0), size=20)
+        _img_fit(s, image, Inches(6.2), Inches(1.85), Inches(7.0), Inches(5.0))
     elif image:
-        _img_fit(s, image, Inches(1.3), top, Inches(10.7), Inches(4.4))
+        _img_fit(s, image, Inches(0.30), Inches(1.85), Inches(12.73), Inches(5.0))
         if caption:
-            cb = _box(s, Inches(1), Inches(6.5), Inches(11.33), Inches(0.4))
+            cb = _box(s, Inches(0.5), Inches(6.85), Inches(12.3), Inches(0.3))
             p  = cb.text_frame.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
-            _set(p, caption, 12, MUTED, italic=True)
+            _set(p, caption, 13, MUTED, italic=True)
     elif bullets and formula:
         _bullets(s, bullets, Inches(0.9), top, Inches(11.5), Inches(3.0), size=19)
         y = top + Inches(3.0)
-        _formula_card(s, formula, Inches(0.9), Inches(11.5), y, target_h_in=0.75)
+        _formula_card(s, formula, Inches(0.9), Inches(11.5), y, target_h_in=0.85)
     elif formula:
         _formula_card(s, formula, Inches(1.5), Inches(10.3), Inches(3.0),
-                      target_h_in=1.0, fontsize=34)
+                      target_h_in=1.20, fontsize=34)
     elif bullets:
         _bullets(s, bullets, Inches(0.9), top, Inches(11.5), Inches(4.6), size=20)
 
@@ -508,6 +511,26 @@ def five_questions_slide(eyebrow, title):
     _footer(s)
 
 
+# ── slide só com uma imagem grande ────────────────────────────────────────
+def image_slide(eyebrow, title, image_path, caption=None):
+    """Slide com imagem ocupando o máximo de espaço possível."""
+    s  = prs.slides.add_slide(BLANK); _bg(s)
+    eb = _box(s, Inches(0.7), Inches(0.30), Inches(11), Inches(0.4))
+    _set(eb.text_frame.paragraphs[0], eyebrow.upper(), 12, MUTED, font=MONO)
+    tb = _box(s, Inches(0.7), Inches(0.60), Inches(12), Inches(0.85))
+    _set(tb.text_frame.paragraphs[0], title, 28, INK, bold=True)
+    _rect(s, Inches(0.72), Inches(1.46), Inches(1.1), Inches(0.05), BLUE)
+    top    = Inches(1.62)
+    bot    = Inches(6.78) if caption else Inches(7.00)
+    img_h  = bot - top
+    _img_fit(s, image_path, Inches(0.30), top, Inches(12.73), img_h)
+    if caption:
+        cb = _box(s, Inches(0.5), Inches(6.82), Inches(12.3), Inches(0.3))
+        p  = cb.text_frame.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        _set(p, caption, 13, MUTED, italic=True)
+    _footer(s)
+
+
 # ── refs ──────────────────────────────────────────────────────────────────
 def refs_slide():
     s  = prs.slides.add_slide(BLANK); _bg(s)
@@ -616,6 +639,31 @@ content(
     image=DESN / "pareamento.png",
     caption="Sem pareamento, a variabilidade entre indivíduos domina o sinal. "
             "Pareando, cada diferença individual é removida.",
+)
+
+# 8 — Planejamento fatorial: conceito
+content(
+    "desenhos especiais",
+    "Planejamento fatorial: vários fatores ao mesmo tempo",
+    image=DESN / "desenho_fatorial.png",
+    bullets=[
+        "Em vez de variar UM fator de cada vez, varia-se TODOS simultaneamente",
+        "Notação 2 × 2: dois fatores, dois níveis cada → 4 grupos",
+        "Generaliza para 2 × 3, 3 × 3, 2 × 2 × 2, …",
+        "Vantagens:",
+        "- mais EFICIENTE: o mesmo n responde a várias perguntas",
+        "- revela INTERAÇÕES entre fatores",
+        "Analisado por ANOVA fatorial (two-way, three-way)",
+    ],
+)
+
+# 9 — Efeitos principais e interação
+content(
+    "desenhos especiais",
+    "Efeitos principais e interação",
+    image=DESN / "interacao.png",
+    caption="Linhas paralelas → sem interação · linhas não paralelas → "
+            "o efeito de um fator depende do nível do outro",
 )
 
 # ── PARTE 2: TIPOS DE ESTUDO ───────────────────────────────────────────────
@@ -774,8 +822,13 @@ five_questions_slide(
     "Cinco perguntas que decidem o teste estatístico",
 )
 
-# 21 — tabela completa (painel único, dois lados)
-comprehensive_test_table()
+# 21 — tabela completa: imagem original do guia (em inglês)
+image_slide(
+    "como escolher o teste",
+    "Guia completo de escolha do teste estatístico",
+    DESN / "guia_testes.jpg",
+    caption="A guide for choosing the most common statistical tests",
+)
 
 # 24 — Pós-testes e boas práticas
 content(

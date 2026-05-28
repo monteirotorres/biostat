@@ -72,6 +72,7 @@
 * [Testes não paramétricos](04_estatistica_inferencial/16_testes_nao_parametricos.md)
 * [Design experimental e potência](04_estatistica_inferencial/17_design_experimental.md)
 * [Como escolher o teste](04_estatistica_inferencial/18_escolha_do_teste.md)
+* [Planejamento prático: pós-testes e ANOVA fatorial](04_estatistica_inferencial/19_planejamento_pratico.ipynb)
 
 ## Tabelas estatísticas
 
