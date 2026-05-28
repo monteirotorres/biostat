@@ -93,6 +93,7 @@
 <li><a class="nav-link" data-target="04-estatistica-inferencial-16-testes-nao-parametricos-md" href="#04-estatistica-inferencial-16-testes-nao-parametricos-md"><span class="n">5.16</span>Testes não paramétricos</a></li>
 <li><a class="nav-link" data-target="04-estatistica-inferencial-17-design-experimental-md" href="#04-estatistica-inferencial-17-design-experimental-md"><span class="n">5.17</span>Design experimental e potência</a></li>
 <li><a class="nav-link" data-target="04-estatistica-inferencial-18-escolha-do-teste-md" href="#04-estatistica-inferencial-18-escolha-do-teste-md"><span class="n">5.18</span>Como escolher o teste</a></li>
+<li><a class="nav-link" data-target="04-estatistica-inferencial-19-planejamento-pratico-md" href="#04-estatistica-inferencial-19-planejamento-pratico-md"><span class="n">5.19</span>Planejamento prático: pós-testes e ANOVA fatorial</a></li>
 </ul></div>
 <div class="nav-group">
 <div class="nav-group-title">6. Tabelas estatísticas</div>
@@ -2422,6 +2423,8 @@ $$</div>
 <li>quando dá positivo, tende a <strong>superestimar</strong> o efeito (a <em>winner's curse</em>).</li>
 </ul>
 <p>Por isso, o cálculo amostral deve ser feito <strong>antes</strong> do estudo e reportado.</p>
+<h2>Slides da aula</h2>
+<p>▶ <a href="planejamento_experimental_slides.html">Slides interativos — Planejamento Experimental</a></p>
 <h2>No notebook</h2>
 <p>Simulamos o poder: para um dado efeito e $n$, rodamos milhares de experimentos e contamos em quantos rejeitamos $H_0$. A fração observada é o poder — e bate com o valor teórico.</p>
 
@@ -2460,8 +2463,8 @@ $$</div>
 <div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/04_estatistica_inferencial/18_escolha_do_teste.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
 <p>Escolher o teste estatístico certo é, na maior parte das vezes, uma questão de responder a três perguntas sobre o seu problema, antes de qualquer conta.</p>
 <p>A primeira pergunta é <strong>o que se quer responder</strong>: comparar grupos ou médias, medir a associação entre duas variáveis quantitativas, ou analisar variáveis categóricas. A segunda é <strong>como os dados foram coletados</strong>: quantos grupos existem e se eles são independentes ou pareados (o mesmo indivíduo medido mais de uma vez, ou pares casados). A terceira é <strong>se a suposição de normalidade se sustenta</strong>, o que decide entre um teste paramétrico e sua versão não-paramétrica.</p>
-<p>O fluxograma abaixo resume essas decisões.</p>
-<p><img alt="Fluxograma de escolha de testes estatísticos" src="assets/fluxograma_testes.png" /></p>
+<p>O guia abaixo resume essas decisões.</p>
+<p><img alt="Guia de escolha de testes estatísticos" src="assets/slides/desenho/guia_testes.jpg" /></p>
 <h2>Comparar grupos ou médias</h2>
 <p>Aqui a variável de interesse é quantitativa, e a escolha depende do número de grupos e do pareamento. Quando a variável é aproximadamente normal (ou a amostra é grande o bastante para o teorema do limite central agir), usa-se o teste <strong>paramétrico</strong>; caso contrário, sua alternativa <strong>não-paramétrica</strong>, que trabalha com postos.</p>
 <table>
@@ -2536,6 +2539,52 @@ $$</div>
 <p>Para as alternativas não-paramétricas, após um Kruskal–Wallis significativo usa-se o <strong>teste de Dunn</strong> (com correção de Bonferroni), e após um Friedman, comparações pareadas de Wilcoxon corrigidas.</p>
 <h2>Antes de rodar qualquer teste</h2>
 <p>Nenhum fluxograma substitui olhar os dados. Faça um gráfico (histograma, boxplot, dispersão) antes de decidir, verifique as suposições do teste escolhido (normalidade, independência, variâncias) e, sempre que possível, reporte o <strong>tamanho de efeito</strong> e o <strong>intervalo de confiança</strong> junto com o valor-p — eles dizem o quanto o efeito importa, não apenas se ele é detectável.</p>
+
+</article>
+<article id="04-estatistica-inferencial-19-planejamento-pratico-md" class="topic">
+<div class="topic-num">5.19</div>
+<h1 class="topic-title">Planejamento prático: pós-testes e ANOVA fatorial</h1>
+<div class="nb-row"><a class="colab-link" href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/04_estatistica_inferencial/19_planejamento_pratico.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir no Colab"></a></div>
+<p>Este notebook aplica os conceitos de planejamento experimental de forma prática, com código Python comentado e gráficos gerados com matplotlib e seaborn.</p>
+<h2>O que o notebook cobre</h2>
+<table>
+<thead>
+<tr>
+<th>Seção</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cálculo amostral</td>
+<td>Fórmula para teste t; curva poder × n</td>
+</tr>
+<tr>
+<td>Poder por simulação Monte Carlo</td>
+<td>Verificação empírica do poder teórico</td>
+</tr>
+<tr>
+<td>ANOVA one-way + pós-testes</td>
+<td>Tukey HSD, Dunnett, Bonferroni</td>
+</tr>
+<tr>
+<td>Kruskal-Wallis + Dunn</td>
+<td>Alternativa não-paramétrica com correção de Bonferroni</td>
+</tr>
+<tr>
+<td>ANOVA fatorial 2 × 2</td>
+<td>Efeitos principais, interação, visualização</td>
+</tr>
+</tbody>
+</table>
+<h2>Pré-requisitos</h2>
+<pre><code class="language-python">pip install scipy statsmodels scikit-posthocs seaborn
+</code></pre>
+<h2>Como usar</h2>
+<p>Abra o notebook no Google Colab (botão acima) ou execute localmente com Jupyter. Todas as células podem ser rodadas na ordem — cada seção é independente.</p>
+<blockquote>
+<p>Os dados são simulados com <code>numpy.random</code> para reprodutibilidade; altere a semente (<code>rng = np.random.default_rng(42)</code>) para gerar novos cenários.</p>
+</blockquote>
 
 </article>
 </div>

@@ -85,7 +85,7 @@ Por isso, o cálculo amostral deve ser feito **antes** do estudo e reportado.
 
 ## Slides da aula
 
-▶ [Slides interativos — Planejamento Experimental](../planejamento_experimental_slides.html)
+▶ [Slides interativos — Planejamento Experimental](planejamento_experimental_slides.html)
 
 ## No notebook
 

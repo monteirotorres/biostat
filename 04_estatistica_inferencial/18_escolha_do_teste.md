@@ -6,7 +6,7 @@ A primeira pergunta é **o que se quer responder**: comparar grupos ou médias, 
 
 O guia abaixo resume essas decisões.
 
-![Guia de escolha de testes estatísticos](../assets/slides/desenho/guia_testes.jpg)
+![Guia de escolha de testes estatísticos](assets/slides/desenho/guia_testes.jpg)
 
 ## Comparar grupos ou médias
 
