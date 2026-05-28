@@ -225,10 +225,11 @@ def content(eyebrow, title, bullets=None, formula=None,
         _formula_card(s, formula, Inches(1.5), Inches(10.3), Inches(3.0),
                       target_h_in=1.20, fontsize=34)
     elif bullets:
-        _bullets(s, bullets, Inches(0.9), top, Inches(11.5), Inches(4.6), size=20)
+        bh = Inches(3.5) if example else Inches(4.6)
+        _bullets(s, bullets, Inches(0.9), top, Inches(11.5), bh, size=20)
 
     if example:
-        _example(s, example, Inches(0.9), Inches(5.85), Inches(11.5))
+        _example(s, example, Inches(0.9), Inches(5.72), Inches(11.5))
     _footer(s)
 
 
@@ -478,9 +479,9 @@ def five_questions_slide(eyebrow, title):
     ]
     cores = [TC_NORM_K, TC_CORR_K, TC_NOM_K, TC_SURV_K, TC_NONP_K]
 
-    y0       = Inches(2.0)
-    card_h   = Inches(0.85)
-    card_gap = Inches(0.12)
+    y0       = Inches(1.95)
+    card_h   = Inches(0.93)
+    card_gap = Inches(0.10)
 
     for i, ((q, head, body), col) in enumerate(zip(perguntas, cores)):
         y = y0 + i * (card_h + card_gap)
@@ -500,12 +501,12 @@ def five_questions_slide(eyebrow, title):
         card.line.color.rgb = col; card.line.width = Pt(1.6)
         card.shadow.inherit = False
         # cabeçalho da pergunta
-        ht = _box(s, Inches(1.85), y + Inches(0.08),
-                  Inches(10.9), Inches(0.45))
+        ht = _box(s, Inches(1.85), y + Inches(0.07),
+                  Inches(10.9), Inches(0.46))
         _set(ht.text_frame.paragraphs[0], head, 20, col, bold=True)
         # corpo da pergunta
-        bt = _box(s, Inches(1.85), y + Inches(0.50),
-                  Inches(10.9), Inches(0.40))
+        bt = _box(s, Inches(1.85), y + Inches(0.51),
+                  Inches(10.9), Inches(0.38))
         _set(bt.text_frame.paragraphs[0], body, 15, MUTED, italic=True)
 
     _footer(s)
