@@ -42,6 +42,8 @@
   height: 720px;
   box-sizing: border-box;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* kill all reveal defaults that fight our layout */
@@ -82,7 +84,7 @@
 }
 
 /* ── body area ───────────────────────────────────────────── */
-.sb { padding: 0 58px 14px; }
+.sb { padding: 0 58px 14px; flex: 1; min-height: 0; overflow: hidden; }
 
 /* ── bullets ─────────────────────────────────────────────── */
 .reveal .slides section ul {
@@ -145,10 +147,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2px 40px 0;
+  padding: 4px 40px 0;
+  flex: 1;
+  min-height: 0;
 }
 .ia img {
   max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 .icap {
@@ -166,6 +171,8 @@
   gap: 28px;
   padding: 0 50px;
   align-items: flex-start;
+  flex: 1;
+  min-height: 0;
 }
 .tcol-b { flex: 0 0 42%; }
 .tcol-i { flex: 1; display: flex; align-items: center; justify-content: center; }
@@ -358,8 +365,8 @@
     <h2>Os quatro pilares de um bom experimento</h2>
     <div class="sep"></div>
   </div>
-  <div class="ia" style="height:450px">
-    <img src="assets/slides/desenho/pilares.png" alt="Quatro pilares" style="max-height:440px">
+  <div class="ia">
+    <img src="assets/slides/desenho/pilares.png" alt="Quatro pilares">
   </div>
   <p class="icap">Controle · Aleatorização · Repetição · Pareamento — os pilares do desenho experimental clássico</p>
 </section>
@@ -445,8 +452,8 @@
     <h2>Pareamento: cada indivíduo como seu próprio controle</h2>
     <div class="sep"></div>
   </div>
-  <div class="ia" style="height:450px">
-    <img src="assets/slides/desenho/pareamento.png" alt="Pareamento" style="max-height:440px">
+  <div class="ia">
+    <img src="assets/slides/desenho/pareamento.png" alt="Pareamento">
   </div>
   <p class="icap">Sem pareamento, a variabilidade entre indivíduos domina o sinal. Pareando, cada diferença individual é removida.</p>
 </section>
@@ -487,8 +494,8 @@
     <h2>Efeitos principais e interação</h2>
     <div class="sep"></div>
   </div>
-  <div class="ia" style="height:450px">
-    <img src="assets/slides/desenho/interacao.png" alt="Plots de interação" style="max-height:435px">
+  <div class="ia">
+    <img src="assets/slides/desenho/interacao.png" alt="Plots de interação">
   </div>
   <p class="icap">Linhas paralelas → sem interação &nbsp;·&nbsp; Linhas não paralelas → o efeito de um fator depende do nível do outro</p>
 </section>
@@ -640,8 +647,8 @@
     <h2>Os quatro quadrantes: efeito × variabilidade</h2>
     <div class="sep"></div>
   </div>
-  <div class="ia" style="height:450px">
-    <img src="assets/slides/desenho/quadrantes.png" alt="Quadrantes efeito vs variabilidade" style="max-height:435px">
+  <div class="ia">
+    <img src="assets/slides/desenho/quadrantes.png" alt="Quadrantes efeito vs variabilidade">
   </div>
   <p class="icap">A combinação de tamanho de efeito e variabilidade determina o esforço amostral necessário</p>
 </section>
@@ -680,8 +687,8 @@
     <h2>Poder em função do n: curvas para diferentes efeitos</h2>
     <div class="sep"></div>
   </div>
-  <div class="ia" style="height:450px">
-    <img src="assets/slides/desenho/poder_curvas.png" alt="Curvas de poder" style="max-height:440px">
+  <div class="ia">
+    <img src="assets/slides/desenho/poder_curvas.png" alt="Curvas de poder">
   </div>
   <p class="icap">Efeito grande (d = 0,8): poucos sujeitos bastam. Efeito pequeno (d = 0,2): centenas. A linha tracejada marca poder = 80%.</p>
 </section>
@@ -807,8 +814,8 @@
     <h2>Guia completo de escolha do teste estatístico</h2>
     <div class="sep"></div>
   </div>
-  <div class="ia" style="height:450px">
-    <img src="assets/slides/desenho/guia_testes.jpg" alt="Guia de escolha de testes" style="max-height:440px">
+  <div class="ia">
+    <img src="assets/slides/desenho/guia_testes.jpg" alt="Guia de escolha de testes">
   </div>
   <p class="icap">A guide for choosing the most common statistical tests</p>
 </section>

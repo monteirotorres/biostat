@@ -67,9 +67,9 @@ def fig_quadrantes():
                      boxstyle="round,pad=0.2,rounding_size=0.25",
                      facecolor=fc, edgecolor=ec, lw=1.6))
         ax.text(cx, cy + h/2 - 0.6, top, ha="center", va="top",
-                fontsize=18, weight="bold", color=ec)
+                fontsize=16, weight="bold", color=ec)
         ax.text(cx, cy - 0.3, body, ha="center", va="center",
-                fontsize=15, color=INK, wrap=True)
+                fontsize=12, color=INK, linespacing=1.4)
 
     # topo = efeito GRANDE   ·   esquerda = baixa variabilidade
     quad(3, 7.2, 3.8, 2.6, "Mundo ideal",
@@ -118,9 +118,9 @@ def fig_pareamento():
                 medianprops=dict(color=BLUE))
     axA.set_title("Tratando os dados como independentes")
     axA.set_ylabel("medida")
-    axA.text(1.5, max(depois.max(), antes.max()) + 1,
-             "a variabilidade entre indivíduos\nesconde o efeito",
-             ha="center", fontsize=17, color=MUTED, style="italic")
+    axA.text(0.5, 0.04, "variabilidade entre indivíduos\nesconde o efeito",
+             transform=axA.transAxes, ha="center", va="bottom",
+             fontsize=14, color=MUTED, style="italic")
     # painel B: pareado — olha as diferenças individuais
     axB = axes[1]
     for i in range(n):
@@ -128,15 +128,15 @@ def fig_pareamento():
     axB.set_xticks([0, 1]); axB.set_xticklabels(["antes", "depois"])
     axB.set_title("Pareando: cada indivíduo é seu próprio controle")
     axB.set_ylabel("medida")
-    axB.text(0.5, axB.get_ylim()[1] * 0.9,
-             "as diferenças individuais\nrevelam o efeito",
-             ha="center", fontsize=17, color=GREEN, style="italic")
+    axB.text(0.5, 0.04, "diferenças individuais\nrevelam o efeito",
+             transform=axB.transAxes, ha="center", va="bottom",
+             fontsize=14, color=GREEN, style="italic")
     save(fig, "pareamento.png")
 
 
 # 4 — Os quatro pilares (quadro estilizado)
 def fig_pilares():
-    fig, ax = plt.subplots(figsize=(11, 3.6))
+    fig, ax = plt.subplots(figsize=(12, 4.0))
     ax.set_xlim(0, 12); ax.set_ylim(0, 4); ax.axis("off")
     pilares = [
         ("Controle", "manter constantes as\nvariáveis não estudadas", BLUE),
@@ -146,13 +146,13 @@ def fig_pilares():
     ]
     for i, (titulo, corpo, cor) in enumerate(pilares):
         cx = 1.5 + i * 3.0
-        ax.add_patch(FancyBboxPatch((cx - 1.3, 0.4), 2.6, 3.0,
+        ax.add_patch(FancyBboxPatch((cx - 1.3, 0.3), 2.6, 3.4,
                      boxstyle="round,pad=0.2,rounding_size=0.3",
                      facecolor=PAPER, edgecolor=cor, lw=1.6))
-        ax.text(cx, 2.9, titulo, ha="center", va="center", fontsize=20,
+        ax.text(cx, 3.2, titulo, ha="center", va="center", fontsize=15,
                 weight="bold", color=cor)
-        ax.text(cx, 1.6, corpo, ha="center", va="center", fontsize=16,
-                color=INK)
+        ax.text(cx, 1.7, corpo, ha="center", va="center", fontsize=12,
+                color=INK, linespacing=1.5)
     save(fig, "pilares.png")
 
 
