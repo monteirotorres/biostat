@@ -4,9 +4,9 @@ Escolher o teste estatístico certo é, na maior parte das vezes, uma questão d
 
 A primeira pergunta é **o que se quer responder**: comparar grupos ou médias, medir a associação entre duas variáveis quantitativas, ou analisar variáveis categóricas. A segunda é **como os dados foram coletados**: quantos grupos existem e se eles são independentes ou pareados (o mesmo indivíduo medido mais de uma vez, ou pares casados). A terceira é **se a suposição de normalidade se sustenta**, o que decide entre um teste paramétrico e sua versão não-paramétrica.
 
-O fluxograma abaixo resume essas decisões.
+O guia abaixo resume essas decisões.
 
-![Fluxograma de escolha de testes estatísticos](assets/fluxograma_testes.png)
+![Guia de escolha de testes estatísticos](../assets/slides/desenho/guia_testes.jpg)
 
 ## Comparar grupos ou médias
 

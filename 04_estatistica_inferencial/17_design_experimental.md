@@ -83,6 +83,10 @@ Um estudo com poder baixo é eticamente questionável:
 
 Por isso, o cálculo amostral deve ser feito **antes** do estudo e reportado.
 
+## Slides da aula
+
+▶ [Slides interativos — Planejamento Experimental](../planejamento_experimental_slides.html)
+
 ## No notebook
 
 Simulamos o poder: para um dado efeito e $n$, rodamos milhares de experimentos e contamos em quantos rejeitamos $H_0$. A fração observada é o poder — e bate com o valor teórico.

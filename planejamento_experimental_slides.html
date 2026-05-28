@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planejamento Experimental · IBCCF/UFRJ</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
+<style>
+/* ── palette ─────────────────────────────────────────────── */
+:root {
+  --bg:       #F3ECDF;
+  --paper:    #FFFDF8;
+  --ink:      #1A1A1A;
+  --blue:     #3266AD;
+  --red:      #C0392B;
+  --green:    #1A7A4A;
+  --muted:    #6B6457;
+  --line:     #C9BFA9;
+  --tint:     #ECF1F8;
+  --blue-f:   #DCE7F4;
+  --red-f:    #F6DEDB;
+  --green-f:  #DCEFE4;
+  --grey-f:   #ECE4D3;
+  --orange-f: #FDEAD0;
+  --purple-f: #E8DAEF;
+  --yellow-f: #FCF3CF;
+}
+
+/* ── reveal base ─────────────────────────────────────────── */
+.reveal-viewport { background: var(--bg); }
+
+.reveal .slides { font-family: 'Georgia', Georgia, serif; }
+
+.reveal .slides section {
+  background: var(--paper);
+  color: var(--ink);
+  text-align: left;
+  padding: 0;
+  top: 0 !important;
+  height: 720px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* kill all reveal defaults that fight our layout */
+.reveal h1, .reveal h2, .reveal h3,
+.reveal p, .reveal ul, .reveal ol, .reveal li {
+  margin: 0; padding: 0;
+  text-shadow: none; text-transform: none;
+  font-family: 'Georgia', Georgia, serif;
+  color: var(--ink);
+}
+
+/* ── slide header ────────────────────────────────────────── */
+.sh { padding: 26px 58px 0; }
+
+.eyebrow {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.sh h2 {
+  font-size: 33px;
+  font-weight: bold;
+  line-height: 1.18;
+  margin-bottom: 9px;
+  color: var(--ink);
+}
+
+.sep {
+  width: 72px;
+  height: 4px;
+  background: var(--blue);
+  margin-bottom: 15px;
+}
+
+/* ── body area ───────────────────────────────────────────── */
+.sb { padding: 0 58px 14px; }
+
+/* ── bullets ─────────────────────────────────────────────── */
+.reveal .slides section ul {
+  list-style: none;
+  font-size: 20px;
+  line-height: 1.45;
+  margin-left: 0;
+}
+.reveal .slides section ul li {
+  position: relative;
+  padding-left: 1.1em;
+  margin-bottom: 8px;
+}
+.reveal .slides section ul li::before {
+  content: "•";
+  position: absolute; left: 0;
+  color: var(--blue);
+}
+.reveal .slides section ul li.sub {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.reveal .slides section ul li.sub::before { content: "–"; color: var(--muted); }
+
+/* ── example box ─────────────────────────────────────────── */
+.ex {
+  background: var(--tint);
+  border-radius: 7px;
+  padding: 11px 20px 13px;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.ex-lbl {
+  display: block;
+  font-family: 'Consolas', monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 4px;
+}
+
+/* ── formula card ────────────────────────────────────────── */
+.fcard {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 14px 24px;
+  text-align: center;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  margin: 12px 0;
+}
+
+/* ── image area ──────────────────────────────────────────── */
+.ia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 40px 0;
+}
+.ia img {
+  max-width: 100%;
+  object-fit: contain;
+}
+.icap {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  padding: 4px 58px 0;
+  line-height: 1.3;
+}
+
+/* ── two-col (image + bullets) ───────────────────────────── */
+.tcol {
+  display: flex;
+  gap: 28px;
+  padding: 0 50px;
+  align-items: flex-start;
+}
+.tcol-b { flex: 0 0 42%; }
+.tcol-i { flex: 1; display: flex; align-items: center; justify-content: center; }
+.tcol-i img { max-width: 100%; max-height: 430px; object-fit: contain; }
+
+/* ── section (part) slide ────────────────────────────────── */
+.reveal .slides section.sec {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 80px !important;
+}
+.pnum {
+  font-family: 'Consolas', monospace;
+  font-size: 19px;
+  color: var(--blue);
+  margin-bottom: 8px;
+  display: block;
+}
+.sec h1 {
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.sec .sub {
+  font-size: 19px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── title slide ─────────────────────────────────────────── */
+.reveal .slides section.ttl {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 80px !important;
+}
+.ttl img.logo {
+  max-width: 240px;
+  max-height: 72px;
+  object-fit: contain;
+  margin-bottom: 28px;
+}
+.ttl h1 {
+  font-size: 56px;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.ttl .inst {
+  font-family: 'Consolas', monospace;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: block;
+}
+.ttl .auth { font-size: 19px; }
+
+/* ── table ───────────────────────────────────────────────── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16.5px;
+}
+.tbl th {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 13px;
+  font-weight: bold;
+  text-align: left;
+  font-family: 'Georgia', serif;
+}
+.tbl td {
+  padding: 7px 13px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  line-height: 1.35;
+}
+.tbl tr:nth-child(odd)  td { background: #ECE4D3; }
+.tbl tr:nth-child(even) td { background: var(--paper); }
+.ok  { color: var(--green); font-weight: bold; }
+.no  { color: var(--red);   font-weight: bold; }
+
+/* ── five-questions cards ────────────────────────────────── */
+.fq {
+  display: flex;
+  align-items: center;
+  border-radius: 7px;
+  border: 2px solid currentColor;
+  background: var(--paper);
+  padding: 8px 16px;
+  margin-bottom: 9px;
+  gap: 15px;
+}
+.fq-n {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Consolas', monospace;
+  font-size: 16px; font-weight: bold;
+  color: white; flex-shrink: 0;
+}
+.fq-hd { font-size: 19px; font-weight: bold; line-height: 1.2; margin-bottom: 2px; }
+.fq-bd { font-size: 14px; color: var(--muted); font-style: italic; margin: 0; }
+
+/* ── refs / colab ────────────────────────────────────────── */
+.colab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #F9AB00;
+  color: #1A1A1A;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 12px;
+  font-family: 'Georgia', serif;
+}
+.colab-btn:hover { filter: brightness(1.08); }
+.colab-note {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 6px;
+  display: block;
+}
+
+/* slide number */
+.reveal .slide-number {
+  font-family: 'Consolas', monospace;
+  font-size: 11px;
+  background: transparent;
+  color: var(--muted);
+}
+
+/* reveal progress bar */
+.reveal .progress { color: var(--blue); }
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ══════════════════════════════════════════════════════════
+     ①  TÍTULO
+══════════════════════════════════════════════════════════ -->
+<section class="ttl">
+  <img class="logo" src="assets/ibccf-logo.png" alt="IBCCF"
+       onerror="this.style.display='none'">
+  <h1>Planejamento Experimental</h1>
+  <span class="inst">Instituto de Biofísica Carlos Chagas Filho · UFRJ</span>
+  <p class="auth">Pedro Torres &nbsp;·&nbsp; Gilberto Weissmuller</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ②  Por que planejar?
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Planejamento Experimental</span>
+    <h2>Nenhuma análise conserta um experimento mal desenhado</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>O resultado de um estudo depende fundamentalmente de <strong>como os dados foram coletados</strong></li>
+      <li>Uma análise sofisticada não recupera informação que jamais foi registrada</li>
+      <li>Planejar bem = definir <em>antes</em> da coleta: o que medir, quantos indivíduos, como alocar os tratamentos e quais vieses controlar</li>
+      <li>Cálculo amostral e controle de confundidores têm que vir antes do primeiro tubo</li>
+      <li class="sub">Estudos subdimensionados geram "negativos" que nada provam e "positivos" que superestimam o efeito</li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      Dois grupos investigam o mesmo fármaco. Um planeja com 80% de poder e detecta o efeito. O outro coleta "o que deu" e publica um falso negativo.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ③  Os quatro pilares (figura)
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Planejamento Experimental</span>
+    <h2>Os quatro pilares de um bom experimento</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="ia" style="height:450px">
+    <img src="assets/slides/desenho/pilares.png" alt="Quatro pilares" style="max-height:440px">
+  </div>
+  <p class="icap">Controle · Aleatorização · Repetição · Pareamento — os pilares do desenho experimental clássico</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ④  Controle
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Pilar 1</span>
+    <h2>Controle: isolar o que se quer estudar</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>Manter constantes todas as variáveis que <strong>não</strong> estão sendo manipuladas</li>
+      <li>Grupo controle recebe placebo ou condição padrão nas mesmas condições do grupo experimental</li>
+      <li>Mesmo observador, mesmo equipamento, mesmo momento do dia — quando possível</li>
+      <li class="sub">Variações não controladas inflam a variabilidade e reduzem o poder</li>
+      <li>Se um grupo é medido de manhã e o outro à tarde, a diferença pode ser ritmo circadiano, não o tratamento</li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      Experimento de comportamento animal: todos os camundongos do mesmo sexo, mesma gaiola, mesma ração, testados na mesma janela de tempo.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑤  Aleatorização
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Pilar 2</span>
+    <h2>Aleatorização: o único antídoto para o confundidor</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>Sortear quem recebe cada tratamento distribui aleatoriamente os confundidores <strong>não conhecidos</strong></li>
+      <li>Sem aleatorização, grupos podem diferir em fatores que o pesquisador não mediu</li>
+      <li class="sub">Se pacientes mais graves tendem a receber tratamento A, qualquer diferença pode ser gravidade</li>
+      <li>Aleatorização em blocos: garante equilíbrio por subgrupos (sexo, centro, turno)</li>
+      <li>Duplo-cego: participante e avaliador desconhecem o grupo — controla viés de expectativa</li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      Ensaio clínico: randomização por envelope selado ou gerador de números. Estudos observacionais não podem fazer isso — por isso não provam causalidade.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑥  Repetição
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Pilar 3</span>
+    <h2>Repetição: o acaso se dilui com o n</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>Qualquer medida individual carrega variabilidade; a média de $n$ medidas tem desvio reduzido por $\sqrt{n}$</li>
+      <li>Repetição técnica: mesma amostra medida mais de uma vez (controla erro de medida)</li>
+      <li>Repetição biológica: amostras de indivíduos diferentes (controla variabilidade biológica)</li>
+      <li class="sub">Os dois tipos <strong>não são intercambiáveis</strong>: três medidas do mesmo camundongo ≠ três camundongos</li>
+      <li>O $n$ do cálculo amostral sempre se refere a unidades experimentais <strong>independentes</strong></li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      qPCR: triplicatas técnicas controlam pipetagem. Para inferência biológica, precisamos de animais (ou pacientes) independentes.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑦  Pareamento (figura)
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Pilar 4</span>
+    <h2>Pareamento: cada indivíduo como seu próprio controle</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="ia" style="height:450px">
+    <img src="assets/slides/desenho/pareamento.png" alt="Pareamento" style="max-height:440px">
+  </div>
+  <p class="icap">Sem pareamento, a variabilidade entre indivíduos domina o sinal. Pareando, cada diferença individual é removida.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑧  Planejamento fatorial
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Desenhos Especiais</span>
+    <h2>Planejamento fatorial: vários fatores ao mesmo tempo</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="tcol">
+    <div class="tcol-b">
+      <ul style="font-size:19px">
+        <li>Em vez de variar <strong>um</strong> fator de cada vez, varia-se <strong>todos</strong> simultaneamente</li>
+        <li>Notação 2×2: dois fatores, dois níveis cada → 4 grupos</li>
+        <li>Generaliza para 2×3, 3×3, 2×2×2, …</li>
+        <li>Vantagens:</li>
+        <li class="sub">mais <strong>eficiente</strong>: o mesmo $n$ responde a várias perguntas</li>
+        <li class="sub">revela <strong>interações</strong> entre fatores</li>
+        <li>Analisado por ANOVA fatorial (<em>two-way, three-way</em>)</li>
+      </ul>
+    </div>
+    <div class="tcol-i">
+      <img src="assets/slides/desenho/desenho_fatorial.png" alt="Desenho fatorial 2×2">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑨  Interação
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Desenhos Especiais</span>
+    <h2>Efeitos principais e interação</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="ia" style="height:450px">
+    <img src="assets/slides/desenho/interacao.png" alt="Plots de interação" style="max-height:435px">
+  </div>
+  <p class="icap">Linhas paralelas → sem interação &nbsp;·&nbsp; Linhas não paralelas → o efeito de um fator depende do nível do outro</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑩  SEÇÃO: Tipos de estudo
+══════════════════════════════════════════════════════════ -->
+<section class="sec">
+  <span class="pnum">Parte 2</span>
+  <div class="sep"></div>
+  <h1>Tipos de estudo e<br>variáveis de confusão</h1>
+  <p class="sub">Quando podemos afirmar causalidade?</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑪  Experimento vs. observacional
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Tipos de Estudo</span>
+    <h2>Experimento verdadeiro vs. estudo observacional</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb" style="padding-top:0">
+    <table class="tbl">
+      <thead><tr>
+        <th style="width:26%">Característica</th>
+        <th style="width:37%">Experimento controlado</th>
+        <th>Estudo observacional</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Variável manipulada?</td><td>Sim, pelo pesquisador</td><td>Não — apenas observada</td></tr>
+        <tr><td>Aleatorização?</td><td>Sim (RCT)</td><td>Não</td></tr>
+        <tr><td>Permite causalidade?</td><td><span class="ok">Sim</span></td><td><span class="no">Não</span> — apenas associação</td></tr>
+        <tr><td>Controla confundidores?</td><td>Por aleatorização</td><td>Parcialmente (propensity score, etc.)</td></tr>
+        <tr><td>Exemplos</td><td>Ensaio clínico, RCBD</td><td>Coorte, caso-controle, transversal</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑫  Variável de confusão
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Tipos de Estudo</span>
+    <h2>Variável de confusão: o culpado escondido</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>Um confundidor está associado tanto à <strong>exposição</strong> quanto ao <strong>desfecho</strong> — e não é intermediário</li>
+      <li>Sem controle, seu efeito se mistura ao do tratamento e distorce a estimativa</li>
+      <li>Motoristas de ônibus tinham mais doença coronariana do que cobradores</li>
+      <li class="sub">A diferença real era sedentarismo; estratificando por atividade, o efeito do exercício emergiu</li>
+      <li>Aleatorização distribui confundidores <strong>conhecidos E desconhecidos</strong> — a vantagem do experimento</li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      Café e câncer de pulmão: fumantes bebem mais café. O tabagismo é o confundidor; sem controlá-lo, o café parece cancerígeno.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑬  SEÇÃO: Poder
+══════════════════════════════════════════════════════════ -->
+<section class="sec">
+  <span class="pnum">Parte 3</span>
+  <div class="sep"></div>
+  <h1>Poder estatístico e<br>cálculo amostral</h1>
+  <p class="sub">Quantos sujeitos preciso para responder minha pergunta?</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑭  Erros tipo I e II
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Poder Estatístico</span>
+    <h2>Os dois tipos de erro e o que os controla</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb" style="padding-top:0">
+    <table class="tbl">
+      <thead><tr>
+        <th style="width:24%"></th>
+        <th>H₀ é verdadeira</th>
+        <th>H₀ é falsa</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Não rejeitamos H₀</strong></td>
+          <td>Decisão correta (1 − α)</td>
+          <td><span class="no">Erro tipo II (β)</span> — falso negativo</td>
+        </tr>
+        <tr>
+          <td><strong>Rejeitamos H₀</strong></td>
+          <td><span class="no">Erro tipo I (α)</span> — falso positivo</td>
+          <td><span class="ok">Decisão correta</span> (poder = 1 − β)</td>
+        </tr>
+        <tr>
+          <td><strong>O que controla?</strong></td>
+          <td>Nível de significância α</td>
+          <td>n, efeito real, σ, α</td>
+        </tr>
+        <tr>
+          <td><strong>Consequência</strong></td>
+          <td>Alarme falso</td>
+          <td>Perde efeito real — estudo inconclusivo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑮  Poder
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Poder Estatístico</span>
+    <h2>Poder: a chance de detectar o que existe</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>Poder $= 1 - \beta = P(\text{rejeitar } H_0 \mid H_1 \text{ é verdadeira})$</li>
+      <li>Convenção: queremos poder <strong>≥ 80%</strong> (β ≤ 20%)</li>
+      <li>Quatro fatores controlam o poder — fixados três, o quarto está determinado:</li>
+      <li class="sub">↑ $n$ → ↑ poder &nbsp;(mais informação = menos incerteza)</li>
+      <li class="sub">↑ $\delta$ (efeito real) → ↑ poder &nbsp;(sinal maior é mais fácil de ver)</li>
+      <li class="sub">↑ $\sigma$ (variabilidade) → ↓ poder &nbsp;(ruído esconde o sinal)</li>
+      <li class="sub">↑ $\alpha$ → ↑ poder, mas ↑ erro tipo I &nbsp;(tradeoff)</li>
+    </ul>
+    <div class="fcard">
+      $$\text{poder} = 1 - \beta = P\!\left(\text{rejeitar } H_0 \mid H_1\right)$$
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑯  Quatro quadrantes
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Poder Estatístico</span>
+    <h2>Os quatro quadrantes: efeito × variabilidade</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="ia" style="height:450px">
+    <img src="assets/slides/desenho/quadrantes.png" alt="Quadrantes efeito vs variabilidade" style="max-height:435px">
+  </div>
+  <p class="icap">A combinação de tamanho de efeito e variabilidade determina o esforço amostral necessário</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑰  Cálculo amostral
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Cálculo Amostral</span>
+    <h2>Quantos sujeitos preciso?</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>A pergunta central do planejamento: quantos indivíduos para 80% de poder, α = 0,05?</li>
+      <li>Para comparação de duas médias (teste t, Welch):</li>
+      <li class="sub">$d = \delta/\sigma$ é o tamanho de efeito padronizado (Cohen's d)</li>
+      <li class="sub">$z_{0{,}975} \approx 1{,}96$ &nbsp;e&nbsp; $z_{0{,}80} \approx 0{,}84$ para poder = 80%</li>
+      <li>Exemplo: $d = 0{,}5$ (efeito médio) → $n \approx 64$ por grupo</li>
+      <li>Exemplo: $d = 0{,}2$ (efeito pequeno) → $n \approx 394$ por grupo</li>
+      <li class="sub">Dobrar a precisão exige <strong>quatro vezes</strong> mais sujeitos</li>
+    </ul>
+    <div class="fcard">
+      $$n \approx 2\!\left(\frac{z_{1-\alpha/2}+z_{1-\beta}}{d}\right)^{\!2} \quad \text{por grupo}$$
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑱  Curvas de poder
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Cálculo Amostral</span>
+    <h2>Poder em função do n: curvas para diferentes efeitos</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="ia" style="height:450px">
+    <img src="assets/slides/desenho/poder_curvas.png" alt="Curvas de poder" style="max-height:440px">
+  </div>
+  <p class="icap">Efeito grande (d = 0,8): poucos sujeitos bastam. Efeito pequeno (d = 0,2): centenas. A linha tracejada marca poder = 80%.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑲  SEÇÃO: Significância
+══════════════════════════════════════════════════════════ -->
+<section class="sec">
+  <span class="pnum">Parte 4</span>
+  <div class="sep"></div>
+  <h1>Significância, relevância<br>e tamanho de efeito</h1>
+  <p class="sub">Um p-valor pequeno não significa que o efeito importa</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ⑳  Significativo ≠ importante
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Significância vs. Relevância</span>
+    <h2>Significativo não é o mesmo que importante</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>Significância estatística: a diferença é grande o bastante para ser <strong>detectada</strong> pelo design</li>
+      <li>Relevância clínica/biológica: a diferença é grande o bastante para <strong>importar</strong> na prática</li>
+      <li>Com $n$ enorme qualquer diferença minúscula pode ser estatisticamente significativa</li>
+      <li>0,1 ponto de QI entre primogênitos e caçulas — $p < 0{,}001$ em 250 000 pares, mas clinicamente irrelevante</li>
+      <li class="sub">O que importa: o tamanho do efeito e seu intervalo de confiança</li>
+      <li>Reporte sempre: <strong>valor-p + tamanho de efeito + IC 95%</strong></li>
+    </ul>
+    <div class="ex">
+      <span class="ex-lbl">Exemplo</span>
+      Antitérmico reduz febre em 0,1 °C: p = 0,02 com n grande. Estatisticamente significativo, clinicamente inútil.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ㉑  Tamanhos de efeito padronizados
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Tamanho de Efeito</span>
+    <h2>Medidas de tamanho de efeito padronizadas</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb" style="padding-top:0">
+    <table class="tbl">
+      <thead><tr>
+        <th style="width:20%">Medida</th>
+        <th style="width:40%">Quando usar</th>
+        <th style="width:13%">Pequeno</th>
+        <th style="width:13%">Médio</th>
+        <th style="width:13%">Grande</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Cohen's d</td><td>Diferença de duas médias (teste t)</td><td>0,2</td><td>0,5</td><td>0,8</td></tr>
+        <tr><td>Cohen's f</td><td>ANOVA (variação entre grupos)</td><td>0,10</td><td>0,25</td><td>0,40</td></tr>
+        <tr><td>Cohen's w</td><td>Qui-quadrado (tabelas de contingência)</td><td>0,10</td><td>0,30</td><td>0,50</td></tr>
+        <tr><td>r de Pearson</td><td>Correlação linear</td><td>0,10</td><td>0,30</td><td>0,50</td></tr>
+        <tr><td>η² (eta²)</td><td>Variância explicada pela ANOVA</td><td>0,01</td><td>0,06</td><td>0,14</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ㉒  Cinco perguntas
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Como Escolher o Teste</span>
+    <h2>Cinco perguntas que decidem o teste estatístico</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <div class="fq" style="color:#3266AD">
+      <div class="fq-n" style="background:#3266AD">Q1</div>
+      <div>
+        <p class="fq-hd" style="color:#3266AD">Bivariada ou multivariável?</p>
+        <p class="fq-bd">uma única exposição contra o desfecho, ou ajuste para várias covariáveis?</p>
+      </div>
+    </div>
+    <div class="fq" style="color:#C0392B">
+      <div class="fq-n" style="background:#C0392B">Q2</div>
+      <div>
+        <p class="fq-hd" style="color:#C0392B">Diferença ou correlação?</p>
+        <p class="fq-bd">comparar grupos / medir um efeito, ou medir a associação entre variáveis?</p>
+      </div>
+    </div>
+    <div class="fq" style="color:#1A7A4A">
+      <div class="fq-n" style="background:#1A7A4A">Q3</div>
+      <div>
+        <p class="fq-hd" style="color:#1A7A4A">Independente ou pareada?</p>
+        <p class="fq-bd">amostras separadas, ou o mesmo indivíduo (antes–depois, blocos)?</p>
+      </div>
+    </div>
+    <div class="fq" style="color:#6B3FA0">
+      <div class="fq-n" style="background:#6B3FA0">Q4</div>
+      <div>
+        <p class="fq-hd" style="color:#6B3FA0">Tipo do desfecho — e normalidade?</p>
+        <p class="fq-bd">contínua (Normal ou não), ordinal, nominal, tempo até evento, contagem?</p>
+      </div>
+    </div>
+    <div class="fq" style="color:#C96E1F">
+      <div class="fq-n" style="background:#C96E1F">Q5</div>
+      <div>
+        <p class="fq-hd" style="color:#C96E1F">Quantos grupos ou condições?</p>
+        <p class="fq-bd">duas, ou três ou mais?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ㉓  Guia completo de testes (imagem original)
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Como Escolher o Teste</span>
+    <h2>Guia completo de escolha do teste estatístico</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="ia" style="height:450px">
+    <img src="assets/slides/desenho/guia_testes.jpg" alt="Guia de escolha de testes" style="max-height:440px">
+  </div>
+  <p class="icap">A guide for choosing the most common statistical tests</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ㉔  Pós-testes
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Depois do Teste</span>
+    <h2>Pós-testes e o que sempre reportar</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>Uma ANOVA significativa diz que <strong>alguma</strong> média difere — mas não qual</li>
+      <li class="sub">Tukey HSD: todos os grupos comparados entre si</li>
+      <li class="sub">Dunnett: cada grupo comparado com um único controle</li>
+      <li class="sub">Bonferroni · Šidák: poucas comparações planejadas a priori</li>
+      <li class="sub">Scheffé: combinações lineares de médias (contrastes)</li>
+      <li>Não-paramétricos: Dunn (após Kruskal–Wallis) · Wilcoxon pareado corrigido (após Friedman)</li>
+      <li>Antes de qualquer teste: faça um gráfico (histograma, boxplot, dispersão) e cheque suposições</li>
+      <li>Sempre reporte <strong>valor-p + tamanho de efeito + intervalo de confiança</strong></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ㉕  Checklist
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <span class="eyebrow">Checklist</span>
+    <h2>Checklist do bom experimento</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb">
+    <ul>
+      <li>Pergunta de pesquisa clara e hipótese <strong>pré-registrada</strong> antes da coleta</li>
+      <li>Cálculo amostral feito com tamanho de efeito mínimo relevante</li>
+      <li>Aleatorização documentada (como foi feita, por quem, quando)</li>
+      <li>Grupos equilibrados em covariáveis importantes (<em>baseline table</em>)</li>
+      <li>Cegamento do avaliador quando possível</li>
+      <li>Análise dos dados cega ou pré-especificada no protocolo</li>
+      <li>Reporte: valor-p, tamanho de efeito (+ IC 95%) e poder pós-hoc se negativo</li>
+      <li class="sub">Um estudo negativo bem dimensionado diz tanto quanto um positivo</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ㉖  Referências
+══════════════════════════════════════════════════════════ -->
+<section>
+  <div class="sh">
+    <h2>Referências e material complementar</h2>
+    <div class="sep"></div>
+  </div>
+  <div class="sb" style="padding-top:6px">
+    <p style="font-size:17px; margin-bottom:8px">Material teórico completo e interativo:</p>
+    <p style="font-family:monospace; font-size:17px; color:var(--blue); margin-bottom:18px">
+      monteirotorres.github.io/biostat
+    </p>
+    <p style="font-size:15px; color:var(--muted); margin-bottom:6px">
+      Notebooks em Python (pandas · seaborn · scipy.stats · statsmodels)
+    </p>
+    <p style="font-size:15px; color:var(--muted); margin-bottom:20px; font-family:monospace">
+      monteirotorres@biof.ufrj.br
+    </p>
+    <p style="font-size:17px; margin-bottom:4px"><strong>Pratique com o notebook interativo:</strong></p>
+    <a class="colab-btn"
+       href="https://colab.research.google.com/github/monteirotorres/biostat/blob/main/04_estatistica_inferencial/19_planejamento_pratico.ipynb"
+       target="_blank">
+      <!-- Colab-style icon -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="11" fill="#fff"/>
+        <path d="M7 8.5l5 3.5-5 3.5V8.5z" fill="#F9AB00"/>
+        <path d="M12 8.5l5 3.5-5 3.5V8.5z" fill="#F9AB00" opacity=".6"/>
+      </svg>
+      Abrir no Google Colab
+    </a>
+    <span class="colab-note">Pós-testes, ANOVA fatorial, Kruskal-Wallis e curvas de poder com código Python</span>
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
+<script>
+Reveal.initialize({
+  width:  1280,
+  height: 720,
+  margin: 0,
+  hash:   true,
+  slideNumber: 'c/t',
+  progress: true,
+  transition: 'none',
+  backgroundTransition: 'none',
+  plugins: [ RevealMath.KaTeX ],
+  katex: {
+    version: 'latest',
+    delimiters: [
+      { left: '$$', right: '$$', display: true  },
+      { left: '$',  right: '$',  display: false }
+    ]
+  }
+});
+</script>
+</body>
+</html>
